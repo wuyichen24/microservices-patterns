@@ -1,0 +1,15 @@
+dependencies {
+    // TODO eliminate this - problem is value objects like Money need to be embeddable.
+    // TODO https://en.wikibooks.org/wiki/Java_Persistence/Embeddables#Example_of_an_Embeddable_object_XML
+
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+
+    compile "io.eventuate.client.java:eventuate-client-java-common-impl:$eventuateClientVersion"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+
+    runtime "javax.xml.bind:jaxb-api:2.2.11"
+    runtime "com.sun.xml.bind:jaxb-core:2.2.11"
+    runtime "com.sun.xml.bind:jaxb-impl:2.2.11"
+    runtime "javax.activation:activation:1.1.1"
+}

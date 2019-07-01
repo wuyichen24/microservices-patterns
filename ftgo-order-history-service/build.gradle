@@ -1,0 +1,55 @@
+
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:$springDependencyManagementPluginVersion"
+        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:$springCloudContractDependenciesVersion"
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+apply plugin: FtgoServicePlugin
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'spring-cloud-contract'
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:$springCloudContractDependenciesVersion"
+    }
+}
+
+
+dependencies {
+    compile 'com.amazonaws:aws-java-sdk-dynamodb:1.11.158'
+
+    compile project(":common-swagger")
+
+    compile (project(":ftgo-order-service-api")) {
+        exclude module: "spring-boot-starter-data-jpa"
+    }
+
+    compile "io.eventuate.tram.core:eventuate-tram-consumer-kafka:$eventuateTramVersion"
+
+    compile "io.eventuate.tram.core:eventuate-tram-events:$eventuateTramVersion"
+
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile 'javax.el:javax.el-api:2.2.5'
+
+    testCompile "io.eventuate.tram.core:eventuate-tram-in-memory:$eventuateTramVersion"
+    testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
+    testCompile "io.eventuate.tram.core:eventuate-tram-test-util:$eventuateTramVersion"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
+    testCompile "com.jayway.jsonpath:json-path:2.3.0"
+
+    testCompile "net.chrisrichardson.ftgo:ftgo-order-service-contracts:unspecified:stubs"
+    testCompile "org.springframework.cloud:spring-cloud-contract-wiremock"
+    testCompile "org.springframework.cloud:spring-cloud-starter-contract-stub-runner"
+    testCompile "io.eventuate.tram.core:eventuate-tram-testing-support-spring-cloud-contract:$eventuateTramVersion"
+
+
+}
