@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
+import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest.LineItem;
+import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;
 import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;
 
 public class OrderServiceClient {
@@ -37,7 +40,7 @@ public class OrderServiceClient {
       MenuItemIdAndQuantity li = lineItems.get(idx);
       builder.setLineItems(idx, LineItem.newBuilder().setQuantity(li.getQuantity()).setMenuItemId(li.getMenuItemId()).build());
     });
-    CreateOrderReply response;
+    CreateOrderResponse response;
       response = clientStub.createOrder(request);
     return response.getOrderId();
   }

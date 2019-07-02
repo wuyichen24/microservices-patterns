@@ -1,0 +1,11 @@
+/.gradle/
+**/bin/
+bin/**
+/.gradle/
+/build/**
+.project
+.settings/**
+**/.settings
+**/.classpath
+**/org.sonarlint.eclipse.core.prefs
+/build/

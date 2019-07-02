@@ -7,8 +7,9 @@ public class CreateOrderResponse {
     return orderId;
   }
 
-  public void setOrderId(long orderId) {
+  public CreateOrderResponse setOrderId(long orderId) {
     this.orderId = orderId;
+    return this;
   }
 
   private CreateOrderResponse() {
@@ -16,5 +17,13 @@ public class CreateOrderResponse {
 
   public CreateOrderResponse(long orderId) {
     this.orderId = orderId;
+  }
+
+  public static CreateOrderResponse newBuilder() {
+	return new CreateOrderResponse();
+  }
+  
+  public CreateOrderResponse build() {
+	  return this;
   }
 }
