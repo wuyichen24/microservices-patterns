@@ -9,3 +9,5 @@ bin/**
 **/.classpath
 **/org.sonarlint.eclipse.core.prefs
 /build/
+/buildSrc/**
+/buildSrc/build/**
