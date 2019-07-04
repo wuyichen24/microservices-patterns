@@ -15,18 +15,15 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @EnableAutoConfiguration
-@Import({AccountingMessagingConfiguration.class, AccountingWebConfiguration.class,
-        TramCommandProducerConfiguration.class,
-        EventuateDriverConfiguration.class,
-        TramJdbcKafkaConfiguration.class})
+@Import({ AccountingMessagingConfiguration.class, AccountingWebConfiguration.class,
+		TramCommandProducerConfiguration.class, EventuateDriverConfiguration.class, TramJdbcKafkaConfiguration.class })
 public class AccountingServiceMain {
+	@Bean
+	public ChannelMapping channelMapping() {
+		return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+	}
 
-  @Bean
-  public ChannelMapping channelMapping() {
-    return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(AccountingServiceMain.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(AccountingServiceMain.class, args);
+	}
 }

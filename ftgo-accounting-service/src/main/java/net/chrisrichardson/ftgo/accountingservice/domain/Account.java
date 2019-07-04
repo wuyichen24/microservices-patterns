@@ -10,34 +10,31 @@ import java.util.List;
 import static io.eventuate.EventUtil.events;
 
 public class Account extends ReflectiveMutableCommandProcessingAggregate<Account, AccountCommand> {
+	public List<Event> process(CreateAccountCommand command) {
+		return events(new AccountCreatedEvent());
+	}
 
-  public List<Event> process(CreateAccountCommand command) {
-    return events(new AccountCreatedEvent());
-  }
+	public void apply(AccountCreatedEvent event) {
 
-  public void apply(AccountCreatedEvent event) {
+	}
 
-  }
+	public List<Event> process(AuthorizeCommandInternal command) {
+		return events(new AccountAuthorizedEvent());
+	}
 
+	public List<Event> process(ReverseAuthorizationCommandInternal command) {
+		return Collections.emptyList();
+	}
 
-  public List<Event> process(AuthorizeCommandInternal command) {
-    return events(new AccountAuthorizedEvent());
-  }
+	public List<Event> process(ReviseAuthorizationCommandInternal command) {
+		return Collections.emptyList();
+	}
 
-  public List<Event> process(ReverseAuthorizationCommandInternal command) {
-    return Collections.emptyList();
-  }
-  public List<Event> process(ReviseAuthorizationCommandInternal command) {
-    return Collections.emptyList();
-  }
+	public void apply(AccountAuthorizedEvent event) {
 
-  public void apply(AccountAuthorizedEvent event) {
+	}
 
-  }
-
-  public void apply(SagaReplyRequestedEvent event) {
-    // TODO - need a way to not need this method
-  }
-
-
+	public void apply(SagaReplyRequestedEvent event) {
+		// TODO - need a way to not need this method
+	}
 }

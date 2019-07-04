@@ -7,22 +7,17 @@ import net.chrisrichardson.ftgo.accountingservice.domain.AccountingService;
 import net.chrisrichardson.ftgo.consumerservice.domain.ConsumerCreated;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class AccountingEventConsumer {
+	@Autowired
+	private AccountingService accountingService;
 
-  @Autowired
-  private AccountingService accountingService;
+	public DomainEventHandlers domainEventHandlers() {
+		return DomainEventHandlersBuilder.forAggregateType("net.chrisrichardson.ftgo.consumerservice.domain.Consumer")
+				.onEvent(ConsumerCreated.class, this::createAccount) // TODO this is hack to get the correct package
+				.build();
+	}
 
-  public DomainEventHandlers domainEventHandlers() {
-    return DomainEventHandlersBuilder
-            .forAggregateType("net.chrisrichardson.ftgo.consumerservice.domain.Consumer")
-            .onEvent(ConsumerCreated.class, this::createAccount) // TODO this is hack to get the correct package
-            .build();
-  }
-
-  private void createAccount(DomainEventEnvelope<ConsumerCreated> dee) {
-    accountingService.create(dee.getAggregateId());
-  }
-
-
+	private void createAccount(DomainEventEnvelope<ConsumerCreated> dee) {
+		accountingService.create(dee.getAggregateId());
+	}
 }

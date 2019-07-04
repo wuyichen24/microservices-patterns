@@ -9,17 +9,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({TramCommandProducerConfiguration.class, CommonConfiguration.class})
+@Import({ TramCommandProducerConfiguration.class, CommonConfiguration.class })
 public class AccountServiceConfiguration {
+	@Bean
+	public AggregateRepository<Account, AccountCommand> accountRepositorySync(EventuateAggregateStore aggregateStore) {
+		return new AggregateRepository<>(Account.class, aggregateStore);
+	}
 
-
-  @Bean
-  public AggregateRepository<Account, AccountCommand> accountRepositorySync(EventuateAggregateStore aggregateStore) {
-    return new AggregateRepository<>(Account.class, aggregateStore);
-  }
-
-  @Bean
-  public AccountingService accountingService() {
-    return new AccountingService();
-  }
+	@Bean
+	public AccountingService accountingService() {
+		return new AccountingService();
+	}
 }

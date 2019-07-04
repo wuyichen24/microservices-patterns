@@ -1,6 +1,5 @@
 package net.chrisrichardson.ftgo.apiagateway;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -30,9 +29,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-//import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-//import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApiGatewayIntegrationTestConfiguration.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
@@ -49,13 +45,11 @@ public class ApiGatewayIntegrationTest {
 
     @Test
     public void shouldProxyCreateOrder() {
-
         stubFor(post(urlEqualTo("/orders"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "text/xml")
                         .withBody("<response>Some content</response>")));
-
 
         WebClient client = WebClient.create("http://localhost:" + port + "/orders");
 
@@ -71,12 +65,10 @@ public class ApiGatewayIntegrationTest {
         assertEquals("<response>Some content</response>", z.getBody());
 
         verify(postRequestedFor(urlMatching("/orders")));
-
     }
 
     @Test
     public void shouldProxyGetOrderDetails() throws JsonProcessingException {
-
         String orderId = "1";
 
         OrderDetails expectedOrderDetails = new OrderDetails(new OrderInfo(orderId, "CREATED"));
@@ -92,7 +84,6 @@ public class ApiGatewayIntegrationTest {
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON.toString())
                         .withBody(body)));
 
-
         WebClient client = WebClient.create("http://localhost:" + port + "/orders/1");
 
         ResponseEntity<OrderDetails> z = client
@@ -106,7 +97,5 @@ public class ApiGatewayIntegrationTest {
         assertEquals(body, expectedOrderDetails, z.getBody());
 
         verify(getRequestedFor(urlMatching(expectedPath)));
-
     }
-
 }

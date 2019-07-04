@@ -17,38 +17,33 @@ import org.springframework.web.reactive.function.client.WebClient;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=TestConfiguration.class,
-        webEnvironment= SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids =
-        {"net.chrisrichardson.ftgo:ftgo-order-service-contracts"}
-)
+@SpringBootTest(classes = TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-order-service-contracts" })
 @DirtiesContext
 public class OrderServiceProxyIntegrationTest {
+	@Value("${stubrunner.runningstubs.ftgo-order-service-contracts.port}")
+	private int port;
+	private OrderDestinations orderDestinations;
+	private OrderServiceProxy orderService;
 
-  @Value("${stubrunner.runningstubs.ftgo-order-service-contracts.port}")
-  private int port;
-  private OrderDestinations orderDestinations;
-  private OrderServiceProxy orderService;
+	@Before
+	public void setUp() throws Exception {
+		orderDestinations = new OrderDestinations();
+		String orderServiceUrl = "http://localhost:" + port;
+		System.out.println("orderServiceUrl=" + orderServiceUrl);
+		orderDestinations.setOrderServiceUrl(orderServiceUrl);
+		orderService = new OrderServiceProxy(orderDestinations, WebClient.create());
+	}
 
-  @Before
-  public void setUp() throws Exception {
-    orderDestinations = new OrderDestinations();
-    String orderServiceUrl = "http://localhost:" + port;
-    System.out.println("orderServiceUrl=" + orderServiceUrl);
-    orderDestinations.setOrderServiceUrl(orderServiceUrl);
-    orderService = new OrderServiceProxy(orderDestinations, WebClient.create());
-  }
+	@Test
+	public void shouldVerifyExistingCustomer() {
+		OrderInfo result = orderService.findOrderById("99").block();
+		assertEquals("99", result.getOrderId());
+		assertEquals("APPROVAL_PENDING", result.getState());
+	}
 
-  @Test
-  public void shouldVerifyExistingCustomer() {
-    OrderInfo result = orderService.findOrderById("99").block();
-    assertEquals("99", result.getOrderId());
-    assertEquals("APPROVAL_PENDING", result.getState());
-  }
-
-  @Test(expected = OrderNotFoundException.class)
-  public void shouldFailToFindMissingOrder() {
-    orderService.findOrderById("555").block();
-  }
-
+	@Test(expected = OrderNotFoundException.class)
+	public void shouldFailToFindMissingOrder() {
+		orderService.findOrderById("555").block();
+	}
 }

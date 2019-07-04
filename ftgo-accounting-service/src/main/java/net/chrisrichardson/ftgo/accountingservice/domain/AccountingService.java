@@ -11,11 +11,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class AccountingService {
-  @Autowired
-  private AggregateRepository<Account, AccountCommand> accountRepository;
+	@Autowired
+	private AggregateRepository<Account, AccountCommand> accountRepository;
 
-  public void create(String aggregateId) {
-    EntityWithIdAndVersion<Account> account = accountRepository.save(new CreateAccountCommand(),
-            Optional.of(new SaveOptions().withId(aggregateId)));
-  }
+	public void create(String aggregateId) {
+		EntityWithIdAndVersion<Account> account = accountRepository.save(new CreateAccountCommand(),
+				Optional.of(new SaveOptions().withId(aggregateId)));
+	}
 }

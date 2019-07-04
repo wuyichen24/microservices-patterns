@@ -13,19 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path="/accounts")
+@RequestMapping(path = "/accounts")
 public class AccountsController {
+	@Autowired
+	private AggregateRepository<Account, AccountCommand> accountRepository;
 
-  @Autowired
-  private AggregateRepository<Account, AccountCommand> accountRepository;
-
-  @RequestMapping(path="/{accountId}", method= RequestMethod.GET)
-  public ResponseEntity<GetAccountResponse> getAccount(@PathVariable String accountId) {
-       try {
-          return new ResponseEntity<>(new GetAccountResponse(accountId), HttpStatus.OK);
-       } catch (EntityNotFoundException e) {
-         return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
-  }
-
+	@RequestMapping(path = "/{accountId}", method = RequestMethod.GET)
+	public ResponseEntity<GetAccountResponse> getAccount(@PathVariable String accountId) {
+		try {
+			return new ResponseEntity<>(new GetAccountResponse(accountId), HttpStatus.OK);
+		} catch (EntityNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }

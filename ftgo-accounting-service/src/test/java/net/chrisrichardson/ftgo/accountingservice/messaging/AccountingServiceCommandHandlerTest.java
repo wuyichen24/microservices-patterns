@@ -14,7 +14,6 @@ import io.eventuate.tram.testutil.TestMessageConsumer;
 import io.eventuate.tram.testutil.TestMessageConsumerFactory;
 import net.chrisrichardson.ftgo.accountingservice.domain.Account;
 import net.chrisrichardson.ftgo.accountingservice.domain.AccountCommand;
-import net.chrisrichardson.ftgo.accountingservice.domain.AuthorizeCommandInternal;
 import net.chrisrichardson.ftgo.accountservice.api.AccountingServiceChannels;
 import net.chrisrichardson.ftgo.accountservice.api.AuthorizeCommand;
 import net.chrisrichardson.ftgo.common.Money;
@@ -37,89 +36,75 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AccountingServiceCommandHandlerTest.AccountingServiceCommandHandlerTestConfiguration.class)
 public class AccountingServiceCommandHandlerTest {
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ AccountingMessagingConfiguration.class, TramCommandProducerConfiguration.class,
+			EmbeddedTestAggregateStoreConfiguration.class, TramEventsPublisherConfiguration.class, // TODO
+			TramInMemoryConfiguration.class })
+	static public class AccountingServiceCommandHandlerTestConfiguration {
+		@Bean
+		public TestMessageConsumerFactory testMessageConsumerFactory() {
+			return new TestMessageConsumerFactory();
+		}
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({AccountingMessagingConfiguration.class,
-          TramCommandProducerConfiguration.class,
-          EmbeddedTestAggregateStoreConfiguration.class,
-          TramEventsPublisherConfiguration.class, // TODO
-          TramInMemoryConfiguration.class})
-  static public class AccountingServiceCommandHandlerTestConfiguration {
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+		}
 
-    @Bean
-    public TestMessageConsumerFactory testMessageConsumerFactory() {
-      return new TestMessageConsumerFactory();
-    }
+		@Bean
+		public DataSource dataSource() {
+			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+			return builder.setType(EmbeddedDatabaseType.H2).addScript("eventuate-tram-embedded-schema.sql")
+					.addScript("eventuate-tram-sagas-embedded.sql").addScript("eventuate-embedded-schema.sql").build();
+		}
+	}
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+	@Autowired
+	private CommandProducer commandProducer;
 
-    @Bean
-    public DataSource dataSource() {
-      EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-      return builder.setType(EmbeddedDatabaseType.H2)
-              .addScript("eventuate-tram-embedded-schema.sql")
-              .addScript("eventuate-tram-sagas-embedded.sql")
-              .addScript("eventuate-embedded-schema.sql")
-              .build();
-    }
+	@Autowired
+	private TestMessageConsumerFactory testMessageConsumerFactory;
 
+	@Autowired
+	private DomainEventPublisher domainEventPublisher;
 
-  }
+	@Autowired
+	private AggregateRepository<Account, AccountCommand> accountRepository;
 
-  @Autowired
-  private CommandProducer commandProducer;
+	@Test
+	public void shouldReply() throws InterruptedException, ExecutionException, TimeoutException {
+		TestMessageConsumer testMessageConsumer = testMessageConsumerFactory.make();
 
-  @Autowired
-  private TestMessageConsumerFactory testMessageConsumerFactory;
+		long consumerId = System.currentTimeMillis();
+		long orderId = 102L;
 
-  @Autowired
-  private DomainEventPublisher domainEventPublisher;
+		domainEventPublisher.publish("net.chrisrichardson.ftgo.consumerservice.domain.Consumer", consumerId,
+				Collections.singletonList(new ConsumerCreated()));
 
+		Eventually.eventually(() -> {
+			accountRepository.find(Long.toString(consumerId));
+		});
 
-  @Autowired
-  private AggregateRepository<Account, AccountCommand> accountRepository;
+		Money orderTotal = new Money(123);
 
-  @Test
-  public void shouldReply() throws InterruptedException, ExecutionException, TimeoutException {
+		String messageId = commandProducer.send(AccountingServiceChannels.accountingServiceChannel, null,
+				new AuthorizeCommand(consumerId, orderId, orderTotal), testMessageConsumer.getReplyChannel(),
+				withSagaCommandHeaders());
 
-    TestMessageConsumer testMessageConsumer = testMessageConsumerFactory.make();
+		testMessageConsumer.assertHasReplyTo(messageId);
+	}
 
-    long consumerId = System.currentTimeMillis();
-    long orderId = 102L;
-
-    domainEventPublisher.publish("net.chrisrichardson.ftgo.consumerservice.domain.Consumer", consumerId, Collections.singletonList(new ConsumerCreated()));
-
-    Eventually.eventually(() -> {
-      accountRepository.find(Long.toString(consumerId));
-    });
-
-    Money orderTotal = new Money(123);
-
-    String messageId = commandProducer.send(AccountingServiceChannels.accountingServiceChannel, null,
-            new AuthorizeCommand(consumerId, orderId, orderTotal),
-            testMessageConsumer.getReplyChannel(), withSagaCommandHeaders());
-
-    testMessageConsumer.assertHasReplyTo(messageId);
-
-  }
-
-  // TODO duplicate
-
-  private Map<String, String> withSagaCommandHeaders() {
-    Map<String, String> result = new HashMap<>();
-    result.put(SagaCommandHeaders.SAGA_TYPE, "MySagaType");
-    result.put(SagaCommandHeaders.SAGA_ID, "MySagaId");
-    return result;
-  }
-
+	// TODO duplicate
+	private Map<String, String> withSagaCommandHeaders() {
+		Map<String, String> result = new HashMap<>();
+		result.put(SagaCommandHeaders.SAGA_TYPE, "MySagaType");
+		result.put(SagaCommandHeaders.SAGA_ID, "MySagaId");
+		return result;
+	}
 }

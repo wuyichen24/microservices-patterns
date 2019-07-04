@@ -1,8 +1,5 @@
 package net.chrisrichardson.ftgo.accountservice.api;
 
-
 public class AccountingServiceChannels {
-
-  public static String accountingServiceChannel = "accountingService";
-
+	public static String accountingServiceChannel = "accountingService";
 }

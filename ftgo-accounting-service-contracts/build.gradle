@@ -14,7 +14,6 @@ buildscript {
 apply plugin: 'spring-cloud-contract'
 apply plugin: 'maven-publish'
 
-
 publishing {
     repositories {
         maven {
@@ -28,6 +27,5 @@ contracts {
 }
 
 generateContractTests.enabled = false
-
 
 build.finalizedBy(publish)
