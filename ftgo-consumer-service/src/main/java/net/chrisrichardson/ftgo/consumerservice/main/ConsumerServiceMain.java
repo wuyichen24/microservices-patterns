@@ -8,10 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({ConsumerWebConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class})
+@Import({ ConsumerWebConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 public class ConsumerServiceMain {
-
-  public static void main(String[] args) {
-    SpringApplication.run(ConsumerServiceMain.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(ConsumerServiceMain.class, args);
+	}
 }

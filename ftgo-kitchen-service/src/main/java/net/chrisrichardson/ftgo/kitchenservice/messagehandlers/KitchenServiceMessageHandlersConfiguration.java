@@ -11,26 +11,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({KitchenDomainConfiguration.class, SagaParticipantConfiguration.class, CommonConfiguration.class})
+@Import({ KitchenDomainConfiguration.class, SagaParticipantConfiguration.class, CommonConfiguration.class })
 public class KitchenServiceMessageHandlersConfiguration {
+	@Bean
+	public KitchenServiceEventConsumer ticketEventConsumer() {
+		return new KitchenServiceEventConsumer();
+	}
 
-  @Bean
-  public KitchenServiceEventConsumer ticketEventConsumer() {
-    return new KitchenServiceEventConsumer();
-  }
+	@Bean
+	public KitchenServiceCommandHandler kitchenServiceCommandHandler() {
+		return new KitchenServiceCommandHandler();
+	}
 
-  @Bean
-  public KitchenServiceCommandHandler kitchenServiceCommandHandler() {
-    return new KitchenServiceCommandHandler();
-  }
+	@Bean
+	public SagaCommandDispatcher kitchenServiceSagaCommandDispatcher(KitchenServiceCommandHandler kitchenServiceCommandHandler) {
+		return new SagaCommandDispatcher("kitchenServiceCommands", kitchenServiceCommandHandler.commandHandlers());
+	}
 
-  @Bean
-  public SagaCommandDispatcher kitchenServiceSagaCommandDispatcher(KitchenServiceCommandHandler kitchenServiceCommandHandler) {
-    return new SagaCommandDispatcher("kitchenServiceCommands", kitchenServiceCommandHandler.commandHandlers());
-  }
-
-  @Bean
-  public DomainEventDispatcher domainEventDispatcher(KitchenServiceEventConsumer kitchenServiceEventConsumer, MessageConsumer messageConsumer) {
-    return new DomainEventDispatcher("kitchenServiceEvents", kitchenServiceEventConsumer.domainEventHandlers(), messageConsumer); // @Autowire
-  }
+	@Bean
+	public DomainEventDispatcher domainEventDispatcher(KitchenServiceEventConsumer kitchenServiceEventConsumer, MessageConsumer messageConsumer) {
+		return new DomainEventDispatcher("kitchenServiceEvents", kitchenServiceEventConsumer.domainEventHandlers(), messageConsumer); // @Autowire
+	}
 }

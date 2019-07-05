@@ -1,6 +1,5 @@
 package net.chrisrichardson.ftgo.kitchenservice.domain;
 
-
 import io.eventuate.tram.commands.common.ChannelMapping;
 import io.eventuate.tram.commands.common.DefaultChannelMapping;
 import io.eventuate.tram.commands.producer.CommandProducer;
@@ -35,85 +34,73 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = KitchenServiceInMemoryIntegrationTest.TestConfiguration.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = KitchenServiceInMemoryIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class KitchenServiceInMemoryIntegrationTest {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
-  private Logger logger = LoggerFactory.getLogger(getClass());
+	@Value("${local.server.port}")
+	private int port;
 
-  @Value("${local.server.port}")
-  private int port;
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class })
+	public static class TestConfiguration {
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+		}
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class,
-          TramCommandProducerConfiguration.class,
-          TramInMemoryConfiguration.class})
-  public static class TestConfiguration {
+		@Bean
+		public TestMessageConsumerFactory testMessageConsumerFactory() {
+			return new TestMessageConsumerFactory();
+		}
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+		@Bean
+		public DataSource dataSource() {
+			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+			return builder.setType(EmbeddedDatabaseType.H2).addScript("eventuate-tram-embedded-schema.sql")
+					.addScript("eventuate-tram-sagas-embedded.sql").build();
+		}
 
-    @Bean
-    public TestMessageConsumerFactory testMessageConsumerFactory() {
-      return new TestMessageConsumerFactory();
-    }
+	}
 
+	private String baseUrl(String path) {
+		return "http://localhost:" + port + path;
+	}
 
-    @Bean
-    public DataSource dataSource() {
-      EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-      return builder.setType(EmbeddedDatabaseType.H2)
-              .addScript("eventuate-tram-embedded-schema.sql")
-              .addScript("eventuate-tram-sagas-embedded.sql")
-              .build();
-    }
+	@Autowired
+	private CommandProducer commandProducer;
 
+	@Autowired
+	private TestMessageConsumerFactory testMessageConsumerFactory;
 
-  }
+	@Autowired
+	private RestaurantRepository restaurantRepository;
 
-  private String baseUrl(String path) {
-    return "http://localhost:" + port + path;
-  }
+	@Test
+	public void shouldCreateTicket() {
+		long restaurantId = System.currentTimeMillis();
+		Restaurant restaurant = new Restaurant(restaurantId, Collections.emptyList());
 
-  @Autowired
-  private CommandProducer commandProducer;
+		restaurantRepository.save(restaurant);
 
-  @Autowired
-  private TestMessageConsumerFactory testMessageConsumerFactory;
+		TestMessageConsumer testMessageConsumer = testMessageConsumerFactory.make();
 
-  @Autowired
-  private RestaurantRepository restaurantRepository;
+		long orderId = 999;
+		Money orderTotal = new Money(123);
 
-  @Test
-  public void shouldCreateTicket() {
+		TicketDetails orderDetails = new TicketDetails();
+		String messageId = commandProducer.send("kitchenService", null,
+				new CreateTicket(restaurantId, orderId, orderDetails), testMessageConsumer.getReplyChannel(),
+				withSagaCommandHeaders());
 
-    long restaurantId = System.currentTimeMillis();
-    Restaurant restaurant = new Restaurant(restaurantId, Collections.emptyList());
+		testMessageConsumer.assertHasReplyTo(messageId);
+	}
 
-    restaurantRepository.save(restaurant);
-
-    TestMessageConsumer testMessageConsumer = testMessageConsumerFactory.make();
-
-    long orderId = 999;
-    Money orderTotal = new Money(123);
-
-    TicketDetails orderDetails = new TicketDetails();
-    String messageId = commandProducer.send("kitchenService", null,
-            new CreateTicket(restaurantId, orderId, orderDetails),
-            testMessageConsumer.getReplyChannel(), withSagaCommandHeaders());
-
-    testMessageConsumer.assertHasReplyTo(messageId);
-
-  }
-
-  private Map<String, String> withSagaCommandHeaders() {
-    Map<String, String> result = new HashMap<>();
-    result.put(SagaCommandHeaders.SAGA_TYPE, "MySagaType");
-    result.put(SagaCommandHeaders.SAGA_ID, "MySagaId");
-    return result;
-  }
-
+	private Map<String, String> withSagaCommandHeaders() {
+		Map<String, String> result = new HashMap<>();
+		result.put(SagaCommandHeaders.SAGA_TYPE, "MySagaType");
+		result.put(SagaCommandHeaders.SAGA_ID, "MySagaId");
+		return result;
+	}
 }

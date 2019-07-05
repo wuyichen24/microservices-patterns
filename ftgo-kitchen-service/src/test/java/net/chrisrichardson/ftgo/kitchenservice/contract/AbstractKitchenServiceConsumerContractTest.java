@@ -27,26 +27,22 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = AbstractKitchenServiceConsumerContractTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureMessageVerifier
 public abstract class AbstractKitchenServiceConsumerContractTest {
+	@Configuration
+	@Import({ KitchenServiceMessageHandlersConfiguration.class, EventuateContractVerifierConfiguration.class })
+	public static class TestConfiguration {
+		@Bean
+		public KitchenService kitchenService() {
+			return mock(KitchenService.class);
+		}
+	}
 
-  @Configuration
-  @Import({KitchenServiceMessageHandlersConfiguration.class, EventuateContractVerifierConfiguration.class})
-  public static class TestConfiguration {
+	@Autowired
+	private KitchenService kitchenService;
 
-    @Bean
-    public KitchenService kitchenService() {
-      return mock(KitchenService.class);
-    }
-
-  }
-
-  @Autowired
-  private KitchenService kitchenService;
-
-  @Before
-  public void setup() {
-     reset(kitchenService);
-     when(kitchenService.createTicket(eq(1L), eq(99L), any(TicketDetails.class)))
-             .thenReturn(new Ticket(1L, 99L, new TicketDetails(Collections.emptyList())));
-  }
-
+	@Before
+	public void setup() {
+		reset(kitchenService);
+		when(kitchenService.createTicket(eq(1L), eq(99L), any(TicketDetails.class)))
+				.thenReturn(new Ticket(1L, 99L, new TicketDetails(Collections.emptyList())));
+	}
 }

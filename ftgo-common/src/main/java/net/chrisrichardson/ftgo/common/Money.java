@@ -6,71 +6,58 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 
-//@Embeddable
-//@Access(AccessType.FIELD)
 public class Money {
+	public static Money ZERO = new Money(0);
+	private BigDecimal amount;
 
-  public static Money ZERO = new Money(0);
+	public Money(BigDecimal amount) {
+		this.amount = amount;
+	}
 
-  private BigDecimal amount;
+	public Money(String s) {
+		this.amount = new BigDecimal(s);
+	}
 
-  private Money() {
-  }
+	public Money(int i) {
+		this.amount = new BigDecimal(i);
+	}
 
-  public Money(BigDecimal amount) {
-    this.amount = amount;
-  }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
 
-  public Money(String s) {
-    this.amount = new BigDecimal(s);
-  }
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-  public Money(int i) {
-    this.amount = new BigDecimal(i);
-  }
+		Money money = (Money) o;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
+		return new EqualsBuilder().append(amount, money.amount).isEquals();
+	}
 
-    if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(amount).toHashCode();
+	}
 
-    Money money = (Money) o;
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("amount", amount).toString();
+	}
 
-    return new EqualsBuilder()
-            .append(amount, money.amount)
-            .isEquals();
-  }
+	public Money add(Money delta) {
+		return new Money(amount.add(delta.amount));
+	}
 
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder(17, 37)
-            .append(amount)
-            .toHashCode();
-  }
+	public boolean isGreaterThanOrEqual(Money other) {
+		return amount.compareTo(other.amount) >= 0;
+	}
 
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this)
-            .append("amount", amount)
-            .toString();
-  }
+	public String asString() {
+		return amount.toPlainString();
+	}
 
-
-  public Money add(Money delta) {
-    return new Money(amount.add(delta.amount));
-  }
-
-  public boolean isGreaterThanOrEqual(Money other) {
-    return amount.compareTo(other.amount) >= 0;
-  }
-
-  public String asString() {
-    return amount.toPlainString();
-  }
-
-  public Money multiply(int x) {
-    return new Money(amount.multiply(new BigDecimal(x)));
-  }
-
+	public Money multiply(int x) {
+		return new Money(amount.multiply(new BigDecimal(x)));
+	}
 }

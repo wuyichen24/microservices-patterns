@@ -13,46 +13,45 @@ import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
 import java.io.IOException;
 
 public class MoneyModule extends SimpleModule {
+	class MoneyDeserializer extends StdScalarDeserializer<Money> {
+		protected MoneyDeserializer() {
+			super(Money.class);
+		}
 
-  class MoneyDeserializer extends StdScalarDeserializer<Money> {
+		@Override
+		public Money deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+			JsonToken token = jp.getCurrentToken();
+			if (token == JsonToken.VALUE_STRING) {
+				String str = jp.getText().trim();
+				if (str.isEmpty()) {
+					return null;
+				} else {
+					return new Money(str);
+				}
+			} else {
+				throw ctxt.mappingException(getValueClass());
+			}
+		}
+	}
 
-    protected MoneyDeserializer() {
-      super(Money.class);
-    }
+	class MoneySerializer extends StdScalarSerializer<Money> {
+		public MoneySerializer() {
+			super(Money.class);
+		}
 
-    @Override
-    public Money deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-      JsonToken token = jp.getCurrentToken();
-      if (token == JsonToken.VALUE_STRING) {
-        String str = jp.getText().trim();
-        if (str.isEmpty())
-          return null;
-        else
-          return new Money(str);
-      } else
-        throw ctxt.mappingException(getValueClass());
-    }
-  }
+		@Override
+		public void serialize(Money value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
+			jgen.writeString(value.asString());
+		}
+	}
 
-  class MoneySerializer extends StdScalarSerializer<Money> {
-    public MoneySerializer() {
-      super(Money.class);
-    }
+	@Override
+	public String getModuleName() {
+		return "FtgoCommonMOdule";
+	}
 
-    @Override
-    public void serialize(Money value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
-      jgen.writeString(value.asString());
-    }
-  }
-
-    @Override
-  public String getModuleName() {
-    return "FtgoCommonMOdule";
-  }
-
-  public MoneyModule() {
-    addDeserializer(Money.class, new MoneyDeserializer());
-    addSerializer(Money.class, new MoneySerializer());
-  }
-
+	public MoneyModule() {
+		addDeserializer(Money.class, new MoneyDeserializer());
+		addSerializer(Money.class, new MoneySerializer());
+	}
 }

@@ -12,17 +12,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class,
-        TramJdbcKafkaConfiguration.class,
-        CommonSwaggerConfiguration.class})
+@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class,
+		TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 public class KitchenServiceMain {
+	@Bean
+	public ChannelMapping channelMapping() {
+		return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+	}
 
-  @Bean
-  public ChannelMapping channelMapping() {
-    return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(KitchenServiceMain.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(KitchenServiceMain.class, args);
+	}
 }

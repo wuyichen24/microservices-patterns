@@ -16,35 +16,30 @@ import javax.persistence.Table;
 @Table(name = "consumers")
 @Access(AccessType.FIELD)
 public class Consumer {
+	@Id
+	@GeneratedValue
+	private Long id;
 
-  @Id
-  @GeneratedValue
-  private Long id;
+	@Embedded
+	private PersonName name;
 
-  @Embedded
-  private PersonName name;
+	public Consumer(PersonName name) {
+		this.name = name;
+	}
 
-  private Consumer() {
-  }
+	public void validateOrderByConsumer(Money orderTotal) {
+		// implement some business logic
+	}
 
-  public Consumer(PersonName name) {
-    this.name = name;
-  }
+	public Long getId() {
+		return id;
+	}
 
+	public PersonName getName() {
+		return name;
+	}
 
-  public void validateOrderByConsumer(Money orderTotal) {
-    // implement some business logic
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public PersonName getName() {
-    return name;
-  }
-
-  public static ResultWithEvents<Consumer> create(PersonName name) {
-    return new ResultWithEvents<>(new Consumer(name), new ConsumerCreated());
-  }
+	public static ResultWithEvents<Consumer> create(PersonName name) {
+		return new ResultWithEvents<>(new Consumer(name), new ConsumerCreated());
+	}
 }

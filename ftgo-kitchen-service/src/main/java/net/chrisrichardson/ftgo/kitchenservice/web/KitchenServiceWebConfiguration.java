@@ -9,6 +9,4 @@ import org.springframework.context.annotation.Import;
 @Import(KitchenDomainConfiguration.class)
 @ComponentScan
 public class KitchenServiceWebConfiguration {
-
-
 }

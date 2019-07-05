@@ -9,32 +9,27 @@ import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenuRevised;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class KitchenServiceEventConsumer {
+	@Autowired
+	private KitchenService kitchenService;
 
-  @Autowired
-  private KitchenService kitchenService;
+	public DomainEventHandlers domainEventHandlers() {
+		return DomainEventHandlersBuilder
+				.forAggregateType("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant")
+				.onEvent(RestaurantCreated.class, this::createMenu)
+				.onEvent(RestaurantMenuRevised.class, this::reviseMenu).build();
+	}
 
-  public DomainEventHandlers domainEventHandlers() {
-    return DomainEventHandlersBuilder
-            .forAggregateType("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant")
-            .onEvent(RestaurantCreated.class, this::createMenu)
-            .onEvent(RestaurantMenuRevised.class, this::reviseMenu)
-            .build();
-  }
+	private void createMenu(DomainEventEnvelope<RestaurantCreated> de) {
+		String restaurantIds = de.getAggregateId();
+		long id = Long.parseLong(restaurantIds);
+		RestaurantMenu menu = de.getEvent().getMenu();
+		kitchenService.createMenu(id, menu);
+	}
 
-  private void createMenu(DomainEventEnvelope<RestaurantCreated> de) {
-    String restaurantIds = de.getAggregateId();
-    long id = Long.parseLong(restaurantIds);
-    RestaurantMenu menu = de.getEvent().getMenu();
-    kitchenService.createMenu(id, menu);
-  }
-
-  public void reviseMenu(DomainEventEnvelope<RestaurantMenuRevised> de) {
-
-    long id = Long.parseLong(de.getAggregateId());
-    RestaurantMenu revisedMenu = de.getEvent().getRevisedMenu();
-    kitchenService.reviseMenu(id, revisedMenu);
-  }
-
+	public void reviseMenu(DomainEventEnvelope<RestaurantMenuRevised> de) {
+		long id = Long.parseLong(de.getAggregateId());
+		RestaurantMenu revisedMenu = de.getEvent().getRevisedMenu();
+		kitchenService.reviseMenu(id, revisedMenu);
+	}
 }

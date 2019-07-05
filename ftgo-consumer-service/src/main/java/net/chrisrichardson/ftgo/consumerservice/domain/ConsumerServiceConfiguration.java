@@ -18,29 +18,27 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories
 @EnableAutoConfiguration
-@Import({SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class})
+@Import({ SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class })
 @EnableTransactionManagement
 @ComponentScan
 public class ConsumerServiceConfiguration {
+	@Bean
+	public ConsumerServiceCommandHandlers consumerServiceCommandHandlers() {
+		return new ConsumerServiceCommandHandlers();
+	}
 
-  @Bean
-  public ConsumerServiceCommandHandlers consumerServiceCommandHandlers() {
-    return new ConsumerServiceCommandHandlers();
-  }
+	@Bean
+	public ConsumerService consumerService() {
+		return new ConsumerService();
+	}
 
-  @Bean
-  public ConsumerService consumerService() {
-    return new ConsumerService();
-  }
+	@Bean
+	public CommandDispatcher commandDispatcher(ConsumerServiceCommandHandlers consumerServiceCommandHandlers) {
+		return new SagaCommandDispatcher("consumerServiceDispatcher", consumerServiceCommandHandlers.commandHandlers());
+	}
 
-  @Bean
-  public CommandDispatcher commandDispatcher(ConsumerServiceCommandHandlers consumerServiceCommandHandlers) {
-    return new SagaCommandDispatcher("consumerServiceDispatcher", consumerServiceCommandHandlers.commandHandlers());
-  }
-
-  @Bean
-  public ChannelMapping channelMapping() {
-    return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-  }
-
+	@Bean
+	public ChannelMapping channelMapping() {
+		return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+	}
 }

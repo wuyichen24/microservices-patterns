@@ -1,6 +1,4 @@
 dependencies {
-
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-participant:$eventuateTramSagasVersion"
     compile project(":ftgo-common")
-
 }
