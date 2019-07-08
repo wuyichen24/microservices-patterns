@@ -6,21 +6,21 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 
 public class DynamoDBHealthIndicator implements HealthIndicator {
-  private final Table table;
-  private DynamoDB dynamoDB;
+	private final Table table;
+	private DynamoDB dynamoDB;
 
-  public DynamoDBHealthIndicator(DynamoDB dynamoDB) {
-    this.dynamoDB = dynamoDB;
-    this.table = this.dynamoDB.getTable(OrderHistoryDaoDynamoDb.FTGO_ORDER_HISTORY_BY_ID);
-  }
+	public DynamoDBHealthIndicator(DynamoDB dynamoDB) {
+		this.dynamoDB = dynamoDB;
+		this.table = this.dynamoDB.getTable(OrderHistoryDaoDynamoDb.FTGO_ORDER_HISTORY_BY_ID);
+	}
 
-  @Override
-  public Health health() {
-    try {
-      table.getItem(OrderHistoryDaoDynamoDb.makePrimaryKey("999"));
-      return Health.up().build();
-    } catch (Exception e) {
-      return Health.down(e).build();
-    }
-  }
+	@Override
+	public Health health() {
+		try {
+			table.getItem(OrderHistoryDaoDynamoDb.makePrimaryKey("999"));
+			return Health.up().build();
+		} catch (Exception e) {
+			return Health.down(e).build();
+		}
+	}
 }

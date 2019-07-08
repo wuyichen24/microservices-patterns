@@ -20,7 +20,6 @@ dependencyManagement {
     }
 }
 
-
 dependencies {
     compile 'com.amazonaws:aws-java-sdk-dynamodb:1.11.158'
 
@@ -50,6 +49,4 @@ dependencies {
     testCompile "org.springframework.cloud:spring-cloud-contract-wiremock"
     testCompile "org.springframework.cloud:spring-cloud-starter-contract-stub-runner"
     testCompile "io.eventuate.tram.core:eventuate-tram-testing-support-spring-cloud-contract:$eventuateTramVersion"
-
-
 }

@@ -10,17 +10,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({CommonConfiguration.class, TramNoopDuplicateMessageDetectorConfiguration.class})
+@Import({ CommonConfiguration.class, TramNoopDuplicateMessageDetectorConfiguration.class })
 public class OrderHistoryServiceMessagingConfiguration {
+	@Bean
+	public OrderHistoryEventHandlers orderHistoryEventHandlers(OrderHistoryDao orderHistoryDao) {
+		return new OrderHistoryEventHandlers(orderHistoryDao);
+	}
 
-  @Bean
-  public OrderHistoryEventHandlers orderHistoryEventHandlers(OrderHistoryDao orderHistoryDao) {
-    return new OrderHistoryEventHandlers(orderHistoryDao);
-  }
-
-  @Bean
-  public DomainEventDispatcher orderHistoryDomainEventDispatcher(OrderHistoryEventHandlers orderHistoryEventHandlers, MessageConsumer messageConsumer) {
-    return new DomainEventDispatcher("orderHistoryDomainEventDispatcher", orderHistoryEventHandlers.domainEventHandlers(), messageConsumer);
-  }
-
+	@Bean
+	public DomainEventDispatcher orderHistoryDomainEventDispatcher(OrderHistoryEventHandlers orderHistoryEventHandlers, MessageConsumer messageConsumer) {
+		return new DomainEventDispatcher("orderHistoryDomainEventDispatcher", orderHistoryEventHandlers.domainEventHandlers(), messageConsumer);
+	}
 }

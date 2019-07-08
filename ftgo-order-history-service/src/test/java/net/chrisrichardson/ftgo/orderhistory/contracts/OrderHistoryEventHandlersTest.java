@@ -33,54 +33,47 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = OrderHistoryEventHandlersTest.TestConfiguration.class,
-        webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids =
-        {"net.chrisrichardson.ftgo:ftgo-order-service-contracts"}
-        )
+@SpringBootTest(classes = OrderHistoryEventHandlersTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-order-service-contracts" })
 @DirtiesContext
 public class OrderHistoryEventHandlersTest {
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ OrderHistoryServiceMessagingConfiguration.class, TramCommandProducerConfiguration.class,
+			TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
+	public static class TestConfiguration {
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+		}
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({OrderHistoryServiceMessagingConfiguration.class,
-          TramCommandProducerConfiguration.class,
-          TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class})
-  public static class TestConfiguration {
+		@Bean
+		public OrderHistoryDao orderHistoryDao() {
+			return mock(OrderHistoryDao.class);
+		}
+	}
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+	@Autowired
+	private StubFinder stubFinder;
 
-    @Bean
-    public OrderHistoryDao orderHistoryDao() {
-      return mock(OrderHistoryDao.class);
-    }
-  }
+	@Autowired
+	private OrderHistoryDao orderHistoryDao;
 
-  @Autowired
-  private StubFinder stubFinder;
+	@Test
+	public void shouldHandleOrderCreatedEvent() throws InterruptedException {
+		when(orderHistoryDao.addOrder(any(Order.class), any(Optional.class))).thenReturn(false);
 
-  @Autowired
-  private OrderHistoryDao orderHistoryDao;
+		stubFinder.trigger("orderCreatedEvent");
 
-  @Test
-  public void shouldHandleOrderCreatedEvent() throws InterruptedException {
-    when(orderHistoryDao.addOrder(any(Order.class), any(Optional.class))).thenReturn(false);
+		eventually(() -> {
+			ArgumentCaptor<Order> orderArg = ArgumentCaptor.forClass(Order.class);
+			ArgumentCaptor<Optional<SourceEvent>> sourceEventArg = ArgumentCaptor.forClass(Optional.class);
+			verify(orderHistoryDao).addOrder(orderArg.capture(), sourceEventArg.capture());
 
-    stubFinder.trigger("orderCreatedEvent");
+			Order order = orderArg.getValue();
+			Optional<SourceEvent> sourceEvent = sourceEventArg.getValue();
 
-    eventually(() -> {
-      ArgumentCaptor<Order> orderArg = ArgumentCaptor.forClass(Order.class);
-      ArgumentCaptor<Optional<SourceEvent>> sourceEventArg = ArgumentCaptor.forClass(Optional.class);
-      verify(orderHistoryDao).addOrder(orderArg.capture(), sourceEventArg.capture());
-
-      Order order = orderArg.getValue();
-      Optional<SourceEvent> sourceEvent = sourceEventArg.getValue();
-
-      assertEquals("Ajanta", order.getRestaurantName());
-    });
-  }
-
+			assertEquals("Ajanta", order.getRestaurantName());
+		});
+	}
 }
