@@ -10,16 +10,14 @@ import org.springframework.context.annotation.*;
 @ComponentScan
 @Import(OrderServiceWithRepositoriesConfiguration.class)
 public class OrderWebConfiguration {
+	@Bean
+	@Primary
+	public ObjectMapper objectMapper() {
+		return JSonMapper.objectMapper;
+	}
 
-  @Bean
-  @Primary
-  public ObjectMapper objectMapper() {
-    return JSonMapper.objectMapper;
-  }
-
-  @Bean
-  public Sampler defaultSampler() {
-    return Sampler.ALWAYS_SAMPLE;
-  }
-
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
 }

@@ -26,151 +26,169 @@ import static java.util.stream.Collectors.toList;
 
 @Transactional
 public class OrderService {
+	private OrderRepository                   orderRepository;
+	private RestaurantRepository              restaurantRepository;
+	private SagaManager<CreateOrderSagaState> createOrderSagaManager;
+	private SagaManager<CancelOrderSagaData>  cancelOrderSagaManager;
+	private SagaManager<ReviseOrderSagaData>  reviseOrderSagaManager;
+	private OrderDomainEventPublisher         orderAggregateEventPublisher;
+	private Optional<MeterRegistry>           meterRegistry;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
-  private Logger logger = LoggerFactory.getLogger(getClass());
+	public OrderService(OrderRepository orderRepository,
+			DomainEventPublisher eventPublisher,
+			RestaurantRepository restaurantRepository,
+			SagaManager<CreateOrderSagaState> createOrderSagaManager,
+			SagaManager<CancelOrderSagaData> cancelOrderSagaManager,
+			SagaManager<ReviseOrderSagaData> reviseOrderSagaManager,
+			OrderDomainEventPublisher orderAggregateEventPublisher,
+			Optional<MeterRegistry> meterRegistry) {
+		this.orderRepository              = orderRepository;
+		this.restaurantRepository         = restaurantRepository;
+		this.createOrderSagaManager       = createOrderSagaManager;
+		this.cancelOrderSagaManager       = cancelOrderSagaManager;
+		this.reviseOrderSagaManager       = reviseOrderSagaManager;
+		this.orderAggregateEventPublisher = orderAggregateEventPublisher;
+		this.meterRegistry                = meterRegistry;
+	}
 
-  private OrderRepository orderRepository;
+	public Order createOrder(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> lineItems) {
+		Restaurant restaurant = restaurantRepository.findById(restaurantId)
+				.orElseThrow(
+						() -> new RestaurantNotFoundException(restaurantId));
 
-  private RestaurantRepository restaurantRepository;
+		List<OrderLineItem> orderLineItems = makeOrderLineItems(lineItems, restaurant);
 
-  private SagaManager<CreateOrderSagaState> createOrderSagaManager;
+		ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents = Order
+				.createOrder(consumerId, restaurant, orderLineItems);
 
-  private SagaManager<CancelOrderSagaData> cancelOrderSagaManager;
+		Order order = orderAndEvents.result;
+		orderRepository.save(order);
 
-  private SagaManager<ReviseOrderSagaData> reviseOrderSagaManager;
+		orderAggregateEventPublisher.publish(order, orderAndEvents.events);
 
-  private OrderDomainEventPublisher orderAggregateEventPublisher;
+		OrderDetails orderDetails = new OrderDetails(consumerId, restaurantId, orderLineItems, order.getOrderTotal());
 
-  private Optional<MeterRegistry> meterRegistry;
+		CreateOrderSagaState data = new CreateOrderSagaState(order.getId(), orderDetails);
+		createOrderSagaManager.create(data, Order.class, order.getId());
 
-  public OrderService(OrderRepository orderRepository, DomainEventPublisher eventPublisher, RestaurantRepository restaurantRepository, SagaManager<CreateOrderSagaState> createOrderSagaManager, SagaManager<CancelOrderSagaData> cancelOrderSagaManager, SagaManager<ReviseOrderSagaData> reviseOrderSagaManager, OrderDomainEventPublisher orderAggregateEventPublisher, Optional<MeterRegistry> meterRegistry) {
-    this.orderRepository = orderRepository;
-    this.restaurantRepository = restaurantRepository;
-    this.createOrderSagaManager = createOrderSagaManager;
-    this.cancelOrderSagaManager = cancelOrderSagaManager;
-    this.reviseOrderSagaManager = reviseOrderSagaManager;
-    this.orderAggregateEventPublisher = orderAggregateEventPublisher;
-    this.meterRegistry = meterRegistry;
-  }
+		meterRegistry.ifPresent(mr -> mr.counter("placed_orders").increment());
 
-  public Order createOrder(long consumerId, long restaurantId,
-                           List<MenuItemIdAndQuantity> lineItems) {
-    Restaurant restaurant = restaurantRepository.findById(restaurantId)
-            .orElseThrow(() -> new RestaurantNotFoundException(restaurantId));
+		return order;
+	}
 
-    List<OrderLineItem> orderLineItems = makeOrderLineItems(lineItems, restaurant);
+	private List<OrderLineItem> makeOrderLineItems(
+			List<MenuItemIdAndQuantity> lineItems, Restaurant restaurant) {
+		return lineItems
+				.stream()
+				.map(li -> {
+					MenuItem om = restaurant.findMenuItem(li.getMenuItemId())
+							.orElseThrow(
+									() -> new InvalidMenuItemIdException(li
+											.getMenuItemId()));
+					return new OrderLineItem(li.getMenuItemId(), om.getName(),
+							om.getPrice(), li.getQuantity());
+				}).collect(toList());
+	}
 
-    ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents =
-            Order.createOrder(consumerId, restaurant, orderLineItems);
+	public Optional<Order> confirmChangeLineItemQuantity(Long orderId,
+			OrderRevision orderRevision) {
+		return orderRepository.findById(orderId).map(
+				order -> {
+					List<OrderDomainEvent> events = order
+							.confirmRevision(orderRevision);
+					orderAggregateEventPublisher.publish(order, events);
+					return order;
+				});
+	}
 
-    Order order = orderAndEvents.result;
-    orderRepository.save(order);
+	public void noteReversingAuthorization(Long orderId) {
+		throw new UnsupportedOperationException();
+	}
 
-    orderAggregateEventPublisher.publish(order, orderAndEvents.events);
+	public Order cancel(Long orderId) {
+		Order order = orderRepository.findById(orderId).orElseThrow(
+				() -> new OrderNotFoundException(orderId));
+		CancelOrderSagaData sagaData = new CancelOrderSagaData(
+				order.getConsumerId(), orderId, order.getOrderTotal());
+		cancelOrderSagaManager.create(sagaData);
+		return order;
+	}
 
-    OrderDetails orderDetails = new OrderDetails(consumerId, restaurantId, orderLineItems, order.getOrderTotal());
+	private Order updateOrder(long orderId,
+			Function<Order, List<OrderDomainEvent>> updater) {
+		return orderRepository.findById(orderId).map(order -> {
+			orderAggregateEventPublisher.publish(order, updater.apply(order));
+			return order;
+		}).orElseThrow(() -> new OrderNotFoundException(orderId));
+	}
 
-    CreateOrderSagaState data = new CreateOrderSagaState(order.getId(), orderDetails);
-    createOrderSagaManager.create(data, Order.class, order.getId());
+	public void approveOrder(long orderId) {
+		updateOrder(orderId, Order::noteApproved);
+		meterRegistry
+				.ifPresent(mr -> mr.counter("approved_orders").increment());
+	}
 
-    meterRegistry.ifPresent(mr -> mr.counter("placed_orders").increment());
+	public void rejectOrder(long orderId) {
+		updateOrder(orderId, Order::noteRejected);
+		meterRegistry
+				.ifPresent(mr -> mr.counter("rejected_orders").increment());
+	}
 
-    return order;
-  }
+	public void beginCancel(long orderId) {
+		updateOrder(orderId, Order::cancel);
+	}
 
+	public void undoCancel(long orderId) {
+		updateOrder(orderId, Order::undoPendingCancel);
+	}
 
-  private List<OrderLineItem> makeOrderLineItems(List<MenuItemIdAndQuantity> lineItems, Restaurant restaurant) {
-    return lineItems.stream().map(li -> {
-      MenuItem om = restaurant.findMenuItem(li.getMenuItemId()).orElseThrow(() -> new InvalidMenuItemIdException(li.getMenuItemId()));
-      return new OrderLineItem(li.getMenuItemId(), om.getName(), om.getPrice(), li.getQuantity());
-    }).collect(toList());
-  }
+	public void confirmCancelled(long orderId) {
+		updateOrder(orderId, Order::noteCancelled);
+	}
 
+	public Order reviseOrder(long orderId, OrderRevision orderRevision) {
+		Order order = orderRepository.findById(orderId).orElseThrow(
+				() -> new OrderNotFoundException(orderId));
+		ReviseOrderSagaData sagaData = new ReviseOrderSagaData(
+				order.getConsumerId(), orderId, null, orderRevision);
+		reviseOrderSagaManager.create(sagaData);
+		return order;
+	}
 
-  public Optional<Order> confirmChangeLineItemQuantity(Long orderId, OrderRevision orderRevision) {
-    return orderRepository.findById(orderId).map(order -> {
-      List<OrderDomainEvent> events = order.confirmRevision(orderRevision);
-      orderAggregateEventPublisher.publish(order, events);
-      return order;
-    });
-  }
+	public Optional<RevisedOrder> beginReviseOrder(long orderId,
+			OrderRevision revision) {
+		return orderRepository
+				.findById(orderId)
+				.map(order -> {
+					ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> result = order
+							.revise(revision);
+					orderAggregateEventPublisher.publish(order, result.events);
+					return new RevisedOrder(order, result.result);
+				});
+	}
 
-  public void noteReversingAuthorization(Long orderId) {
-    throw new UnsupportedOperationException();
-  }
+	public void undoPendingRevision(long orderId) {
+		updateOrder(orderId, Order::rejectRevision);
+	}
 
-  public Order cancel(Long orderId) {
-    Order order = orderRepository.findById(orderId)
-            .orElseThrow(() -> new OrderNotFoundException(orderId));
-    CancelOrderSagaData sagaData = new CancelOrderSagaData(order.getConsumerId(), orderId, order.getOrderTotal());
-    cancelOrderSagaManager.create(sagaData);
-    return order;
-  }
+	public void confirmRevision(long orderId, OrderRevision revision) {
+		updateOrder(orderId, order -> order.confirmRevision(revision));
+	}
 
-  private Order updateOrder(long orderId, Function<Order, List<OrderDomainEvent>> updater) {
-    return orderRepository.findById(orderId).map(order -> {
-      orderAggregateEventPublisher.publish(order, updater.apply(order));
-      return order;
-    }).orElseThrow(() -> new OrderNotFoundException(orderId));
-  }
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void createMenu(long id, String name, RestaurantMenu menu) {
+		Restaurant restaurant = new Restaurant(id, name, menu.getMenuItems());
+		restaurantRepository.save(restaurant);
+	}
 
-  public void approveOrder(long orderId) {
-    updateOrder(orderId, Order::noteApproved);
-    meterRegistry.ifPresent(mr -> mr.counter("approved_orders").increment());
-  }
-
-  public void rejectOrder(long orderId) {
-    updateOrder(orderId, Order::noteRejected);
-    meterRegistry.ifPresent(mr -> mr.counter("rejected_orders").increment());
-  }
-
-  public void beginCancel(long orderId) {
-    updateOrder(orderId, Order::cancel);
-  }
-
-  public void undoCancel(long orderId) {
-    updateOrder(orderId, Order::undoPendingCancel);
-  }
-
-  public void confirmCancelled(long orderId) {
-    updateOrder(orderId, Order::noteCancelled);
-  }
-
-  public Order reviseOrder(long orderId, OrderRevision orderRevision) {
-    Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
-    ReviseOrderSagaData sagaData = new ReviseOrderSagaData(order.getConsumerId(), orderId, null, orderRevision);
-    reviseOrderSagaManager.create(sagaData);
-    return order;
-  }
-
-  public Optional<RevisedOrder> beginReviseOrder(long orderId, OrderRevision revision) {
-    return orderRepository.findById(orderId).map(order -> {
-      ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> result = order.revise(revision);
-      orderAggregateEventPublisher.publish(order, result.events);
-      return new RevisedOrder(order, result.result);
-    });
-  }
-
-  public void undoPendingRevision(long orderId) {
-    updateOrder(orderId, Order::rejectRevision);
-  }
-
-  public void confirmRevision(long orderId, OrderRevision revision) {
-    updateOrder(orderId, order -> order.confirmRevision(revision));
-  }
-
-  @Transactional(propagation = Propagation.MANDATORY)
-  public void createMenu(long id, String name, RestaurantMenu menu) {
-    Restaurant restaurant = new Restaurant(id, name, menu.getMenuItems());
-    restaurantRepository.save(restaurant);
-  }
-
-  @Transactional(propagation = Propagation.MANDATORY)
-  public void reviseMenu(long id, RestaurantMenu revisedMenu) {
-    restaurantRepository.findById(id).map(restaurant -> {
-      List<OrderDomainEvent> events = restaurant.reviseMenu(revisedMenu);
-      return restaurant;
-    }).orElseThrow(RuntimeException::new);
-  }
+	@Transactional(propagation = Propagation.MANDATORY)
+	public void reviseMenu(long id, RestaurantMenu revisedMenu) {
+		restaurantRepository.findById(id).map(restaurant -> {
+			List<OrderDomainEvent> events = restaurant.reviseMenu(revisedMenu);
+			return restaurant;
+		}).orElseThrow(RuntimeException::new);
+	}
 
 }

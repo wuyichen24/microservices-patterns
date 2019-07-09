@@ -20,21 +20,20 @@ import static org.mockito.Mockito.when;
 
 public abstract class HttpBase {
 
-  private StandaloneMockMvcBuilder controllers(Object... controllers) {
-    CommonJsonMapperInitializer.registerMoneyModule();
-    MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(JSonMapper.objectMapper);
-    return MockMvcBuilders.standaloneSetup(controllers).setMessageConverters(converter);
-  }
+	private StandaloneMockMvcBuilder controllers(Object... controllers) {
+		CommonJsonMapperInitializer.registerMoneyModule();
+		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(JSonMapper.objectMapper);
+		return MockMvcBuilders.standaloneSetup(controllers).setMessageConverters(converter);
+	}
 
-  @Before
-  public void setup() {
-    OrderService orderService = mock(OrderService.class);
-    OrderRepository orderRepository = mock(OrderRepository.class);
-    OrderController orderController = new OrderController(orderService, orderRepository);
+	@Before
+	public void setup() {
+		OrderService orderService = mock(OrderService.class);
+		OrderRepository orderRepository = mock(OrderRepository.class);
+		OrderController orderController = new OrderController(orderService, orderRepository);
 
-    when(orderRepository.findById(OrderDetailsMother.ORDER_ID)).thenReturn(Optional.of(OrderDetailsMother.CHICKEN_VINDALOO_ORDER));
-    when(orderRepository.findById(555L)).thenReturn(empty());
-    RestAssuredMockMvc.standaloneSetup(controllers(orderController));
-
-  }
+		when(orderRepository.findById(OrderDetailsMother.ORDER_ID)).thenReturn(Optional.of(OrderDetailsMother.CHICKEN_VINDALOO_ORDER));
+		when(orderRepository.findById(555L)).thenReturn(empty());
+		RestAssuredMockMvc.standaloneSetup(controllers(orderController));
+	}
 }

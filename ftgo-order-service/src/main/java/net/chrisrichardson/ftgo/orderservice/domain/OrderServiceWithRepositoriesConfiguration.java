@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EnableJpaRepositories
 @EnableAutoConfiguration
-@Import({OrderServiceConfiguration.class})
+@Import({ OrderServiceConfiguration.class })
 public class OrderServiceWithRepositoriesConfiguration {
-
 
 }

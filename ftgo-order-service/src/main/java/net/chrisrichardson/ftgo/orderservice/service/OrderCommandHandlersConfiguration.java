@@ -9,17 +9,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class})
+@Import({ SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class })
 public class OrderCommandHandlersConfiguration {
+	@Bean
+	public OrderCommandHandlers orderCommandHandlers() {
+		return new OrderCommandHandlers();
+	}
 
-  @Bean
-  public OrderCommandHandlers orderCommandHandlers() {
-    return new OrderCommandHandlers();
-  }
-
-  @Bean
-  public SagaCommandDispatcher orderCommandHandlersDispatcher(OrderCommandHandlers orderCommandHandlers) {
-    return new SagaCommandDispatcher("orderService", orderCommandHandlers.commandHandlers());
-  }
-
+	@Bean
+	public SagaCommandDispatcher orderCommandHandlersDispatcher(OrderCommandHandlers orderCommandHandlers) {
+		return new SagaCommandDispatcher("orderService", orderCommandHandlers.commandHandlers());
+	}
 }

@@ -15,32 +15,31 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class OrderEventConsumerTest {
+	private OrderService       orderService;
+	private OrderEventConsumer orderEventConsumer;
 
-  private OrderService orderService;
-  private OrderEventConsumer orderEventConsumer;
+	@Before
+	public void setUp() throws Exception {
+		orderService       = mock(OrderService.class);
+		orderEventConsumer = new OrderEventConsumer(orderService);
+	}
 
-  @Before
-  public void setUp() throws Exception {
-    orderService = mock(OrderService.class);
-    orderEventConsumer = new OrderEventConsumer(orderService);
-  }
+	@Test
+	public void shouldCreateMenu() {
+		CommonJsonMapperInitializer.registerMoneyModule();
 
-  @Test
-  public void shouldCreateMenu() {
+		given().eventHandlers(orderEventConsumer.domainEventHandlers())
+				.when()
+				.aggregate("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", AJANTA_ID)
+				.publishes(new RestaurantCreated(AJANTA_RESTAURANT_NAME, RestaurantMother.AJANTA_RESTAURANT_MENU))
+				.then()
+				.verify(() -> {
+					verify(orderService)
+							.createMenu(
+									AJANTA_ID,
+									AJANTA_RESTAURANT_NAME,
+									new RestaurantMenu(RestaurantMother.AJANTA_RESTAURANT_MENU_ITEMS));
+				});
 
-    CommonJsonMapperInitializer.registerMoneyModule();
-
-    given().
-            eventHandlers(orderEventConsumer.domainEventHandlers()).
-    when().
-            aggregate("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", AJANTA_ID).
-            publishes(new RestaurantCreated(AJANTA_RESTAURANT_NAME, RestaurantMother.AJANTA_RESTAURANT_MENU)).
-    then().
-       verify(() -> {
-         verify(orderService).createMenu(AJANTA_ID, AJANTA_RESTAURANT_NAME, new RestaurantMenu(RestaurantMother.AJANTA_RESTAURANT_MENU_ITEMS));
-       })
-    ;
-
-  }
-
+	}
 }

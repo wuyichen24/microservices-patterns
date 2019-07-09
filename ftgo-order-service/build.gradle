@@ -48,16 +48,15 @@ compileTestGroovy.enabled=false
 
 componentTest.dependsOn(assemble)
 
-
 dockerCompose {
 
-    startedServices = [ 'not-used']
+    startedServices = ['not-used']
 
     integrationTests {
         if (System.getenv("FTGO_DOCKER_COMPOSE_FILES") != null)
             useComposeFiles = System.getenv("FTGO_DOCKER_COMPOSE_FILES").split(",").collect { "../" + it }
 
-        startedServices = [ 'mysql']
+        startedServices = ['mysql']
         stopContainers = true
     }
 
@@ -115,8 +114,6 @@ idea {
 
 
 dependencies {
-
-
     compile project(":common-swagger")
     compile project(":ftgo-common-jpa")
 
@@ -171,5 +168,4 @@ dependencies {
     componentTestCompile 'info.cukes:cucumber-junit:1.2.5'
     componentTestCompile 'info.cukes:cucumber-spring:1.2.5'
     testCompile project(":ftgo-test-util")
-
 }

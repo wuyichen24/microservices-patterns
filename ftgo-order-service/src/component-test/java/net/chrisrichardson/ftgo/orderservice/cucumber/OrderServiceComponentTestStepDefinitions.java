@@ -8,7 +8,6 @@ import cucumber.api.java.en.When;
 import io.eventuate.jdbckafka.TramJdbcKafkaConfiguration;
 import io.eventuate.tram.commands.common.ChannelMapping;
 import io.eventuate.tram.commands.common.DefaultChannelMapping;
-import io.eventuate.tram.events.common.DomainEvent;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
 import io.eventuate.tram.sagas.testing.SagaParticipantStubManagerConfiguration;
@@ -51,164 +50,152 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-
 @SpringBootTest(classes = OrderServiceComponentTestStepDefinitions.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ContextConfiguration
 public class OrderServiceComponentTestStepDefinitions {
+	private Response response;
+	private long     consumerId;
 
+	static {
+		CommonJsonMapperInitializer.registerMoneyModule();
+	}
 
+	private int    port = 8082;
+	private String host = System.getenv("DOCKER_HOST_IP");
+	
+	@Autowired
+	protected SagaParticipantStubManager sagaParticipantStubManager;
 
-  private Response response;
-  private long consumerId;
+	@Autowired
+	protected MessageTracker messageTracker;
 
-  static {
-    CommonJsonMapperInitializer.registerMoneyModule();
-  }
+	@Autowired
+	protected DomainEventPublisher domainEventPublisher;
 
-  private int port = 8082;
-  private String host = System.getenv("DOCKER_HOST_IP");
+	@Autowired
+	protected RestaurantRepository restaurantRepository;
 
-  protected String baseUrl(String path) {
-    return String.format("http://%s:%s%s", host, port, path);
-  }
+	protected String baseUrl(String path) {
+		return String.format("http://%s:%s%s", host, port, path);
+	}
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({TramJdbcKafkaConfiguration.class, SagaParticipantStubManagerConfiguration.class})
-  @EnableJpaRepositories(basePackageClasses = RestaurantRepository.class) // Need to verify that the restaurant has been created. Replace with verifyRestaurantCreatedInOrderService
-  @EntityScan(basePackageClasses = Order.class)
-  public static class TestConfiguration {
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ TramJdbcKafkaConfiguration.class, SagaParticipantStubManagerConfiguration.class })
+	@EnableJpaRepositories(basePackageClasses = RestaurantRepository.class)
+	// Need to verify that the restaurant has been created. Replace with
+	// verifyRestaurantCreatedInOrderService
+	@EntityScan(basePackageClasses = Order.class)
+	public static class TestConfiguration {
+		@Bean
+		public SagaParticipantChannels sagaParticipantChannels() {
+			return new SagaParticipantChannels("consumerService",
+					"kitchenService", "accountingService", "orderService");
+		}
 
-    @Bean
-    public SagaParticipantChannels sagaParticipantChannels() {
-      return new SagaParticipantChannels("consumerService", "kitchenService", "accountingService", "orderService");
-    }
+		@Bean
+		public MessageTracker messageTracker(MessageConsumer messageConsumer) {
+			return new MessageTracker(
+					singleton("net.chrisrichardson.ftgo.orderservice.domain.Order"),
+					messageConsumer);
+		}
 
-    @Bean
-    public MessageTracker messageTracker(MessageConsumer messageConsumer) {
-      return new MessageTracker(singleton("net.chrisrichardson.ftgo.orderservice.domain.Order"), messageConsumer) ;
-    }
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder()
+					.build();
+		}
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+	}
 
-  }
+	@Before
+	public void setUp() {
+		sagaParticipantStubManager.reset();
+	}
 
-  @Autowired
-  protected SagaParticipantStubManager sagaParticipantStubManager;
+	@Given("A valid consumer")
+	public void useConsumer() {
+		sagaParticipantStubManager.forChannel("consumerService")
+				.when(ValidateOrderByConsumer.class)
+				.replyWith(cm -> withSuccess());
+	}
 
-  @Autowired
-  protected MessageTracker messageTracker;
+	public enum CreditCardType {
+		valid, expired
+	}
 
-  @Autowired
-  protected DomainEventPublisher domainEventPublisher;
+	@Given("using a(.?) (.*) credit card")
+	public void useCreditCard(String ignore, CreditCardType creditCard) {
+		switch (creditCard) {
+		case valid:
+			sagaParticipantStubManager.forChannel("accountingService")
+					.when(AuthorizeCommand.class).replyWithSuccess();
+			break;
+		case expired:
+			sagaParticipantStubManager.forChannel("accountingService")
+					.when(AuthorizeCommand.class).replyWithFailure();
+			break;
+		default:
+			fail("Don't know what to do with this credit card");
+		}
+	}
 
-  @Autowired
-  protected RestaurantRepository restaurantRepository;
+	@Given("the restaurant is accepting orders")
+	public void restaurantAcceptsOrder() {
+		sagaParticipantStubManager
+				.forChannel("kitchenService")
+				.when(CreateTicket.class)
+				.replyWith(
+						cm -> withSuccess(new CreateTicketReply(cm.getCommand()
+								.getOrderId())))
+				.when(ConfirmCreateTicket.class).replyWithSuccess()
+				.when(CancelCreateTicket.class).replyWithSuccess();
 
+		if (!restaurantRepository.findById(RestaurantMother.AJANTA_ID).isPresent()) {
+			domainEventPublisher
+					.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
+							RestaurantMother.AJANTA_ID,
+							Collections.singletonList(new RestaurantCreated(
+									RestaurantMother.AJANTA_RESTAURANT_NAME,
+									AJANTA_RESTAURANT_MENU)));
 
-  @Before
-  public void setUp() {
-    sagaParticipantStubManager.reset();
-  }
+			eventually(() -> {
+				FtgoTestUtil.assertPresent(restaurantRepository
+						.findById(RestaurantMother.AJANTA_ID));
+			});
+		}
+	}
 
-  @Given("A valid consumer")
-  public void useConsumer() {
-    sagaParticipantStubManager.
-            forChannel("consumerService")
-            .when(ValidateOrderByConsumer.class).replyWith(cm -> withSuccess());
-  }
+	@When("I place an order for Chicken Vindaloo at Ajanta")
+	public void placeOrder() {
+		response = given()
+				.body(new CreateOrderRequest(consumerId, RestaurantMother.AJANTA_ID, Collections
+								.singletonList(new CreateOrderRequest.LineItem(
+										RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID,
+										OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY))))
+				.contentType("application/json").when()
+				.post(baseUrl("/orders"));
+	}
 
-  public enum CreditCardType { valid, expired}
+	@Then("the order should be (.*)")
+	public void theOrderShouldBeInState(String desiredOrderState) {
+		Integer orderId = this.response.then().statusCode(200).extract().path("orderId");
 
-  @Given("using a(.?) (.*) credit card")
-  public void useCreditCard(String ignore, CreditCardType creditCard) {
-    switch (creditCard) {
-      case valid :
-        sagaParticipantStubManager
-                .forChannel("accountingService")
-                .when(AuthorizeCommand.class).replyWithSuccess();
-        break;
-      case expired:
-        sagaParticipantStubManager
-                .forChannel("accountingService")
-                .when(AuthorizeCommand.class).replyWithFailure();
-        break;
-      default:
-        fail("Don't know what to do with this credit card");
-    }
-  }
+		assertNotNull(orderId);
 
-  @Given("the restaurant is accepting orders")
-  public void restaurantAcceptsOrder() {
-    sagaParticipantStubManager
-            .forChannel("kitchenService")
-            .when(CreateTicket.class).replyWith(cm -> withSuccess(new CreateTicketReply(cm.getCommand().getOrderId())))
-            .when(ConfirmCreateTicket.class).replyWithSuccess()
-            .when(CancelCreateTicket.class).replyWithSuccess();
+		eventually(() -> {
+			String state = given().when().get(baseUrl("/orders/" + orderId))
+					.then().statusCode(200).extract().path("state");
+			assertEquals(desiredOrderState, state);
+		});
 
-    if (!restaurantRepository.findById(RestaurantMother.AJANTA_ID).isPresent()) {
-      domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RestaurantMother.AJANTA_ID,
-              Collections.singletonList(new RestaurantCreated(RestaurantMother.AJANTA_RESTAURANT_NAME, AJANTA_RESTAURANT_MENU)));
+		sagaParticipantStubManager.verifyCommandReceived("kitchenService", CreateTicket.class);
+	}
 
-      eventually(() -> {
-        FtgoTestUtil.assertPresent(restaurantRepository.findById(RestaurantMother.AJANTA_ID));
-      });
-    }
-  }
-
-  @When("I place an order for Chicken Vindaloo at Ajanta")
-  public void placeOrder() {
-
-    response = given().
-            body(new CreateOrderRequest(consumerId,
-                    RestaurantMother.AJANTA_ID, Collections.singletonList(
-                            new CreateOrderRequest.LineItem(RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID,
-                                                            OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY)))).
-            contentType("application/json").
-            when().
-            post(baseUrl("/orders"));
-  }
-
-  @Then("the order should be (.*)")
-  public void theOrderShouldBeInState(String desiredOrderState) {
-
-      // TODO This doesn't make sense when the `OrderService` is live => duplicate replies
-
-//    sagaParticipantStubManager
-//            .forChannel("orderService")
-//            .when(ApproveOrderCommand.class).replyWithSuccess();
-//
-    Integer orderId =
-            this.response.
-                    then().
-                    statusCode(200).
-                    extract().
-                    path("orderId");
-
-    assertNotNull(orderId);
-
-    eventually(() -> {
-      String state = given().
-              when().
-              get(baseUrl("/orders/" + orderId)).
-              then().
-              statusCode(200)
-              .extract().
-                      path("state");
-      assertEquals(desiredOrderState, state);
-    });
-
-    sagaParticipantStubManager.verifyCommandReceived("kitchenService", CreateTicket.class);
-
-  }
-
-  @And("an (.*) event should be published")
-  public void verifyEventPublished(String expectedEventClass) {
-    messageTracker.assertDomainEventPublished("net.chrisrichardson.ftgo.orderservice.domain.Order",
-            "net.chrisrichardson.ftgo.orderservice.domain." + expectedEventClass);
-  }
-
+	@And("an (.*) event should be published")
+	public void verifyEventPublished(String expectedEventClass) {
+		messageTracker.assertDomainEventPublished(
+				"net.chrisrichardson.ftgo.orderservice.domain.Order",
+				"net.chrisrichardson.ftgo.orderservice.domain." + expectedEventClass);
+	}
 }

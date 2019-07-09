@@ -12,28 +12,26 @@ import org.springframework.cloud.contract.verifier.messaging.internal.ContractVe
 import javax.inject.Inject;
 
 public class SagaMessagingTestHelper {
+	@Inject
+	ContractVerifierMessaging contractVerifierMessaging;
 
-  @Inject
-  ContractVerifierMessaging contractVerifierMessaging;
+	@Autowired
+	private SagaCommandProducer sagaCommandProducer;
 
-  @Autowired
-  private SagaCommandProducer sagaCommandProducer;
+	@Autowired
+	private IdGenerator idGenerator;
 
-  @Autowired
-  private IdGenerator idGenerator;
+	public <C extends Command, R> R sendAndReceiveCommand(CommandEndpoint<C> commandEndpoint, C command, Class<R> replyClass, String sagaType) {
+		// TODO verify that replyClass is allowed
 
+		String sagaId = idGenerator.genId().asString();
 
-  public <C extends Command, R> R sendAndReceiveCommand(CommandEndpoint<C> commandEndpoint, C command, Class<R> replyClass, String sagaType) {
-    // TODO verify that replyClass is allowed
+		String replyTo = sagaType + "-reply";
+		sagaCommandProducer.sendCommand(sagaType, sagaId, commandEndpoint.getCommandChannel(), null, command, replyTo);
 
-    String sagaId = idGenerator.genId().asString();
+		ContractVerifierMessage response = contractVerifierMessaging.receive(replyTo);
 
-    String replyTo = sagaType + "-reply";
-    sagaCommandProducer.sendCommand(sagaType, sagaId, commandEndpoint.getCommandChannel(), null, command, replyTo);
-
-    ContractVerifierMessage response = contractVerifierMessaging.receive(replyTo);
-
-    String payload = (String) response.getPayload();
-    return (R) JSonMapper.fromJson(payload, replyClass);
-  }
+		String payload = (String) response.getPayload();
+		return (R) JSonMapper.fromJson(payload, replyClass);
+	}
 }

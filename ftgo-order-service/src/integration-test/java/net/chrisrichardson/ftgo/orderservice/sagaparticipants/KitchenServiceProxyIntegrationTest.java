@@ -38,77 +38,71 @@ import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.CHICKEN_VIN
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes= KitchenServiceProxyIntegrationTest.TestConfiguration.class,
-        webEnvironment= SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids =
-        {"net.chrisrichardson.ftgo:ftgo-kitchen-service-contracts"}
-        )
+@SpringBootTest(classes = KitchenServiceProxyIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-kitchen-service-contracts" })
 @DirtiesContext
 public class KitchenServiceProxyIntegrationTest {
+	@Autowired
+	private SagaMessagingTestHelper sagaMessagingTestHelper;
 
+	@Autowired
+	private KitchenServiceProxy kitchenServiceProxy;
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({TramCommandProducerConfiguration.class,
-          TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class})
-  public static class TestConfiguration {
+	@Test
+	public void shouldSuccessfullyCreateTicket() {
+		CreateTicket command = new CreateTicket(AJANTA_ID,
+				OrderDetailsMother.ORDER_ID, new TicketDetails(
+						Collections.singletonList(new TicketLineItem(
+								CHICKEN_VINDALOO_MENU_ITEM_ID,
+								CHICKEN_VINDALOO, CHICKEN_VINDALOO_QUANTITY))));
+		CreateTicketReply expectedReply = new CreateTicketReply(OrderDetailsMother.ORDER_ID);
+		String sagaType = CreateOrderSaga.class.getName();
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+		CreateTicketReply reply = sagaMessagingTestHelper
+				.sendAndReceiveCommand(kitchenServiceProxy.create, command,
+						CreateTicketReply.class, sagaType);
 
+		assertEquals(expectedReply, reply);
+	}
+	
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ TramCommandProducerConfiguration.class,
+			TramInMemoryConfiguration.class,
+			EventuateContractVerifierConfiguration.class })
+	public static class TestConfiguration {
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+		}
 
-    /// TramSagaInMemoryConfiguration
+		@Bean
+		public DataSource dataSource() {
+			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+			return builder.setType(EmbeddedDatabaseType.H2)
+					.addScript("eventuate-tram-embedded-schema.sql")
+					.addScript("eventuate-tram-sagas-embedded.sql").build();
+		}
 
-    @Bean
-    public DataSource dataSource() {
-      EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-      return builder.setType(EmbeddedDatabaseType.H2)
-              .addScript("eventuate-tram-embedded-schema.sql")
-              .addScript("eventuate-tram-sagas-embedded.sql")
-              .build();
-    }
+		@Bean
+		public EventuateTramRoutesConfigurer eventuateTramRoutesConfigurer(BatchStubRunner batchStubRunner) {
+			return new EventuateTramRoutesConfigurer(batchStubRunner);
+		}
 
+		@Bean
+		public SagaMessagingTestHelper sagaMessagingTestHelper() {
+			return new SagaMessagingTestHelper();
+		}
 
-    @Bean
-    public EventuateTramRoutesConfigurer eventuateTramRoutesConfigurer(BatchStubRunner batchStubRunner) {
-      return new EventuateTramRoutesConfigurer(batchStubRunner);
-    }
+		@Bean
+		public SagaCommandProducer sagaCommandProducer() {
+			return new SagaCommandProducer();
+		}
 
-    @Bean
-    public SagaMessagingTestHelper sagaMessagingTestHelper() {
-      return new SagaMessagingTestHelper();
-    }
-
-    @Bean
-    public SagaCommandProducer sagaCommandProducer() {
-      return new SagaCommandProducer();
-    }
-
-    @Bean
-    public KitchenServiceProxy kitchenServiceProxy() {
-      return new KitchenServiceProxy();
-    }
-  }
-
-  @Autowired
-  private SagaMessagingTestHelper sagaMessagingTestHelper;
-
-  @Autowired
-  private KitchenServiceProxy kitchenServiceProxy;
-
-  @Test
-  public void shouldSuccessfullyCreateTicket() {
-    CreateTicket command = new CreateTicket(AJANTA_ID, OrderDetailsMother.ORDER_ID,
-            new TicketDetails(Collections.singletonList(new TicketLineItem(CHICKEN_VINDALOO_MENU_ITEM_ID, CHICKEN_VINDALOO, CHICKEN_VINDALOO_QUANTITY))));
-    CreateTicketReply expectedReply = new CreateTicketReply(OrderDetailsMother.ORDER_ID);
-    String sagaType = CreateOrderSaga.class.getName();
-
-    CreateTicketReply reply = sagaMessagingTestHelper.sendAndReceiveCommand(kitchenServiceProxy.create, command, CreateTicketReply.class, sagaType);
-
-    assertEquals(expectedReply, reply);
-
-  }
+		@Bean
+		public KitchenServiceProxy kitchenServiceProxy() {
+			return new KitchenServiceProxy();
+		}
+	}
 
 }

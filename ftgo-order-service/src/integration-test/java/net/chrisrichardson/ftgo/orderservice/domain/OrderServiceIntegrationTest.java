@@ -39,113 +39,119 @@ import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import static org.junit.Assert.assertNotNull;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = OrderServiceIntegrationTest.TestConfiguration.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = OrderServiceIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class OrderServiceIntegrationTest {
+	public  static final String RESTAURANT_ID                 = "1";
+	private static final String CHICKED_VINDALOO_MENU_ITEM_ID = "1";
+	
+	@Value("${local.server.port}")
+	private int port;
+	
+	@Autowired
+	private DomainEventPublisher domainEventPublisher;
 
+	@Autowired
+	private RestaurantRepository restaurantRepository;
 
-  public static final String RESTAURANT_ID = "1";
-  @Value("${local.server.port}")
-  private int port;
+	@Autowired
+	private OrderService orderService;
 
-  private String baseUrl(String path) {
-    return "http://localhost:" + port + path;
-  }
+	@Autowired
+	private OrderRepository orderRepository;
 
-  @Configuration
-  @EnableAutoConfiguration
-  @Import({OrderWebConfiguration.class, OrderServiceMessagingConfiguration.class,  OrderCommandHandlersConfiguration.class,
-          TramCommandProducerConfiguration.class,
-          TramInMemoryConfiguration.class})
-  public static class TestConfiguration {
+	@Autowired
+	@Qualifier("mockConsumerService")
+	private TestMessageConsumer2 mockConsumerService;
 
-    @Bean
-    public ChannelMapping channelMapping() {
-      return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-    }
+	private String baseUrl(String path) {
+		return "http://localhost:" + port + path;
+	}
 
-    @Bean
-    public TestMessageConsumerFactory testMessageConsumerFactory() {
-      return new TestMessageConsumerFactory();
-    }
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ OrderWebConfiguration.class,
+			OrderServiceMessagingConfiguration.class,
+			OrderCommandHandlersConfiguration.class,
+			TramCommandProducerConfiguration.class,
+			TramInMemoryConfiguration.class })
+	public static class TestConfiguration {
+		@Bean
+		public ChannelMapping channelMapping() {
+			return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+		}
 
+		@Bean
+		public TestMessageConsumerFactory testMessageConsumerFactory() {
+			return new TestMessageConsumerFactory();
+		}
 
-    @Bean
-    public DataSource dataSource() {
-      EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-      return builder.setType(EmbeddedDatabaseType.H2)
-              .addScript("eventuate-tram-embedded-schema.sql")
-              .addScript("eventuate-tram-sagas-embedded.sql")
-              .build();
-    }
+		@Bean
+		public DataSource dataSource() {
+			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+			return builder.setType(EmbeddedDatabaseType.H2)
+					.addScript("eventuate-tram-embedded-schema.sql")
+					.addScript("eventuate-tram-sagas-embedded.sql").build();
+		}
 
+		@Bean
+		public TestMessageConsumer2 mockConsumerService() {
+			return new TestMessageConsumer2("mockConsumerService",
+					ConsumerServiceChannels.consumerServiceChannel);
+		}
+	}
 
-    @Bean
-    public TestMessageConsumer2 mockConsumerService() {
-      return new TestMessageConsumer2("mockConsumerService", ConsumerServiceChannels.consumerServiceChannel);
-    }
-  }
+	@Test
+	public void shouldCreateOrder() {
+		domainEventPublisher.publish(
+				"net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
+				RESTAURANT_ID, Collections.singletonList(new RestaurantCreated(
+						"Ajanta", new RestaurantMenu(
+								Collections
+										.singletonList(new MenuItem(
+												CHICKED_VINDALOO_MENU_ITEM_ID,
+												"Chicken Vindaloo", new Money(
+														"12.34")))))));
 
-  @Autowired
-  private DomainEventPublisher domainEventPublisher;
+		Eventually.eventually(() -> {
+			FtgoTestUtil.assertPresent(restaurantRepository.findById(Long.parseLong(RESTAURANT_ID)));
+		});
 
-  @Autowired
-  private RestaurantRepository restaurantRepository;
+		long consumerId = 1511300065921L;
 
-  @Autowired
-  private OrderService orderService;
+		Order order = orderService.createOrder(consumerId, Long
+				.parseLong(RESTAURANT_ID), Collections
+				.singletonList(new MenuItemIdAndQuantity(
+						CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
 
-  private static final String CHICKED_VINDALOO_MENU_ITEM_ID = "1";
+		FtgoTestUtil.assertPresent(orderRepository.findById(order.getId()));
 
-  @Autowired
-  private OrderRepository orderRepository;
+		String expectedPayload = "{\"consumerId\":1511300065921,\"orderId\":1,\"orderTotal\":\"61.70\"}";
 
-  @Autowired
-  @Qualifier("mockConsumerService")
-  private TestMessageConsumer2  mockConsumerService;
+		Message message = mockConsumerService
+				.assertMessageReceived(commandMessageOfType(
+						ValidateOrderByConsumer.class.getName()).and(
+						withPayload(expectedPayload)));
 
-  @Test
-  public void shouldCreateOrder() {
-    domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RESTAURANT_ID,
-            Collections.singletonList(new RestaurantCreated("Ajanta",
-                    new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID, "Chicken Vindaloo", new Money("12.34")))))));
+		System.out.println("message=" + message);
 
-    Eventually.eventually(() -> {
-      FtgoTestUtil.assertPresent(restaurantRepository.findById(Long.parseLong(RESTAURANT_ID)));
-    });
+	}
 
-    long consumerId = 1511300065921L;
+	private Predicate<? super Message> withPayload(String expectedPayload) {
+		return (m) -> expectedPayload.equals(m.getPayload());
+	}
 
-    Order order = orderService.createOrder(consumerId, Long.parseLong(RESTAURANT_ID), Collections.singletonList(new MenuItemIdAndQuantity(CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
+	private Predicate<Message> forConsumer(long consumerId) {
+		return (m) -> {
+			Object doc = com.jayway.jsonpath.Configuration
+					.defaultConfiguration().jsonProvider()
+					.parse(m.getPayload());
+			Object s = JsonPath.read(doc, "$.consumerId");
+			return new Long(consumerId).equals(s);
+		};
+	}
 
-    FtgoTestUtil.assertPresent(orderRepository.findById(order.getId()));
-
-    String expectedPayload = "{\"consumerId\":1511300065921,\"orderId\":1,\"orderTotal\":\"61.70\"}";
-
-    Message message = mockConsumerService.assertMessageReceived(
-            commandMessageOfType(ValidateOrderByConsumer.class.getName()).and(withPayload(expectedPayload)));
-
-    System.out.println("message=" + message);
-
-  }
-
-  private Predicate<? super Message> withPayload(String expectedPayload) {
-    return (m) -> expectedPayload.equals(m.getPayload());
-  }
-
-  private Predicate<Message> forConsumer(long consumerId) {
-    return (m) -> {
-      Object doc = com.jayway.jsonpath.Configuration.defaultConfiguration().jsonProvider().parse(m.getPayload());
-      Object s = JsonPath.read(doc, "$.consumerId");
-      return new Long(consumerId).equals(s);
-    };
-  }
-
-  private Predicate<Message> commandMessageOfType(String commandType) {
-    return (m) -> m.getRequiredHeader(CommandMessageHeaders.COMMAND_TYPE).equals(commandType);
-  }
-
+	private Predicate<Message> commandMessageOfType(String commandType) {
+		return (m) -> m.getRequiredHeader(CommandMessageHeaders.COMMAND_TYPE).equals(commandType);
+	}
 }

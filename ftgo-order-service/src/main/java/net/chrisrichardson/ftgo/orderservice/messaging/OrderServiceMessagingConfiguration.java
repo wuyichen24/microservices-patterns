@@ -9,17 +9,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({OrderServiceWithRepositoriesConfiguration.class})
+@Import({ OrderServiceWithRepositoriesConfiguration.class })
 public class OrderServiceMessagingConfiguration {
+	@Bean
+	public OrderEventConsumer orderEventConsumer(OrderService orderService) {
+		return new OrderEventConsumer(orderService);
+	}
 
-  @Bean
-  public OrderEventConsumer orderEventConsumer(OrderService orderService) {
-    return new OrderEventConsumer(orderService);
-  }
-
-  @Bean
-  public DomainEventDispatcher domainEventDispatcher(OrderEventConsumer orderEventConsumer, MessageConsumer messageConsumer) {
-    return new DomainEventDispatcher("orderServiceEvents", orderEventConsumer.domainEventHandlers(), messageConsumer); // @Autowire
-  }
-
+	@Bean
+	public DomainEventDispatcher domainEventDispatcher(OrderEventConsumer orderEventConsumer, MessageConsumer messageConsumer) {
+		return new DomainEventDispatcher("orderServiceEvents",
+				orderEventConsumer.domainEventHandlers(), messageConsumer); // @Autowire
+	}
 }
