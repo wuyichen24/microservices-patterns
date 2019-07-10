@@ -13,11 +13,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories
 @EnableTransactionManagement
 @EntityScan
-@Import({TramEventsPublisherConfiguration.class, CommonConfiguration.class})
+@Import({ TramEventsPublisherConfiguration.class, CommonConfiguration.class })
 public class RestaurantServiceDomainConfiguration {
-
-  @Bean
-  public RestaurantService restaurantService() {
-    return new RestaurantService();
-  }
+	@Bean
+	public RestaurantService restaurantService() {
+		return new RestaurantService();
+	}
 }

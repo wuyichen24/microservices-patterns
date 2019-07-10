@@ -18,27 +18,22 @@ import static net.chrisrichardson.ftgo.restaurantservice.aws.ApiGatewayResponse.
 @Configuration
 @Import(RestaurantServiceLambdaConfiguration.class)
 public class CreateRestaurantRequestHandler extends AbstractAutowiringHttpRequestHandler {
+	@Autowired
+	private RestaurantService restaurantService;
 
-  @Autowired
-  private RestaurantService restaurantService;
+	@Override
+	protected Class<?> getApplicationContextClass() {
+		return CreateRestaurantRequestHandler.class;
+	}
 
-  @Override
-  protected Class<?> getApplicationContextClass() {
-    return CreateRestaurantRequestHandler.class;
-  }
+	@Override
+	protected APIGatewayProxyResponseEvent handleHttpRequest(APIGatewayProxyRequestEvent request, Context context) {
+		CreateRestaurantRequest crr = JSonMapper.fromJson(request.getBody(), CreateRestaurantRequest.class);
 
-  @Override
-  protected APIGatewayProxyResponseEvent handleHttpRequest(APIGatewayProxyRequestEvent request, Context context) {
+		Restaurant rest = restaurantService.create(crr);
 
-    CreateRestaurantRequest crr = JSonMapper.fromJson(request.getBody(), CreateRestaurantRequest.class);
-
-    Restaurant rest = restaurantService.create(crr);
-
-    return ApiGatewayResponse.builder()
-            .setStatusCode(200)
-            .setObjectBody(new CreateRestaurantResponse(rest.getId()))
-            .setHeaders(applicationJsonHeaders())
-            .build();
-
-  }
+		return ApiGatewayResponse.builder().setStatusCode(200)
+				.setObjectBody(new CreateRestaurantResponse(rest.getId()))
+				.setHeaders(applicationJsonHeaders()).build();
+	}
 }

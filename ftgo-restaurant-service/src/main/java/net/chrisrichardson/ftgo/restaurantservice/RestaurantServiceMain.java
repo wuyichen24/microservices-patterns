@@ -16,23 +16,21 @@ import org.springframework.context.annotation.Primary;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@Import({TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class})
+@Import({ TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 @ComponentScan
 public class RestaurantServiceMain {
+	@Bean
+	public ChannelMapping channelMapping() {
+		return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
+	}
 
-  @Bean
-  public ChannelMapping channelMapping() {
-    return new DefaultChannelMapping.DefaultChannelMappingBuilder().build();
-  }
+	@Bean
+	@Primary
+	public ObjectMapper objectMapper() {
+		return JSonMapper.objectMapper;
+	}
 
-  @Bean
-  @Primary // conflicts with _halObjectMapper
-  public ObjectMapper objectMapper() {
-    return JSonMapper.objectMapper;
-  }
-
-  public static void main(String[] args) {
-    SpringApplication.run(RestaurantServiceMain.class, args);
-  }
-
+	public static void main(String[] args) {
+		SpringApplication.run(RestaurantServiceMain.class, args);
+	}
 }

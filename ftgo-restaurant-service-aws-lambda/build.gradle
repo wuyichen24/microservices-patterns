@@ -1,7 +1,4 @@
-
-
 dependencies {
-
     compile "com.amazonaws:aws-lambda-java-core:1.1.0"
     compile "com.amazonaws:aws-lambda-java-events:2.0.1"
 
@@ -22,7 +19,6 @@ dependencies {
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
     testCompile 'com.jayway.restassured:rest-assured:2.3.0'
     testCompile "com.jayway.jsonpath:json-path:2.3.0"
-
 }
 
 task buildZip(type: Zip) {
@@ -34,4 +30,3 @@ task buildZip(type: Zip) {
 }
 
 build.dependsOn buildZip
-
