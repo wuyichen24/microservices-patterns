@@ -3,10 +3,12 @@ package net.chrisrichardson.ftgo.orderservice.service;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
 import io.eventuate.tram.sagas.participant.SagaCommandDispatcher;
 import io.eventuate.tram.sagas.participant.SagaParticipantConfiguration;
-import net.chrisrichardson.ftgo.common.CommonConfiguration;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.ftgo.common.domain.CommonConfiguration;
 
 @Configuration
 @Import({ SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class })

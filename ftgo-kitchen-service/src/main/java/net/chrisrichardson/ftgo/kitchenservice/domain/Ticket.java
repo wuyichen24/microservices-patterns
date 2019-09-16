@@ -1,12 +1,14 @@
 package net.chrisrichardson.ftgo.kitchenservice.domain;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.common.NotYetImplementedException;
-import net.chrisrichardson.ftgo.common.UnsupportedStateTransitionException;
 import net.chrisrichardson.ftgo.kitchenservice.api.TicketDetails;
 import net.chrisrichardson.ftgo.kitchenservice.api.TicketLineItem;
 
 import javax.persistence.*;
+
+import com.ftgo.common.exception.NotYetImplementedException;
+import com.ftgo.common.exception.UnsupportedStateTransitionException;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;

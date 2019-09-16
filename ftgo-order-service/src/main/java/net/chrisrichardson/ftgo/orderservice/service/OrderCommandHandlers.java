@@ -8,8 +8,10 @@ import io.eventuate.tram.commands.consumer.CommandHandlers;
 import io.eventuate.tram.commands.consumer.CommandMessage;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
-import net.chrisrichardson.ftgo.common.UnsupportedStateTransitionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ftgo.common.exception.UnsupportedStateTransitionException;
 
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;

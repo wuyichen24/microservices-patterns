@@ -1,6 +1,7 @@
 package net.chrisrichardson.ftgo.orderservice.sagas.reviseorder;
 
-import net.chrisrichardson.ftgo.common.Money;
+import com.ftgo.common.model.Money;
+
 import net.chrisrichardson.ftgo.orderservice.domain.OrderRevision;
 
 public class ReviseOrderSagaData  {

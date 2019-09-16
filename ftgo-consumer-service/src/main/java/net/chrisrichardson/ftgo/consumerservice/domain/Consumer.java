@@ -1,8 +1,6 @@
 package net.chrisrichardson.ftgo.consumerservice.domain;
 
 import io.eventuate.tram.events.ResultWithEvents;
-import net.chrisrichardson.ftgo.common.Money;
-import net.chrisrichardson.ftgo.common.PersonName;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -11,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.ftgo.common.model.Money;
+import com.ftgo.common.model.PersonName;
 
 @Entity
 @Table(name = "consumers")

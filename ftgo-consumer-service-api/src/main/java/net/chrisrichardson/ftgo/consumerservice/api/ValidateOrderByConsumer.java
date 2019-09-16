@@ -1,10 +1,12 @@
 package net.chrisrichardson.ftgo.consumerservice.api;
 
 import io.eventuate.tram.commands.common.Command;
-import net.chrisrichardson.ftgo.common.Money;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+import com.ftgo.common.model.Money;
 
 public class ValidateOrderByConsumer implements Command {
 	private long  consumerId;

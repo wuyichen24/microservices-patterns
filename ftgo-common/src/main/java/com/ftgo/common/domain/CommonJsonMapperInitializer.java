@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.common;
+package com.ftgo.common.domain;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
 

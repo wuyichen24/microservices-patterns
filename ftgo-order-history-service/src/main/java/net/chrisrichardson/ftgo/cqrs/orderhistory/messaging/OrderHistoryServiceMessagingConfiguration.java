@@ -3,11 +3,13 @@ package net.chrisrichardson.ftgo.cqrs.orderhistory.messaging;
 import io.eventuate.tram.consumer.common.TramNoopDuplicateMessageDetectorConfiguration;
 import io.eventuate.tram.events.subscriber.DomainEventDispatcher;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
-import net.chrisrichardson.ftgo.common.CommonConfiguration;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.OrderHistoryDao;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.ftgo.common.domain.CommonConfiguration;
 
 @Configuration
 @Import({ CommonConfiguration.class, TramNoopDuplicateMessageDetectorConfiguration.class })

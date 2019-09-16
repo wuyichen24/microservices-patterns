@@ -1,14 +1,16 @@
 package net.chrisrichardson.ftgo.cqrs.orderhistory.web;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
-import net.chrisrichardson.ftgo.common.CommonJsonMapperInitializer;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.OrderHistoryDao;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.dynamodb.Order;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
+
+import com.ftgo.common.domain.CommonJsonMapperInitializer;
 
 import java.util.Optional;
 

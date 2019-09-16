@@ -1,6 +1,8 @@
-package net.chrisrichardson.ftgo.common;
+package com.ftgo.common;
 
 import org.junit.Test;
+
+import com.ftgo.common.model.Money;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

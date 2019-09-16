@@ -1,11 +1,13 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.common.Money;
-import net.chrisrichardson.ftgo.common.UnsupportedStateTransitionException;
 import net.chrisrichardson.ftgo.orderservice.api.events.*;
 
 import javax.persistence.*;
+
+import com.ftgo.common.exception.UnsupportedStateTransitionException;
+import com.ftgo.common.model.Money;
+
 import java.util.List;
 
 import static net.chrisrichardson.ftgo.orderservice.api.events.OrderState.APPROVED;

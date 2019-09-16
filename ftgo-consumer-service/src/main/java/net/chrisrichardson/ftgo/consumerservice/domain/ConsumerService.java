@@ -2,10 +2,12 @@ package net.chrisrichardson.ftgo.consumerservice.domain;
 
 import io.eventuate.tram.events.ResultWithEvents;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
-import net.chrisrichardson.ftgo.common.Money;
-import net.chrisrichardson.ftgo.common.PersonName;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.ftgo.common.model.Money;
+import com.ftgo.common.model.PersonName;
 
 import java.util.Optional;
 

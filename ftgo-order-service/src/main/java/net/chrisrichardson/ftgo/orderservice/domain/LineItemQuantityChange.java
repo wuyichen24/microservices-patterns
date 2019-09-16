@@ -1,6 +1,6 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
-import net.chrisrichardson.ftgo.common.Money;
+import com.ftgo.common.model.Money;
 
 public class LineItemQuantityChange {
 	final Money currentOrderTotal;

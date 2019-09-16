@@ -1,13 +1,15 @@
 package net.chrisrichardson.ftgo.restaurantservice.domain;
 
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
-import net.chrisrichardson.ftgo.common.CommonConfiguration;
+
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.ftgo.common.domain.CommonConfiguration;
 
 @Configuration
 @EnableJpaRepositories

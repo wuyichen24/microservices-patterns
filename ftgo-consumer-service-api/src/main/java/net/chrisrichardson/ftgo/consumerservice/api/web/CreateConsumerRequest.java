@@ -1,6 +1,6 @@
 package net.chrisrichardson.ftgo.consumerservice.api.web;
 
-import net.chrisrichardson.ftgo.common.PersonName;
+import com.ftgo.common.model.PersonName;
 
 public class CreateConsumerRequest {
 	private PersonName name;

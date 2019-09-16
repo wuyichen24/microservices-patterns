@@ -2,12 +2,12 @@ package net.chrisrichardson.ftgo.cqrs.orderhistory.dynamodb;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
 import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
-import net.chrisrichardson.ftgo.common.Money;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.OrderHistory;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.OrderHistoryDao;
 import net.chrisrichardson.ftgo.cqrs.orderhistory.OrderHistoryFilter;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +19,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.ftgo.common.model.Money;
 
 import java.util.List;
 import java.util.Optional;

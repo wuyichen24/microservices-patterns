@@ -15,7 +15,6 @@ import io.eventuate.tram.sagas.testing.SagaParticipantStubManager;
 import io.eventuate.tram.testing.MessageTracker;
 import io.eventuate.tram.sagas.testing.SagaParticipantChannels;
 import io.restassured.response.Response;
-import net.chrisrichardson.ftgo.common.CommonJsonMapperInitializer;
 import net.chrisrichardson.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import net.chrisrichardson.ftgo.orderservice.OrderDetailsMother;
 import net.chrisrichardson.ftgo.orderservice.RestaurantMother;
@@ -40,6 +39,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.common.domain.CommonJsonMapperInitializer;
 
 import java.util.Collections;
 

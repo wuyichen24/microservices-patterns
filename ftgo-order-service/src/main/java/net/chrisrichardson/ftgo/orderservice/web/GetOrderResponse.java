@@ -1,6 +1,6 @@
 package net.chrisrichardson.ftgo.orderservice.web;
 
-import net.chrisrichardson.ftgo.common.Money;
+import com.ftgo.common.model.Money;
 
 public class GetOrderResponse {
 	private long   orderId;

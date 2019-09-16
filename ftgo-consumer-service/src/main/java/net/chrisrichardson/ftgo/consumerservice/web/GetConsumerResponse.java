@@ -1,6 +1,7 @@
 package net.chrisrichardson.ftgo.consumerservice.web;
 
-import net.chrisrichardson.ftgo.common.PersonName;
+import com.ftgo.common.model.PersonName;
+
 import net.chrisrichardson.ftgo.consumerservice.api.web.CreateConsumerResponse;
 
 public class GetConsumerResponse extends CreateConsumerResponse {

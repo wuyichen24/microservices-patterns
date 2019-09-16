@@ -1,9 +1,11 @@
 package net.chrisrichardson.ftgo.cqrs.orderhistory.dynamodb;
 
-import net.chrisrichardson.ftgo.common.Money;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+
 import org.joda.time.DateTime;
+
+import com.ftgo.common.model.Money;
 
 import java.util.List;
 

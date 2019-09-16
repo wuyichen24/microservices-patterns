@@ -1,7 +1,8 @@
 package com.ftgo.accountservice.api;
 
+import com.ftgo.common.model.Money;
+
 import io.eventuate.tram.commands.common.Command;
-import net.chrisrichardson.ftgo.common.Money;
 
 public class ReviseAuthorization implements Command {
 	private long  consumerId;

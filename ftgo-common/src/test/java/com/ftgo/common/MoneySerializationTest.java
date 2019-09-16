@@ -1,7 +1,11 @@
-package net.chrisrichardson.ftgo.common;
+package com.ftgo.common;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.ftgo.common.domain.CommonJsonMapperInitializer;
+import com.ftgo.common.model.Money;
+
 import io.eventuate.javaclient.commonimpl.JSonMapper;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;

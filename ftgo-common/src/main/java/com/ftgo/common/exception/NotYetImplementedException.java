@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.common;
+package com.ftgo.common.exception;
 
 public class NotYetImplementedException extends RuntimeException {
 }

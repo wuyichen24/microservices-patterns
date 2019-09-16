@@ -1,6 +1,6 @@
 package net.chrisrichardson.ftgo.orderservice.sagas.cancelorder;
 
-import net.chrisrichardson.ftgo.common.Money;
+import com.ftgo.common.model.Money;
 
 public class CancelOrderSagaData {
 	private Long   orderId;

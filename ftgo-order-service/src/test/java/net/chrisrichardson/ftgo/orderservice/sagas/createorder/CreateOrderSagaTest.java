@@ -1,6 +1,5 @@
 package net.chrisrichardson.ftgo.orderservice.sagas.createorder;
 
-import net.chrisrichardson.ftgo.common.CommonJsonMapperInitializer;
 import net.chrisrichardson.ftgo.consumerservice.api.ConsumerServiceChannels;
 import net.chrisrichardson.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import net.chrisrichardson.ftgo.kitchenservice.api.CancelCreateTicket;
@@ -15,6 +14,7 @@ import org.junit.Test;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.common.domain.CommonJsonMapperInitializer;
 
 import static io.eventuate.tram.sagas.testing.SagaUnitTestSupport.given;
 import static net.chrisrichardson.ftgo.orderservice.OrderDetailsMother.*;

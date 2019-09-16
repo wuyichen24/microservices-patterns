@@ -12,7 +12,6 @@ import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 import io.eventuate.tram.sagas.common.SagaCommandHeaders;
 import io.eventuate.tram.testutil.TestMessageConsumer;
 import io.eventuate.tram.testutil.TestMessageConsumerFactory;
-import net.chrisrichardson.ftgo.common.Money;
 import io.eventuate.util.test.async.Eventually;
 
 import org.junit.Test;
@@ -32,6 +31,7 @@ import com.ftgo.accountingservice.event.Account;
 import com.ftgo.accountingservice.messaging.AccountingMessagingConfiguration;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.domain.ConsumerCreated;
 
 import javax.sql.DataSource;

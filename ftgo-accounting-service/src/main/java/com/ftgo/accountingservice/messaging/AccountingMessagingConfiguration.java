@@ -6,7 +6,6 @@ import io.eventuate.tram.consumer.common.DuplicateMessageDetector;
 import io.eventuate.tram.events.subscriber.DomainEventDispatcher;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
 import io.eventuate.tram.sagas.eventsourcingsupport.SagaReplyRequestedEventSubscriber;
-import net.chrisrichardson.ftgo.common.CommonConfiguration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +13,7 @@ import org.springframework.context.annotation.Import;
 
 import com.ftgo.accountingservice.domain.AccountServiceConfiguration;
 import com.ftgo.accountingservice.event.Account;
+import com.ftgo.common.domain.CommonConfiguration;
 
 import java.util.Collections;
 

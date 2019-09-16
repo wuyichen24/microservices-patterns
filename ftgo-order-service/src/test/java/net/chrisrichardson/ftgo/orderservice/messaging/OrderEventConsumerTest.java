@@ -1,12 +1,14 @@
 package net.chrisrichardson.ftgo.orderservice.messaging;
 
-import net.chrisrichardson.ftgo.common.CommonJsonMapperInitializer;
 import net.chrisrichardson.ftgo.orderservice.RestaurantMother;
 import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import com.ftgo.common.domain.CommonJsonMapperInitializer;
 
 import static io.eventuate.tram.testing.DomainEventHandlerUnitTestSupport.given;
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.AJANTA_ID;

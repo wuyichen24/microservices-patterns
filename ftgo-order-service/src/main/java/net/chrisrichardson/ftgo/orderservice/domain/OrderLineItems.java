@@ -1,11 +1,13 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
-import net.chrisrichardson.ftgo.common.Money;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+
+import com.ftgo.common.model.Money;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 

@@ -1,7 +1,8 @@
 package com.ftgo.accountingservice.command;
 
+import com.ftgo.common.model.Money;
+
 import io.eventuate.tram.commands.common.Command;
-import net.chrisrichardson.ftgo.common.Money;
 
 public class ReviseAuthorizationCommandInternal implements AccountCommand, Command {
 	private String consumerId;

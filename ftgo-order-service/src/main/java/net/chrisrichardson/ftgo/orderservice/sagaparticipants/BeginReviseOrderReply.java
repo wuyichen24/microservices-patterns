@@ -1,6 +1,6 @@
 package net.chrisrichardson.ftgo.orderservice.sagaparticipants;
 
-import net.chrisrichardson.ftgo.common.Money;
+import com.ftgo.common.model.Money;
 
 public class BeginReviseOrderReply {
 	private Money revisedOrderTotal;
