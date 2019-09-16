@@ -15,7 +15,6 @@ import io.eventuate.tram.sagas.testing.SagaParticipantStubManager;
 import io.eventuate.tram.testing.MessageTracker;
 import io.eventuate.tram.sagas.testing.SagaParticipantChannels;
 import io.restassured.response.Response;
-import net.chrisrichardson.ftgo.accountservice.api.AuthorizeCommand;
 import net.chrisrichardson.ftgo.common.CommonJsonMapperInitializer;
 import net.chrisrichardson.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import net.chrisrichardson.ftgo.orderservice.OrderDetailsMother;
@@ -29,6 +28,7 @@ import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicket;
 import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicketReply;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.testutil.FtgoTestUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -38,6 +38,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
+
+import com.ftgo.accountservice.api.AuthorizeCommand;
 
 import java.util.Collections;
 

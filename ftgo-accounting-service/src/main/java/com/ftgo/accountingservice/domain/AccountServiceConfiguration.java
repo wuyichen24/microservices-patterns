@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 
 import com.ftgo.accountingservice.command.AccountCommand;
 import com.ftgo.accountingservice.event.Account;
-import com.ftgo.accountingservice.services.AccountingService;
+import com.ftgo.accountingservice.service.AccountingService;
 
 @Configuration
 @Import({ TramCommandProducerConfiguration.class, CommonConfiguration.class })

@@ -4,10 +4,6 @@ import io.eventuate.sync.AggregateRepository;
 import io.eventuate.tram.commands.consumer.CommandHandlers;
 import io.eventuate.tram.commands.consumer.CommandMessage;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
-import net.chrisrichardson.ftgo.accountservice.api.AccountDisabledReply;
-import net.chrisrichardson.ftgo.accountservice.api.AuthorizeCommand;
-import net.chrisrichardson.ftgo.accountservice.api.ReverseAuthorizationCommand;
-import net.chrisrichardson.ftgo.accountservice.api.ReviseAuthorization;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +16,10 @@ import com.ftgo.accountingservice.command.ReviseAuthorizationCommandInternal;
 import com.ftgo.accountingservice.domain.*;
 import com.ftgo.accountingservice.event.Account;
 import com.ftgo.accountingservice.exception.AccountDisabledException;
+import com.ftgo.accountservice.api.AccountDisabledReply;
+import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.ReverseAuthorizationCommand;
+import com.ftgo.accountservice.api.ReviseAuthorization;
 
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.sagas.eventsourcingsupport.UpdatingOptionsBuilder.replyingTo;

@@ -6,7 +6,7 @@ import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ftgo.accountingservice.services.AccountingService;
+import com.ftgo.accountingservice.service.AccountingService;
 import com.ftgo.consumerservice.domain.ConsumerCreated;
 
 public class AccountingEventConsumer {
