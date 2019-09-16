@@ -1,4 +1,4 @@
-package com.ftgo.accountingservice.web;
+package com.ftgo.accountingservice.model;
 
 public class GetAccountResponse {
 	private String accountId;

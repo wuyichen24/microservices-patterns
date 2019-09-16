@@ -1,4 +1,4 @@
-package com.ftgo.accountingservice.web;
+package com.ftgo.accountingservice.controller;
 
 import io.eventuate.EntityNotFoundException;
 import io.eventuate.sync.AggregateRepository;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftgo.accountingservice.command.AccountCommand;
 import com.ftgo.accountingservice.event.Account;
+import com.ftgo.accountingservice.model.GetAccountResponse;
 
 @RestController
 @RequestMapping(path = "/accounts")
