@@ -12,13 +12,11 @@ import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 import io.eventuate.tram.sagas.common.SagaCommandHeaders;
 import io.eventuate.tram.testutil.TestMessageConsumer;
 import io.eventuate.tram.testutil.TestMessageConsumerFactory;
-import net.chrisrichardson.ftgo.accountingservice.domain.Account;
-import net.chrisrichardson.ftgo.accountingservice.domain.AccountCommand;
 import net.chrisrichardson.ftgo.accountservice.api.AccountingServiceChannels;
 import net.chrisrichardson.ftgo.accountservice.api.AuthorizeCommand;
 import net.chrisrichardson.ftgo.common.Money;
-import net.chrisrichardson.ftgo.consumerservice.domain.ConsumerCreated;
 import io.eventuate.util.test.async.Eventually;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ftgo.accountingservice.command.AccountCommand;
+import com.ftgo.accountingservice.event.Account;
+import com.ftgo.accountingservice.messaging.AccountingMessagingConfiguration;
+import com.ftgo.consumerservice.domain.ConsumerCreated;
+
 import javax.sql.DataSource;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
