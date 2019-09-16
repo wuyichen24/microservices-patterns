@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.accountingservice.domain.AccountServiceConfiguration;
-import com.ftgo.accountingservice.event.Account;
+import com.ftgo.accountingservice.model.Account;
+import com.ftgo.accountingservice.service.AccountServiceConfiguration;
 import com.ftgo.common.domain.CommonConfiguration;
 
 import java.util.Collections;

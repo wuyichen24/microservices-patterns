@@ -1,6 +1,8 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.consumerservice.api.ConsumerServiceChannels;
+import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import com.jayway.jsonpath.JsonPath;
 
 import io.eventuate.tram.commands.common.ChannelMapping;
@@ -12,8 +14,6 @@ import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.testutil.TestMessageConsumerFactory;
 import io.eventuate.util.test.async.Eventually;
-import net.chrisrichardson.ftgo.consumerservice.api.ConsumerServiceChannels;
-import net.chrisrichardson.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import net.chrisrichardson.ftgo.orderservice.messaging.OrderServiceMessagingConfiguration;
 import net.chrisrichardson.ftgo.orderservice.service.OrderCommandHandlersConfiguration;
 import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;

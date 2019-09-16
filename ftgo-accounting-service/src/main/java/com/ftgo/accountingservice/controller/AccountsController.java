@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.event.Account;
-import com.ftgo.accountingservice.model.GetAccountResponse;
+import com.ftgo.accountingservice.controller.model.GetAccountResponse;
+import com.ftgo.accountingservice.model.Account;
 
 @RestController
 @RequestMapping(path = "/accounts")

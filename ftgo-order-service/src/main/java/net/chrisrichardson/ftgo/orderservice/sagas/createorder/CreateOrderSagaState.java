@@ -1,6 +1,5 @@
 package net.chrisrichardson.ftgo.orderservice.sagas.createorder;
 
-import net.chrisrichardson.ftgo.consumerservice.api.ValidateOrderByConsumer;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderDetails;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.ApproveOrderCommand;
@@ -13,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
 
 import java.util.List;
 

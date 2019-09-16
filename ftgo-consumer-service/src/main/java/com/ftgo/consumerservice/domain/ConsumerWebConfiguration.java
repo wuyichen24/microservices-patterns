@@ -1,13 +1,13 @@
-package com.ftgo.accountingservice.domain;
+package com.ftgo.consumerservice.domain;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.accountingservice.service.AccountServiceConfiguration;
+import com.ftgo.consumerservice.service.ConsumerServiceConfiguration;
 
 @Configuration
-@Import(AccountServiceConfiguration.class)
 @ComponentScan
-public class AccountingWebConfiguration {
+@Import(ConsumerServiceConfiguration.class)
+public class ConsumerWebConfiguration {
 }

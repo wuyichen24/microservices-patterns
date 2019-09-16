@@ -27,8 +27,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.event.Account;
 import com.ftgo.accountingservice.messaging.AccountingMessagingConfiguration;
+import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.AuthorizeCommand;
 import com.ftgo.common.model.Money;
