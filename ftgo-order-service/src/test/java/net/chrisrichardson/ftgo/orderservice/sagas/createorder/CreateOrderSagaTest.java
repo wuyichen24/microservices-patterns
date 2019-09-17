@@ -1,9 +1,5 @@
 package net.chrisrichardson.ftgo.orderservice.sagas.createorder;
 
-import net.chrisrichardson.ftgo.kitchenservice.api.CancelCreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.ConfirmCreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.KitchenServiceChannels;
 import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.*;
 
@@ -11,10 +7,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.kitchenservice.api.KitchenServiceChannels;
+import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 
 import static io.eventuate.tram.sagas.testing.SagaUnitTestSupport.given;
 import static net.chrisrichardson.ftgo.orderservice.OrderDetailsMother.*;
@@ -46,7 +46,7 @@ public class CreateOrderSagaTest {
 				.andGiven()
 				.successReply()
 				.expect()
-				.command(new CreateTicket(AJANTA_ID, ORDER_ID, null /* FIXME */))
+				.command(new CreateTicketCommand(AJANTA_ID, ORDER_ID, null /* FIXME */))
 				.to(KitchenServiceChannels.kitchenServiceChannel)
 				.andGiven()
 				.successReply()
@@ -54,7 +54,7 @@ public class CreateOrderSagaTest {
 				.command(new AuthorizeCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(AccountingServiceChannels.accountingServiceChannel)
 				.andGiven().successReply().expect()
-				.command(new ConfirmCreateTicket(ORDER_ID))
+				.command(new ConfirmCreateTicketCommand(ORDER_ID))
 				.to(KitchenServiceChannels.kitchenServiceChannel).andGiven()
 				.successReply().expect()
 				.command(new ApproveOrderCommand(ORDER_ID))
@@ -85,7 +85,7 @@ public class CreateOrderSagaTest {
 				.andGiven()
 				.successReply()
 				.expect()
-				.command(new CreateTicket(AJANTA_ID, ORDER_ID, null /* FIXME */))
+				.command(new CreateTicketCommand(AJANTA_ID, ORDER_ID, null /* FIXME */))
 				.to(KitchenServiceChannels.kitchenServiceChannel)
 				.andGiven()
 				.successReply()
@@ -93,7 +93,7 @@ public class CreateOrderSagaTest {
 				.command(new AuthorizeCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(AccountingServiceChannels.accountingServiceChannel)
 				.andGiven().failureReply().expect()
-				.command(new CancelCreateTicket(ORDER_ID))
+				.command(new CancelCreateTicketCommand(ORDER_ID))
 				.to(KitchenServiceChannels.kitchenServiceChannel).andGiven()
 				.successReply().expect()
 				.command(new RejectOrderCommand(ORDER_ID))

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
-import com.ftgo.consumerservice.event.ConsumerCreated;
+import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
 
 @Entity
 @Table(name = "consumers")
@@ -42,6 +42,6 @@ public class Consumer {
 	}
 
 	public static ResultWithEvents<Consumer> create(PersonName name) {
-		return new ResultWithEvents<>(new Consumer(name), new ConsumerCreated());
+		return new ResultWithEvents<>(new Consumer(name), new ConsumerCreatedEvent());
 	}
 }

@@ -1,7 +1,6 @@
-package net.chrisrichardson.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.model;
 
 import io.eventuate.tram.events.common.DomainEvent;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketDetails;
 import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 
@@ -13,6 +12,9 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.ftgo.kitchenservice.api.model.TicketDetails;
+
 import java.util.List;
 
 @Entity

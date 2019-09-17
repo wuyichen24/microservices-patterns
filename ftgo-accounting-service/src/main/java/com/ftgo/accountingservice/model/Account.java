@@ -8,10 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.command.AuthorizeCommandInternal;
-import com.ftgo.accountingservice.command.CreateAccountCommand;
-import com.ftgo.accountingservice.command.ReverseAuthorizationCommandInternal;
-import com.ftgo.accountingservice.command.ReviseAuthorizationCommandInternal;
+import com.ftgo.accountingservice.command.model.AuthorizeCommandInternal;
+import com.ftgo.accountingservice.command.model.CreateAccountCommand;
+import com.ftgo.accountingservice.command.model.ReverseAuthorizationCommandInternal;
+import com.ftgo.accountingservice.command.model.ReviseAuthorizationCommandInternal;
 import com.ftgo.accountingservice.event.model.AccountAuthorizedEvent;
 import com.ftgo.accountingservice.event.model.AccountCreatedEvent;
 

@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ftgo.common.domain.CommonConfiguration;
-import com.ftgo.consumerservice.messaging.ConsumerServiceCommandHandlers;
+import com.ftgo.consumerservice.command.ConsumerServiceCommandHandlers;
 
 @Configuration
 @EnableJpaRepositories

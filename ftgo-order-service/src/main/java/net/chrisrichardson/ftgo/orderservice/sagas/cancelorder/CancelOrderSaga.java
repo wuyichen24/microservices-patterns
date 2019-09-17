@@ -7,15 +7,15 @@ import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.BeginCancelCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.ConfirmCancelOrderCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.UndoBeginCancelCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.BeginCancelTicketCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.ConfirmCancelTicketCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.KitchenServiceChannels;
-import net.chrisrichardson.ftgo.kitchenservice.api.UndoBeginCancelTicketCommand;
 
 import org.springframework.util.Assert;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.accountservice.api.ReverseAuthorizationCommand;
+import com.ftgo.accountservice.api.command.ReverseAuthorizationCommand;
+import com.ftgo.kitchenservice.api.KitchenServiceChannels;
+import com.ftgo.kitchenservice.api.command.BeginCancelTicketCommand;
+import com.ftgo.kitchenservice.api.command.ConfirmCancelTicketCommand;
+import com.ftgo.kitchenservice.api.command.UndoBeginCancelTicketCommand;
 
 import javax.annotation.PostConstruct;
 

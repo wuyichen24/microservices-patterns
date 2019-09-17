@@ -9,10 +9,7 @@ import io.eventuate.tram.springcloudcontractsupport.EventuateContractVerifierCon
 import io.eventuate.tram.springcloudcontractsupport.EventuateTramRoutesConfigurer;
 import net.chrisrichardson.ftgo.orderservice.OrderDetailsMother;
 import net.chrisrichardson.ftgo.orderservice.sagas.createorder.CreateOrderSaga;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicketReply;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketDetails;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketLineItem;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ftgo.kitchenservice.api.CreateTicketReply;
+import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.kitchenservice.api.model.TicketDetails;
+import com.ftgo.kitchenservice.api.model.TicketLineItem;
+
 import javax.sql.DataSource;
+
 import java.util.Collections;
 
 import static net.chrisrichardson.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY;
@@ -50,7 +53,7 @@ public class KitchenServiceProxyIntegrationTest {
 
 	@Test
 	public void shouldSuccessfullyCreateTicket() {
-		CreateTicket command = new CreateTicket(AJANTA_ID,
+		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID,
 				OrderDetailsMother.ORDER_ID, new TicketDetails(
 						Collections.singletonList(new TicketLineItem(
 								CHICKEN_VINDALOO_MENU_ITEM_ID,

@@ -1,13 +1,22 @@
-package net.chrisrichardson.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.model;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketDetails;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketLineItem;
 
 import javax.persistence.*;
 
 import com.ftgo.common.exception.NotYetImplementedException;
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
+import com.ftgo.kitchenservice.api.model.TicketDetails;
+import com.ftgo.kitchenservice.api.model.TicketLineItem;
+import com.ftgo.kitchenservice.domain.TicketState;
+import com.ftgo.kitchenservice.event.TicketDomainEvent;
+import com.ftgo.kitchenservice.event.model.TicketAcceptedEvent;
+import com.ftgo.kitchenservice.event.model.TicketCancelledEvent;
+import com.ftgo.kitchenservice.event.model.TicketCreatedEvent;
+import com.ftgo.kitchenservice.event.model.TicketPickedUpEvent;
+import com.ftgo.kitchenservice.event.model.TicketPreparationCompletedEvent;
+import com.ftgo.kitchenservice.event.model.TicketPreparationStartedEvent;
+import com.ftgo.kitchenservice.event.model.TicketRevisedEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -145,7 +154,7 @@ public class Ticket {
 		switch (state) {
 		case CANCEL_PENDING:
 			this.state = TicketState.CANCELLED;
-			return singletonList(new TicketCancelled());
+			return singletonList(new TicketCancelledEvent());
 		default:
 			throw new UnsupportedStateTransitionException(state);
 		}
@@ -187,7 +196,7 @@ public class Ticket {
 		switch (state) {
 		case REVISION_PENDING:
 			this.state = this.previousState;
-			return singletonList(new TicketRevised());
+			return singletonList(new TicketRevisedEvent());
 		default:
 			throw new UnsupportedStateTransitionException(state);
 		}

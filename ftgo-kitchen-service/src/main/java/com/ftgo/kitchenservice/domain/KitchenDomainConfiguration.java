@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.domain;
 
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.kitchenservice.event.TicketDomainEventPublisher;
+import com.ftgo.kitchenservice.service.KitchenService;
 
 @Configuration
 @EnableTransactionManagement

@@ -5,19 +5,19 @@ import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
 import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.BeginReviseOrderCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.BeginReviseOrderReply;
-import net.chrisrichardson.ftgo.kitchenservice.api.BeginReviseTicketCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.ConfirmReviseOrderCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.UndoBeginReviseOrderCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.ConfirmReviseTicketCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.KitchenServiceChannels;
-import net.chrisrichardson.ftgo.kitchenservice.api.UndoBeginReviseTicketCommand;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.accountservice.api.ReviseAuthorization;
+import com.ftgo.accountservice.api.command.ReviseAuthorizationCommand;
+import com.ftgo.kitchenservice.api.KitchenServiceChannels;
+import com.ftgo.kitchenservice.api.command.BeginReviseTicketCommand;
+import com.ftgo.kitchenservice.api.command.ConfirmReviseTicketCommand;
+import com.ftgo.kitchenservice.api.command.UndoBeginReviseTicketCommand;
 
 import javax.annotation.PostConstruct;
 
@@ -64,7 +64,7 @@ public class ReviseOrderSaga implements SimpleSaga<ReviseOrderSagaData> {
 	}
 
 	private CommandWithDestination reviseAuthorization(ReviseOrderSagaData data) {
-		return send(new ReviseAuthorization(data.getConsumerId(),
+		return send(new ReviseAuthorizationCommand(data.getConsumerId(),
 						data.getOrderId(), data.getRevisedOrderTotal())).to(
 				AccountingServiceChannels.accountingServiceChannel).build();
 	}

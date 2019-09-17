@@ -4,15 +4,20 @@ import net.chrisrichardson.ftgo.orderservice.api.events.OrderDetails;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.ApproveOrderCommand;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.RejectOrderCommand;
-import net.chrisrichardson.ftgo.kitchenservice.api.*;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.kitchenservice.api.*;
+import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.kitchenservice.api.model.TicketDetails;
+import com.ftgo.kitchenservice.api.model.TicketLineItem;
 
 import java.util.List;
 
@@ -36,8 +41,8 @@ public class CreateOrderSagaState {
 	public void         setTicketId(long ticketId) { this.ticketId = ticketId; }
 	public long         getTicketId()              { return ticketId;          }
 
-	CreateTicket makeCreateTicketCommand() {
-		return new CreateTicket(getOrderDetails().getRestaurantId(), getOrderId(), makeTicketDetails(getOrderDetails()));
+	CreateTicketCommand makeCreateTicketCommand() {
+		return new CreateTicketCommand(getOrderDetails().getRestaurantId(), getOrderId(), makeTicketDetails(getOrderDetails()));
 	}
 
 	private TicketDetails makeTicketDetails(OrderDetails orderDetails) {
@@ -59,8 +64,8 @@ public class CreateOrderSagaState {
 		setTicketId(reply.getTicketId());
 	}
 
-	CancelCreateTicket makeCancelCreateTicketCommand() {
-		return new CancelCreateTicket(getOrderId());
+	CancelCreateTicketCommand makeCancelCreateTicketCommand() {
+		return new CancelCreateTicketCommand(getOrderId());
 	}
 
 	RejectOrderCommand makeRejectOrderCommand() {
@@ -79,8 +84,8 @@ public class CreateOrderSagaState {
 		return new ApproveOrderCommand(getOrderId());
 	}
 
-	ConfirmCreateTicket makeConfirmCreateTicketCommand() {
-		return new ConfirmCreateTicket(getTicketId());
+	ConfirmCreateTicketCommand makeConfirmCreateTicketCommand() {
+		return new ConfirmCreateTicketCommand(getTicketId());
 	}
 	
 	@Override

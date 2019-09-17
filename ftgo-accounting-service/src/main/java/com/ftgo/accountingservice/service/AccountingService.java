@@ -7,7 +7,7 @@ import io.eventuate.SaveOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.command.CreateAccountCommand;
+import com.ftgo.accountingservice.command.model.CreateAccountCommand;
 import com.ftgo.accountingservice.model.Account;
 
 import java.util.Optional;

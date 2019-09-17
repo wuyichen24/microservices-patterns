@@ -1,7 +1,7 @@
 package net.chrisrichardson.ftgo.orderservice.sagaparticipants;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.command.AuthorizeCommand;
 
 import io.eventuate.tram.commands.common.Success;
 import io.eventuate.tram.sagas.simpledsl.CommandEndpoint;

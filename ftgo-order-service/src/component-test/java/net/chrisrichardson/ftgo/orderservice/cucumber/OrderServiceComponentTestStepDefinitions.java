@@ -20,10 +20,6 @@ import net.chrisrichardson.ftgo.orderservice.RestaurantMother;
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
 import net.chrisrichardson.ftgo.orderservice.domain.Order;
 import net.chrisrichardson.ftgo.orderservice.domain.RestaurantRepository;
-import net.chrisrichardson.ftgo.kitchenservice.api.CancelCreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.ConfirmCreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicket;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicketReply;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.testutil.FtgoTestUtil;
 
@@ -37,9 +33,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.kitchenservice.api.CreateTicketReply;
+import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
+import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 
 import java.util.Collections;
 
@@ -146,12 +146,12 @@ public class OrderServiceComponentTestStepDefinitions {
 	public void restaurantAcceptsOrder() {
 		sagaParticipantStubManager
 				.forChannel("kitchenService")
-				.when(CreateTicket.class)
+				.when(CreateTicketCommand.class)
 				.replyWith(
 						cm -> withSuccess(new CreateTicketReply(cm.getCommand()
 								.getOrderId())))
-				.when(ConfirmCreateTicket.class).replyWithSuccess()
-				.when(CancelCreateTicket.class).replyWithSuccess();
+				.when(ConfirmCreateTicketCommand.class).replyWithSuccess()
+				.when(CancelCreateTicketCommand.class).replyWithSuccess();
 
 		if (!restaurantRepository.findById(RestaurantMother.AJANTA_ID).isPresent()) {
 			domainEventPublisher
@@ -191,7 +191,7 @@ public class OrderServiceComponentTestStepDefinitions {
 			assertEquals(desiredOrderState, state);
 		});
 
-		sagaParticipantStubManager.verifyCommandReceived("kitchenService", CreateTicket.class);
+		sagaParticipantStubManager.verifyCommandReceived("kitchenService", CreateTicketCommand.class);
 	}
 
 	@And("an (.*) event should be published")

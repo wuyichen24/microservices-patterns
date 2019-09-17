@@ -27,12 +27,12 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.messaging.AccountingMessagingConfiguration;
+import com.ftgo.accountingservice.message.AccountingMessagingConfiguration;
 import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.accountservice.api.AuthorizeCommand;
+import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.model.Money;
-import com.ftgo.consumerservice.domain.ConsumerCreated;
+import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
 
 import javax.sql.DataSource;
 
@@ -89,7 +89,7 @@ public class AccountingServiceCommandHandlerTest {
 		long orderId = 102L;
 
 		domainEventPublisher.publish("net.chrisrichardson.ftgo.consumerservice.domain.Consumer", consumerId,
-				Collections.singletonList(new ConsumerCreated()));
+				Collections.singletonList(new ConsumerCreatedEvent()));
 
 		Eventually.eventually(() -> {
 			accountRepository.find(Long.toString(consumerId));

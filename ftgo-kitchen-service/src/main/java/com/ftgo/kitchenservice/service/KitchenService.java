@@ -1,10 +1,19 @@
-package net.chrisrichardson.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.service;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.kitchenservice.api.TicketDetails;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.ftgo.kitchenservice.api.model.TicketDetails;
+import com.ftgo.kitchenservice.event.TicketDomainEvent;
+import com.ftgo.kitchenservice.event.TicketDomainEventPublisher;
+import com.ftgo.kitchenservice.exception.TicketNotFoundException;
+import com.ftgo.kitchenservice.model.Restaurant;
+import com.ftgo.kitchenservice.model.Ticket;
+import com.ftgo.kitchenservice.repository.RestaurantRepository;
+import com.ftgo.kitchenservice.repository.TicketRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -3,9 +3,11 @@ package net.chrisrichardson.ftgo.orderservice.sagas.createorder;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.*;
-import net.chrisrichardson.ftgo.kitchenservice.api.CreateTicketReply;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.ftgo.kitchenservice.api.CreateTicketReply;
 
 public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaState> {
 	private SagaDefinition<CreateOrderSagaState> sagaDefinition;

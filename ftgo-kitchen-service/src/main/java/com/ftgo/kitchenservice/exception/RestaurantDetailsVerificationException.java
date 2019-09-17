@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.exception;
 
 public class RestaurantDetailsVerificationException extends RuntimeException {
 }
