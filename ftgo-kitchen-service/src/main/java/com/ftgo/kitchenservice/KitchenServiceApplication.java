@@ -11,10 +11,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 import com.ftgo.kitchenservice.domain.KitchenServiceWebConfiguration;
-import com.ftgo.kitchenservice.message.KitchenServiceMessageHandlersConfiguration;
+import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
 
+/**
+ * The bootstrap class for the kitchen service.
+ * 
+ * @author  Wuyi Chen
+ * @date    09/18/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @SpringBootApplication
-@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class,
+@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class,
 		TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 public class KitchenServiceApplication {
 	@Bean

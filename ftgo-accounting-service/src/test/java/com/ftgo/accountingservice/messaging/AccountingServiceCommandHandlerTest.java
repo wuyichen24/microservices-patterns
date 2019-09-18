@@ -27,7 +27,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.message.AccountingMessagingConfiguration;
+import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
 import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
@@ -47,7 +47,7 @@ import java.util.concurrent.TimeoutException;
 public class AccountingServiceCommandHandlerTest {
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ AccountingMessagingConfiguration.class, TramCommandProducerConfiguration.class,
+	@Import({ AccountingServiceMessageConfiguration.class, TramCommandProducerConfiguration.class,
 			EmbeddedTestAggregateStoreConfiguration.class, TramEventsPublisherConfiguration.class, // TODO
 			TramInMemoryConfiguration.class })
 	static public class AccountingServiceCommandHandlerTestConfiguration {

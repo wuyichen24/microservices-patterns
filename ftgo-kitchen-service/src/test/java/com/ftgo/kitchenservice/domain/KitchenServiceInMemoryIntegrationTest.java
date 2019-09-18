@@ -28,7 +28,7 @@ import com.ftgo.common.model.Money;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.domain.KitchenServiceWebConfiguration;
-import com.ftgo.kitchenservice.message.KitchenServiceMessageHandlersConfiguration;
+import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
 import com.ftgo.kitchenservice.model.Restaurant;
 import com.ftgo.kitchenservice.repository.RestaurantRepository;
 
@@ -48,7 +48,7 @@ public class KitchenServiceInMemoryIntegrationTest {
 
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageHandlersConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class })
+	@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {

@@ -1,0 +1,21 @@
+package com.ftgo.orderhistoryservice.dao.dynamodb;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Maps {
+	private final Map<String, Object> map;
+
+	public Maps() {
+		this.map = new HashMap<>();
+	}
+
+	public Maps add(String key, Object value) {
+		map.put(key, value);
+		return this;
+	}
+
+	public Map<String, Object> map() {
+		return map;
+	}
+}

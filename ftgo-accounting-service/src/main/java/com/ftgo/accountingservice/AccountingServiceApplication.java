@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.ftgo.accountingservice.domain.AccountingWebConfiguration;
-import com.ftgo.accountingservice.message.AccountingMessagingConfiguration;
+import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
 
 /**
  * The bootstrap class for the accounting service.
@@ -26,7 +26,7 @@ import com.ftgo.accountingservice.message.AccountingMessagingConfiguration;
 @Configuration
 @EnableAutoConfiguration
 @Import({
-	AccountingMessagingConfiguration.class, 
+	AccountingServiceMessageConfiguration.class, 
 	AccountingWebConfiguration.class,
 	TramCommandProducerConfiguration.class, 
 	EventuateDriverConfiguration.class, 

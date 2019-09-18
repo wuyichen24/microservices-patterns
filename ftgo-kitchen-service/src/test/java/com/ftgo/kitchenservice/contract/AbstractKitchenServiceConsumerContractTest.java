@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.kitchenservice.api.model.TicketDetails;
-import com.ftgo.kitchenservice.message.KitchenServiceMessageHandlersConfiguration;
+import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
 import com.ftgo.kitchenservice.model.Ticket;
 import com.ftgo.kitchenservice.service.KitchenService;
 
@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMessageVerifier
 public abstract class AbstractKitchenServiceConsumerContractTest {
 	@Configuration
-	@Import({ KitchenServiceMessageHandlersConfiguration.class, EventuateContractVerifierConfiguration.class })
+	@Import({ KitchenServiceMessageConfiguration.class, EventuateContractVerifierConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public KitchenService kitchenService() {
