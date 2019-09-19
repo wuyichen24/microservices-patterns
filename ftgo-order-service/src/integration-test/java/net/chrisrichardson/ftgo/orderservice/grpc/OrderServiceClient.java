@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
+import com.ftgo.orderservice.grpc.OrderServiceGrpc;
+
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest.LineItem;
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;

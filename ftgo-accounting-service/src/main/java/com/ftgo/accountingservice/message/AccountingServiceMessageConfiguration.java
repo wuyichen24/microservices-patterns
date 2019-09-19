@@ -14,14 +14,14 @@ import org.springframework.context.annotation.Import;
 import com.ftgo.accountingservice.command.AccountingServiceCommandHandler;
 import com.ftgo.accountingservice.event.AccountingEventConsumer;
 import com.ftgo.accountingservice.model.Account;
-import com.ftgo.accountingservice.service.AccountServiceConfiguration;
+import com.ftgo.accountingservice.service.AccountingServiceConfiguration;
 import com.ftgo.common.domain.CommonConfiguration;
 
 import java.util.Collections;
 
 @Configuration
 @EnableEventHandlers
-@Import({ AccountServiceConfiguration.class, CommonConfiguration.class })
+@Import({ AccountingServiceConfiguration.class, CommonConfiguration.class })
 public class AccountingServiceMessageConfiguration {
 	@Bean
 	public AccountingEventConsumer accountingEventConsumer() {

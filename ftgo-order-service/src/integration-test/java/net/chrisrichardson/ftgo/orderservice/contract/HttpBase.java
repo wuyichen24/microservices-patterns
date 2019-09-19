@@ -3,8 +3,6 @@ package net.chrisrichardson.ftgo.orderservice.contract;
 import io.eventuate.javaclient.commonimpl.JSonMapper;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import net.chrisrichardson.ftgo.orderservice.OrderDetailsMother;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderRepository;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import net.chrisrichardson.ftgo.orderservice.web.OrderController;
 
 import org.junit.Before;
@@ -13,6 +11,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
+import com.ftgo.orderservice.repository.OrderRepository;
+import com.ftgo.orderservice.service.OrderService;
 
 import java.util.Optional;
 

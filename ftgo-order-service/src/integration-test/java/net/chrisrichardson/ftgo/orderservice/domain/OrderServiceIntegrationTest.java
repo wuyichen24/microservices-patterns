@@ -3,6 +3,10 @@ package net.chrisrichardson.ftgo.orderservice.domain;
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.orderservice.model.Order;
+import com.ftgo.orderservice.repository.OrderRepository;
+import com.ftgo.orderservice.repository.RestaurantRepository;
+import com.ftgo.orderservice.service.OrderService;
 import com.jayway.jsonpath.JsonPath;
 
 import io.eventuate.tram.commands.common.ChannelMapping;

@@ -3,13 +3,13 @@ package net.chrisrichardson.ftgo.orderservice;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderDetails;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
-import net.chrisrichardson.ftgo.orderservice.domain.Order;
 import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;
 
 import java.util.Collections;
 import java.util.List;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.model.Order;
 
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO;

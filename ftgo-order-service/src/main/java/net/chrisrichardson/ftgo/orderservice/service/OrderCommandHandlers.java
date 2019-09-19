@@ -1,8 +1,6 @@
 package net.chrisrichardson.ftgo.orderservice.service;
 
 import io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderRevision;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import net.chrisrichardson.ftgo.orderservice.sagaparticipants.*;
 import io.eventuate.tram.commands.consumer.CommandHandlers;
 import io.eventuate.tram.commands.consumer.CommandMessage;
@@ -12,6 +10,8 @@ import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
+import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.service.OrderService;
 
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;

@@ -1,9 +1,11 @@
 package net.chrisrichardson.ftgo.orderservice.grpc;
 
-import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.ftgo.orderservice.grpc.GrpcConfiguration;
+import com.ftgo.orderservice.service.OrderService;
 
 import static org.mockito.Mockito.mock;
 

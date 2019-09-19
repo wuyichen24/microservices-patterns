@@ -1,12 +1,16 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
+
+import com.ftgo.orderservice.model.Order;
+import com.ftgo.orderservice.repository.OrderRepository;
 
 import static net.chrisrichardson.ftgo.orderservice.OrderDetailsMother.CONSUMER_ID;
 import static net.chrisrichardson.ftgo.orderservice.OrderDetailsMother.chickenVindalooLineItems;

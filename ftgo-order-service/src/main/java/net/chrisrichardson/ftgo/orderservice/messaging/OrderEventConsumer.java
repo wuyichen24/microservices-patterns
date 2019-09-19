@@ -1,9 +1,10 @@
 package net.chrisrichardson.ftgo.orderservice.messaging;
 
+import com.ftgo.orderservice.service.OrderService;
+
 import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
 import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenuRevised;

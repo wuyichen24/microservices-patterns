@@ -5,8 +5,14 @@ import net.chrisrichardson.ftgo.orderservice.RestaurantMother;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderCreatedEvent;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderDomainEvent;
 import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.event.model.OrderAuthorizedEvent;
+import com.ftgo.orderservice.model.LineItemQuantityChange;
+import com.ftgo.orderservice.model.Order;
 
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +53,7 @@ public class OrderTest {
 	@Test
 	public void shouldAuthorize() {
 		List<OrderDomainEvent> events = order.noteApproved();
-		assertEquals(singletonList(new OrderAuthorized()), events);
+		assertEquals(singletonList(new OrderAuthorizedEvent()), events);
 		assertEquals(OrderState.APPROVED, order.getState());
 	}
 

@@ -4,10 +4,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.accountingservice.service.AccountServiceConfiguration;
+import com.ftgo.accountingservice.service.AccountingServiceConfiguration;
 
 @Configuration
-@Import(AccountServiceConfiguration.class)
+@Import(AccountingServiceConfiguration.class)
 @ComponentScan
 public class AccountingWebConfiguration {
 }

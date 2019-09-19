@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ftgo.orderservice.model.Restaurant;
+import com.ftgo.orderservice.repository.RestaurantRepository;
+
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_MENU_ITEMS;
 import static net.chrisrichardson.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_NAME;

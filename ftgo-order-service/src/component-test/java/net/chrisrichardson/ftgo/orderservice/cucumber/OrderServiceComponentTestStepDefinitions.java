@@ -18,8 +18,6 @@ import io.restassured.response.Response;
 import net.chrisrichardson.ftgo.orderservice.OrderDetailsMother;
 import net.chrisrichardson.ftgo.orderservice.RestaurantMother;
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.domain.Order;
-import net.chrisrichardson.ftgo.orderservice.domain.RestaurantRepository;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.testutil.FtgoTestUtil;
 
@@ -40,6 +38,8 @@ import com.ftgo.kitchenservice.api.CreateTicketReply;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.orderservice.model.Order;
+import com.ftgo.orderservice.repository.RestaurantRepository;
 
 import java.util.Collections;
 

@@ -1,12 +1,13 @@
 package net.chrisrichardson.ftgo.orderservice.grpc;
 
-import net.chrisrichardson.ftgo.orderservice.domain.Order;
-import net.chrisrichardson.ftgo.orderservice.domain.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.ftgo.orderservice.model.Order;
+import com.ftgo.orderservice.service.OrderService;
 
 import java.util.Collections;
 
