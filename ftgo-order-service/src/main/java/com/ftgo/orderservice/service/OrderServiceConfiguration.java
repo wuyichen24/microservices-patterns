@@ -7,16 +7,6 @@ import io.eventuate.tram.sagas.orchestration.SagaManager;
 import io.eventuate.tram.sagas.orchestration.SagaManagerImpl;
 import io.eventuate.tram.sagas.orchestration.SagaOrchestratorConfiguration;
 import io.micrometer.core.instrument.MeterRegistry;
-import net.chrisrichardson.ftgo.orderservice.sagaparticipants.AccountingServiceProxy;
-import net.chrisrichardson.ftgo.orderservice.sagaparticipants.ConsumerServiceProxy;
-import net.chrisrichardson.ftgo.orderservice.sagaparticipants.KitchenServiceProxy;
-import net.chrisrichardson.ftgo.orderservice.sagaparticipants.OrderServiceProxy;
-import net.chrisrichardson.ftgo.orderservice.sagas.cancelorder.CancelOrderSaga;
-import net.chrisrichardson.ftgo.orderservice.sagas.cancelorder.CancelOrderSagaData;
-import net.chrisrichardson.ftgo.orderservice.sagas.createorder.CreateOrderSaga;
-import net.chrisrichardson.ftgo.orderservice.sagas.createorder.CreateOrderSagaState;
-import net.chrisrichardson.ftgo.orderservice.sagas.reviseorder.ReviseOrderSaga;
-import net.chrisrichardson.ftgo.orderservice.sagas.reviseorder.ReviseOrderSagaData;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
@@ -28,6 +18,16 @@ import com.ftgo.common.domain.CommonConfiguration;
 import com.ftgo.orderservice.event.OrderDomainEventPublisher;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
+import com.ftgo.orderservice.saga.cancelorder.CancelOrderSaga;
+import com.ftgo.orderservice.saga.cancelorder.CancelOrderSagaData;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
+import com.ftgo.orderservice.saga.proxy.AccountingServiceProxy;
+import com.ftgo.orderservice.saga.proxy.ConsumerServiceProxy;
+import com.ftgo.orderservice.saga.proxy.KitchenServiceProxy;
+import com.ftgo.orderservice.saga.proxy.OrderServiceProxy;
+import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSaga;
+import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
 
 import java.util.Optional;
 

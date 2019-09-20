@@ -11,11 +11,11 @@ import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
 import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;
 import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderRequest;
 import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.service.OrderService;
 
