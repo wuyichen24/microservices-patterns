@@ -1,7 +1,5 @@
 package com.ftgo.orderservice.jpa;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 

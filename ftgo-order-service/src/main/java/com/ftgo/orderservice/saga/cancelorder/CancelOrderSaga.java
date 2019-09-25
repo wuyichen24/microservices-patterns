@@ -3,7 +3,6 @@ package com.ftgo.orderservice.saga.cancelorder;
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
-import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
 
 import org.springframework.util.Assert;
 
@@ -13,6 +12,7 @@ import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.BeginCancelTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCancelTicketCommand;
 import com.ftgo.kitchenservice.api.command.UndoBeginCancelTicketCommand;
+import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.command.model.BeginCancelCommand;
 import com.ftgo.orderservice.command.model.ConfirmCancelOrderCommand;
 import com.ftgo.orderservice.command.model.UndoBeginCancelCommand;

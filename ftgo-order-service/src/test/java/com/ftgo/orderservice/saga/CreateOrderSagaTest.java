@@ -1,7 +1,5 @@
 package com.ftgo.orderservice.saga;
 
-import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,6 +12,7 @@ import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.command.model.ApproveOrderCommand;
 import com.ftgo.orderservice.command.model.RejectOrderCommand;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;

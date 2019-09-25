@@ -1,13 +1,12 @@
 package com.ftgo.orderservice;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
-
 import java.util.Collections;
 import java.util.List;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.api.model.OrderDetails;
+import com.ftgo.orderservice.api.model.OrderLineItem;
+import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.model.Order;
 

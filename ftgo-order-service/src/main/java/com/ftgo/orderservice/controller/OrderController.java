@@ -1,9 +1,5 @@
 package com.ftgo.orderservice.controller;
 
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import com.ftgo.orderservice.api.controller.model.CreateOrderResponse;
+import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
 import com.ftgo.orderservice.controller.model.GetOrderResponse;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.domain.*;

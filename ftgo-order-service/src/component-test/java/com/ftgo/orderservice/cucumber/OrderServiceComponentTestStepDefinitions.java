@@ -15,9 +15,6 @@ import io.eventuate.tram.sagas.testing.SagaParticipantStubManager;
 import io.eventuate.tram.testing.MessageTracker;
 import io.eventuate.tram.sagas.testing.SagaParticipantChannels;
 import io.restassured.response.Response;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
-import net.chrisrichardson.ftgo.testutil.FtgoTestUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -38,8 +35,11 @@ import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.RestaurantRepository;
+import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
+import com.ftgo.testutil.FtgoTestUtil;
 
 import java.util.Collections;
 
@@ -157,7 +157,7 @@ public class OrderServiceComponentTestStepDefinitions {
 			domainEventPublisher
 					.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
 							RestaurantMother.AJANTA_ID,
-							Collections.singletonList(new RestaurantCreated(
+							Collections.singletonList(new RestaurantCreatedEvent(
 									RestaurantMother.AJANTA_RESTAURANT_NAME,
 									AJANTA_RESTAURANT_MENU)));
 

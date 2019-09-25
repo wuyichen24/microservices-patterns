@@ -2,8 +2,6 @@ package com.ftgo.orderhistoryservice.dynamodb;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
 import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -24,6 +22,8 @@ import com.ftgo.orderhistoryservice.dao.dynamodb.SourceEvent;
 import com.ftgo.orderhistoryservice.domain.OrderHistoryFilter;
 import com.ftgo.orderhistoryservice.model.Order;
 import com.ftgo.orderhistoryservice.model.OrderHistory;
+import com.ftgo.orderservice.api.model.OrderLineItem;
+import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.List;
 import java.util.Optional;

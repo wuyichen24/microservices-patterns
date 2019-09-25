@@ -4,16 +4,16 @@ import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
 import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
+import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
+import com.ftgo.restaurantservice.api.controller.model.CreateRestaurantRequest;
+import com.ftgo.restaurantservice.api.model.MenuItem;
+import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.ObjectMapperConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
-import net.chrisrichardson.ftgo.restaurantservice.events.CreateRestaurantRequest;
-import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 import io.eventuate.util.test.async.Eventually;
 
 import org.junit.BeforeClass;

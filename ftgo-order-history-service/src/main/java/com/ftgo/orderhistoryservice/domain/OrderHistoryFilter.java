@@ -1,8 +1,8 @@
 package com.ftgo.orderhistoryservice.domain;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
-
 import org.joda.time.DateTime;
+
+import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.Optional;
 import java.util.Set;

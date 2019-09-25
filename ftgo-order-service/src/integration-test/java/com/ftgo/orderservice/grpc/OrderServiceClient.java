@@ -7,12 +7,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
+import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import com.ftgo.orderservice.api.controller.model.CreateOrderResponse;
+import com.ftgo.orderservice.api.controller.model.CreateOrderRequest.LineItem;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.grpc.OrderServiceGrpc;
-
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest.LineItem;
 
 public class OrderServiceClient {
 	private final ManagedChannel                            channel;

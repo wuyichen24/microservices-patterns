@@ -1,9 +1,8 @@
 package com.ftgo.orderservice.event.model;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.orderservice.domain.OrderRevision;
-
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
 
 public class OrderRevisedEvent implements OrderDomainEvent {
 	private final OrderRevision orderRevision;

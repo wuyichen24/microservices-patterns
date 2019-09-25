@@ -4,17 +4,15 @@ import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
 import io.micrometer.core.instrument.MeterRegistry;
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ftgo.orderservice.api.event.OrderDomainEvent;
+import com.ftgo.orderservice.api.model.OrderDetails;
+import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.domain.OrderRevision;
 import com.ftgo.orderservice.event.OrderDomainEventPublisher;
@@ -30,6 +28,8 @@ import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSagaData;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
+import com.ftgo.restaurantservice.api.model.MenuItem;
+import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
 import java.util.List;
 import java.util.Optional;

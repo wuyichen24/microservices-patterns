@@ -23,9 +23,8 @@ import com.ftgo.orderhistoryservice.domain.OrderHistoryFilter;
 import com.ftgo.orderhistoryservice.model.Location;
 import com.ftgo.orderhistoryservice.model.Order;
 import com.ftgo.orderhistoryservice.model.OrderHistory;
-
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
+import com.ftgo.orderservice.api.model.OrderLineItem;
+import com.ftgo.orderservice.api.model.OrderState;
 
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;

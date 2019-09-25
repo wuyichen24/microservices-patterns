@@ -2,12 +2,12 @@ package com.ftgo.orderservice.service;
 
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderCreatedEvent;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.event.OrderDomainEventPublisher;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;

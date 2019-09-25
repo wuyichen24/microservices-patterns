@@ -1,11 +1,10 @@
 package com.ftgo.orderhistoryservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
-
 import org.joda.time.DateTime;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.api.model.OrderLineItem;
+import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.List;
 

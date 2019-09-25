@@ -1,9 +1,5 @@
 package com.ftgo.orderservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
-import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
@@ -14,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.ftgo.kitchenservice.api.model.TicketDetails;
+import com.ftgo.orderservice.api.event.OrderDomainEvent;
+import com.ftgo.restaurantservice.api.model.MenuItem;
+import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,14 +1,14 @@
 package com.ftgo.orderservice.domain;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderCreatedEvent;
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.api.event.OrderCreatedEvent;
+import com.ftgo.orderservice.api.event.OrderDomainEvent;
+import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.domain.OrderRevision;
 import com.ftgo.orderservice.event.model.OrderAuthorizedEvent;
 import com.ftgo.orderservice.model.LineItemQuantityChange;

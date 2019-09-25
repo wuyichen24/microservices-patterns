@@ -1,8 +1,5 @@
 package com.ftgo.orderservice.saga.createorder;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.slf4j.Logger;
@@ -17,6 +14,8 @@ import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
+import com.ftgo.orderservice.api.model.OrderDetails;
+import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.command.model.ApproveOrderCommand;
 import com.ftgo.orderservice.command.model.RejectOrderCommand;
 

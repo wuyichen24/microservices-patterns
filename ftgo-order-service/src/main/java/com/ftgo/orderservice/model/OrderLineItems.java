@@ -1,12 +1,11 @@
 package com.ftgo.orderservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.domain.OrderRevision;
 
 import java.util.List;

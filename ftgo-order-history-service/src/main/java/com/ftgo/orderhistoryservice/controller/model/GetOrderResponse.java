@@ -1,6 +1,6 @@
 package com.ftgo.orderhistoryservice.controller.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
+import com.ftgo.orderservice.api.model.OrderState;
 
 public class GetOrderResponse {
 	private String     orderId;

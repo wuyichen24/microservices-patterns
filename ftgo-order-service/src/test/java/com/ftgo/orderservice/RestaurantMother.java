@@ -1,13 +1,12 @@
 package com.ftgo.orderservice;
 
-import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
-
 import java.util.Collections;
 import java.util.List;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.orderservice.model.Restaurant;
+import com.ftgo.restaurantservice.api.model.MenuItem;
+import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
 public class RestaurantMother {
     public static final String AJANTA_RESTAURANT_NAME = "Ajanta";

@@ -1,7 +1,8 @@
 package com.ftgo.orderservice.event.model;
 
+import com.ftgo.orderservice.api.model.OrderState;
+
 import io.eventuate.tram.events.common.DomainEvent;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 public class OrderCancelRequestedEvent implements DomainEvent {
 	private OrderState state;

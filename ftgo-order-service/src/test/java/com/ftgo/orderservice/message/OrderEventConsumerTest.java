@@ -1,8 +1,5 @@
 package com.ftgo.orderservice.message;
 
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
-import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +7,8 @@ import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.event.OrderServiceEventConsumer;
 import com.ftgo.orderservice.service.OrderService;
+import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
+import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_NAME;
@@ -34,7 +33,7 @@ public class OrderEventConsumerTest {
 		given().eventHandlers(orderEventConsumer.domainEventHandlers())
 				.when()
 				.aggregate("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", AJANTA_ID)
-				.publishes(new RestaurantCreated(AJANTA_RESTAURANT_NAME, RestaurantMother.AJANTA_RESTAURANT_MENU))
+				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantMother.AJANTA_RESTAURANT_MENU))
 				.then()
 				.verify(() -> {
 					verify(orderService)

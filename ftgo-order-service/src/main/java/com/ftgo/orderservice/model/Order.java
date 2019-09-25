@@ -1,15 +1,15 @@
 package com.ftgo.orderservice.model;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.orderservice.api.event.*;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import javax.persistence.*;
 
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
 import com.ftgo.common.model.Money;
+import com.ftgo.orderservice.api.event.*;
+import com.ftgo.orderservice.api.model.OrderDetails;
+import com.ftgo.orderservice.api.model.OrderLineItem;
+import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.domain.OrderRevision;
 import com.ftgo.orderservice.event.model.OrderAuthorizedEvent;
 import com.ftgo.orderservice.event.model.OrderCancelledEvent;
@@ -20,10 +20,10 @@ import com.ftgo.orderservice.exception.OrderMinimumNotMetException;
 
 import java.util.List;
 
-import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.APPROVAL_PENDING;
-import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.APPROVED;
-import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.REJECTED;
-import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.REVISION_PENDING;
+import static com.ftgo.orderservice.api.model.OrderState.APPROVAL_PENDING;
+import static com.ftgo.orderservice.api.model.OrderState.APPROVED;
+import static com.ftgo.orderservice.api.model.OrderState.REJECTED;
+import static com.ftgo.orderservice.api.model.OrderState.REVISION_PENDING;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 

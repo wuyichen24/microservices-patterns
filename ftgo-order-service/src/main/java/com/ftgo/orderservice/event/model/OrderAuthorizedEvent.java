@@ -1,9 +1,9 @@
 package com.ftgo.orderservice.event.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
+import com.ftgo.orderservice.api.event.OrderDomainEvent;
 
 public class OrderAuthorizedEvent implements OrderDomainEvent {
 	@Override

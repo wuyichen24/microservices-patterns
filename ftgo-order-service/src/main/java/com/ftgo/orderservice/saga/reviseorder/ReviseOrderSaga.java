@@ -2,7 +2,6 @@ package com.ftgo.orderservice.saga.reviseorder;
 
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
-import net.chrisrichardson.ftgo.orderservice.api.OrderServiceChannels;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 
 import org.slf4j.Logger;
@@ -14,6 +13,7 @@ import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.BeginReviseTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmReviseTicketCommand;
 import com.ftgo.kitchenservice.api.command.UndoBeginReviseTicketCommand;
+import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.command.model.BeginReviseOrderCommand;
 import com.ftgo.orderservice.command.model.ConfirmReviseOrderCommand;
 import com.ftgo.orderservice.command.model.UndoBeginReviseOrderCommand;

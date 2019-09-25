@@ -3,8 +3,6 @@ package com.ftgo.orderhistoryservice.event;
 import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
 import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
-import net.chrisrichardson.ftgo.orderservice.api.event.OrderCreatedEvent;
-import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +12,8 @@ import com.ftgo.orderhistoryservice.dao.dynamodb.SourceEvent;
 import com.ftgo.orderhistoryservice.event.model.DeliveryPickedUpEvent;
 import com.ftgo.orderhistoryservice.model.Location;
 import com.ftgo.orderhistoryservice.model.Order;
+import com.ftgo.orderservice.api.event.OrderCreatedEvent;
+import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.Optional;
 
