@@ -7,7 +7,7 @@ import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
 import com.ftgo.consumerservice.exception.ConsumerVerificationFailedException;
 import com.ftgo.consumerservice.service.ConsumerService;
 

@@ -10,9 +10,9 @@ import java.util.stream.IntStream;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.grpc.OrderServiceGrpc;
 
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest.LineItem;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest.LineItem;
 
 public class OrderServiceClient {
 	private final ManagedChannel                            channel;

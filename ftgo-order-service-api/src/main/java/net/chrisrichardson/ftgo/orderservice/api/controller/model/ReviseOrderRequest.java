@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.orderservice.api.web;
+package net.chrisrichardson.ftgo.orderservice.api.controller.model;
 
 import java.util.Map;
 

@@ -6,7 +6,7 @@ import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
 import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 import io.eventuate.tram.springcloudcontractsupport.EventuateContractVerifierConfiguration;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderCreatedEvent;
+import net.chrisrichardson.ftgo.orderservice.api.event.OrderCreatedEvent;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,9 +4,9 @@ import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
 import io.micrometer.core.instrument.MeterRegistry;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderDomainEvent;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
+import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
 import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 

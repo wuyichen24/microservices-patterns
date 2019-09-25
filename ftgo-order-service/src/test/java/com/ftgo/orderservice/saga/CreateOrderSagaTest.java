@@ -9,7 +9,7 @@ import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
 import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;

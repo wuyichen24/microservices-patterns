@@ -1,4 +1,4 @@
-package com.ftgo.consumerservice.api.model;
+package com.ftgo.consumerservice.api.controller.model;
 
 import com.ftgo.common.model.PersonName;
 

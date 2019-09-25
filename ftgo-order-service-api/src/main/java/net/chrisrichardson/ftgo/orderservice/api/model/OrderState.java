@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.orderservice.api.events;
+package net.chrisrichardson.ftgo.orderservice.api.model;
 
 public enum OrderState {
   APPROVAL_PENDING,

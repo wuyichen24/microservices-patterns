@@ -1,8 +1,8 @@
 package com.ftgo.orderservice.controller;
 
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

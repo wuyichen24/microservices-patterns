@@ -17,6 +17,7 @@ import com.ftgo.kitchenservice.api.command.ConfirmReviseTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.UndoBeginCancelTicketCommand;
 import com.ftgo.kitchenservice.api.command.UndoBeginReviseTicketCommand;
+import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.exception.RestaurantDetailsVerificationException;
 import com.ftgo.kitchenservice.model.Ticket;

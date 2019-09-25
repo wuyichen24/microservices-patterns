@@ -1,6 +1,6 @@
 package com.ftgo.orderservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;

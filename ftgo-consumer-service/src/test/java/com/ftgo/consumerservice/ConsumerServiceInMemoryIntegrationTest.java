@@ -20,8 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
-import com.ftgo.consumerservice.api.model.CreateConsumerRequest;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
 import com.ftgo.consumerservice.domain.ConsumerWebConfiguration;
 
 import java.util.Collections;

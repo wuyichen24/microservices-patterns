@@ -6,7 +6,7 @@ import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ftgo.kitchenservice.api.CreateTicketReply;
+import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.orderservice.saga.proxy.*;
 
 public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaState> {

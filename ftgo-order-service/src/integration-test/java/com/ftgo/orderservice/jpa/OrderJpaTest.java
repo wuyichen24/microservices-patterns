@@ -1,6 +1,6 @@
 package com.ftgo.orderservice.jpa;
 
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

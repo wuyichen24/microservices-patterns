@@ -4,6 +4,7 @@ import com.ftgo.kitchenservice.api.*;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 
 import io.eventuate.tram.commands.common.Success;
 import io.eventuate.tram.sagas.simpledsl.CommandEndpoint;

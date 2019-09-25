@@ -1,8 +1,8 @@
 package com.ftgo.orderservice;
 
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderDetails;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import java.util.Collections;
 import java.util.List;

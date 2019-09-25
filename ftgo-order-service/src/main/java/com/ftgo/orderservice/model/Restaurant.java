@@ -1,6 +1,6 @@
 package com.ftgo.orderservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderDomainEvent;
+import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
 import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;
 

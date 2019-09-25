@@ -23,8 +23,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ftgo.kitchenservice.api.CreateTicketReply;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
 import com.ftgo.orderservice.OrderDetailsMother;

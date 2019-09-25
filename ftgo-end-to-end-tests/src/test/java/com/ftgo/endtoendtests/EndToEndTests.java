@@ -3,14 +3,14 @@ package com.ftgo.endtoendtests;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
-import com.ftgo.consumerservice.api.model.CreateConsumerRequest;
+import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.ObjectMapperConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
 import net.chrisrichardson.ftgo.restaurantservice.events.CreateRestaurantRequest;
 import net.chrisrichardson.ftgo.restaurantservice.events.MenuItem;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantMenu;

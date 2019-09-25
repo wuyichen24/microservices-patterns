@@ -2,7 +2,7 @@ package com.ftgo.orderservice.jpa;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
 import com.ftgo.orderservice.command.OrderServiceCommandHandlersConfiguration;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.domain.OrderServiceWebConfiguration;

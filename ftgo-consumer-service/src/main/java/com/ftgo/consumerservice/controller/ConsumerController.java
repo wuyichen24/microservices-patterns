@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.ftgo.consumerservice.api.model.CreateConsumerRequest;
-import com.ftgo.consumerservice.api.model.CreateConsumerResponse;
+import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
+import com.ftgo.consumerservice.api.controller.model.CreateConsumerResponse;
 import com.ftgo.consumerservice.controller.model.GetConsumerResponse;
 import com.ftgo.consumerservice.model.Consumer;
 import com.ftgo.consumerservice.service.ConsumerService;

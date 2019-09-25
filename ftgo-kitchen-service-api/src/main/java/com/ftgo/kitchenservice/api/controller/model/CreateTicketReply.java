@@ -1,4 +1,4 @@
-package com.ftgo.kitchenservice.api;
+package com.ftgo.kitchenservice.api.controller.model;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

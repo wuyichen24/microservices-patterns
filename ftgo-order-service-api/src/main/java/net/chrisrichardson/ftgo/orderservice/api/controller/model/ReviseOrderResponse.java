@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.orderservice.api.web;
+package net.chrisrichardson.ftgo.orderservice.api.controller.model;
 
 public class ReviseOrderResponse {
 	private String message;

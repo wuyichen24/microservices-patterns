@@ -15,7 +15,7 @@ import io.eventuate.tram.sagas.testing.SagaParticipantStubManager;
 import io.eventuate.tram.testing.MessageTracker;
 import io.eventuate.tram.sagas.testing.SagaParticipantChannels;
 import io.restassured.response.Response;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import net.chrisrichardson.ftgo.restaurantservice.events.RestaurantCreated;
 import net.chrisrichardson.ftgo.testutil.FtgoTestUtil;
 
@@ -31,11 +31,11 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
-import com.ftgo.kitchenservice.api.CreateTicketReply;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
+import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.model.Order;

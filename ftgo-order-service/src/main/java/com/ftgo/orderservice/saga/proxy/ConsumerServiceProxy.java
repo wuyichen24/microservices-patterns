@@ -1,7 +1,7 @@
 package com.ftgo.orderservice.saga.proxy;
 
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
-import com.ftgo.consumerservice.api.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
 
 import io.eventuate.tram.commands.common.Success;
 import io.eventuate.tram.sagas.simpledsl.CommandEndpoint;

@@ -5,12 +5,12 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
-import net.chrisrichardson.ftgo.orderservice.api.web.CancelOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.CancelOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.CreateOrderResponse;
-import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderRequest;
-import net.chrisrichardson.ftgo.orderservice.api.web.ReviseOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CancelOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CancelOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.CreateOrderResponse;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
+import net.chrisrichardson.ftgo.orderservice.api.controller.model.ReviseOrderResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

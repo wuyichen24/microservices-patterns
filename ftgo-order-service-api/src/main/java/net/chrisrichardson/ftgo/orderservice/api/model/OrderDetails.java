@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.orderservice.api.events;
+package net.chrisrichardson.ftgo.orderservice.api.model;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

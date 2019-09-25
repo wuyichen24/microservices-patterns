@@ -1,9 +1,9 @@
 package com.ftgo.orderservice.domain;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderCreatedEvent;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderDomainEvent;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+import net.chrisrichardson.ftgo.orderservice.api.event.OrderCreatedEvent;
+import net.chrisrichardson.ftgo.orderservice.api.event.OrderDomainEvent;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,10 @@
 package com.ftgo.orderservice.model;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
-import net.chrisrichardson.ftgo.orderservice.api.events.*;
+import net.chrisrichardson.ftgo.orderservice.api.event.*;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderDetails;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import javax.persistence.*;
 
@@ -17,10 +20,10 @@ import com.ftgo.orderservice.exception.OrderMinimumNotMetException;
 
 import java.util.List;
 
-import static net.chrisrichardson.ftgo.orderservice.api.events.OrderState.APPROVED;
-import static net.chrisrichardson.ftgo.orderservice.api.events.OrderState.APPROVAL_PENDING;
-import static net.chrisrichardson.ftgo.orderservice.api.events.OrderState.REJECTED;
-import static net.chrisrichardson.ftgo.orderservice.api.events.OrderState.REVISION_PENDING;
+import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.APPROVAL_PENDING;
+import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.APPROVED;
+import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.REJECTED;
+import static net.chrisrichardson.ftgo.orderservice.api.model.OrderState.REVISION_PENDING;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 

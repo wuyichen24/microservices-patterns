@@ -1,4 +1,4 @@
-package com.ftgo.consumerservice.api;
+package com.ftgo.consumerservice.api.command;
 
 import io.eventuate.tram.commands.common.Command;
 

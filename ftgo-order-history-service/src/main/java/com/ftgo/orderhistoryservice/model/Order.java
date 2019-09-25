@@ -1,7 +1,7 @@
 package com.ftgo.orderhistoryservice.model;
 
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderLineItem;
-import net.chrisrichardson.ftgo.orderservice.api.events.OrderState;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderLineItem;
+import net.chrisrichardson.ftgo.orderservice.api.model.OrderState;
 
 import org.joda.time.DateTime;
 
