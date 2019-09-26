@@ -56,19 +56,21 @@ public class Order {
 	@Embedded
 	private Money orderMinimum = new Money(Integer.MAX_VALUE);
 
-	public Order(long consumerId, long restaurantId, List<OrderLineItem> orderLineItems) {
-		this.consumerId = consumerId;
-		this.restaurantId = restaurantId;
-		this.orderLineItems = new OrderLineItems(orderLineItems);
-		this.state = APPROVAL_PENDING;
+	public Order(long consumerId, long restaurantId, DeliveryInformation deliveryInformation, List<OrderLineItem> orderLineItems) {
+	    this.consumerId = consumerId;
+	    this.restaurantId = restaurantId;
+	    this.deliveryInformation = deliveryInformation;
+	    this.orderLineItems = new OrderLineItems(orderLineItems);
+	    this.state = APPROVAL_PENDING;
 	}
 
-	public Long       getId()           { return id;           }
-	public void       setId(Long id)    { this.id = id;        }
-	public Long       getVersion()      { return version;      }
-	public OrderState getState()        { return state;        }
-	public long       getRestaurantId() { return restaurantId; }
-	public Long       getConsumerId()   { return consumerId;   }
+	public Long                getId()                  { return id;                  }
+	public void                setId(Long id)           { this.id = id;               }
+	public Long                getVersion()             { return version;             }
+	public OrderState          getState()               { return state;               }
+	public long                getRestaurantId()        { return restaurantId;        }
+	public Long                getConsumerId()          { return consumerId;          }
+	public DeliveryInformation getDeliveryInformation() { return deliveryInformation; }
 	
 	public List<OrderLineItem> getLineItems() {
 		return orderLineItems.getLineItems();
@@ -78,12 +80,15 @@ public class Order {
 		return orderLineItems.orderTotal();
 	}
 	
-	public static ResultWithDomainEvents<Order, OrderDomainEvent> createOrder(long consumerId, Restaurant restaurant,
-			List<OrderLineItem> orderLineItems) {
-		Order order = new Order(consumerId, restaurant.getId(), orderLineItems);
-		List<OrderDomainEvent> events = singletonList(new OrderCreatedEvent(
-				new OrderDetails(consumerId, restaurant.getId(), orderLineItems, order.getOrderTotal()), restaurant.getName()));
-		return new ResultWithDomainEvents<>(order, events);
+	public static ResultWithDomainEvents<Order, OrderDomainEvent>
+	  createOrder(long consumerId, Restaurant restaurant, DeliveryInformation deliveryInformation, List<OrderLineItem> orderLineItems) {
+	    Order order = new Order(consumerId, restaurant.getId(), deliveryInformation, orderLineItems);
+	    List<OrderDomainEvent> events = singletonList(
+	    		new OrderCreatedEvent(
+	            new OrderDetails(consumerId, restaurant.getId(), orderLineItems,order.getOrderTotal()),
+	            deliveryInformation.getDeliveryAddress(),
+	            restaurant.getName()));
+	    return new ResultWithDomainEvents<>(order, events);
 	}
 
 	public List<OrderDomainEvent> cancel() {

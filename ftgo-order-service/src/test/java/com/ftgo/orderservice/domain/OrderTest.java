@@ -5,6 +5,7 @@ import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
@@ -30,15 +31,13 @@ public class OrderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		createResult = Order.createOrder(CONSUMER_ID, AJANTA_RESTAURANT, chickenVindalooLineItems());
+		createResult = Order.createOrder(CONSUMER_ID, AJANTA_RESTAURANT, OrderDetailsMother.DELIVERY_INFORMATION, chickenVindalooLineItems());
 		order        = createResult.result;
 	}
 
 	@Test
 	public void shouldCreateOrder() {
-		assertEquals(singletonList(new OrderCreatedEvent(
-				CHICKEN_VINDALOO_ORDER_DETAILS,
-				RestaurantMother.AJANTA_RESTAURANT_NAME)), createResult.events);
+		assertEquals(singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_NAME)), createResult.events);
 
 		assertEquals(OrderState.APPROVAL_PENDING, order.getState());
 	}

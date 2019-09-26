@@ -3,6 +3,7 @@ package com.ftgo.orderservice;
 import java.util.Collections;
 import java.util.List;
 
+import com.ftgo.common.model.Address;
 import com.ftgo.common.model.Money;
 import com.ftgo.orderservice.model.Restaurant;
 import com.ftgo.restaurantservice.api.model.MenuItem;
@@ -15,6 +16,7 @@ public class RestaurantMother {
     public static final String CHICKEN_VINDALOO = "Chicken Vindaloo";
     public static final String CHICKEN_VINDALOO_MENU_ITEM_ID = "1";
     public static final Money CHICKEN_VINDALOO_PRICE = new Money("12.34");
+    public static final Address RESTAURANT_ADDRESS = new Address("1 Main Street", "Unit 99", "Oakland", "CA", "94611");
 
     public static MenuItem CHICKEN_VINDALOO_MENU_ITEM = new MenuItem(CHICKEN_VINDALOO_MENU_ITEM_ID, CHICKEN_VINDALOO, CHICKEN_VINDALOO_PRICE);
 

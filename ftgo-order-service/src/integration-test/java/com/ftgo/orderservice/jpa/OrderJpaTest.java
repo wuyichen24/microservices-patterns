@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
@@ -29,7 +30,7 @@ public class OrderJpaTest {
 	@Test
 	public void shouldSaveAndLoadOrder() {
 		long orderId = transactionTemplate.execute((ts) -> {
-			Order order = new Order(CONSUMER_ID, AJANTA_ID, chickenVindalooLineItems());
+			Order order = new Order(CONSUMER_ID, AJANTA_ID, OrderDetailsMother.DELIVERY_INFORMATION, chickenVindalooLineItems());
 			orderRepository.save(order);
 			return order.getId();
 		});

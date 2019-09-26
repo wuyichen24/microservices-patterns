@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.event.OrderDomainEventPublisher;
 
@@ -51,9 +52,7 @@ public abstract class MessagingBase {
 	private OrderDomainEventPublisher orderAggregateEventPublisher;
 
 	protected void orderCreated() {
-		orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER,
-				Collections.singletonList(new OrderCreatedEvent(
-								CHICKEN_VINDALOO_ORDER_DETAILS,
-								AJANTA_RESTAURANT_NAME)));
+	    orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER,
+	            Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, AJANTA_RESTAURANT_NAME)));
 	}
 }

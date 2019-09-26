@@ -1,13 +1,16 @@
 package com.ftgo.orderservice;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+import com.ftgo.common.model.Address;
 import com.ftgo.common.model.Money;
 import com.ftgo.orderservice.api.model.OrderDetails;
 import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
+import com.ftgo.orderservice.model.DeliveryInformation;
 import com.ftgo.orderservice.model.Order;
 
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
@@ -40,9 +43,13 @@ public class OrderDetailsMother {
 	public static Order CHICKEN_VINDALOO_ORDER = makeAjantaOrder();
 
 	public static final OrderState CHICKEN_VINDALOO_ORDER_STATE = OrderState.APPROVAL_PENDING;
+	
+	public static final Address DELIVERY_ADDRESS = new Address("9 Amazing View", null, "Oakland", "CA", "94612");
+	public static final LocalDateTime DELIVERY_TIME = LocalDateTime.now();
+	public static final DeliveryInformation DELIVERY_INFORMATION = new DeliveryInformation(DELIVERY_TIME, DELIVERY_ADDRESS);
 
 	private static Order makeAjantaOrder() {
-		Order order = new Order(CONSUMER_ID, AJANTA_ID, chickenVindalooLineItems());
+		Order order = new Order(CONSUMER_ID, AJANTA_ID, new DeliveryInformation(DELIVERY_TIME, DELIVERY_ADDRESS), chickenVindalooLineItems());
 		order.setId(ORDER_ID);
 		return order;
 	}

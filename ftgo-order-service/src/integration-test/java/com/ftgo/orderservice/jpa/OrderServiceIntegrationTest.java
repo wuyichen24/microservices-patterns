@@ -3,6 +3,8 @@ package com.ftgo.orderservice.jpa;
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.orderservice.OrderDetailsMother;
+import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.command.OrderServiceCommandHandlersConfiguration;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.domain.OrderServiceWebConfiguration;
@@ -109,17 +111,11 @@ public class OrderServiceIntegrationTest {
 		}
 	}
 
-	@Test
-	public void shouldCreateOrder() {
-		domainEventPublisher.publish(
-				"net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
-				RESTAURANT_ID, Collections.singletonList(new RestaurantCreatedEvent(
-						"Ajanta", new RestaurantMenu(
-								Collections
-										.singletonList(new MenuItem(
-												CHICKED_VINDALOO_MENU_ITEM_ID,
-												"Chicken Vindaloo", new Money(
-														"12.34")))))));
+	 @Test
+	  public void shouldCreateOrder() {
+	    domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RESTAURANT_ID,
+	            Collections.singletonList(new RestaurantCreatedEvent("Ajanta", RestaurantMother.RESTAURANT_ADDRESS,
+	                    new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID, "Chicken Vindaloo", new Money("12.34")))))));
 
 		Eventually.eventually(() -> {
 			FtgoTestUtil.assertPresent(restaurantRepository.findById(Long.parseLong(RESTAURANT_ID)));
@@ -127,10 +123,7 @@ public class OrderServiceIntegrationTest {
 
 		long consumerId = 1511300065921L;
 
-		Order order = orderService.createOrder(consumerId, Long
-				.parseLong(RESTAURANT_ID), Collections
-				.singletonList(new MenuItemIdAndQuantity(
-						CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
+		Order order = orderService.createOrder(consumerId, Long.parseLong(RESTAURANT_ID), OrderDetailsMother.DELIVERY_INFORMATION, Collections.singletonList(new MenuItemIdAndQuantity(CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
 
 		FtgoTestUtil.assertPresent(orderRepository.findById(order.getId()));
 

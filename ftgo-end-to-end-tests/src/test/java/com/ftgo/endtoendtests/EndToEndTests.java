@@ -1,9 +1,11 @@
 package com.ftgo.endtoendtests;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
+import com.ftgo.common.model.Address;
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
 import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
+import com.ftgo.kitchenservice.api.controller.model.TicketAcceptance;
 import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
 import com.ftgo.restaurantservice.api.controller.model.CreateRestaurantRequest;
@@ -15,16 +17,19 @@ import com.jayway.restassured.config.RestAssuredConfig;
 
 import io.eventuate.javaclient.commonimpl.JSonMapper;
 import io.eventuate.util.test.async.Eventually;
+import net.chrisrichardson.ftgo.deliveryservice.api.web.CourierAvailability;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EndToEndTests {
 	public static final String CHICKED_VINDALOO_MENU_ITEM_ID = "1";
@@ -36,8 +41,11 @@ public class EndToEndTests {
 	private int restaurantId;
 	private int orderId;
 	private final Money priceOfChickenVindaloo = new Money("12.34");
+	private long courierId;
 
 	private String baseUrl(int port, String path, String... pathElements) {
+		assertNotNull("host", host);
+
 		StringBuilder sb = new StringBuilder("http://");
 		sb.append(host);
 		sb.append(":");
@@ -60,6 +68,7 @@ public class EndToEndTests {
 	private int restaurantsPort = 8084;
 	private int kitchenPort = 8083;
 	private int apiGatewayPort = 8087;
+	private int deliveryServicePort = 8089;
 
 	private String consumerBaseUrl(String... pathElements) {
 		return baseUrl(consumerPort, "consumers", pathElements);
@@ -74,11 +83,19 @@ public class EndToEndTests {
 	}
 
 	private String kitchenRestaurantBaseUrl(String... pathElements) {
-		return baseUrl(kitchenPort, "restaurants", pathElements);
+		return kitchenServiceBaseUrl("restaurants", pathElements);
+	}
+
+	private String kitchenServiceBaseUrl(String first, String... pathElements) {
+		return baseUrl(kitchenPort, first, pathElements);
 	}
 
 	private String orderBaseUrl(String... pathElements) {
 		return baseUrl(apiGatewayPort, "orders", pathElements);
+	}
+
+	private String deliveryServiceBaseUrl(String first, String... pathElements) {
+		return baseUrl(deliveryServicePort, first, pathElements);
 	}
 
 	private String orderRestaurantBaseUrl(String... pathElements) {
@@ -93,18 +110,35 @@ public class EndToEndTests {
 	public static void initialize() {
 		CommonJsonMapperInitializer.registerMoneyModule();
 
-		RestAssured.config = RestAssuredConfig.config().objectMapperConfig(
-				new ObjectMapperConfig().jackson2ObjectMapperFactory((aClass, s) -> JSonMapper.objectMapper));
+		RestAssured.config = RestAssuredConfig.config()
+				.objectMapperConfig(
+						new ObjectMapperConfig().jackson2ObjectMapperFactory((
+								aClass, s) -> JSonMapper.objectMapper));
 
 	}
 
 	@Test
-	public void shouldCreateOrder() {
+	public void shouldCreateReviseAndCancelOrder() {
+
 		createOrder();
 
 		reviseOrder();
 
 		cancelOrder();
+
+	}
+
+	@Test
+	public void shouldDeliverOrder() {
+
+		createOrder();
+
+		noteCourierAvailable();
+
+		acceptTicket();
+
+		assertOrderAssignedToCourier();
+
 	}
 
 	private void reviseOrder() {
@@ -113,22 +147,37 @@ public class EndToEndTests {
 	}
 
 	private void verifyOrderRevised(int orderId) {
-		Eventually.eventually(String.format("verifyOrderRevised state %s", orderId), () -> {
-			String orderTotal = given().when().get(baseUrl(orderPort, "orders", Integer.toString(orderId))).then()
-					.statusCode(200).extract().path("orderTotal");
-			assertEquals(priceOfChickenVindaloo.multiply(revisedQuantityOfChickenVindaloo).asString(), orderTotal);
-		});
-		Eventually.eventually(String.format("verifyOrderRevised state %s", orderId), () -> {
-			String state = given().when().get(orderBaseUrl(Integer.toString(orderId))).then().statusCode(200).extract()
-					.path("orderInfo.state");
-			assertEquals("APPROVED", state);
-		});
+		Eventually.eventually(
+				String.format("verifyOrderRevised state %s", orderId),
+				() -> {
+					String orderTotal = given()
+							.when()
+							.get(baseUrl(orderPort, "orders",
+									Integer.toString(orderId))).then()
+							.statusCode(200).extract().path("orderTotal");
+					assertEquals(
+							priceOfChickenVindaloo.multiply(
+									revisedQuantityOfChickenVindaloo)
+									.asString(), orderTotal);
+				});
+		Eventually.eventually(
+				String.format("verifyOrderRevised state %s", orderId),
+				() -> {
+					String state = given().when()
+							.get(orderBaseUrl(Integer.toString(orderId)))
+							.then().statusCode(200).extract()
+							.path("orderInfo.state");
+					assertEquals("APPROVED", state);
+				});
 	}
 
 	private void reviseOrder(int orderId) {
-		given().body(new ReviseOrderRequest(
-				Collections.singletonMap(CHICKED_VINDALOO_MENU_ITEM_ID, revisedQuantityOfChickenVindaloo)))
-				.contentType("application/json").when().post(orderBaseUrl(Integer.toString(orderId), "revise")).then()
+		given().body(
+				new ReviseOrderRequest(Collections.singletonMap(
+						CHICKED_VINDALOO_MENU_ITEM_ID,
+						revisedQuantityOfChickenVindaloo)))
+				.contentType("application/json").when()
+				.post(orderBaseUrl(Integer.toString(orderId), "revise")).then()
 				.statusCode(200);
 	}
 
@@ -157,38 +206,53 @@ public class EndToEndTests {
 	}
 
 	private void verifyOrderCancelled(int orderId) {
-		Eventually.eventually(String.format("verifyOrderCancelled %s", orderId), () -> {
-			String state = given().when().get(orderBaseUrl(Integer.toString(orderId))).then().statusCode(200).extract()
-					.path("orderInfo.state");
-			assertEquals("CANCELLED", state);
-		});
+		Eventually.eventually(
+				String.format("verifyOrderCancelled %s", orderId),
+				() -> {
+					String state = given().when()
+							.get(orderBaseUrl(Integer.toString(orderId)))
+							.then().statusCode(200).extract()
+							.path("orderInfo.state");
+					assertEquals("CANCELLED", state);
+				});
+
 	}
 
 	private void cancelOrder(int orderId) {
 		given().body("{}").contentType("application/json").when()
-				.post(orderBaseUrl(Integer.toString(orderId), "cancel")).then().statusCode(200);
+				.post(orderBaseUrl(Integer.toString(orderId), "cancel")).then()
+				.statusCode(200);
+
 	}
 
 	private Integer createConsumer() {
-		Integer consumerId = given().body(new CreateConsumerRequest(new PersonName("John", "Doe")))
-				.contentType("application/json").when().post(consumerBaseUrl()).then().statusCode(200).extract()
-				.path("consumerId");
+		Integer consumerId = given()
+				.body(new CreateConsumerRequest(new PersonName("John", "Doe")))
+				.contentType("application/json").when().post(consumerBaseUrl())
+				.then().statusCode(200).extract().path("consumerId");
 
 		assertNotNull(consumerId);
 		return consumerId;
 	}
 
 	private void verifyAccountCreatedForConsumer(int consumerId) {
-		Eventually.eventually(
-				() -> given().when().get(accountingBaseUrl(Integer.toString(consumerId))).then().statusCode(200));
+		Eventually.eventually(() -> given().when()
+				.get(accountingBaseUrl(Integer.toString(consumerId))).then()
+				.statusCode(200));
+
 	}
 
 	private int createRestaurant() {
 		Integer restaurantId = given()
-				.body(new CreateRestaurantRequest(RESTAURANT_NAME,
-						new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID,
-								"Chicken Vindaloo", priceOfChickenVindaloo)))))
-				.contentType("application/json").when().post(restaurantBaseUrl()).then().statusCode(200).extract()
+				.body(new CreateRestaurantRequest(RESTAURANT_NAME, new Address(
+						"1 Main Street", "Unit 99", "Oakland", "CA", "94611"),
+						new RestaurantMenu(Collections
+								.singletonList(new MenuItem(
+										CHICKED_VINDALOO_MENU_ITEM_ID,
+										"Chicken Vindaloo",
+										priceOfChickenVindaloo)))))
+				.contentType("application/json").when()
+				.post(restaurantBaseUrl()).then().statusCode(200).extract()
 				.path("id");
 
 		assertNotNull(restaurantId);
@@ -196,40 +260,99 @@ public class EndToEndTests {
 	}
 
 	private void verifyRestaurantCreatedInKitchenService(int restaurantId) {
-		Eventually.eventually(String.format("verifyRestaurantCreatedInKitchenService %s", restaurantId), () -> given()
-				.when().get(kitchenRestaurantBaseUrl(Integer.toString(restaurantId))).then().statusCode(200));
+		Eventually.eventually(
+				String.format("verifyRestaurantCreatedInKitchenService %s",
+						restaurantId),
+				() -> given()
+						.when()
+						.get(kitchenRestaurantBaseUrl(Integer
+								.toString(restaurantId))).then()
+						.statusCode(200));
 	}
 
 	private void verifyRestaurantCreatedInOrderService(int restaurantId) {
-		Eventually.eventually(String.format("verifyRestaurantCreatedInOrderService %s", restaurantId), () -> given()
-				.when().get(orderRestaurantBaseUrl(Integer.toString(restaurantId))).then().statusCode(200));
+		Eventually.eventually(
+				String.format("verifyRestaurantCreatedInOrderService %s",
+						restaurantId),
+				() -> given()
+						.when()
+						.get(orderRestaurantBaseUrl(Integer
+								.toString(restaurantId))).then()
+						.statusCode(200));
 	}
 
 	private int createOrder(int consumerId, int restaurantId) {
 		Integer orderId = given()
 				.body(new CreateOrderRequest(consumerId, restaurantId,
-						Collections.singletonList(new CreateOrderRequest.LineItem(CHICKED_VINDALOO_MENU_ITEM_ID, 5))))
-				.contentType("application/json").when().post(orderBaseUrl()).then().statusCode(200).extract()
-				.path("orderId");
+						new Address("9 Amazing View", null, "Oakland", "CA",
+								"94612"), LocalDateTime.now(), Collections
+								.singletonList(new CreateOrderRequest.LineItem(
+										CHICKED_VINDALOO_MENU_ITEM_ID, 5))))
+				.contentType("application/json").when().post(orderBaseUrl())
+				.then().statusCode(200).extract().path("orderId");
 
 		assertNotNull(orderId);
 		return orderId;
 	}
 
 	private void verifyOrderAuthorized(int orderId) {
-		Eventually.eventually(String.format("verifyOrderApproved %s", orderId), () -> {
-			String state = given().when().get(orderBaseUrl(Integer.toString(orderId))).then().statusCode(200).extract()
-					.path("orderInfo.state");
-			assertEquals("APPROVED", state);
-		});
+		Eventually.eventually(
+				String.format("verifyOrderApproved %s", orderId),
+				() -> {
+					String state = given().when()
+							.get(orderBaseUrl(Integer.toString(orderId)))
+							.then().statusCode(200).extract()
+							.path("orderInfo.state");
+					assertEquals("APPROVED", state);
+				});
 	}
 
 	private void verifyOrderHistoryUpdated(int orderId, int consumerId) {
-		Eventually.eventually(String.format("verifyOrderHistoryUpdated %s", orderId), () -> {
-			String state = given().when().get(orderHistoryBaseUrl() + "?consumerId=" + consumerId).then()
-					.statusCode(200).body("orders[0].restaurantName", equalTo(RESTAURANT_NAME)).extract()
-					.path("orders[0].status"); // TODO state?
-			assertNotNull(state);
-		});
+		Eventually.eventually(
+				String.format("verifyOrderHistoryUpdated %s", orderId),
+				() -> {
+					String state = given()
+							.when()
+							.get(orderHistoryBaseUrl() + "?consumerId="
+									+ consumerId)
+							.then()
+							.statusCode(200)
+							.body("orders[0].restaurantName",
+									equalTo(RESTAURANT_NAME)).extract()
+							.path("orders[0].status"); // TODO state?
+					assertNotNull(state);
+				});
 	}
+
+	private void noteCourierAvailable() {
+		courierId = System.currentTimeMillis();
+		given().body(new CourierAvailability(true))
+				.contentType("application/json")
+				.when()
+				.post(deliveryServiceBaseUrl("couriers",
+						Long.toString(courierId), "availability")).then()
+				.statusCode(200);
+	}
+
+	private void acceptTicket() {
+		courierId = System.currentTimeMillis();
+		given().body(new TicketAcceptance(LocalDateTime.now().plusHours(9)))
+				.contentType("application/json")
+				.when()
+				.post(kitchenServiceBaseUrl("tickets", Long.toString(orderId),
+						"accept")).then().statusCode(200);
+	}
+
+	private void assertOrderAssignedToCourier() {
+		Eventually.eventually(() -> {
+			long assignedCourier = given()
+					.when()
+					.get(deliveryServiceBaseUrl("deliveries",
+							Long.toString(orderId))).then().statusCode(200)
+					.extract().path("assignedCourier");
+			assertThat(assignedCourier).isGreaterThan(0);
+		});
+
+	}
+
 }

@@ -33,7 +33,7 @@ public class OrderEventConsumerTest {
 		given().eventHandlers(orderEventConsumer.domainEventHandlers())
 				.when()
 				.aggregate("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", AJANTA_ID)
-				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantMother.AJANTA_RESTAURANT_MENU))
+				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantMother.RESTAURANT_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_MENU))
 				.then()
 				.verify(() -> {
 					verify(orderService)

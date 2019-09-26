@@ -19,6 +19,7 @@ import com.ftgo.orderservice.event.OrderDomainEventPublisher;
 import com.ftgo.orderservice.exception.InvalidMenuItemIdException;
 import com.ftgo.orderservice.exception.OrderNotFoundException;
 import com.ftgo.orderservice.exception.RestaurantNotFoundException;
+import com.ftgo.orderservice.model.DeliveryInformation;
 import com.ftgo.orderservice.model.LineItemQuantityChange;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.model.Restaurant;
@@ -66,15 +67,15 @@ public class OrderService {
 		this.meterRegistry                = meterRegistry;
 	}
 
-	public Order createOrder(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> lineItems) {
+	public Order createOrder(long consumerId, long restaurantId, DeliveryInformation deliveryInformation, List<MenuItemIdAndQuantity> lineItems) {
 		Restaurant restaurant = restaurantRepository.findById(restaurantId)
 				.orElseThrow(
 						() -> new RestaurantNotFoundException(restaurantId));
 
 		List<OrderLineItem> orderLineItems = makeOrderLineItems(lineItems, restaurant);
 
-		ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents = Order
-				.createOrder(consumerId, restaurant, orderLineItems);
+		ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents =
+	            Order.createOrder(consumerId, restaurant, deliveryInformation, orderLineItems);
 
 		Order order = orderAndEvents.result;
 		orderRepository.save(order);

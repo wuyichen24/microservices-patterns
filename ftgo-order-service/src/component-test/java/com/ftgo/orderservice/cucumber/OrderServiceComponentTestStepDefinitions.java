@@ -158,7 +158,8 @@ public class OrderServiceComponentTestStepDefinitions {
 					.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
 							RestaurantMother.AJANTA_ID,
 							Collections.singletonList(new RestaurantCreatedEvent(
-									RestaurantMother.AJANTA_RESTAURANT_NAME,
+									RestaurantMother.AJANTA_RESTAURANT_NAME, 
+									RestaurantMother.RESTAURANT_ADDRESS,
 									AJANTA_RESTAURANT_MENU)));
 
 			eventually(() -> {
@@ -171,10 +172,10 @@ public class OrderServiceComponentTestStepDefinitions {
 	@When("I place an order for Chicken Vindaloo at Ajanta")
 	public void placeOrder() {
 		response = given()
-				.body(new CreateOrderRequest(consumerId, RestaurantMother.AJANTA_ID, Collections
-								.singletonList(new CreateOrderRequest.LineItem(
-										RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID,
-										OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY))))
+				.body(new CreateOrderRequest(consumerId,
+	                    RestaurantMother.AJANTA_ID, OrderDetailsMother.DELIVERY_ADDRESS, OrderDetailsMother.DELIVERY_TIME, Collections.singletonList(
+	                            new CreateOrderRequest.LineItem(RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID,
+	                                                            OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY))))
 				.contentType("application/json").when()
 				.post(baseUrl("/orders"));
 	}

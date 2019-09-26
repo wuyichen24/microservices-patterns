@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.controller;
+ package com.ftgo.orderservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ import com.ftgo.orderservice.controller.model.GetOrderResponse;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.domain.*;
 import com.ftgo.orderservice.exception.OrderNotFoundException;
+import com.ftgo.orderservice.model.DeliveryInformation;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
@@ -35,15 +36,13 @@ public class OrderController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
-		Order order = orderService.createOrder(
-				request.getConsumerId(),
-				request.getRestaurantId(),
-				request.getLineItems()
-						.stream()
-						.map(x -> new MenuItemIdAndQuantity(x.getMenuItemId(),
-								x.getQuantity())).collect(toList()));
-		return new CreateOrderResponse(order.getId());
+	  public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
+	    Order order = orderService.createOrder(request.getConsumerId(),
+	            request.getRestaurantId(),
+	            new DeliveryInformation(request.getDeliveryTime(), request.getDeliveryAddress()),
+	            request.getLineItems().stream().map(x -> new MenuItemIdAndQuantity(x.getMenuItemId(), x.getQuantity())).collect(toList())
+	    );
+	    return new CreateOrderResponse(order.getId());
 	}
 
 	@RequestMapping(path = "/{orderId}", method = RequestMethod.GET)

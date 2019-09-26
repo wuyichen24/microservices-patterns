@@ -1,12 +1,12 @@
-
 include "common-swagger"
 include "ftgo-test-util"
 include "ftgo-common"
 include "ftgo-common-jpa"
 
+include "ftgo-delivery-service"
+include "ftgo-delivery-service-api"
 
 include "ftgo-order-service"
-
 include "ftgo-order-service-api"
 include "ftgo-order-service-contracts"
 

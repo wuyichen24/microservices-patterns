@@ -6,6 +6,7 @@ import io.eventuate.tram.sagas.orchestration.SagaManager;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.event.OrderDomainEventPublisher;
@@ -70,15 +71,12 @@ public class OrderServiceTest {
 			return order;
 		});
 
-		Order order = orderService.createOrder(CONSUMER_ID, AJANTA_ID, CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES);
+		Order order = orderService.createOrder(CONSUMER_ID, AJANTA_ID, OrderDetailsMother.DELIVERY_INFORMATION, CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES);
 
 		verify(orderRepository).save(same(order));
 
-		verify(orderAggregateEventPublisher).publish(
-				order,
-				Collections.singletonList(new OrderCreatedEvent(
-						CHICKEN_VINDALOO_ORDER_DETAILS,
-						RestaurantMother.AJANTA_RESTAURANT_NAME)));
+		verify(orderAggregateEventPublisher).publish(order,
+	            Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_NAME)));
 
 		verify(createOrderSagaManager).create(
 				new CreateOrderSagaState(ORDER_ID,
