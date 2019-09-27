@@ -1,7 +1,5 @@
 package com.ftgo.consumerservice.controller;
 
-import io.eventuate.tram.events.ResultWithEvents;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +10,8 @@ import com.ftgo.consumerservice.api.controller.model.CreateConsumerResponse;
 import com.ftgo.consumerservice.controller.model.GetConsumerResponse;
 import com.ftgo.consumerservice.model.Consumer;
 import com.ftgo.consumerservice.service.ConsumerService;
+
+import io.eventuate.tram.events.publisher.ResultWithEvents;
 
 @RestController
 @RequestMapping(path = "/consumers")

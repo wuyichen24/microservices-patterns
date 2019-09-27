@@ -15,7 +15,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.config.ObjectMapperConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
+import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.util.test.async.Eventually;
 import net.chrisrichardson.ftgo.deliveryservice.api.web.CourierAvailability;
 

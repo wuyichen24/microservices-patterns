@@ -1,7 +1,5 @@
 package com.ftgo.orderservice.controller;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -13,6 +11,8 @@ import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.controller.OrderController;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
+
+import io.eventuate.common.json.mapper.JSonMapper;
 
 import java.util.Optional;
 

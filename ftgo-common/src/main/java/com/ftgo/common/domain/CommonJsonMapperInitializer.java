@@ -1,8 +1,8 @@
 package com.ftgo.common.domain;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
-
 import javax.annotation.PostConstruct;
+
+import io.eventuate.common.json.mapper.JSonMapper;
 
 public class CommonJsonMapperInitializer {
 	@PostConstruct

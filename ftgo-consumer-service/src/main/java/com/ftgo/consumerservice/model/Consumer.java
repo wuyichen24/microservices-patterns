@@ -1,7 +1,5 @@
 package com.ftgo.consumerservice.model;
 
-import io.eventuate.tram.events.ResultWithEvents;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embedded;
@@ -13,6 +11,8 @@ import javax.persistence.Table;
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
 import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
+
+import io.eventuate.tram.events.publisher.ResultWithEvents;
 
 @Entity
 @Table(name = "consumers")

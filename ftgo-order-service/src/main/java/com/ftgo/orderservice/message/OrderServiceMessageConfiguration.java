@@ -1,8 +1,7 @@
 package com.ftgo.orderservice.message;
 
 import io.eventuate.tram.events.subscriber.DomainEventDispatcher;
-import io.eventuate.tram.messaging.consumer.MessageConsumer;
-
+import io.eventuate.tram.events.subscriber.DomainEventDispatcherFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -20,8 +19,7 @@ public class OrderServiceMessageConfiguration {
 	}
 
 	@Bean
-	public DomainEventDispatcher domainEventDispatcher(OrderServiceEventConsumer orderEventConsumer, MessageConsumer messageConsumer) {
-		return new DomainEventDispatcher("orderServiceEvents",
-				orderEventConsumer.domainEventHandlers(), messageConsumer); // @Autowire
+	public DomainEventDispatcher domainEventDispatcher(OrderServiceEventConsumer orderEventConsumer, DomainEventDispatcherFactory domainEventDispatcherFactory) {
+	    return domainEventDispatcherFactory.make("orderServiceEvents", orderEventConsumer.domainEventHandlers());
 	}
 }

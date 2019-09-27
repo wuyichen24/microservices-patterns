@@ -1,7 +1,8 @@
 package com.ftgo.restaurantservice.aws.model;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import io.eventuate.javaclient.commonimpl.JSonMapper;
+
+import io.eventuate.common.json.mapper.JSonMapper;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

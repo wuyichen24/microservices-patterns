@@ -1,8 +1,8 @@
 package com.ftgo.orderservice;
 
-import io.eventuate.jdbckafka.TramJdbcKafkaConfiguration;
-import io.eventuate.tram.commands.common.ChannelMapping;
-import io.eventuate.tram.commands.common.DefaultChannelMapping;
+import io.eventuate.tram.jdbckafka.TramJdbcKafkaConfiguration;
+import io.eventuate.tram.messaging.common.ChannelMapping;
+import io.eventuate.tram.messaging.common.DefaultChannelMapping;
 import io.microservices.canvas.extractor.spring.annotations.ServiceDescription;
 import io.microservices.canvas.springmvc.MicroserviceCanvasWebConfiguration;
 import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;

@@ -1,6 +1,6 @@
 package com.ftgo.orderservice.contract;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
+import io.eventuate.common.json.mapper.JSonMapper;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 import org.junit.Before;

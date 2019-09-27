@@ -1,6 +1,6 @@
 package com.ftgo.orderhistoryservice.dynamodb;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
+import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 
 import org.joda.time.DateTime;

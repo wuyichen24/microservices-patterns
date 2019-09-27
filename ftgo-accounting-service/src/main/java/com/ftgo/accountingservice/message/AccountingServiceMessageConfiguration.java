@@ -2,8 +2,10 @@ package com.ftgo.accountingservice.message;
 
 import io.eventuate.javaclient.spring.EnableEventHandlers;
 import io.eventuate.tram.commands.consumer.CommandDispatcher;
+import io.eventuate.tram.commands.consumer.CommandDispatcherFactory;
 import io.eventuate.tram.consumer.common.DuplicateMessageDetector;
 import io.eventuate.tram.events.subscriber.DomainEventDispatcher;
+import io.eventuate.tram.events.subscriber.DomainEventDispatcherFactory;
 import io.eventuate.tram.messaging.consumer.MessageConsumer;
 import io.eventuate.tram.sagas.eventsourcingsupport.SagaReplyRequestedEventSubscriber;
 
@@ -24,41 +26,40 @@ import java.util.Collections;
 @Import({ AccountingServiceConfiguration.class, CommonConfiguration.class })
 public class AccountingServiceMessageConfiguration {
 	@Bean
-	public AccountingEventConsumer accountingEventConsumer() {
-		return new AccountingEventConsumer();
-	}
+	  public AccountingEventConsumer accountingEventConsumer() {
+	    return new AccountingEventConsumer();
+	  }
 
-	@Bean
-	public DomainEventDispatcher domainEventDispatcher(AccountingEventConsumer accountingEventConsumer,
-			MessageConsumer messageConsumer) {
-		return new DomainEventDispatcher("accountingServiceDomainEventDispatcher",
-				accountingEventConsumer.domainEventHandlers(), messageConsumer);
-	}
+	  @Bean
+	  public DomainEventDispatcher domainEventDispatcher(AccountingEventConsumer accountingEventConsumer, DomainEventDispatcherFactory domainEventDispatcherFactory) {
+	    return domainEventDispatcherFactory.make("accountingServiceDomainEventDispatcher", accountingEventConsumer.domainEventHandlers());
+	  }
 
-	@Bean
-	public AccountingServiceCommandHandler accountCommandHandler() {
-		return new AccountingServiceCommandHandler();
-	}
+	  @Bean
+	  public AccountingServiceCommandHandler accountCommandHandler() {
+	    return new AccountingServiceCommandHandler();
+	  }
 
-	@Bean
-	public CommandDispatcher commandDispatcher(AccountingServiceCommandHandler target,
-			AccountingServiceChannelConfiguration data) {
-		return new CommandDispatcher(data.getCommandDispatcherId(), target.commandHandlers());
-	}
 
-	@Bean
-	public DuplicateMessageDetector duplicateMessageDetector() {
-		return new NoopDuplicateMessageDetector();
-	}
+	  @Bean
+	  public CommandDispatcher commandDispatcher(AccountingServiceCommandHandler target,
+	                                             AccountingServiceChannelConfiguration data, CommandDispatcherFactory commandDispatcherFactory) {
+	    return commandDispatcherFactory.make(data.getCommandDispatcherId(), target.commandHandlers());
+	  }
 
-	@Bean
-	public AccountingServiceChannelConfiguration accountServiceChannelConfiguration() {
-		return new AccountingServiceChannelConfiguration("accountCommandDispatcher", "accountCommandChannel");
-	}
+	  @Bean
+	  public DuplicateMessageDetector duplicateMessageDetector() {
+	    return new NoopDuplicateMessageDetector();
+	  }
 
-	@Bean
-	public SagaReplyRequestedEventSubscriber sagaReplyRequestedEventSubscriber() {
-		return new SagaReplyRequestedEventSubscriber("accountingServiceSagaReplyRequestedEventSubscriber",
-				Collections.singleton(Account.class.getName()));
-	}
+	  @Bean
+	  public AccountingServiceChannelConfiguration accountServiceChannelConfiguration() {
+	    return new AccountingServiceChannelConfiguration("accountCommandDispatcher", "accountCommandChannel");
+	  }
+
+	  @Bean
+	  public SagaReplyRequestedEventSubscriber sagaReplyRequestedEventSubscriber() {
+	    return new SagaReplyRequestedEventSubscriber("accountingServiceSagaReplyRequestedEventSubscriber", Collections.singleton(Account.class.getName()));
+	  }
+
 }

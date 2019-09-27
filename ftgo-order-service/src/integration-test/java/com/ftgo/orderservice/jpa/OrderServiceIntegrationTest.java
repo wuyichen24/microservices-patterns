@@ -20,12 +20,12 @@ import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 import com.ftgo.testutil.FtgoTestUtil;
 import com.jayway.jsonpath.JsonPath;
 
-import io.eventuate.tram.commands.common.ChannelMapping;
 import io.eventuate.tram.commands.common.CommandMessageHeaders;
-import io.eventuate.tram.commands.common.DefaultChannelMapping;
 import io.eventuate.tram.commands.producer.TramCommandProducerConfiguration;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
+import io.eventuate.tram.messaging.common.ChannelMapping;
+import io.eventuate.tram.messaging.common.DefaultChannelMapping;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.testutil.TestMessageConsumerFactory;
 import io.eventuate.util.test.async.Eventually;

@@ -1,7 +1,7 @@
 package com.ftgo.consumerservice.service;
 
-import io.eventuate.tram.events.ResultWithEvents;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
+import io.eventuate.tram.events.publisher.ResultWithEvents;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

@@ -2,6 +2,7 @@ package com.ftgo.orderservice.command;
 
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
 import io.eventuate.tram.sagas.participant.SagaCommandDispatcher;
+import io.eventuate.tram.sagas.participant.SagaCommandDispatcherFactory;
 import io.eventuate.tram.sagas.participant.SagaParticipantConfiguration;
 
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,7 @@ public class OrderServiceCommandHandlersConfiguration {
 	}
 
 	@Bean
-	public SagaCommandDispatcher orderCommandHandlersDispatcher(OrderServiceCommandHandlers orderCommandHandlers) {
-		return new SagaCommandDispatcher("orderService", orderCommandHandlers.commandHandlers());
+	  public SagaCommandDispatcher orderCommandHandlersDispatcher(OrderServiceCommandHandlers orderCommandHandlers, SagaCommandDispatcherFactory sagaCommandDispatcherFactory) {
+	    return sagaCommandDispatcherFactory.make("orderService", orderCommandHandlers.commandHandlers());
 	}
 }

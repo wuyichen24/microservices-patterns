@@ -1,7 +1,5 @@
 package com.ftgo.orderhistoryservice.controller;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -12,6 +10,8 @@ import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.orderhistoryservice.controller.OrderHistoryController;
 import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.model.Order;
+
+import io.eventuate.common.json.mapper.JSonMapper;
 
 import java.util.Optional;
 

@@ -1,10 +1,9 @@
 package com.ftgo.orderservice.domain;
 
 import brave.sampler.Sampler;
+import io.eventuate.common.json.mapper.JSonMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.eventuate.javaclient.commonimpl.JSonMapper;
 
 import org.springframework.context.annotation.*;
 

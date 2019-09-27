@@ -2,8 +2,10 @@ package com.ftgo.accountingservice.messaging;
 
 import io.eventuate.sync.AggregateRepository;
 import io.eventuate.javaclient.spring.jdbc.EmbeddedTestAggregateStoreConfiguration;
-import io.eventuate.tram.commands.common.ChannelMapping;
-import io.eventuate.tram.commands.common.DefaultChannelMapping;
+
+import io.eventuate.tram.messaging.common.ChannelMapping;
+import io.eventuate.tram.messaging.common.DefaultChannelMapping;
+
 import io.eventuate.tram.commands.producer.CommandProducer;
 import io.eventuate.tram.commands.producer.TramCommandProducerConfiguration;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;

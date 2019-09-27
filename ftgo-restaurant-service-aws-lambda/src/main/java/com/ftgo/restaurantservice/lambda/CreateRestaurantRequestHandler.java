@@ -9,7 +9,7 @@ import com.ftgo.restaurantservice.controller.model.CreateRestaurantResponse;
 import com.ftgo.restaurantservice.model.Restaurant;
 import com.ftgo.restaurantservice.service.RestaurantService;
 
-import io.eventuate.javaclient.commonimpl.JSonMapper;
+import io.eventuate.common.json.mapper.JSonMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

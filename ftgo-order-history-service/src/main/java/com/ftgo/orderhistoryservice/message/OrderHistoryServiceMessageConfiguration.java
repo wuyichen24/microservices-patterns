@@ -2,7 +2,7 @@ package com.ftgo.orderhistoryservice.message;
 
 import io.eventuate.tram.consumer.common.TramNoopDuplicateMessageDetectorConfiguration;
 import io.eventuate.tram.events.subscriber.DomainEventDispatcher;
-import io.eventuate.tram.messaging.consumer.MessageConsumer;
+import io.eventuate.tram.events.subscriber.DomainEventDispatcherFactory;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class OrderHistoryServiceMessageConfiguration {
 	}
 
 	@Bean
-	public DomainEventDispatcher orderHistoryDomainEventDispatcher(OrderHistoryEventHandlers orderHistoryEventHandlers, MessageConsumer messageConsumer) {
-		return new DomainEventDispatcher("orderHistoryDomainEventDispatcher", orderHistoryEventHandlers.domainEventHandlers(), messageConsumer);
+	public DomainEventDispatcher orderHistoryDomainEventDispatcher(OrderHistoryEventHandlers orderHistoryEventHandlers, DomainEventDispatcherFactory domainEventDispatcherFactory) {
+	    return domainEventDispatcherFactory.make("orderHistoryDomainEventDispatcher", orderHistoryEventHandlers.domainEventHandlers());
 	}
 }
