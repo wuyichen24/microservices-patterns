@@ -1,11 +1,10 @@
 package com.ftgo.orderhistoryservice;
 
-import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
+import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 import com.ftgo.orderhistoryservice.domain.OrderHistoryWebConfiguration;
 import com.ftgo.orderhistoryservice.message.OrderHistoryServiceMessageConfiguration;
 

@@ -5,13 +5,13 @@ import io.eventuate.tram.messaging.common.ChannelMapping;
 import io.eventuate.tram.messaging.common.DefaultChannelMapping;
 import io.microservices.canvas.extractor.spring.annotations.ServiceDescription;
 import io.microservices.canvas.springmvc.MicroserviceCanvasWebConfiguration;
-import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
+import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 import com.ftgo.orderservice.command.OrderServiceCommandHandlersConfiguration;
 import com.ftgo.orderservice.domain.OrderServiceWebConfiguration;
 import com.ftgo.orderservice.grpc.GrpcConfiguration;

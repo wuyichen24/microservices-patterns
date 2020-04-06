@@ -1,4 +1,4 @@
-package net.chrisrichardson.eventstore.examples.customersandorders.commonswagger;
+package com.ftgo.eventstore.examples.customersandorders.commonswagger;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;

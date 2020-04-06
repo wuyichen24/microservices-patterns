@@ -1,12 +1,13 @@
 package com.ftgo.restaurantservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 
 import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.tram.jdbckafka.TramJdbcKafkaConfiguration;
 import io.eventuate.tram.messaging.common.ChannelMapping;
 import io.eventuate.tram.messaging.common.DefaultChannelMapping;
-import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

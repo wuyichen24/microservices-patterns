@@ -1,13 +1,14 @@
 package net.chrisrichardson.ftgo.deliveryservice.main;
 
 import io.eventuate.tram.jdbckafka.TramJdbcKafkaConfiguration;
-import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 import net.chrisrichardson.ftgo.deliveryservice.messaging.DeliveryServiceMessagingConfiguration;
 import net.chrisrichardson.ftgo.deliveryservice.web.DeliveryServiceWebConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 
 @Configuration
 @EnableAutoConfiguration

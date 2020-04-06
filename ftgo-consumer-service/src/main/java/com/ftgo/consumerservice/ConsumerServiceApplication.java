@@ -1,12 +1,11 @@
 package com.ftgo.consumerservice;
 
-import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 import com.ftgo.consumerservice.domain.ConsumerWebConfiguration;
+import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 
 import io.eventuate.tram.jdbckafka.TramJdbcKafkaConfiguration;
 
