@@ -1,31 +1,34 @@
 include "common-swagger"
-include "ftgo-test-util"
+
+include "ftgo-accounting-service"
+include "ftgo-accounting-service-api"
+include "ftgo-accounting-service-contracts"
+
+include "ftgo-consumer-service"
+include "ftgo-consumer-service-api"
+include "ftgo-consumer-service-contracts"
+
 include "ftgo-common"
 include "ftgo-common-jpa"
 
 include "ftgo-delivery-service"
 include "ftgo-delivery-service-api"
 
+include "ftgo-kitchen-service"
+include "ftgo-kitchen-service-api"
+include "ftgo-kitchen-service-contracts"
+
 include "ftgo-order-service"
 include "ftgo-order-service-api"
 include "ftgo-order-service-contracts"
 
-include "ftgo-kitchen-service-api"
-include "ftgo-kitchen-service"
-include "ftgo-kitchen-service-contracts"
-
-include "ftgo-accounting-service-api"
-include "ftgo-accounting-service"
-include "ftgo-accounting-service-contracts"
-
-include "ftgo-consumer-service-api"
-include "ftgo-consumer-service"
-include "ftgo-consumer-service-contracts"
-
 include "ftgo-restaurant-service-api"
 include "ftgo-restaurant-service"
-include "ftgo-order-history-service"
-include "ftgo-api-gateway"
-include "ftgo-end-to-end-tests"
-
 include "ftgo-restaurant-service-aws-lambda"
+
+include "ftgo-order-history-service"
+
+include "ftgo-api-gateway"
+
+include "ftgo-end-to-end-tests"
+include "ftgo-test-util"
