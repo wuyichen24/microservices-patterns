@@ -14,7 +14,7 @@ public class AccountingEventConsumer {
 	private AccountingService accountingService;
 
 	public DomainEventHandlers domainEventHandlers() {
-		return DomainEventHandlersBuilder.forAggregateType("net.chrisrichardson.ftgo.consumerservice.domain.Consumer")
+		return DomainEventHandlersBuilder.forAggregateType("com.ftgo.consumerservice.model.Consumer")
 				.onEvent(ConsumerCreatedEvent.class, this::createAccount) // TODO this is hack to get the correct package
 				.build();
 	}

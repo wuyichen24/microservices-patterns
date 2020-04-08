@@ -5,6 +5,7 @@ import com.ftgo.common.model.Address;
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
 import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
+import com.ftgo.deliveryservice.api.model.CourierAvailability;
 import com.ftgo.kitchenservice.api.controller.model.TicketAcceptance;
 import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
@@ -17,7 +18,6 @@ import com.jayway.restassured.config.RestAssuredConfig;
 
 import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.util.test.async.Eventually;
-import net.chrisrichardson.ftgo.deliveryservice.api.web.CourierAvailability;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
