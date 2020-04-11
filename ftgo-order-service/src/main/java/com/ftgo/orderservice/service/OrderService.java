@@ -38,6 +38,14 @@ import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * The order service class for creating and managing orders.
+ *
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Transactional
 public class OrderService {
 	private OrderRepository                   orderRepository;
@@ -50,6 +58,9 @@ public class OrderService {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
+	/**
+     * Construct a {@code OrderService}.
+     */
 	public OrderService(OrderRepository orderRepository,
 			DomainEventPublisher eventPublisher,
 			RestaurantRepository restaurantRepository,
@@ -67,26 +78,33 @@ public class OrderService {
 		this.meterRegistry                = meterRegistry;
 	}
 
+	/**
+	 * Create a new order.
+	 * 
+	 * @param consumerId
+	 * @param restaurantId
+	 * @param deliveryInformation
+	 * @param lineItems
+	 * @return
+	 */
 	public Order createOrder(long consumerId, long restaurantId, DeliveryInformation deliveryInformation, List<MenuItemIdAndQuantity> lineItems) {
-		Restaurant restaurant = restaurantRepository.findById(restaurantId)
-				.orElseThrow(
-						() -> new RestaurantNotFoundException(restaurantId));
+		Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));
 
 		List<OrderLineItem> orderLineItems = makeOrderLineItems(lineItems, restaurant);
 
-		ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents =
-	            Order.createOrder(consumerId, restaurant, deliveryInformation, orderLineItems);
+		ResultWithDomainEvents<Order, OrderDomainEvent> orderAndEvents = Order.createOrder(consumerId, restaurant, deliveryInformation, orderLineItems);  // create order by calling the factory method.
 
 		Order order = orderAndEvents.result;
-		orderRepository.save(order);
+		orderRepository.save(order);                                                                                                                      // insert the new order into database.
 
-		orderAggregateEventPublisher.publish(order, orderAndEvents.events);
+		orderAggregateEventPublisher.publish(order, orderAndEvents.events);                                                                               // publish the domain event
 
 		OrderDetails orderDetails = new OrderDetails(consumerId, restaurantId, orderLineItems, order.getOrderTotal());
 
 		CreateOrderSagaState data = new CreateOrderSagaState(order.getId(), orderDetails);
-		createOrderSagaManager.create(data, Order.class, order.getId());
-
+		createOrderSagaManager.create(data, Order.class, order.getId());                                                                                  // instantiates the saga orchestrator,
+                                                                                                                                                          // then the saga orchestrator sends a command message to the first saga participant,
+		                                                                                                                                                  // inserts the saga orchestrator in the database.
 		meterRegistry.ifPresent(mr -> mr.counter("placed_orders").increment());
 
 		return order;

@@ -21,6 +21,14 @@ import javax.annotation.PostConstruct;
 
 import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.send;
 
+/**
+ * A singleton class that defines the saga’s state machine for canceling an order.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CancelOrderSaga implements SimpleSaga<CancelOrderSagaData> {
 	private SagaDefinition<CancelOrderSagaData> sagaDefinition;
 

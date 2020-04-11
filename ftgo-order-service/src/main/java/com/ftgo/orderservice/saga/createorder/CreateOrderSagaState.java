@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
-import com.ftgo.kitchenservice.api.*;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
@@ -23,6 +22,16 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Represents a saga’s persistent state for creating an order.
+ * 
+ * <p>The primary responsibility of this class is to create the messages that are sent to saga participants.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CreateOrderSagaState {
 	private Long         orderId;
 	private long         ticketId;
@@ -47,8 +56,7 @@ public class CreateOrderSagaState {
 
 	private TicketDetails makeTicketDetails(OrderDetails orderDetails) {
 		// TODO FIXME
-		return new TicketDetails(
-				makeTicketLineItems(orderDetails.getLineItems()));
+		return new TicketDetails(makeTicketLineItems(orderDetails.getLineItems()));
 	}
 
 	private List<TicketLineItem> makeTicketLineItems(List<OrderLineItem> lineItems) {

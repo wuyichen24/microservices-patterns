@@ -19,12 +19,19 @@ import com.ftgo.orderservice.command.model.UndoBeginCancelCommand;
 import com.ftgo.orderservice.command.model.UndoBeginReviseOrderCommand;
 import com.ftgo.orderservice.domain.OrderRevision;
 import com.ftgo.orderservice.model.BeginReviseOrderReply;
-import com.ftgo.orderservice.saga.proxy.*;
 import com.ftgo.orderservice.service.OrderService;
 
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;
 
+/**
+ * The handler class for handling the command messages from other services for saga operations.
+ *
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderServiceCommandHandlers {
 
 	@Autowired

@@ -80,15 +80,22 @@ public class Order {
 		return orderLineItems.orderTotal();
 	}
 	
-	public static ResultWithDomainEvents<Order, OrderDomainEvent>
-	  createOrder(long consumerId, Restaurant restaurant, DeliveryInformation deliveryInformation, List<OrderLineItem> orderLineItems) {
-	    Order order = new Order(consumerId, restaurant.getId(), deliveryInformation, orderLineItems);
-	    List<OrderDomainEvent> events = singletonList(
-	    		new OrderCreatedEvent(
-	            new OrderDetails(consumerId, restaurant.getId(), orderLineItems,order.getOrderTotal()),
-	            deliveryInformation.getDeliveryAddress(),
-	            restaurant.getName()));
-	    return new ResultWithDomainEvents<>(order, events);
+	/**
+	 * The factory method for creating an order.
+	 * 
+	 * @param consumerId
+	 * @param restaurant
+	 * @param deliveryInformation
+	 * @param orderLineItems
+	 * @return
+	 */
+	public static ResultWithDomainEvents<Order, OrderDomainEvent> createOrder(long consumerId, Restaurant restaurant,
+			DeliveryInformation deliveryInformation, List<OrderLineItem> orderLineItems) {
+		Order order = new Order(consumerId, restaurant.getId(), deliveryInformation, orderLineItems);
+		List<OrderDomainEvent> events = singletonList(new OrderCreatedEvent(
+				new OrderDetails(consumerId, restaurant.getId(), orderLineItems, order.getOrderTotal()),
+				deliveryInformation.getDeliveryAddress(), restaurant.getName()));
+		return new ResultWithDomainEvents<>(order, events);
 	}
 
 	public List<OrderDomainEvent> cancel() {
