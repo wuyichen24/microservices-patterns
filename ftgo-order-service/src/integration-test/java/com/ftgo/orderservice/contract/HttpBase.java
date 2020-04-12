@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.controller.OrderController;
+import com.ftgo.orderservice.controller.OrderServiceController;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
 
@@ -32,7 +32,7 @@ public abstract class HttpBase {
 	public void setup() {
 		OrderService orderService = mock(OrderService.class);
 		OrderRepository orderRepository = mock(OrderRepository.class);
-		OrderController orderController = new OrderController(orderService, orderRepository);
+		OrderServiceController orderController = new OrderServiceController(orderService, orderRepository);
 
 		when(orderRepository.findById(OrderDetailsMother.ORDER_ID)).thenReturn(Optional.of(OrderDetailsMother.CHICKEN_VINDALOO_ORDER));
 		when(orderRepository.findById(555L)).thenReturn(empty());

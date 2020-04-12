@@ -10,7 +10,7 @@ import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.orderservice.saga.proxy.*;
 
 /**
- * A singleton class that defines the saga’s state machine for creating an order.
+ * A singleton class that defines the saga process for creating an order.
  * 
  * @author  Wuyi Chen
  * @date    04/10/2020

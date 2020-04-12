@@ -15,7 +15,7 @@ import io.eventuate.tram.events.publisher.ResultWithEvents;
 
 @RestController
 @RequestMapping(path = "/consumers")
-public class ConsumerController {
+public class ConsumerServiceController {
 	@Autowired
 	private ConsumerService consumerService;
 

@@ -34,14 +34,14 @@ import static java.util.stream.Collectors.toList;
  */
 @RestController
 @RequestMapping(path = "/orders")
-public class OrderController {
+public class OrderServiceController {
 	private OrderService    orderService;
 	private OrderRepository orderRepository;
 
 	/**
      * Construct a {@code OrderController}.
      */
-	public OrderController(OrderService orderService, OrderRepository orderRepository) {
+	public OrderServiceController(OrderService orderService, OrderRepository orderRepository) {
 		this.orderService    = orderService;
 		this.orderRepository = orderRepository;
 	}

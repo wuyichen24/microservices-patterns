@@ -17,7 +17,7 @@ import com.ftgo.accountingservice.model.Account;
 
 @RestController
 @RequestMapping(path = "/accounts")
-public class AccountsController {
+public class AccountingServiceController {
 	@Autowired
 	private AggregateRepository<Account, AccountCommand> accountRepository;
 

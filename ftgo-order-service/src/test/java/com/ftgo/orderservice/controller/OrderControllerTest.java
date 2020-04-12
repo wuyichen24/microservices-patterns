@@ -8,7 +8,7 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.controller.OrderController;
+import com.ftgo.orderservice.controller.OrderServiceController;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
 
@@ -26,13 +26,13 @@ import static org.mockito.Mockito.when;
 public class OrderControllerTest {
 	private OrderService    orderService;
 	private OrderRepository orderRepository;
-	private OrderController orderController;
+	private OrderServiceController orderController;
 
 	@Before
 	public void setUp() throws Exception {
 		orderService    = mock(OrderService.class);
 		orderRepository = mock(OrderRepository.class);
-		orderController = new OrderController(orderService, orderRepository);
+		orderController = new OrderServiceController(orderService, orderRepository);
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class OrderControllerTest {
 	public void shouldFindNotOrder() {
 		when(orderRepository.findById(1L)).thenReturn(Optional.empty());
 
-		given().standaloneSetup(configureControllers(new OrderController(orderService, orderRepository))).when().get("/orders/1").then()
+		given().standaloneSetup(configureControllers(new OrderServiceController(orderService, orderRepository))).when().get("/orders/1").then()
 				.statusCode(404);
 	}
 

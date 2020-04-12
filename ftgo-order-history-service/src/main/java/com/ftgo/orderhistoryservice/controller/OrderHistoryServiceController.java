@@ -19,10 +19,10 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping(path = "/orders")
-public class OrderHistoryController {
+public class OrderHistoryServiceController {
 	private OrderHistoryDao orderHistoryDao;
 
-	public OrderHistoryController(OrderHistoryDao orderHistoryDao) {
+	public OrderHistoryServiceController(OrderHistoryDao orderHistoryDao) {
 		this.orderHistoryDao = orderHistoryDao;
 	}
 

@@ -7,7 +7,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
-import com.ftgo.orderhistoryservice.controller.OrderHistoryController;
+import com.ftgo.orderhistoryservice.controller.OrderHistoryServiceController;
 import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.model.Order;
 
@@ -22,12 +22,12 @@ import static org.mockito.Mockito.when;
 
 public class OrderHistoryControllerTest {
 	private OrderHistoryDao orderHistoryDao;
-	private OrderHistoryController orderHistoryController;
+	private OrderHistoryServiceController orderHistoryController;
 
 	@Before
 	public void setUp() {
 		orderHistoryDao = mock(OrderHistoryDao.class);
-		orderHistoryController = new OrderHistoryController(orderHistoryDao);
+		orderHistoryController = new OrderHistoryServiceController(orderHistoryDao);
 	}
 
 	@Test

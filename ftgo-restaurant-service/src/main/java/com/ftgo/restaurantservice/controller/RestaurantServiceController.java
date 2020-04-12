@@ -13,7 +13,7 @@ import com.ftgo.restaurantservice.service.RestaurantService;
 
 @RestController
 @RequestMapping(path = "/restaurants")
-public class RestaurantController {
+public class RestaurantServiceController {
 	@Autowired
 	private RestaurantService restaurantService;
 
