@@ -25,7 +25,7 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;
 
 /**
- * The handler class for handling the command messages from other services for saga operations.
+ * The handler class for handling the command messages from other services to the order service.
  *
  * @author  Wuyi Chen
  * @date    04/10/2020
@@ -33,10 +33,16 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
  * @since   1.0
  */
 public class OrderServiceCommandHandlers {
-
 	@Autowired
 	private OrderService orderService;
 
+	/**
+	 * Create command handlers.
+	 * 
+	 * <p>Map each command to different functions to handle.
+	 * 
+	 * @return The {code CommandHandlers} object.
+	 */
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder
 				.fromChannel("orderService")

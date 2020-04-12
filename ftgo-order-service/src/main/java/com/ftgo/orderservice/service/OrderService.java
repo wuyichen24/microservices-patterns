@@ -139,11 +139,17 @@ public class OrderService {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Cancel an order
+	 * 
+	 * @param  orderId
+	 *         The order ID to identify which order needs to be cancelled.
+	 *         
+	 * @return  The order is being cancelled. 
+	 */
 	public Order cancel(Long orderId) {
-		Order order = orderRepository.findById(orderId).orElseThrow(
-				() -> new OrderNotFoundException(orderId));
-		CancelOrderSagaData sagaData = new CancelOrderSagaData(
-				order.getConsumerId(), orderId, order.getOrderTotal());
+		Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+		CancelOrderSagaData sagaData = new CancelOrderSagaData(order.getConsumerId(), orderId, order.getOrderTotal());
 		cancelOrderSagaManager.create(sagaData);
 		return order;
 	}
@@ -180,11 +186,20 @@ public class OrderService {
 		updateOrder(orderId, Order::noteCancelled);
 	}
 
+	/**
+	 * Revise an order.
+	 * 
+	 * @param  orderId
+	 *         The order ID to identify which order needs to be revised.
+	 *         
+	 * @param  orderRevision
+	 *         The order revision info.
+	 *
+	 * @return  The order before being revised.
+	 */
 	public Order reviseOrder(long orderId, OrderRevision orderRevision) {
-		Order order = orderRepository.findById(orderId).orElseThrow(
-				() -> new OrderNotFoundException(orderId));
-		ReviseOrderSagaData sagaData = new ReviseOrderSagaData(
-				order.getConsumerId(), orderId, null, orderRevision);
+		Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+		ReviseOrderSagaData sagaData = new ReviseOrderSagaData(order.getConsumerId(), orderId, null, orderRevision);
 		reviseOrderSagaManager.create(sagaData);
 		return order;
 	}

@@ -24,19 +24,38 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * The controller class for defining the external APIs of order service.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 @RequestMapping(path = "/orders")
 public class OrderController {
 	private OrderService    orderService;
 	private OrderRepository orderRepository;
 
+	/**
+     * Construct a {@code OrderController}.
+     */
 	public OrderController(OrderService orderService, OrderRepository orderRepository) {
-		this.orderService = orderService;
+		this.orderService    = orderService;
 		this.orderRepository = orderRepository;
 	}
 
+	/**
+	 * Create an new order.
+	 * 
+	 * @param  request
+	 *         The {@code CreateOrderRequest} object to capture the information for creating an order.
+	 *         
+	 * @return  The {@code CreateOrderResponse} object to capture the order ID of the newly created order.
+	 */
 	@RequestMapping(method = RequestMethod.POST)
-	  public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
+	public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
 	    Order order = orderService.createOrder(request.getConsumerId(),
 	            request.getRestaurantId(),
 	            new DeliveryInformation(request.getDeliveryTime(), request.getDeliveryAddress()),
@@ -45,19 +64,33 @@ public class OrderController {
 	    return new CreateOrderResponse(order.getId());
 	}
 
+	/**
+	 * Get an existing order by order ID.
+	 * 
+	 * @param  orderId
+	 *         The order ID for looking up.
+	 * 
+	 * @return  The matched order record.
+	 */
 	@RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
 	public ResponseEntity<GetOrderResponse> getOrder(@PathVariable long orderId) {
 		Optional<Order> order = orderRepository.findById(orderId);
-		return order.map(
-				o -> new ResponseEntity<>(makeGetOrderResponse(o),
-						HttpStatus.OK)).orElseGet(
-				() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return order.map(o -> new ResponseEntity<>(makeGetOrderResponse(o),HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	private GetOrderResponse makeGetOrderResponse(Order order) {
 		return new GetOrderResponse(order.getId(), order.getState().name(), order.getOrderTotal());
 	}
 
+	/**
+	 * Cancel an order.
+	 * 
+	 * @param  orderId
+	 *         The order ID to identify which order needs to be cancelled.
+	 * 
+	 * @return  The cancelled order.
+	 */
 	@RequestMapping(path = "/{orderId}/cancel", method = RequestMethod.POST)
 	public ResponseEntity<GetOrderResponse> cancel(@PathVariable long orderId) {
 		try {
@@ -68,6 +101,16 @@ public class OrderController {
 		}
 	}
 
+	/**
+	 * Revise an order.
+	 * 
+	 * @param  orderId
+	 *         The order ID to identify which order needs to be revised.
+	 *         
+	 * @param  The {@code CreateOrderRequest} object to capture the information for revising the order.
+	 * 
+	 * @return  The order before being revised.
+	 */
 	@RequestMapping(path = "/{orderId}/revise", method = RequestMethod.POST)
 	public ResponseEntity<GetOrderResponse> revise(@PathVariable long orderId, @RequestBody ReviseOrderRequest request) {
 		try {

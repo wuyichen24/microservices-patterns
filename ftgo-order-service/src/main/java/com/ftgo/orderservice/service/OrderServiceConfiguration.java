@@ -31,9 +31,16 @@ import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
 
 import java.util.Optional;
 
+/**
+ * The configuration class to instantiates and wires together the Spring Beans.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Configuration
-@Import({ TramEventsPublisherConfiguration.class,
-		SagaOrchestratorConfiguration.class, CommonConfiguration.class })
+@Import({ TramEventsPublisherConfiguration.class, SagaOrchestratorConfiguration.class, CommonConfiguration.class })
 public class OrderServiceConfiguration {
 	@Bean
 	public SagaCommandProducer sagaCommandProducer() {

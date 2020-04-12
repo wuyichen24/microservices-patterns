@@ -13,7 +13,7 @@ import io.eventuate.tram.sagas.simpledsl.CommandEndpointBuilder;
 /**
  * The kitchen service proxy class defines the kitchen service’s messaging APIs (command message endpoints).
  * 
- * <p>There are 3 endpoints:
+ * <p>There are 3 commands:
  * <ul>
  *    <li>Creates a Ticket.
  *    <li>Confirms the ticket creation.
