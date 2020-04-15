@@ -4,7 +4,7 @@
 - [**Event**](#event)
 
 ## Command
-![](diagrams/interservice_communication.png)
+![](diagrams/interservice_communication_command.png)
 
 | Class | Description | Example |
 |----|----|----|
