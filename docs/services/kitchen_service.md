@@ -3,6 +3,8 @@
 ## APIs
 
 ## Commands
+### Outbound Commands
+### Inbound Commands
 
 ## Events
 ### Publish Events
