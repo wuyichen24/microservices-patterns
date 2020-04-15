@@ -1,5 +1,8 @@
 # Code Orgnization for Interservice Communication
 
+- [Command](#command)
+- [Event](#event)
+
 ## Command
 ![](diagrams/interservice_communication.png)
 
