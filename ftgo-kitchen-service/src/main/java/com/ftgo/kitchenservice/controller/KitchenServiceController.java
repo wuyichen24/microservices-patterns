@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftgo.kitchenservice.controller.model.GetRestaurantResponse;
 import com.ftgo.kitchenservice.repository.RestaurantRepository;
 
+/**
+ * The controller class for defining the external APIs of kitchen service.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 @RequestMapping(path = "/restaurants")
 public class KitchenServiceController {

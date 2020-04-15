@@ -19,6 +19,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The kitchen service class for creating and managing tickets.
+ *
+ * @author  Wuyi Chen
+ * @date    04/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Transactional
 public class KitchenService {
 	@Autowired
@@ -48,6 +56,15 @@ public class KitchenService {
 		return rwe.result;
 	}
 
+	/**
+	 * Accept an existing ticket.
+	 * 
+	 * @param  ticketId
+	 *         The ticket ID for looking up.
+	 *         
+	 * @param  readyBy
+	 *         The due time when the ticket should be accepted.
+	 */
 	public void accept(long ticketId, LocalDateTime readyBy) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
 		List<TicketDomainEvent> events = ticket.accept(readyBy);

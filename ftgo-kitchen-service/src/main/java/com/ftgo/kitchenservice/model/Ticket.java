@@ -70,10 +70,17 @@ public class Ticket {
 		throw new NotYetImplementedException();
 	}
 
+	/**
+	 * Accept this ticket and generate the domain event of accepting a ticket.
+	 * 
+	 * @param  readyBy
+	 *         The due time when the ticket should be accepted.
+	 *         
+	 * @return  The list contains the domain event of accepting a ticket.
+	 */
 	public List<TicketDomainEvent> accept(LocalDateTime readyBy) {
 		switch (state) {
 		case AWAITING_ACCEPTANCE:
-			// Verify that readyBy is in the futurestate = TicketState.ACCEPTED;
 			this.acceptTime = LocalDateTime.now();
 			if (!acceptTime.isBefore(readyBy))
 				throw new IllegalArgumentException("readyBy is not in the future");
@@ -201,8 +208,9 @@ public class Ticket {
 			throw new UnsupportedStateTransitionException(state);
 		}
 	}
-	
-	public static ResultWithDomainEvents<Ticket, TicketDomainEvent> create(long restaurantId, Long id, TicketDetails details) {
+
+	public static ResultWithDomainEvents<Ticket, TicketDomainEvent> create(long restaurantId, Long id,
+			TicketDetails details) {
 		return new ResultWithDomainEvents<>(new Ticket(restaurantId, id, details));
 	}
 }

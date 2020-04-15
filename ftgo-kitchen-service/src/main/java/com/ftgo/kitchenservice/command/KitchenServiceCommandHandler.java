@@ -27,20 +27,33 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;
 import static io.eventuate.tram.sagas.participant.SagaReplyMessageBuilder.withLock;
 
+/**
+ * The handler class for handling the command messages from other services to the kitchen service.
+ *
+ * @author  Wuyi Chen
+ * @date    04/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class KitchenServiceCommandHandler {
 	@Autowired
 	private KitchenService kitchenService;
 
+	/**
+	 * Create command handlers.
+	 * 
+	 * <p>Map each command to different functions to handle.
+	 * 
+	 * @return The {code CommandHandlers} object.
+	 */
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder.fromChannel(KitchenServiceChannels.kitchenServiceChannel)
 				.onMessage(CreateTicketCommand.class, this::createTicket)
 				.onMessage(ConfirmCreateTicketCommand.class, this::confirmCreateTicket)
 				.onMessage(CancelCreateTicketCommand.class, this::cancelCreateTicket)
-
 				.onMessage(BeginCancelTicketCommand.class, this::beginCancelTicket)
 				.onMessage(ConfirmCancelTicketCommand.class, this::confirmCancelTicket)
 				.onMessage(UndoBeginCancelTicketCommand.class, this::undoBeginCancelTicket)
-
 				.onMessage(BeginReviseTicketCommand.class, this::beginReviseTicket)
 				.onMessage(UndoBeginReviseTicketCommand.class, this::undoBeginReviseTicket)
 				.onMessage(ConfirmReviseTicketCommand.class, this::confirmReviseTicket).build();
