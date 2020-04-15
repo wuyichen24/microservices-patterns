@@ -1,5 +1,6 @@
 # Kitchen Service
 
+- [**Business Logic**](#business-logic)
 - [**APIs**](#apis)
 - [**Commands**](#commands)
    - [Outbound Commands](#outbound-commands)
@@ -7,6 +8,9 @@
 - [**Events**](#events)
    - [Publish Events](#publish-events)
    - [Income Events](#income-events)
+- [**Database**](#database)
+
+## Business Logic
 
 ## APIs
 
@@ -20,3 +24,5 @@
 - Core event entity (Aggregate root entity): Ticket 
 
 ### Income Events
+
+### Database
