@@ -11,6 +11,8 @@
 - [**Database**](#database)
 
 ## Business Logic
+### Ticket Workflow
+![](../diagrams/ticket_workflow.png)
 
 ## APIs
 
