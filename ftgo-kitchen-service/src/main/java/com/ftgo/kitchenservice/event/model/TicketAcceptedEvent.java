@@ -15,7 +15,7 @@ import com.ftgo.kitchenservice.event.TicketDomainEvent;
  * @since   1.0
  */
 public class TicketAcceptedEvent implements TicketDomainEvent {
-	private LocalDateTime readyBy;
+	private LocalDateTime readyBy;        // the estimate of when the order will be ready for pickup. 
 	
 	public TicketAcceptedEvent(LocalDateTime readyBy) {
 

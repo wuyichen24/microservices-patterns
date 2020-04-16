@@ -25,6 +25,16 @@ import java.util.Map;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
+/**
+ * The entity class for tickets.
+ * 
+ * <p>It represents an order that a kitchen must prepare for pickup by a courier.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/15/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Table(name = "tickets")
 @Access(AccessType.FIELD)
@@ -33,9 +43,8 @@ public class Ticket {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	private TicketState state;
-
-	private TicketState previousState;
+	private TicketState state;                             // the current state of the ticket.
+	private TicketState previousState;                     // the previous state of the ticket.
 
 	private Long restaurantId;
 
@@ -43,19 +52,54 @@ public class Ticket {
 	@CollectionTable(name = "ticket_line_items")
 	private List<TicketLineItem> lineItems;
 
-	private LocalDateTime readyBy;
-	private LocalDateTime acceptTime;
-	private LocalDateTime preparingTime;
-	private LocalDateTime pickedUpTime;
-	private LocalDateTime readyForPickupTime;
-
-	public Ticket(long restaurantId, Long id, TicketDetails details) {
-		this.restaurantId = restaurantId;
-		this.id = id;
-		this.state = TicketState.CREATE_PENDING;
-		this.lineItems = details.getLineItems();
+	private LocalDateTime readyBy;                         // the estimate of when the order will be ready for pickup.
+	private LocalDateTime acceptTime;                      // the time when the order was accepted.
+	private LocalDateTime preparingTime;                   // the time when the order was started to prepare
+	private LocalDateTime readyForPickupTime;              // the time when the order was completed and ready for pickup.
+	private LocalDateTime pickedUpTime;                    // the time when the order was picked up.
+	
+	/**
+	 * The factory method to creates a Ticket.
+	 * 
+	 * @param  restaurantId
+	 *         The restaurant ID.
+	 * 
+	 * @param  id
+	 *         The ticket ID provided by the order service.
+	 *         
+	 * @param  details
+	 *         The detailed info of the ticket.
+	 *         
+	 * @return  The event of creating the ticket.
+	 */
+	public static ResultWithDomainEvents<Ticket, TicketDomainEvent> create(long restaurantId, Long id, TicketDetails details) {
+		return new ResultWithDomainEvents<>(new Ticket(restaurantId, id, details));
 	}
 
+	/**
+	 * Create a new ticket.
+	 * 
+	 * @param  restaurantId
+	 *         The restaurant ID.
+	 * 
+	 * @param  id
+	 *         The ticket ID provided by the order service.
+	 *         
+	 * @param  details
+	 *         The detailed info of the ticket.
+	 */
+	public Ticket(long restaurantId, Long id, TicketDetails details) {
+		this.restaurantId  = restaurantId;
+		this.id            = id;
+		this.state         = TicketState.CREATE_PENDING;
+		this.lineItems     = details.getLineItems();
+	}
+
+	/**
+	 * Confirm the ticket has been created.
+	 * 
+	 * @return  The list contains the domain event of creating the ticket.
+	 */
 	public List<TicketDomainEvent> confirmCreate() {
 		switch (state) {
 		case CREATE_PENDING:
@@ -71,12 +115,14 @@ public class Ticket {
 	}
 
 	/**
-	 * Accept this ticket and generate the domain event of accepting a ticket.
+	 * The kitchen accepts the order.
+	 * 
+	 * <p>It generates the domain event of accepting a order.
 	 * 
 	 * @param  readyBy
-	 *         The due time when the ticket should be accepted.
+	 *         The estimate of when the order will be ready for pickup. 
 	 *         
-	 * @return  The list contains the domain event of accepting a ticket.
+	 * @return  The list contains the domain event of accepting the ticket.
 	 */
 	public List<TicketDomainEvent> accept(LocalDateTime readyBy) {
 		switch (state) {
@@ -91,10 +137,13 @@ public class Ticket {
 		}
 	}
 
-	// TODO reject()
-
-	// TODO cancel()
-
+	/**
+	 * The kitchen starts to prepare the order.
+	 * 
+	 * <p>The order can no longer be changed or cancelled.
+	 * 
+	 * @return  The list contains the domain event of starting preparing the order.
+	 */
 	public List<TicketDomainEvent> preparing() {
 		switch (state) {
 		case ACCEPTED:
@@ -106,6 +155,11 @@ public class Ticket {
 		}
 	}
 
+	/**
+	 * The order can now be picked up.
+	 * 
+	 * @return  The list contains the domain event of the order preparation is completed.
+	 */
 	public List<TicketDomainEvent> readyForPickup() {
 		switch (state) {
 		case PREPARING:
@@ -117,6 +171,11 @@ public class Ticket {
 		}
 	}
 
+	/**
+	 * The order has been picked up.
+	 * 
+	 * @return
+	 */
 	public List<TicketDomainEvent> pickedUp() {
 		switch (state) {
 		case READY_FOR_PICKUP:
@@ -207,10 +266,5 @@ public class Ticket {
 		default:
 			throw new UnsupportedStateTransitionException(state);
 		}
-	}
-
-	public static ResultWithDomainEvents<Ticket, TicketDomainEvent> create(long restaurantId, Long id,
-			TicketDetails details) {
-		return new ResultWithDomainEvents<>(new Ticket(restaurantId, id, details));
 	}
 }

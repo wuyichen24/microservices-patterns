@@ -44,8 +44,7 @@ public class KitchenService {
 	}
 
 	public void reviseMenu(long ticketId, RestaurantMenu revisedMenu) {
-		Restaurant restaurant = restaurantRepository.findById(ticketId)
-				.orElseThrow(() -> new TicketNotFoundException(ticketId));
+		Restaurant restaurant = restaurantRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
 		restaurant.reviseMenu(revisedMenu);
 	}
 
@@ -60,10 +59,10 @@ public class KitchenService {
 	 * Accept an existing ticket.
 	 * 
 	 * @param  ticketId
-	 *         The ticket ID for looking up.
+	 *         The order ID for looking up.
 	 *         
 	 * @param  readyBy
-	 *         The due time when the ticket should be accepted.
+	 *        The estimate of when the order will be ready for pickup. 
 	 */
 	public void accept(long ticketId, LocalDateTime readyBy) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));

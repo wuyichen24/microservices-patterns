@@ -18,7 +18,7 @@ public class OrderServiceEventConsumer {
 
 	public DomainEventHandlers domainEventHandlers() {
 		return DomainEventHandlersBuilder
-				.forAggregateType("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant")
+				.forAggregateType("com.ftgo.restaurantservice.model.Restaurant")
 				.onEvent(RestaurantCreatedEvent.class, this::createMenu)
 				.onEvent(RestaurantMenuRevisedEvent.class, this::reviseMenu).build();
 	}

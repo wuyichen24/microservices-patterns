@@ -102,8 +102,7 @@ public class KitchenServiceCommandHandler {
 	}
 
 	public Message beginReviseTicket(CommandMessage<BeginReviseTicketCommand> cm) {
-		kitchenService.beginReviseOrder(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(),
-				cm.getCommand().getRevisedLineItemQuantities());
+		kitchenService.beginReviseOrder(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(), cm.getCommand().getRevisedLineItemQuantities());
 		return withSuccess();
 	}
 
@@ -113,8 +112,7 @@ public class KitchenServiceCommandHandler {
 	}
 
 	public Message confirmReviseTicket(CommandMessage<ConfirmReviseTicketCommand> cm) {
-		kitchenService.confirmReviseTicket(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(),
-				cm.getCommand().getRevisedLineItemQuantities());
+		kitchenService.confirmReviseTicket(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(), cm.getCommand().getRevisedLineItemQuantities());
 		return withSuccess();
 	}
 }

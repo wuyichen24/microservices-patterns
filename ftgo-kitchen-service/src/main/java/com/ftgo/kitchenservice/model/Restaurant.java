@@ -17,6 +17,14 @@ import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
 import java.util.List;
 
+/**
+ * The entity class for restaurants.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/15/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Table(name = "kitchen_service_restaurants")
 @Access(AccessType.FIELD)
