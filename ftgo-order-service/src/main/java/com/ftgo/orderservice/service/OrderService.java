@@ -164,8 +164,7 @@ public class OrderService {
 
 	public void approveOrder(long orderId) {
 		updateOrder(orderId, Order::noteApproved);
-		meterRegistry
-				.ifPresent(mr -> mr.counter("approved_orders").increment());
+		meterRegistry.ifPresent(mr -> mr.counter("approved_orders").increment());
 	}
 
 	public void rejectOrder(long orderId) {

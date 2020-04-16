@@ -127,9 +127,11 @@ public class Ticket {
 	public List<TicketDomainEvent> accept(LocalDateTime readyBy) {
 		switch (state) {
 		case AWAITING_ACCEPTANCE:
+			this.state = TicketState.ACCEPTED;
 			this.acceptTime = LocalDateTime.now();
-			if (!acceptTime.isBefore(readyBy))
-				throw new IllegalArgumentException("readyBy is not in the future");
+			if (!acceptTime.isBefore(readyBy)) {
+				throw new IllegalArgumentException(String.format("readyBy %s is not after now %s", readyBy, acceptTime));
+			}
 			this.readyBy = readyBy;
 			return singletonList(new TicketAcceptedEvent(readyBy));
 		default:

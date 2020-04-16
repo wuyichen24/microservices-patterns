@@ -27,6 +27,16 @@ import static com.ftgo.orderservice.api.model.OrderState.REVISION_PENDING;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
+/**
+ * The entity class for orders.
+ * 
+ * <p>This class is the root of the Order aggregate.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Table(name = "orders")
 @Access(AccessType.FIELD)
@@ -56,12 +66,27 @@ public class Order {
 	@Embedded
 	private Money orderMinimum = new Money(Integer.MAX_VALUE);
 
+	/**
+	 * Create a new order
+	 * 
+	 * @param  consumerId
+	 *         The consumer ID.
+	 *         
+	 * @param  restaurantId
+	 *         The restaurant ID.
+	 *         
+	 * @param  deliveryInformation
+	 *         The delivery information.
+	 *         
+	 * @param  orderLineItems
+	 *         The items in this order.
+	 */
 	public Order(long consumerId, long restaurantId, DeliveryInformation deliveryInformation, List<OrderLineItem> orderLineItems) {
-	    this.consumerId = consumerId;
-	    this.restaurantId = restaurantId;
+	    this.consumerId          = consumerId;
+	    this.restaurantId        = restaurantId;
 	    this.deliveryInformation = deliveryInformation;
-	    this.orderLineItems = new OrderLineItems(orderLineItems);
-	    this.state = APPROVAL_PENDING;
+	    this.orderLineItems      = new OrderLineItems(orderLineItems);
+	    this.state               = APPROVAL_PENDING;
 	}
 
 	public Long                getId()                  { return id;                  }
@@ -98,11 +123,73 @@ public class Order {
 		return new ResultWithDomainEvents<>(order, events);
 	}
 
+	/**
+	 * Approve this order.
+	 * 
+	 * <p>This method will be invoked when the consumer’s credit card has been successfully authorized.
+	 * 
+	 * @return  The list contains the domain event of the order has been approved (authorized).
+	 */
+	public List<OrderDomainEvent> noteApproved() {
+		switch (state) {
+		case APPROVAL_PENDING:
+			this.state = APPROVED;
+			return singletonList(new OrderAuthorizedEvent());
+		default:
+			throw new UnsupportedStateTransitionException(state);
+		}
+
+	}
+
+	/**
+	 * Reject this order.
+	 * 
+	 * <p>This method will be invoked when one of the services rejects the order or authorization fails.
+	 * 
+	 * @return  The list contains the domain event of the order has been rejected.
+	 */
+	public List<OrderDomainEvent> noteRejected() {
+		switch (state) {
+		case APPROVAL_PENDING:
+			this.state = REJECTED;
+			return singletonList(new OrderRejectedEvent());
+		default:
+			throw new UnsupportedStateTransitionException(state);
+		}
+
+	}
+	
 	public List<OrderDomainEvent> cancel() {
 		switch (state) {
 		case APPROVED:
 			this.state = OrderState.CANCEL_PENDING;
 			return emptyList();
+		default:
+			throw new UnsupportedStateTransitionException(state);
+		}
+	}
+	
+	/**
+	 * Revise this order.
+	 * 
+	 * @param  orderRevision
+	 *         The details of revising the order.
+	 * 
+	 * @return  The list contains the domain event of the order starts to be revised.
+	 */
+	public ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> revise(OrderRevision orderRevision) {
+		switch (state) {
+
+		case APPROVED:
+			LineItemQuantityChange change = orderLineItems.lineItemQuantityChange(orderRevision);
+			if (change.newOrderTotal.isGreaterThanOrEqual(orderMinimum)) {
+				throw new OrderMinimumNotMetException();
+			}
+			this.state = REVISION_PENDING;
+			return new ResultWithDomainEvents<>(change,
+					singletonList(new OrderRevisionProposedEvent(orderRevision,
+							change.currentOrderTotal, change.newOrderTotal)));
+
 		default:
 			throw new UnsupportedStateTransitionException(state);
 		}
@@ -128,48 +215,8 @@ public class Order {
 		}
 	}
 
-	public List<OrderDomainEvent> noteApproved() {
-		switch (state) {
-		case APPROVAL_PENDING:
-			this.state = APPROVED;
-			return singletonList(new OrderAuthorizedEvent());
-		default:
-			throw new UnsupportedStateTransitionException(state);
-		}
-
-	}
-
-	public List<OrderDomainEvent> noteRejected() {
-		switch (state) {
-		case APPROVAL_PENDING:
-			this.state = REJECTED;
-			return singletonList(new OrderRejectedEvent());
-		default:
-			throw new UnsupportedStateTransitionException(state);
-		}
-
-	}
-
 	public List<OrderDomainEvent> noteReversingAuthorization() {
 		return null;
-	}
-
-	public ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> revise(OrderRevision orderRevision) {
-		switch (state) {
-
-		case APPROVED:
-			LineItemQuantityChange change = orderLineItems.lineItemQuantityChange(orderRevision);
-			if (change.newOrderTotal.isGreaterThanOrEqual(orderMinimum)) {
-				throw new OrderMinimumNotMetException();
-			}
-			this.state = REVISION_PENDING;
-			return new ResultWithDomainEvents<>(change,
-					singletonList(new OrderRevisionProposedEvent(orderRevision,
-							change.currentOrderTotal, change.newOrderTotal)));
-
-		default:
-			throw new UnsupportedStateTransitionException(state);
-		}
 	}
 
 	public List<OrderDomainEvent> rejectRevision() {

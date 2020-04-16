@@ -14,9 +14,18 @@ import com.ftgo.common.model.Address;
 
 import java.time.LocalDateTime;
 
+/**
+ * The delivery information class.
+ * 
+ * <p>This class stores the delivery address and the desired delivery time.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Access(AccessType.FIELD)
 public class DeliveryInformation {
-
 	private LocalDateTime deliveryTime;
 
 	@Embedded
@@ -25,7 +34,18 @@ public class DeliveryInformation {
 
 	public DeliveryInformation() {
 	}
+	
+	public DeliveryInformation(LocalDateTime deliveryTime,
+			Address deliveryAddress) {
+		this.deliveryTime = deliveryTime;
+		this.deliveryAddress = deliveryAddress;
+	}
 
+	public LocalDateTime getDeliveryTime()                           { return deliveryTime;                    }
+	public void          setDeliveryTime(LocalDateTime deliveryTime) { this.deliveryTime = deliveryTime;       }
+	public Address       getDeliveryAddress()                        { return deliveryAddress;                 }
+	public void          setDeliveryAddress(Address deliveryAddress) { this.deliveryAddress = deliveryAddress; }
+	
 	@Override
 	public boolean equals(Object o) {
 		return EqualsBuilder.reflectionEquals(this, o);
@@ -39,27 +59,5 @@ public class DeliveryInformation {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
-	}
-
-	public DeliveryInformation(LocalDateTime deliveryTime,
-			Address deliveryAddress) {
-		this.deliveryTime = deliveryTime;
-		this.deliveryAddress = deliveryAddress;
-	}
-
-	public LocalDateTime getDeliveryTime() {
-		return deliveryTime;
-	}
-
-	public void setDeliveryTime(LocalDateTime deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}
-
-	public Address getDeliveryAddress() {
-		return deliveryAddress;
-	}
-
-	public void setDeliveryAddress(Address deliveryAddress) {
-		this.deliveryAddress = deliveryAddress;
 	}
 }
