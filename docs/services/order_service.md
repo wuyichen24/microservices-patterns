@@ -6,8 +6,8 @@
    - [Outbound Commands](#outbound-commands)
    - [Inbound Commands](#inbound-commands)
 - [**Events**](#events)
-   - [Publish Events](#publish-events)
-   - [Income Events](#income-events)
+   - [Outbound Events](#outbound-events)
+   - [Inbound Events](#inbound-events)
 - [**Database**](#database)
 
 ## Business Logic
@@ -20,9 +20,9 @@
 - Inbound command channel name: `orderService`
 
 ## Events
-### Publish Events
+### Outbound Events
 - Core event entity (Aggregate root entity): Order 
 
-### Income Events
+### Inbound Events
 
 ### Database
