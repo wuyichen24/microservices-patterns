@@ -1,7 +1,11 @@
 # Code Orgnization for Interservice Communication
 
 - [**Command**](#command)
+   - [Logic](#logic)
+   - [Core Classes](#core-classes)
 - [**Event**](#event)
+   - [Logic](#logic-1)
+   - [Core Classes](#core-classes-1)
 
 ## Command
 ![](diagrams/interservice_communication_command.png)
@@ -32,4 +36,4 @@
 |----|----|----|
 | **Service** | Defines the core operations for the service. | <li>[KitchenService](../ftgo-kitchen-service/src/main/java/com/ftgo/kitchenservice/service/KitchenService.java) |
 | **Domain Event Publisher** | Publish all the events belongs to a specific aggregate. | <li>[TicketDomainEventPublisher](../ftgo-kitchen-service/src/main/java/com/ftgo/kitchenservice/event/TicketDomainEventPublisher.java)
-| **Event Consumer** | Defines how to handle each event for a specific aggregate. <ul><li>Defines mapping relationship between the events and the event handlers.<li>Each event handler defines the operations need to be executed after getting a specific event.</ul> | <li>[KitchenServiceEventConsumer](../ftgo-kitchen-service/src/main/java/com/ftgo/kitchenservice/event/KitchenServiceEventConsumer.java)
+| **Event Consumer** | Defines how to handle each event for a specific aggregate. <ul><li>Defines which aggregate it is listening.<li>Defines mapping relationship between the events and the event handlers.<li>Each event handler defines the operations need to be executed after getting a specific event.</ul> | <li>[KitchenServiceEventConsumer](../ftgo-kitchen-service/src/main/java/com/ftgo/kitchenservice/event/KitchenServiceEventConsumer.java)
