@@ -4,8 +4,13 @@
 - [**Event**](#event)
 
 ## Command
-![](diagrams/interservice_communication.png)
+![](diagrams/interservice_communication_command.png)
 
+### Logic
+- Each service has one incoming command channel (each command channel has only one consumer).
+- Other services uses their proxy class to send command messages to a specific command channel (each command channel has one or more producer).
+
+### Core Classes
 | Class | Description | Example |
 |----|----|----|
 | **Controller** | Defines RESTful APIs | <li>[OrderServiceController](../ftgo-order-service/src/main/java/com/ftgo/orderservice/controller/OrderServiceController.java) |
