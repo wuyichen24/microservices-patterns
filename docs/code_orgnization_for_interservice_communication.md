@@ -7,7 +7,7 @@
 ![](diagrams/interservice_communication_command.png)
 
 ### Logic
-- Each command channel belongs to a specific service for all the incoming command to the service. (each command channel has only one consumer).
+- Each command channel belongs to a specific service for all the incoming command to that service (each command channel has only one consumer).
 - Other services uses their proxy class to send command messages to a specific command channel (each command channel has one or more producer).
 
 ### Core Classes
