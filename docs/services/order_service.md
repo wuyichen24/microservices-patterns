@@ -34,6 +34,18 @@
 
 ## Commands
 ### Outbound Commands
+
+| Target Service | Command | Saga | Description |
+|----|----|----|
+| Accounting Service | AuthorizeCommand | | |
+| Consumer Service | ValidateOrderByConsumerCommand | | |
+| Kitchen Service | CreateTicketCommand | | |
+| Kitchen Service | ConfirmCreateTicketCommand | | |
+| Kitchen Service | CancelCreateTicketCommand | | |
+| Order Service | RejectOrderCommand | | |
+| Order Service | ApproveOrderCommand | | |
+
+
 ### Inbound Commands
 - Inbound command channel name: `orderService`
 
