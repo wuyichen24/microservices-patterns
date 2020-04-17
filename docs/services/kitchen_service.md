@@ -28,6 +28,10 @@
 
 ## APIs
 
+| Method | URL | Request | Response | Description | 
+|----|----|----|----|----|
+| GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get restaurant info by restaurant ID. |
+
 ## Commands
 ### Outbound Commands
 ### Inbound Commands
