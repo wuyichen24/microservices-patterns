@@ -31,6 +31,7 @@
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get restaurant info by restaurant ID. |
+| POST | `/tickets/{ticketId}/accept` | `TicketAcceptance` JSON | | Accept a ticket by ticket ID. |
 
 ## Commands
 ### Outbound Commands
