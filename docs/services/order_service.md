@@ -13,17 +13,32 @@
 ## Business Logic
 ### Sagas (Chain Operations)
 - **Create order**
-  | Step No. | Command | Compensation Command (for rollback) | 
-  |----|----|----|
-  | 1 | | OrderService.RejectOrderCommand |
-  | 2 | ConsumerService.ValidateOrderByConsumerCommand | |
-  | 3 | KitchenService.CreateTicketCommand | KitchenService.CancelCreateTicketCommand |
-  | 4 | AccountingService.AuthorizeCommand | |
-  | 5 | KitchenService.ConfirmCreateTicketCommand | |
-  | 6 | OrderService.ApproveOrderCommand | |
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|----|
+  | 1 | Order Service | | RejectOrderCommand |
+  | 2 | Consumer Service | ValidateOrderByConsumerCommand | |
+  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand |
+  | 4 | Accounting Service | AuthorizeCommand | |
+  | 5 | Kitchen Service | ConfirmCreateTicketCommand | |
+  | 6 | Order Service | ApproveOrderCommand | |
   
 - **Cancel order**
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|
+  | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand |
+  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand |
+  | 3 | Accounting Service | ReverseAuthorizationCommand | |
+  | 4 | Kitchen Service | ConfirmCancelTicketCommand | |
+  | 5 | Order Service | ConfirmCancelOrderCommand | |
+
 - **Revise order**
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|
+  | 1 | Order Service | BeginReviseOrderCommand | UndoBeginReviseOrderCommand |
+  | 2 | Kitchen Service | BeginReviseTicketCommand | UndoBeginReviseTicketCommand |
+  | 3 | Accounting Service | ReviseAuthorizationCommand | |
+  | 4 | Kitchen Service | ConfirmReviseTicketCommand | |
+  | 5 | Order Service | ConfirmReviseOrderCommand | |
 
 ### Order Workflow
 ![](../diagrams/order_workflow.png)
