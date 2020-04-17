@@ -11,7 +11,7 @@
 - [**Database**](#database)
 
 ## Business Logic
-### Ticket Workflow
+### Order Workflow
 ![](../diagrams/order_workflow.png)
 
 | State | Description |
