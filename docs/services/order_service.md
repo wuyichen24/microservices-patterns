@@ -11,6 +11,11 @@
 - [**Database**](#database)
 
 ## Business Logic
+### Sagas (Chain Operations)
+- Create order
+- Cancel order
+- Revise order
+
 ### Order Workflow
 ![](../diagrams/order_workflow.png)
 
@@ -37,27 +42,27 @@
 
 | Target Service | Command | Saga | Description |
 |----|----|----|----|
-| Accounting Service | AuthorizeCommand | Create Order | Authorize the consumer's account of this order. |
-| Accounting Service | ReverseAuthorizationCommand | Cancel Order | |
-| Accounting Service | ReviseAuthorizationCommand | Revise Order | |
-| Consumer Service | ValidateOrderByConsumerCommand | Create Order | |
-| Kitchen Service | CreateTicketCommand | Create Order | |
-| Kitchen Service | ConfirmCreateTicketCommand | Create Order | |
-| Kitchen Service | CancelCreateTicketCommand | Create Order | |
-| Kitchen Service | BeginCancelTicketCommand | Cancel Order | |
-| Kitchen Service | UndoBeginCancelTicketCommand | Cancel Order | |
-| Kitchen Service | ConfirmCancelTicketCommand | Cancel Order | |
-| Kitchen Service | BeginReviseTicketCommand | Revise Order | |
-| Kitchen Service | UndoBeginReviseTicketCommand | Revise Order | |
-| Kitchen Service | ConfirmReviseTicketCommand | Revise Order | |
-| Order Service | RejectOrderCommand | Create Order | |
-| Order Service | ApproveOrderCommand | Create Order | |
-| Order Service | BeginCancelCommand | Cancel Order | |
-| Order Service | UndoBeginCancelCommand | Cancel Order | |
-| Order Service | ConfirmCancelOrderCommand | Cancel Order | |
-| Order Service | BeginReviseOrderCommand | Revise Order | |
-| Order Service | UndoBeginReviseOrderCommand | Revise Order | |
-| Order Service | ConfirmReviseOrderCommand | Revise Order | |
+| Accounting Service | AuthorizeCommand | Create order | Authorize the consumer's account of this order. |
+| Accounting Service | ReverseAuthorizationCommand | Cancel order | |
+| Accounting Service | ReviseAuthorizationCommand | Revise order | |
+| Consumer Service | ValidateOrderByConsumerCommand | Create order | |
+| Kitchen Service | CreateTicketCommand | Create order | |
+| Kitchen Service | ConfirmCreateTicketCommand | Create order | |
+| Kitchen Service | CancelCreateTicketCommand | Create order | |
+| Kitchen Service | BeginCancelTicketCommand | Cancel order | |
+| Kitchen Service | UndoBeginCancelTicketCommand | Cancel order | |
+| Kitchen Service | ConfirmCancelTicketCommand | Cancel order | |
+| Kitchen Service | BeginReviseTicketCommand | Revise order | |
+| Kitchen Service | UndoBeginReviseTicketCommand | Revise order | |
+| Kitchen Service | ConfirmReviseTicketCommand | Revise order | |
+| Order Service | RejectOrderCommand | Create order | |
+| Order Service | ApproveOrderCommand | Create order | |
+| Order Service | BeginCancelCommand | Cancel order | |
+| Order Service | UndoBeginCancelCommand | Cancel order | |
+| Order Service | ConfirmCancelOrderCommand | Cancel order | |
+| Order Service | BeginReviseOrderCommand | Revise order | |
+| Order Service | UndoBeginReviseOrderCommand | Revise order | |
+| Order Service | ConfirmReviseOrderCommand | Revise order | |
 
 ### Inbound Commands
 - Inbound command channel name: `orderService`
