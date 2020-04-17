@@ -36,7 +36,7 @@
 ### Outbound Commands
 
 | Target Service | Command | Saga | Description |
-|----|----|----|
+|----|----|----|----|
 | Accounting Service | AuthorizeCommand | | |
 | Consumer Service | ValidateOrderByConsumerCommand | | |
 | Kitchen Service | CreateTicketCommand | | |
