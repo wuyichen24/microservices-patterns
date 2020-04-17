@@ -27,8 +27,10 @@
 
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
-| POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | create a new order. |
+| POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | Add a new order. |
 | GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get an order by order ID. |
+| POST | `/orders/{orderId}/cancel` | | `GetOrderResponse` JSON | Cancel an order by order ID. |
+| POST | `/orders/{orderId}/revise` | | `GetOrderResponse` JSON | Revise an order by order ID. |
 
 ## Commands
 ### Outbound Commands
