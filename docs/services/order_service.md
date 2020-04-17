@@ -25,6 +25,11 @@
 
 ## APIs
 
+| Method | URL | Request | Response | Description | 
+|----|----|----|----|----|
+| POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | create a new order. |
+| GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get an order by order ID. |
+
 ## Commands
 ### Outbound Commands
 ### Inbound Commands
