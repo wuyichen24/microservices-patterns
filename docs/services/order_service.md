@@ -37,13 +37,13 @@
 
 | Target Service | Command | Saga | Description |
 |----|----|----|----|
-| Accounting Service | AuthorizeCommand | | |
-| Consumer Service | ValidateOrderByConsumerCommand | | |
-| Kitchen Service | CreateTicketCommand | | |
-| Kitchen Service | ConfirmCreateTicketCommand | | |
-| Kitchen Service | CancelCreateTicketCommand | | |
-| Order Service | RejectOrderCommand | | |
-| Order Service | ApproveOrderCommand | | |
+| Accounting Service | AuthorizeCommand | Create Order | Authorize the consumer's account of this order. |
+| Consumer Service | ValidateOrderByConsumerCommand | Create Order | |
+| Kitchen Service | CreateTicketCommand | Create Order | |
+| Kitchen Service | ConfirmCreateTicketCommand | Create Order | |
+| Kitchen Service | CancelCreateTicketCommand | Create Order | |
+| Order Service | RejectOrderCommand | Create Order | |
+| Order Service | ApproveOrderCommand | Create Order | |
 
 
 ### Inbound Commands
