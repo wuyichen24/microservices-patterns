@@ -38,12 +38,19 @@
 | Target Service | Command | Saga | Description |
 |----|----|----|----|
 | Accounting Service | AuthorizeCommand | Create Order | Authorize the consumer's account of this order. |
+| Accounting Service | ReverseAuthorizationCommand | Cancel Order | |
 | Consumer Service | ValidateOrderByConsumerCommand | Create Order | |
 | Kitchen Service | CreateTicketCommand | Create Order | |
 | Kitchen Service | ConfirmCreateTicketCommand | Create Order | |
 | Kitchen Service | CancelCreateTicketCommand | Create Order | |
+| Kitchen Service | BeginCancelTicketCommand | Cancel Order | |
+| Kitchen Service | UndoBeginCancelTicketCommand | Cancel Order | |
+| Kitchen Service | ConfirmCancelTicketCommand | Cancel Order | |
 | Order Service | RejectOrderCommand | Create Order | |
 | Order Service | ApproveOrderCommand | Create Order | |
+| Order Service | BeginCancelCommand | Cancel Order | |
+| Order Service | UndoBeginCancelCommand | Cancel Order | |
+| Order Service | ConfirmCancelOrderCommand | Cancel Order | |
 
 
 ### Inbound Commands
