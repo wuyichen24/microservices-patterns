@@ -79,10 +79,6 @@ public class OrderServiceController {
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	private GetOrderResponse makeGetOrderResponse(Order order) {
-		return new GetOrderResponse(order.getId(), order.getState().name(), order.getOrderTotal());
-	}
-
 	/**
 	 * Cancel an order.
 	 * 
@@ -120,4 +116,17 @@ public class OrderServiceController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	/**
+	 * Make up a response for an order.
+	 * 
+	 * @param  order
+	 *         The {@code Order} for making up.
+	 *         
+	 * @return  The {@code GetOrderResponse} object.
+	 */
+	private GetOrderResponse makeGetOrderResponse(Order order) {
+		return new GetOrderResponse(order.getId(), order.getState().name(), order.getOrderTotal());
+	}
 }
+

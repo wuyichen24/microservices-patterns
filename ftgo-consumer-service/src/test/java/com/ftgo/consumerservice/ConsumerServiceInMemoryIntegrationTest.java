@@ -20,7 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
 import com.ftgo.consumerservice.domain.ConsumerWebConfiguration;
 
@@ -72,7 +72,7 @@ public class ConsumerServiceInMemoryIntegrationTest {
 		Money orderTotal = new Money(123);
 
 		String messageId = commandProducer.send("consumerService", null,
-				new ValidateOrderByConsumer(consumerId, orderId, orderTotal), testMessageConsumer.getReplyChannel(),
+				new ValidateOrderByConsumerCommand(consumerId, orderId, orderTotal), testMessageConsumer.getReplyChannel(),
 				Collections.emptyMap());
 
 		testMessageConsumer.assertHasReplyTo(messageId);

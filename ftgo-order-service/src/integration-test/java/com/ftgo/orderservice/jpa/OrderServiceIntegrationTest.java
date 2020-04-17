@@ -2,7 +2,7 @@ package com.ftgo.orderservice.jpa;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.command.OrderServiceCommandHandlersConfiguration;
@@ -131,7 +131,7 @@ public class OrderServiceIntegrationTest {
 
 		Message message = mockConsumerService
 				.assertMessageReceived(commandMessageOfType(
-						ValidateOrderByConsumer.class.getName()).and(
+						ValidateOrderByConsumerCommand.class.getName()).and(
 						withPayload(expectedPayload)));
 
 		System.out.println("message=" + message);

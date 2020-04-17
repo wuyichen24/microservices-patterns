@@ -28,7 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
@@ -118,7 +118,7 @@ public class OrderServiceComponentTestStepDefinitions {
 	@Given("A valid consumer")
 	public void useConsumer() {
 		sagaParticipantStubManager.forChannel("consumerService")
-				.when(ValidateOrderByConsumer.class)
+				.when(ValidateOrderByConsumerCommand.class)
 				.replyWith(cm -> withSuccess());
 	}
 

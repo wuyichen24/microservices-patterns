@@ -7,7 +7,7 @@ import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.consumerservice.exception.ConsumerVerificationFailedException;
 import com.ftgo.consumerservice.service.ConsumerService;
 
@@ -20,10 +20,10 @@ public class ConsumerServiceCommandHandlers {
 
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder.fromChannel("consumerService")
-				.onMessage(ValidateOrderByConsumer.class, this::validateOrderForConsumer).build();
+				.onMessage(ValidateOrderByConsumerCommand.class, this::validateOrderForConsumer).build();
 	}
 
-	private Message validateOrderForConsumer(CommandMessage<ValidateOrderByConsumer> cm) {
+	private Message validateOrderForConsumer(CommandMessage<ValidateOrderByConsumerCommand> cm) {
 		try {
 			consumerService.validateOrderForConsumer(cm.getCommand().getConsumerId(), cm.getCommand().getOrderTotal());
 			return withSuccess();

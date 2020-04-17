@@ -7,7 +7,7 @@ import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
@@ -44,7 +44,7 @@ public class CreateOrderSagaTest {
 				makeCreateOrderSaga(),
 				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
-				.command(new ValidateOrderByConsumer(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
+				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel)
 				.andGiven()
 				.successReply()
@@ -70,7 +70,7 @@ public class CreateOrderSagaTest {
 				makeCreateOrderSaga(),
 				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
-				.command(new ValidateOrderByConsumer(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
+				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel).andGiven()
 				.failureReply().expect()
 				.command(new RejectOrderCommand(ORDER_ID))
@@ -83,7 +83,7 @@ public class CreateOrderSagaTest {
 				makeCreateOrderSaga(),
 				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
-				.command(new ValidateOrderByConsumer(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
+				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel)
 				.andGiven()
 				.successReply()

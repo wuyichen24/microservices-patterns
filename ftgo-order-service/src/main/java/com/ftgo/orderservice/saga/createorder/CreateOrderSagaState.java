@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
-import com.ftgo.consumerservice.api.command.ValidateOrderByConsumer;
+import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
@@ -55,7 +55,6 @@ public class CreateOrderSagaState {
 	}
 
 	private TicketDetails makeTicketDetails(OrderDetails orderDetails) {
-		// TODO FIXME
 		return new TicketDetails(makeTicketLineItems(orderDetails.getLineItems()));
 	}
 
@@ -80,8 +79,8 @@ public class CreateOrderSagaState {
 		return new RejectOrderCommand(getOrderId());
 	}
 
-	ValidateOrderByConsumer makeValidateOrderByConsumerCommand() {
-		return new ValidateOrderByConsumer(getOrderDetails().getConsumerId(), getOrderId(), getOrderDetails().getOrderTotal());
+	ValidateOrderByConsumerCommand makeValidateOrderByConsumerCommand() {
+		return new ValidateOrderByConsumerCommand(getOrderDetails().getConsumerId(), getOrderId(), getOrderDetails().getOrderTotal());
 	}
 
 	AuthorizeCommand makeAuthorizeCommand() {

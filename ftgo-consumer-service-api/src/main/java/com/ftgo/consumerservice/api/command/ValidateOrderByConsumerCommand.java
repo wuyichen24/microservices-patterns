@@ -8,12 +8,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.ftgo.common.model.Money;
 
-public class ValidateOrderByConsumer implements Command {
+public class ValidateOrderByConsumerCommand implements Command {
 	private long  consumerId;
 	private long  orderId;
 	private Money orderTotal;
 
-	public ValidateOrderByConsumer(long consumerId, long orderId, Money orderTotal) {
+	public ValidateOrderByConsumerCommand(long consumerId, long orderId, Money orderTotal) {
 		this.consumerId = consumerId;
 		this.orderId    = orderId;
 		this.orderTotal = orderTotal;

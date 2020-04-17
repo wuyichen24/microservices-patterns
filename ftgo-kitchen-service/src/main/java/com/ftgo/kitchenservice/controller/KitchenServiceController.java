@@ -1,34 +1,22 @@
 package com.ftgo.kitchenservice.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ftgo.kitchenservice.model.TicketAcceptance;
+import com.ftgo.kitchenservice.service.KitchenService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.ftgo.kitchenservice.controller.model.GetRestaurantResponse;
-import com.ftgo.kitchenservice.repository.RestaurantRepository;
-
-/**
- * The controller class for defining the external APIs of kitchen service.
- * 
- * @author  Wuyi Chen
- * @date    04/14/2020
- * @version 1.0
- * @since   1.0
- */
 @RestController
-@RequestMapping(path = "/restaurants")
 public class KitchenServiceController {
-	@Autowired
-	private RestaurantRepository restaurantRepository;
+	private KitchenService kitchenService;
 
-	@RequestMapping(path = "/{restaurantId}", method = RequestMethod.GET)
-	public ResponseEntity<GetRestaurantResponse> getRestaurant(@PathVariable long restaurantId) {
-		return restaurantRepository.findById(restaurantId)
-				.map(restaurant -> new ResponseEntity<>(new GetRestaurantResponse(restaurantId), HttpStatus.OK))
-				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	public KitchenServiceController(KitchenService kitchenService) {
+		this.kitchenService = kitchenService;
+	}
+
+	@RequestMapping(path="/tickets/{ticketId}/accept", method= RequestMethod.POST)
+	public ResponseEntity<String> acceptTicket(@PathVariable long ticketId, @RequestBody TicketAcceptance ticketAcceptance) {
+		kitchenService.accept(ticketId, ticketAcceptance.getReadyBy());
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

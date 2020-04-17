@@ -28,15 +28,13 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaState> {
      * <p>It defines the steps of the sage for creating a order.
      */
 	public CreateOrderSaga(OrderServiceProxy orderService, ConsumerServiceProxy consumerService, KitchenServiceProxy kitchenService, AccountingServiceProxy accountingService) {
-		this.sagaDefinition = step()
-				.withCompensation(orderService.reject, CreateOrderSagaState::makeRejectOrderCommand)
+		this.sagaDefinition = step().withCompensation(orderService.reject, CreateOrderSagaState::makeRejectOrderCommand)
 				.step().invokeParticipant(consumerService.validateOrder, CreateOrderSagaState::makeValidateOrderByConsumerCommand)
-				.step().invokeParticipant(kitchenService.create, CreateOrderSagaState::makeCreateTicketCommand)
-				.onReply(CreateTicketReply.class, CreateOrderSagaState::handleCreateTicketReply)
-				.withCompensation(kitchenService.cancel, CreateOrderSagaState::makeCancelCreateTicketCommand)
+				.step().invokeParticipant(kitchenService.create, CreateOrderSagaState::makeCreateTicketCommand).onReply(CreateTicketReply.class, CreateOrderSagaState::handleCreateTicketReply).withCompensation(kitchenService.cancel, CreateOrderSagaState::makeCancelCreateTicketCommand)
 				.step().invokeParticipant(accountingService.authorize, CreateOrderSagaState::makeAuthorizeCommand)
 				.step().invokeParticipant(kitchenService.confirmCreate, CreateOrderSagaState::makeConfirmCreateTicketCommand)
-				.step().invokeParticipant(orderService.approve, CreateOrderSagaState::makeApproveOrderCommand).build();
+				.step().invokeParticipant(orderService.approve, CreateOrderSagaState::makeApproveOrderCommand)
+				.build();
 	}
 
 	@Override
