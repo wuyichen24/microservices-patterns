@@ -24,7 +24,7 @@
   
 - **Cancel order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
-  |----|----|----|
+  |----|----|----|----|
   | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand |
   | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand |
   | 3 | Accounting Service | ReverseAuthorizationCommand | |
@@ -33,7 +33,7 @@
 
 - **Revise order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
-  |----|----|----|
+  |----|----|----|----|
   | 1 | Order Service | BeginReviseOrderCommand | UndoBeginReviseOrderCommand |
   | 2 | Kitchen Service | BeginReviseTicketCommand | UndoBeginReviseTicketCommand |
   | 3 | Accounting Service | ReviseAuthorizationCommand | |
