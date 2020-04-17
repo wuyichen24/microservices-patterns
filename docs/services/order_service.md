@@ -13,7 +13,7 @@
 ## Business Logic
 ### Sagas (Chain Operations)
 - **Create order**
-  | Step No. | Command | Compensation Command | 
+  | Step No. | Command | Compensation Command (for rollback) | 
   |----|----|----|
   | 1 | | OrderService.RejectOrderCommand |
   | 2 | ConsumerService.ValidateOrderByConsumerCommand | |
