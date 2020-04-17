@@ -23,7 +23,7 @@
 | **READY_FOR_PICKUP** | The kitchen has finished preparing the food of the ticket. The food is ready for pickup. |
 | **PICKED_UP** | The food of the ticket has been picked up. |
 | **CANCEL_PENDING** | The ticket start to be cancelled. Wait for other services finish their corresponding operations for cancelling the ticket. |
-| **CANCELLED** | The ticket has been cancelled. Other services has finished their corresponding operations for cancelling the ticket. |
+| **CANCELLED** | The ticket has been cancelled. |
 | **REVISION_PENDING** | The ticket start to be revised. Wait for other services finish their corresponding operations for revising the ticket.  |
 
 ## APIs
