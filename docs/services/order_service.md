@@ -39,6 +39,7 @@
 |----|----|----|----|
 | Accounting Service | AuthorizeCommand | Create Order | Authorize the consumer's account of this order. |
 | Accounting Service | ReverseAuthorizationCommand | Cancel Order | |
+| Accounting Service | ReviseAuthorizationCommand | Revise Order | |
 | Consumer Service | ValidateOrderByConsumerCommand | Create Order | |
 | Kitchen Service | CreateTicketCommand | Create Order | |
 | Kitchen Service | ConfirmCreateTicketCommand | Create Order | |
@@ -46,12 +47,17 @@
 | Kitchen Service | BeginCancelTicketCommand | Cancel Order | |
 | Kitchen Service | UndoBeginCancelTicketCommand | Cancel Order | |
 | Kitchen Service | ConfirmCancelTicketCommand | Cancel Order | |
+| Kitchen Service | BeginReviseTicketCommand | Revise Order | |
+| Kitchen Service | UndoBeginReviseTicketCommand | Revise Order | |
+| Kitchen Service | ConfirmReviseTicketCommand | Revise Order | |
 | Order Service | RejectOrderCommand | Create Order | |
 | Order Service | ApproveOrderCommand | Create Order | |
 | Order Service | BeginCancelCommand | Cancel Order | |
 | Order Service | UndoBeginCancelCommand | Cancel Order | |
 | Order Service | ConfirmCancelOrderCommand | Cancel Order | |
-
+| Order Service | BeginReviseOrderCommand | Revise Order | |
+| Order Service | UndoBeginReviseOrderCommand | Revise Order | |
+| Order Service | ConfirmReviseOrderCommand | Revise Order | |
 
 ### Inbound Commands
 - Inbound command channel name: `orderService`
