@@ -12,9 +12,18 @@
 
 ## Business Logic
 ### Sagas (Chain Operations)
-- Create order
-- Cancel order
-- Revise order
+- **Create order**
+  | Step No. | Command | Compensation Command | 
+  |----|----|----|
+  | 1 | | OrderService.RejectOrderCommand |
+  | 2 | ConsumerService.ValidateOrderByConsumerCommand | |
+  | 3 | KitchenService.CreateTicketCommand | KitchenService.CancelCreateTicketCommand |
+  | 4 | AccountingService.AuthorizeCommand | |
+  | 5 | KitchenService.ConfirmCreateTicketCommand | |
+  | 6 | OrderService.ApproveOrderCommand | |
+  
+- **Cancel order**
+- **Revise order**
 
 ### Order Workflow
 ![](../diagrams/order_workflow.png)
