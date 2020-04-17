@@ -30,7 +30,7 @@
 
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
-| GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get restaurant info by restaurant ID. |
+| GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get a restaurant by restaurant ID. |
 | POST | `/tickets/{ticketId}/accept` | `TicketAcceptance` JSON | | Accept a ticket by ticket ID. |
 
 ## Commands
