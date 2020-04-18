@@ -106,7 +106,7 @@
 ### Outbound Events
 - Core event entity (Aggregate root entity): Order 
 
-| Event | Tracker |Description |
+| Event | Target Service(s) | Description |
 |----|----|----|
 | OrderAuthorizedEvent | | |
 | OrderCancelledEvent | | |
@@ -115,5 +115,10 @@
 | OrderRevisionProposedEvent | | | 
 
 ### Inbound Events
+
+| Source Service | Event | Description |
+|----|----|----|
+| Restaurant Service | RestaurantCreatedEvent | |
+| Restaurant Service | RestaurantMenuRevisedEvent | |
 
 ### Database
