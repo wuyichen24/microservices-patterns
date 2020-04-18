@@ -93,8 +93,8 @@
 
 | Command | Description |
 |-----|----|
-| RejectOrderCommand | |
 | ApproveOrderCommand | |
+| RejectOrderCommand | |
 | BeginCancelCommand | |
 | UndoBeginCancelCommand | |
 | ConfirmCancelOrderCommand | |
