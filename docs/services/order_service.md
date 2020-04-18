@@ -66,7 +66,7 @@
 
 | Target Service | Command | Saga | Description |
 |----|----|----|----|
-| Accounting Service | AuthorizeCommand | Create order | Authorize the consumer's account of this order. |
+| Accounting Service | AuthorizeCommand | Create order | |
 | Accounting Service | ReverseAuthorizationCommand | Cancel order | |
 | Accounting Service | ReviseAuthorizationCommand | Revise order | |
 | Consumer Service | ValidateOrderByConsumerCommand | Create order | |
@@ -90,6 +90,17 @@
 
 ### Inbound Commands
 - Inbound command channel name: `orderService`
+
+| Command | Description |
+|-----|----|
+| RejectOrderCommand | |
+| ApproveOrderCommand | |
+| BeginCancelCommand | |
+| UndoBeginCancelCommand | |
+| ConfirmCancelOrderCommand | |
+| BeginReviseOrderCommand | |
+| UndoBeginReviseOrderCommand | |
+| ConfirmReviseOrderCommand | |
 
 ## Events
 ### Outbound Events
