@@ -29,7 +29,8 @@
 - Aggregate means the core entity of a specific service, like Order entity for the order service, Ticket entity for the kitchen service.
 - One aggregate has one or more events belongs to the aggregate, like TicketCreatedEvent and TicketAcceptedEvent belong to Ticket aggregate.
 - Each event channel belongs to a specific aggregate (each event channel has only one producer).
-- Multiple services may listen to one event channel for the same event (each event channel has one ore more consumer).
+- Multiple services may listen to the same event channel (each event channel has one ore more consumer).
+- One event may trigger multiple operations among multiple services simultaneously.
 
 ### Core Classes
 | Class | Description | Example |
