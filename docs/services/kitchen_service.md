@@ -35,8 +35,21 @@
 
 ## Commands
 ### Outbound Commands
+**None**
+
 ### Inbound Commands
 - Inbound command channel name: `kitchenService`
+
+| Command | Description |
+|-----|----|
+| CreateTicketCommand |
+| ConfirmCreateTicketCommand | 
+| CancelCreateTicketCommand |
+| BeginCancelTicketCommand |
+| ConfirmCancelTicketCommand |
+| UndoBeginCancelTicketCommand |
+| BeginReviseTicketCommand |
+
 
 ## Events
 ### Outbound Events
