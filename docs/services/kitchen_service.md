@@ -42,14 +42,15 @@
 
 | Command | Description |
 |-----|----|
-| CreateTicketCommand |
-| ConfirmCreateTicketCommand | 
-| CancelCreateTicketCommand |
-| BeginCancelTicketCommand |
-| ConfirmCancelTicketCommand |
-| UndoBeginCancelTicketCommand |
-| BeginReviseTicketCommand |
-
+| CreateTicketCommand | |
+| ConfirmCreateTicketCommand | |
+| CancelCreateTicketCommand | |
+| BeginCancelTicketCommand | |
+| ConfirmCancelTicketCommand | |
+| UndoBeginCancelTicketCommand | |
+| BeginReviseTicketCommand | |
+| UndoBeginReviseTicketCommand | |
+| ConfirmReviseTicketCommand | |
 
 ## Events
 ### Outbound Events
