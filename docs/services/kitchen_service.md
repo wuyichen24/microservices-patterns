@@ -56,6 +56,16 @@
 ### Outbound Events
 - Core event entity (Aggregate root entity): Ticket 
 
+| Event | Target Service(s) | Description |
+|----|----|----|
+| TicketCreatedEvent | | |
+| TicketAcceptedEvent | | |
+| TicketPreparationStartedEvent | | |
+| TicketPreparationCompletedEvent | | |
+| TicketPickedUpEvent | | |
+| TicketCancelledEvent | | |
+| TicketRevisedEvent | | |
+
 ### Inbound Events
 
 ### Database
