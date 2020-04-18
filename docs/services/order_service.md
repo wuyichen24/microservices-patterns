@@ -118,7 +118,7 @@
 
 | Source Service | Event | Description |
 |----|----|----|
-| Restaurant Service | RestaurantCreatedEvent | |
+| Restaurant Service | RestaurantCreatedEvent | <li>The Restaurant Service notifies other services about a new restaurant record has been created. <li>The Order Service will create a same new restaurant record in its database correspondingly.  |
 | Restaurant Service | RestaurantMenuRevisedEvent | |
 
 ### Database
