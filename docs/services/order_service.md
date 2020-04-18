@@ -106,6 +106,14 @@
 ### Outbound Events
 - Core event entity (Aggregate root entity): Order 
 
+| Event | Tracker |Description |
+|----|----|----|
+| OrderAuthorizedEvent | | |
+| OrderCancelledEvent | | |
+| OrderRejectedEvent | | |
+| OrderRevisedEvent | | |
+| OrderRevisionProposedEvent | | | 
+
 ### Inbound Events
 
 ### Database
