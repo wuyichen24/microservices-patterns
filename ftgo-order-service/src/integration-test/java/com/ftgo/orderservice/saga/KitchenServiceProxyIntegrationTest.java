@@ -5,6 +5,8 @@ import io.eventuate.tram.inmemory.TramInMemoryConfiguration;
 import io.eventuate.tram.messaging.common.ChannelMapping;
 import io.eventuate.tram.messaging.common.DefaultChannelMapping;
 import io.eventuate.tram.sagas.orchestration.SagaCommandProducer;
+import io.eventuate.tram.sagas.simpledsl.CommandEndpoint;
+import io.eventuate.tram.sagas.simpledsl.CommandEndpointBuilder;
 import io.eventuate.tram.springcloudcontractsupport.EventuateContractVerifierConfiguration;
 import io.eventuate.tram.springcloudcontractsupport.EventuateTramRoutesConfigurer;
 
@@ -23,13 +25,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
-import com.ftgo.orderservice.saga.proxy.KitchenServiceProxy;
 
 import javax.sql.DataSource;
 
@@ -49,9 +51,6 @@ public class KitchenServiceProxyIntegrationTest {
 	@Autowired
 	private SagaMessagingTestHelper sagaMessagingTestHelper;
 
-	@Autowired
-	private KitchenServiceProxy kitchenServiceProxy;
-
 	@Test
 	public void shouldSuccessfullyCreateTicket() {
 		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID,
@@ -62,8 +61,12 @@ public class KitchenServiceProxyIntegrationTest {
 		CreateTicketReply expectedReply = new CreateTicketReply(OrderDetailsMother.ORDER_ID);
 		String sagaType = CreateOrderSaga.class.getName();
 
-		CreateTicketReply reply = sagaMessagingTestHelper
-				.sendAndReceiveCommand(kitchenServiceProxy.create, command,
+		CommandEndpoint<CreateTicketCommand> kitchenServiceCreateTicketCommandEndpoint = CommandEndpointBuilder
+				.forCommand(CreateTicketCommand.class)
+				.withChannel(KitchenServiceChannels.kitchenServiceChannel)
+				.withReply(CreateTicketReply.class).build();      
+		
+		CreateTicketReply reply = sagaMessagingTestHelper.sendAndReceiveCommand(kitchenServiceCreateTicketCommandEndpoint, command,
 						CreateTicketReply.class, sagaType);
 
 		assertEquals(expectedReply, reply);
@@ -102,11 +105,5 @@ public class KitchenServiceProxyIntegrationTest {
 		public SagaCommandProducer sagaCommandProducer() {
 			return new SagaCommandProducer();
 		}
-
-		@Bean
-		public KitchenServiceProxy kitchenServiceProxy() {
-			return new KitchenServiceProxy();
-		}
 	}
-
 }

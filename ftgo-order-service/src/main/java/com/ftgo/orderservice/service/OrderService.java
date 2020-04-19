@@ -27,7 +27,7 @@ import com.ftgo.orderservice.model.RevisedOrder;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSagaData;
-import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
 import com.ftgo.restaurantservice.api.model.MenuItem;
 import com.ftgo.restaurantservice.api.model.RestaurantMenu;
@@ -50,7 +50,7 @@ import static java.util.stream.Collectors.toList;
 public class OrderService {
 	private OrderRepository                   orderRepository;
 	private RestaurantRepository              restaurantRepository;
-	private SagaManager<CreateOrderSagaState> createOrderSagaManager;
+	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData>  cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData>  reviseOrderSagaManager;
 	private OrderDomainEventPublisher         orderAggregateEventPublisher;
@@ -64,7 +64,7 @@ public class OrderService {
 	public OrderService(OrderRepository orderRepository,
 			DomainEventPublisher eventPublisher,
 			RestaurantRepository restaurantRepository,
-			SagaManager<CreateOrderSagaState> createOrderSagaManager,
+			SagaManager<CreateOrderSagaData> createOrderSagaManager,
 			SagaManager<CancelOrderSagaData> cancelOrderSagaManager,
 			SagaManager<ReviseOrderSagaData> reviseOrderSagaManager,
 			OrderDomainEventPublisher orderAggregateEventPublisher,
@@ -101,7 +101,7 @@ public class OrderService {
 
 		OrderDetails orderDetails = new OrderDetails(consumerId, restaurantId, orderLineItems, order.getOrderTotal());
 
-		CreateOrderSagaState data = new CreateOrderSagaState(order.getId(), orderDetails);
+		CreateOrderSagaData data = new CreateOrderSagaData(order.getId(), orderDetails);
 		createOrderSagaManager.create(data, Order.class, order.getId());                                                                                  // instantiates the saga orchestrator,
                                                                                                                                                           // then the saga orchestrator sends a command message to the first saga participant,
 		                                                                                                                                                  // inserts the saga orchestrator in the database.

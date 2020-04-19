@@ -21,11 +21,7 @@ import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSaga;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSagaData;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
-import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
-import com.ftgo.orderservice.saga.proxy.AccountingServiceProxy;
-import com.ftgo.orderservice.saga.proxy.ConsumerServiceProxy;
-import com.ftgo.orderservice.saga.proxy.KitchenServiceProxy;
-import com.ftgo.orderservice.saga.proxy.OrderServiceProxy;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSaga;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
 
@@ -51,7 +47,7 @@ public class OrderServiceConfiguration {
 	public OrderService orderService(RestaurantRepository restaurantRepository,
 			OrderRepository orderRepository,
 			DomainEventPublisher eventPublisher,
-			SagaManager<CreateOrderSagaState> createOrderSagaManager,
+			SagaManager<CreateOrderSagaData> createOrderSagaManager,
 			SagaManager<CancelOrderSagaData> cancelOrderSagaManager,
 			SagaManager<ReviseOrderSagaData> reviseOrderSagaManager,
 			OrderDomainEventPublisher orderAggregateEventPublisher,
@@ -63,16 +59,13 @@ public class OrderServiceConfiguration {
 	}
 
 	@Bean
-	public SagaManager<CreateOrderSagaState> createOrderSagaManager(CreateOrderSaga saga) {
+	public SagaManager<CreateOrderSagaData> createOrderSagaManager(CreateOrderSaga saga) {
 		return new SagaManagerImpl<>(saga);
 	}
 
 	@Bean
-	public CreateOrderSaga createOrderSaga(OrderServiceProxy orderService,
-			ConsumerServiceProxy consumerService,
-			KitchenServiceProxy kitchenServiceProxy,
-			AccountingServiceProxy accountingService) {
-		return new CreateOrderSaga(orderService, consumerService, kitchenServiceProxy, accountingService);
+	public CreateOrderSaga createOrderSaga() {
+		return new CreateOrderSaga();
 	}
 
 	@Bean
@@ -93,26 +86,6 @@ public class OrderServiceConfiguration {
 	@Bean
 	public ReviseOrderSaga reviseOrderSaga() {
 		return new ReviseOrderSaga();
-	}
-
-	@Bean
-	public KitchenServiceProxy kitchenServiceProxy() {
-		return new KitchenServiceProxy();
-	}
-
-	@Bean
-	public OrderServiceProxy orderServiceProxy() {
-		return new OrderServiceProxy();
-	}
-
-	@Bean
-	public ConsumerServiceProxy consumerServiceProxy() {
-		return new ConsumerServiceProxy();
-	}
-
-	@Bean
-	public AccountingServiceProxy accountingServiceProxy() {
-		return new AccountingServiceProxy();
 	}
 
 	@Bean

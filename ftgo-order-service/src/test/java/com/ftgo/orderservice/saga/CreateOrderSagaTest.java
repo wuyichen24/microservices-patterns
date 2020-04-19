@@ -16,33 +16,27 @@ import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.command.model.ApproveOrderCommand;
 import com.ftgo.orderservice.command.model.RejectOrderCommand;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
-import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
-import com.ftgo.orderservice.saga.proxy.*;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 
 import static com.ftgo.orderservice.OrderDetailsMother.*;
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static io.eventuate.tram.sagas.testing.SagaUnitTestSupport.given;
 
 public class CreateOrderSagaTest {
-	private OrderServiceProxy      orderServiceProxy      = new OrderServiceProxy();
-	private KitchenServiceProxy    kitchenServiceProxy    = new KitchenServiceProxy();
-	private ConsumerServiceProxy   consumerServiceProxy   = new ConsumerServiceProxy();
-	private AccountingServiceProxy accountingServiceProxy = new AccountingServiceProxy();
-
 	@BeforeClass
 	public static void initialize() {
 		CommonJsonMapperInitializer.registerMoneyModule();
 	}
 
 	private CreateOrderSaga makeCreateOrderSaga() {
-		return new CreateOrderSaga(orderServiceProxy, consumerServiceProxy, kitchenServiceProxy, accountingServiceProxy);
+		return new CreateOrderSaga();
 	}
 
 	@Test
 	public void shouldCreateOrder() {
 		given().saga(
 				makeCreateOrderSaga(),
-				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
+				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel)
@@ -68,7 +62,7 @@ public class CreateOrderSagaTest {
 	public void shouldRejectOrderDueToConsumerVerificationFailed() {
 		given().saga(
 				makeCreateOrderSaga(),
-				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
+				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel).andGiven()
@@ -81,7 +75,7 @@ public class CreateOrderSagaTest {
 	public void shouldRejectDueToFailedAuthorizxation() {
 		given().saga(
 				makeCreateOrderSaga(),
-				new CreateOrderSagaState(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
+				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
 				.to(ConsumerServiceChannels.consumerServiceChannel)

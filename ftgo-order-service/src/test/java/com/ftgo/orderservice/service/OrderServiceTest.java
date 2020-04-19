@@ -14,7 +14,7 @@ import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSagaData;
-import com.ftgo.orderservice.saga.createorder.CreateOrderSagaState;
+import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
 import com.ftgo.orderservice.service.OrderService;
 
@@ -38,7 +38,7 @@ public class OrderServiceTest {
 	private OrderRepository orderRepository;
 	private DomainEventPublisher eventPublisher;
 	private RestaurantRepository restaurantRepository;
-	private SagaManager<CreateOrderSagaState> createOrderSagaManager;
+	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData> cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData> reviseOrderSagaManager;
 	private OrderDomainEventPublisher orderAggregateEventPublisher;
@@ -79,7 +79,7 @@ public class OrderServiceTest {
 	            Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_NAME)));
 
 		verify(createOrderSagaManager).create(
-				new CreateOrderSagaState(ORDER_ID,
+				new CreateOrderSagaData(ORDER_ID,
 						CHICKEN_VINDALOO_ORDER_DETAILS), Order.class, ORDER_ID);
 	}
 }
