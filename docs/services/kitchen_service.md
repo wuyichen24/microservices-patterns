@@ -35,13 +35,42 @@
 
 ## Commands
 ### Outbound Commands
+**None**
+
 ### Inbound Commands
 - Inbound command channel name: `kitchenService`
+
+| Command | Description |
+|-----|----|
+| CreateTicketCommand | |
+| ConfirmCreateTicketCommand | |
+| CancelCreateTicketCommand | |
+| BeginCancelTicketCommand | |
+| ConfirmCancelTicketCommand | |
+| UndoBeginCancelTicketCommand | |
+| BeginReviseTicketCommand | |
+| UndoBeginReviseTicketCommand | |
+| ConfirmReviseTicketCommand | |
 
 ## Events
 ### Outbound Events
 - Core event entity (Aggregate root entity): Ticket 
 
+| Event | Target Service(s) | Description |
+|----|----|----|
+| TicketCreatedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been created. (*NOT IMPLEMENTED*) |
+| TicketAcceptedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been accepted. (*NOT IMPLEMENTED*) |
+| TicketPreparationStartedEvent | None | <li>The Kitchen Service notifies other services about the food preparation has been started for a ticket. (*NOT IMPLEMENTED*) |
+| TicketPreparationCompletedEvent | None | <li>The Kitchen Service notifies other services about the food preparation is completed for a ticket. (*NOT IMPLEMENTED*) |
+| TicketPickedUpEvent | None | <li>The Kitchen Service notifies other services about the food has been picked up for a ticket. (*NOT IMPLEMENTED*) |
+| TicketCancelledEvent | None | <li>The Kitchen Service notifies other services about a ticket has been cancelled. (*NOT IMPLEMENTED*) |
+| TicketRevisedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been revised. (*NOT IMPLEMENTED*) |
+
 ### Inbound Events
+
+| Source Service | Event | Description |
+|----|----|----|
+| Restaurant Service | RestaurantCreatedEvent | <li>The Restaurant Service notifies other services about a new restaurant record has been created. <li>The Order Service will create a same new restaurant record in its database correspondingly.  |
+| Restaurant Service | RestaurantMenuRevisedEvent | <li>The Restaurant Service notifies other services about a new restaurant's menu has been revised. (*NOT IMPLEMENTED*) <li>The Order Service will revise the same restaurant's menu in its database correspondingly. (*NOT IMPLEMENTED*) |
 
 ### Database

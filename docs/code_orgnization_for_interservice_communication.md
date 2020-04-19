@@ -11,6 +11,7 @@
 ![](diagrams/interservice_communication_command.png)
 
 ### Logic
+- Command is more like one service asks another service to do something.
 - Each command channel belongs to a specific service for all the incoming command to that service (each command channel has only one consumer).
 - Multiple services uses their proxy class to send command messages to a specific command channel (each command channel has one or more producer).
 
@@ -26,10 +27,12 @@
 ![](diagrams/interservice_communication_event.png)
 
 ### Logic
+- Event is more like one service notifies one or more other services about a change.
 - Aggregate means the core entity of a specific service, like Order entity for the order service, Ticket entity for the kitchen service.
 - One aggregate has one or more events belongs to the aggregate, like TicketCreatedEvent and TicketAcceptedEvent belong to Ticket aggregate.
 - Each event channel belongs to a specific aggregate (each event channel has only one producer).
-- Multiple services may listen to one event channel for the same event (each event channel has one ore more consumer).
+- Multiple services may listen to the same event channel (each event channel has one ore more consumer).
+- One event may trigger multiple operations among multiple services simultaneously.
 
 ### Core Classes
 | Class | Description | Example |

@@ -11,7 +11,36 @@
 - [**Database**](#database)
 
 ## Business Logic
-### Ticket Workflow
+### Sagas (Chain Operations)
+- **Create order**
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|----|
+  | 1 | Order Service | | RejectOrderCommand |
+  | 2 | Consumer Service | ValidateOrderByConsumerCommand | |
+  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand |
+  | 4 | Accounting Service | AuthorizeCommand | |
+  | 5 | Kitchen Service | ConfirmCreateTicketCommand | |
+  | 6 | Order Service | ApproveOrderCommand | |
+  
+- **Cancel order**
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|----|
+  | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand |
+  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand |
+  | 3 | Accounting Service | ReverseAuthorizationCommand | |
+  | 4 | Kitchen Service | ConfirmCancelTicketCommand | |
+  | 5 | Order Service | ConfirmCancelOrderCommand | |
+
+- **Revise order**
+  | Step No. | Service | Command | Compensation Command (for rollback) | 
+  |----|----|----|----|
+  | 1 | Order Service | BeginReviseOrderCommand | UndoBeginReviseOrderCommand |
+  | 2 | Kitchen Service | BeginReviseTicketCommand | UndoBeginReviseTicketCommand |
+  | 3 | Accounting Service | ReviseAuthorizationCommand | |
+  | 4 | Kitchen Service | ConfirmReviseTicketCommand | |
+  | 5 | Order Service | ConfirmReviseOrderCommand | |
+
+### Order Workflow
 ![](../diagrams/order_workflow.png)
 
 | State | Description |
@@ -37,29 +66,59 @@
 
 | Target Service | Command | Saga | Description |
 |----|----|----|----|
-| Accounting Service | AuthorizeCommand | Create Order | Authorize the consumer's account of this order. |
-| Accounting Service | ReverseAuthorizationCommand | Cancel Order | |
-| Consumer Service | ValidateOrderByConsumerCommand | Create Order | |
-| Kitchen Service | CreateTicketCommand | Create Order | |
-| Kitchen Service | ConfirmCreateTicketCommand | Create Order | |
-| Kitchen Service | CancelCreateTicketCommand | Create Order | |
-| Kitchen Service | BeginCancelTicketCommand | Cancel Order | |
-| Kitchen Service | UndoBeginCancelTicketCommand | Cancel Order | |
-| Kitchen Service | ConfirmCancelTicketCommand | Cancel Order | |
-| Order Service | RejectOrderCommand | Create Order | |
-| Order Service | ApproveOrderCommand | Create Order | |
-| Order Service | BeginCancelCommand | Cancel Order | |
-| Order Service | UndoBeginCancelCommand | Cancel Order | |
-| Order Service | ConfirmCancelOrderCommand | Cancel Order | |
-
+| Accounting Service | AuthorizeCommand | Create order | |
+| Accounting Service | ReverseAuthorizationCommand | Cancel order | |
+| Accounting Service | ReviseAuthorizationCommand | Revise order | |
+| Consumer Service | ValidateOrderByConsumerCommand | Create order | |
+| Kitchen Service | CreateTicketCommand | Create order | |
+| Kitchen Service | ConfirmCreateTicketCommand | Create order | |
+| Kitchen Service | CancelCreateTicketCommand | Create order | |
+| Kitchen Service | BeginCancelTicketCommand | Cancel order | |
+| Kitchen Service | UndoBeginCancelTicketCommand | Cancel order | |
+| Kitchen Service | ConfirmCancelTicketCommand | Cancel order | |
+| Kitchen Service | BeginReviseTicketCommand | Revise order | |
+| Kitchen Service | UndoBeginReviseTicketCommand | Revise order | |
+| Kitchen Service | ConfirmReviseTicketCommand | Revise order | |
+| Order Service | RejectOrderCommand | Create order | |
+| Order Service | ApproveOrderCommand | Create order | |
+| Order Service | BeginCancelCommand | Cancel order | |
+| Order Service | UndoBeginCancelCommand | Cancel order | |
+| Order Service | ConfirmCancelOrderCommand | Cancel order | |
+| Order Service | BeginReviseOrderCommand | Revise order | |
+| Order Service | UndoBeginReviseOrderCommand | Revise order | |
+| Order Service | ConfirmReviseOrderCommand | Revise order | |
 
 ### Inbound Commands
 - Inbound command channel name: `orderService`
+
+| Command | Description |
+|-----|----|
+| ApproveOrderCommand | |
+| RejectOrderCommand | |
+| BeginCancelCommand | |
+| UndoBeginCancelCommand | |
+| ConfirmCancelOrderCommand | |
+| BeginReviseOrderCommand | |
+| UndoBeginReviseOrderCommand | |
+| ConfirmReviseOrderCommand | |
 
 ## Events
 ### Outbound Events
 - Core event entity (Aggregate root entity): Order 
 
+| Event | Target Service(s) | Description |
+|----|----|----|
+| OrderAuthorizedEvent | | |
+| OrderCancelledEvent | | |
+| OrderRejectedEvent | | |
+| OrderRevisedEvent | | |
+| OrderRevisionProposedEvent | | | 
+
 ### Inbound Events
+
+| Source Service | Event | Description |
+|----|----|----|
+| Restaurant Service | RestaurantCreatedEvent | <li>The Restaurant Service notifies other services about a new restaurant record has been created. <li>The Order Service will create a same new restaurant record in its database correspondingly.  |
+| Restaurant Service | RestaurantMenuRevisedEvent | <li>The Restaurant Service notifies other services about a new restaurant's menu has been revised. (*NOT IMPLEMENTED*) <li>The Order Service will revise the same restaurant's menu in its database correspondingly. (*NOT IMPLEMENTED*) |
 
 ### Database
