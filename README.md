@@ -18,6 +18,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - Accounting Service: Handles billing and payments
    - Kitchen Service: Manages the preparation of orders
    - Order History Service
+   - Delivery Service
 
 ## Technology Stack
 - Core
@@ -29,6 +30,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Database
 
 ## Differences to The Original Source Code
+- Remove all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
 
 ## Getting Started
 
