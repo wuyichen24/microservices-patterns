@@ -18,18 +18,18 @@
   | 1 | Order Service | | RejectOrderCommand | |
   | 2 | Consumer Service | ValidateOrderByConsumerCommand | | Ask the Consumer Service to validate the consumer of this order.<ul><li>Check the consumer is existing in the Consumer Service or not.<li>Validate total amount of this order (*NOT IMPLEMENTED*)</ul> | 
   | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | Ask the Kitchen Service to create a new ticket of this order.<ul><li>The ticket ID will use the order ID.<li>The state of the ticket will be `CREATE_PENDING`</ul> |
-  | 4 | Accounting Service | AuthorizeCommand | | Ask the Accounting Service to authorize the account of the consumer.<ul><li>Check the account of this consumer is disabled or not.</ul> |
+  | 4 | Accounting Service | AuthorizeCommand | | Ask the Accounting Service to authorize the account of the consumer. |
   | 5 | Kitchen Service | ConfirmCreateTicketCommand | | Ask the Kitchen Service to confirm the ticket has been created for this order.<ul><li>Check the ticket is existing in the Kitchen Service or not.<li>Change the state of the ticket from `CREATE_PENDING` to `AWAITING_ACCEPTANCE`</ul> |
-  | 6 | Order Service | ApproveOrderCommand | | Ask the Order Service to approve this order.<ul><li>Change the state of this order from `APPROVAL_PENDING` to `APPROVED`.</ul> |
+  | 6 | Order Service | ApproveOrderCommand | | Ask the Order Service to approve this order.<ul><li>Change the state of the order from `APPROVAL_PENDING` to `APPROVED`.</ul> |
   
 - **Cancel order**
-  | Step No. | Service | Command | Compensation Command (for rollback) | 
-  |----|----|----|----|
-  | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand |
-  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand |
-  | 3 | Accounting Service | ReverseAuthorizationCommand | |
-  | 4 | Kitchen Service | ConfirmCancelTicketCommand | |
-  | 5 | Order Service | ConfirmCancelOrderCommand | |
+  | Step No. | Service | Command | Compensation Command (for rollback) | Description |
+  |----|----|----|----|----|
+  | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand | Ask the Order Service to start cancelling this Order.<ul><li>Change the state of the order to `CANCEL_PENDING`.</ul> |
+  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand | Ask the Kitchen Service to start cancelling the ticket of this order.<ul><li>Change the state of the ticket to `CANCEL_PENDING`.</ul>
+  | 3 | Accounting Service | ReverseAuthorizationCommand | | Ask the Accounting Service to reverse the authorization of the account of the consumer. |
+  | 4 | Kitchen Service | ConfirmCancelTicketCommand | | Ask the Kitchen Service to confirm the ticket has been cancelled for this order.<ul><li>Change the state of the ticket from `CANCEL_PENDING` to `CANCELLED`.</ul> |
+  | 5 | Order Service | ConfirmCancelOrderCommand | Ask the Order Service to confirm the order has been cancelled<ul><li>Change the state of the order from `CANCEL_PENDING` to `CANCELLED`.</ul> |
 
 - **Revise order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
