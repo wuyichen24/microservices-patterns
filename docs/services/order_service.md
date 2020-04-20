@@ -13,14 +13,14 @@
 ## Business Logic
 ### Sagas (Chain Operations)
 - **Create order**
-  | Step No. | Service | Command | Compensation Command (for rollback) | 
-  |----|----|----|----|
-  | 1 | Order Service | | RejectOrderCommand |
-  | 2 | Consumer Service | ValidateOrderByConsumerCommand | |
-  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand |
-  | 4 | Accounting Service | AuthorizeCommand | |
-  | 5 | Kitchen Service | ConfirmCreateTicketCommand | |
-  | 6 | Order Service | ApproveOrderCommand | |
+  | Step No. | Service | Command | Compensation Command (for rollback) | Description |
+  |----|----|----|----|----|
+  | 1 | Order Service | | RejectOrderCommand | |
+  | 2 | Consumer Service | ValidateOrderByConsumerCommand | | Ask the Consumer Service to validate the consumer of this order.<li>Check the consumer of this order is existing in the Consumer Service. <li>Validate total amount of this order (*NOT IMPLEMENTED*) | 
+  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | |
+  | 4 | Accounting Service | AuthorizeCommand | | |
+  | 5 | Kitchen Service | ConfirmCreateTicketCommand | | |
+  | 6 | Order Service | ApproveOrderCommand | | |
   
 - **Cancel order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
