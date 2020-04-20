@@ -26,19 +26,19 @@
   | Step No. | Service | Command | Compensation Command (for rollback) | Description |
   |----|----|----|----|----|
   | 1 | Order Service | BeginCancelCommand | UndoBeginCancelCommand | Ask the Order Service to start cancelling this Order.<ul><li>Change the state of the order to `CANCEL_PENDING`.</ul> |
-  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand | Ask the Kitchen Service to start cancelling the ticket of this order.<ul><li>Change the state of the ticket to `CANCEL_PENDING`.</ul>
+  | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand | Ask the Kitchen Service to start cancelling the ticket of this order.<ul><li>Change the state of the ticket to `CANCEL_PENDING`.</ul> |
   | 3 | Accounting Service | ReverseAuthorizationCommand | | Ask the Accounting Service to reverse the authorization of the account of the consumer. |
   | 4 | Kitchen Service | ConfirmCancelTicketCommand | | Ask the Kitchen Service to confirm the ticket has been cancelled for this order.<ul><li>Change the state of the ticket from `CANCEL_PENDING` to `CANCELLED`.</ul> |
   | 5 | Order Service | ConfirmCancelOrderCommand | | Ask the Order Service to confirm the order has been cancelled<ul><li>Change the state of the order from `CANCEL_PENDING` to `CANCELLED`.</ul> |
 
 - **Revise order**
-  | Step No. | Service | Command | Compensation Command (for rollback) | 
-  |----|----|----|----|
-  | 1 | Order Service | BeginReviseOrderCommand | UndoBeginReviseOrderCommand |
-  | 2 | Kitchen Service | BeginReviseTicketCommand | UndoBeginReviseTicketCommand |
-  | 3 | Accounting Service | ReviseAuthorizationCommand | |
-  | 4 | Kitchen Service | ConfirmReviseTicketCommand | |
-  | 5 | Order Service | ConfirmReviseOrderCommand | |
+  | Step No. | Service | Command | Compensation Command (for rollback) | Description |
+  |----|----|----|----|----|
+  | 1 | Order Service | BeginReviseOrderCommand | UndoBeginReviseOrderCommand | Ask the Order Service to start revising this Order.<ul><li>Change the state of the order to `REVISION_PENDING`.</ul> |
+  | 2 | Kitchen Service | BeginReviseTicketCommand | UndoBeginReviseTicketCommand | Ask the Kitchen Service to start revising the ticket of this order.<ul><li>Change the state of the ticket to `REVISION_PENDING`.</ul> |
+  | 3 | Accounting Service | ReviseAuthorizationCommand | | Ask the Accounting Service to revise the authorization of the account of the consumer. |
+  | 4 | Kitchen Service | ConfirmReviseTicketCommand | | Ask the Kitchen Service to confirm the ticket has been revised for this order.<ul><li>Change the state of the ticket from `REVISION_PENDING` to the previous state before revising.</ul> |
+  | 5 | Order Service | ConfirmReviseOrderCommand | | Ask the Order Service to confirm the order has been revised<ul><li>Change the state of the order from `REVISION_PENDING` to the previous state before revising.</ul> |
 
 ### Order Workflow
 ![](../diagrams/order_workflow.png)
