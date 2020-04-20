@@ -29,7 +29,7 @@
   | 2 | Kitchen Service | BeginCancelTicketCommand | UndoBeginCancelTicketCommand | Ask the Kitchen Service to start cancelling the ticket of this order.<ul><li>Change the state of the ticket to `CANCEL_PENDING`.</ul>
   | 3 | Accounting Service | ReverseAuthorizationCommand | | Ask the Accounting Service to reverse the authorization of the account of the consumer. |
   | 4 | Kitchen Service | ConfirmCancelTicketCommand | | Ask the Kitchen Service to confirm the ticket has been cancelled for this order.<ul><li>Change the state of the ticket from `CANCEL_PENDING` to `CANCELLED`.</ul> |
-  | 5 | Order Service | ConfirmCancelOrderCommand | Ask the Order Service to confirm the order has been cancelled<ul><li>Change the state of the order from `CANCEL_PENDING` to `CANCELLED`.</ul> |
+  | 5 | Order Service | ConfirmCancelOrderCommand | | Ask the Order Service to confirm the order has been cancelled<ul><li>Change the state of the order from `CANCEL_PENDING` to `CANCELLED`.</ul> |
 
 - **Revise order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
