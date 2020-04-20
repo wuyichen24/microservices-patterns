@@ -17,9 +17,9 @@
   |----|----|----|----|----|
   | 1 | Order Service | | RejectOrderCommand | |
   | 2 | Consumer Service | ValidateOrderByConsumerCommand | | Ask the Consumer Service to validate the consumer of this order.<ul><li>Check the consumer is existing in the Consumer Service or not.<li>Validate total amount of this order (*NOT IMPLEMENTED*)</ul> | 
-  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | Ask the Kitchen Service to create a new ticket of this order.<ul><li>The ticket ID will use the order ID.</ul> |
+  | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | Ask the Kitchen Service to create a new ticket of this order.<ul><li>The ticket ID will use the order ID.<li>The state of the ticket will be `CREATE_PENDING`</ul> |
   | 4 | Accounting Service | AuthorizeCommand | | Ask the Accounting Service to authorize the account of the consumer.<ul><li>Check the account of this consumer is disabled or not.</ul> |
-  | 5 | Kitchen Service | ConfirmCreateTicketCommand | | Ask the Kitchen Service to confirm the ticket has been created for this order.<ul><li>Check the ticket is existing in the Kitchen Service or not.</ul> |
+  | 5 | Kitchen Service | ConfirmCreateTicketCommand | | Ask the Kitchen Service to confirm the ticket has been created for this order.<ul><li>Check the ticket is existing in the Kitchen Service or not.<li>Change the state of the ticket from `CREATE_PENDING` to `AWAITING_ACCEPTANCE`</ul> |
   | 6 | Order Service | ApproveOrderCommand | | |
   
 - **Cancel order**
