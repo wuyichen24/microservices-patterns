@@ -20,7 +20,7 @@
   | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | Ask the Kitchen Service to create a new ticket of this order.<ul><li>The ticket ID will use the order ID.<li>The state of the ticket will be `CREATE_PENDING`</ul> |
   | 4 | Accounting Service | AuthorizeCommand | | Ask the Accounting Service to authorize the account of the consumer.<ul><li>Check the account of this consumer is disabled or not.</ul> |
   | 5 | Kitchen Service | ConfirmCreateTicketCommand | | Ask the Kitchen Service to confirm the ticket has been created for this order.<ul><li>Check the ticket is existing in the Kitchen Service or not.<li>Change the state of the ticket from `CREATE_PENDING` to `AWAITING_ACCEPTANCE`</ul> |
-  | 6 | Order Service | ApproveOrderCommand | | |
+  | 6 | Order Service | ApproveOrderCommand | | Ask the Order Service to approve this order.<ul><li>Change the state of this order from `APPROVAL_PENDING` to `APPROVED`.</ul> |
   
 - **Cancel order**
   | Step No. | Service | Command | Compensation Command (for rollback) | 
