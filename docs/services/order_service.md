@@ -18,7 +18,7 @@
   | 1 | Order Service | | RejectOrderCommand | |
   | 2 | Consumer Service | ValidateOrderByConsumerCommand | | Ask the Consumer Service to validate the consumer of this order.<ul><li>Check the consumer is existing in the Consumer Service. <li>Validate total amount of this order (*NOT IMPLEMENTED*)</ul> | 
   | 3 | Kitchen Service | CreateTicketCommand | CancelCreateTicketCommand | Ask the Kitchen Service to create a new ticket of this order. |
-  | 4 | Accounting Service | AuthorizeCommand | | |
+  | 4 | Accounting Service | AuthorizeCommand | | Ask the Accounting Service to authorize the account of the consumer.<ul><li>Check the account of this consumer is disabled or not.</ul> |
   | 5 | Kitchen Service | ConfirmCreateTicketCommand | | |
   | 6 | Order Service | ApproveOrderCommand | | |
   
