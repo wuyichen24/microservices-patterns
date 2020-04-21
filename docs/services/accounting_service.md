@@ -34,4 +34,8 @@
 ### Outbound Events
 ### Inbound Events
 
+| Source Service | Event | Description |
+|----|----|----|
+| Consumer Service | ConsumerCreatedEvent | <li>The Consumer Service notifies other services about a new consumer record has been created.<li>The Accounting Service will create a new account record for the new consumer record. |
+   
 ### Database
