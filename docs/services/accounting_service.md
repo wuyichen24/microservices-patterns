@@ -19,7 +19,16 @@
 
 ## Commands
 ### Outbound Commands
+**None**
+
 ### Inbound Commands
+- Inbound command channel name: `accountingService`
+
+| Command | Description |
+|-----|----|
+| AuthorizeCommand | |
+| ReverseAuthorizationCommand | |
+| ReviseAuthorizationCommand | |
 
 ## Events
 ### Outbound Events
