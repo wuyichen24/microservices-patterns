@@ -32,6 +32,13 @@
 
 ## Events
 ### Outbound Events
+
+| Event | Target Service(s) | Description |
+|----|----|----|
+| AccountAuthorizationFailedEvent | None | <li>The Accounting Service notifies other services about the authorization of an account failed. |
+| AccountAuthorizedEvent | None | <li>The Accounting Service notifies other services about the authorization of an account successed |
+| AccountCreatedEvent | None | <li>The Accounting Service notifies other services about an account has been created. |
+
 ### Inbound Events
 
 | Source Service | Event | Description |
