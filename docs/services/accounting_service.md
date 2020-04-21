@@ -15,7 +15,7 @@
 ## APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
-| | | | | |
+| GET | `/accounts//{accountId}` | | `GetAccountResponse` JSON | Get an account by account ID. |
 
 ## Commands
 ### Outbound Commands
