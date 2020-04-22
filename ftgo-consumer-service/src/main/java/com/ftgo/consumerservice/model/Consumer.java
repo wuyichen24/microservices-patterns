@@ -30,7 +30,7 @@ public class Consumer {
 	}
 
 	public void validateOrderByConsumer(Money orderTotal) {
-		// implement some business logic
+		// TODO: implement some business logic
 	}
 
 	public Long getId() {

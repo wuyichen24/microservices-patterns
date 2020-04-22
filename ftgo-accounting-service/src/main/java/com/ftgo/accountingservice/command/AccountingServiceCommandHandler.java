@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ftgo.accountingservice.command.model.AuthorizeCommandInternal;
 import com.ftgo.accountingservice.command.model.ReverseAuthorizationCommandInternal;
 import com.ftgo.accountingservice.command.model.ReviseAuthorizationCommandInternal;
-import com.ftgo.accountingservice.domain.*;
 import com.ftgo.accountingservice.exception.AccountDisabledException;
 import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountDisabledReply;
@@ -39,10 +38,12 @@ public class AccountingServiceCommandHandler {
 	public void authorize(CommandMessage<AuthorizeCommand> cm) {
 		AuthorizeCommand command = cm.getCommand();
 
-		accountRepository.update(Long.toString(command.getConsumerId()), makeAuthorizeCommandInternal(command),
-				replyingTo(cm).catching(AccountDisabledException.class, () -> withFailure(new AccountDisabledReply()))
-						.build());
-	}
+		accountRepository.update(Long.toString(command.getConsumerId()),                                                         // the id of the aggregate to update
+				makeAuthorizeCommandInternal(command),                                                                           // the command to process
+				replyingTo(cm).catching(AccountDisabledException.class, () -> withFailure(new AccountDisabledReply())).build()); // options for updating:
+	}                                                                                                                            //    1. Use the message id as an idempotency key to ensure that the message is processed exactly once.
+	                                                                                                                             //    2. Add a SagaReplyRequestedEvent pseudo event to the list of events saved in the event store. (for sending a reply to the CreateOrderSaga’s reply channel.)
+	                                                                                                                             //    3. Send an AccountDisabledReply instead of the default error reply when the aggregate throws an AccountDisabledException.
 
 	public void reverseAuthorization(CommandMessage<ReverseAuthorizationCommand> cm) {
 		ReverseAuthorizationCommand command = cm.getCommand();
@@ -61,8 +62,7 @@ public class AccountingServiceCommandHandler {
 	}
 
 	private AuthorizeCommandInternal makeAuthorizeCommandInternal(AuthorizeCommand command) {
-		return new AuthorizeCommandInternal(Long.toString(command.getConsumerId()), Long.toString(command.getOrderId()),
-				command.getOrderTotal());
+		return new AuthorizeCommandInternal(Long.toString(command.getConsumerId()), Long.toString(command.getOrderId()),command.getOrderTotal());
 	}
 
 	private ReverseAuthorizationCommandInternal makeReverseAuthorizeCommandInternal(
