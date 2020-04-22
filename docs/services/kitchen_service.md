@@ -58,13 +58,13 @@
 
 | Event | Target Service(s) | Description |
 |----|----|----|
-| TicketCreatedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been created. (*NOT IMPLEMENTED*) |
-| TicketAcceptedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been accepted. (*NOT IMPLEMENTED*) |
-| TicketPreparationStartedEvent | None | <li>The Kitchen Service notifies other services about the food preparation has been started for a ticket. (*NOT IMPLEMENTED*) |
-| TicketPreparationCompletedEvent | None | <li>The Kitchen Service notifies other services about the food preparation is completed for a ticket. (*NOT IMPLEMENTED*) |
-| TicketPickedUpEvent | None | <li>The Kitchen Service notifies other services about the food has been picked up for a ticket. (*NOT IMPLEMENTED*) |
-| TicketCancelledEvent | None | <li>The Kitchen Service notifies other services about a ticket has been cancelled. (*NOT IMPLEMENTED*) |
-| TicketRevisedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been revised. (*NOT IMPLEMENTED*) |
+| TicketCreatedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been created. |
+| TicketAcceptedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been accepted. |
+| TicketPreparationStartedEvent | None | <li>The Kitchen Service notifies other services about the food preparation has been started for a ticket. |
+| TicketPreparationCompletedEvent | None | <li>The Kitchen Service notifies other services about the food preparation is completed for a ticket. |
+| TicketPickedUpEvent | None | <li>The Kitchen Service notifies other services about the food has been picked up for a ticket. |
+| TicketCancelledEvent | None | <li>The Kitchen Service notifies other services about a ticket has been cancelled. |
+| TicketRevisedEvent | None | <li>The Kitchen Service notifies other services about a ticket has been revised. |
 
 ### Inbound Events
 
