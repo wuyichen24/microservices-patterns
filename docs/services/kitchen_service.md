@@ -74,3 +74,15 @@
 | Restaurant Service | RestaurantMenuRevisedEvent | <li>The Restaurant Service notifies other services about a new restaurant's menu has been revised. (*NOT IMPLEMENTED*) <li>The Order Service will revise the same restaurant's menu in its database correspondingly. (*NOT IMPLEMENTED*) |
 
 ### Database
+- **tickets**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | id |  bigint(20) | primary key |
+  | accept_time | datetime | |
+  | picked_up_time | datetime | |
+  | preparing_time | datetime | |
+  | previous_state | int(11) | |
+  | ready_by | datetime | |
+  | ready_for_pickup_time | datetime | |
+  | restaurant_id | bigint(20) | |
+  | state | varchar(255) | |
