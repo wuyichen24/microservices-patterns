@@ -83,6 +83,6 @@
   | preparing_time | datetime | |
   | previous_state | int(11) | |
   | ready_by | datetime | |
-  | ready_for_pickup_time | |
+  | ready_for_pickup_time | datetime | |
   | restaurant_id | bigint(20) | |
   | state | varchar(255) | |
