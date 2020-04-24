@@ -3,7 +3,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
         http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
-    <embeddable class="net.chrisrichardson.ftgo.common.Money" access="FIELD">
+    <embeddable class="com.ftgo.common.model.Money" access="FIELD">
         <attributes>
             <basic name="amount">
                 <column name="amount"/>

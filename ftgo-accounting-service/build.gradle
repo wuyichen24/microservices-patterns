@@ -3,19 +3,20 @@ apply plugin: FtgoServicePlugin
 dependencies {
     compile project(":ftgo-accounting-service-api")
     compile project(":common-swagger")
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-event-sourcing-support:$eventuateTramSagasVersion"
-
+    
+    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
+    compile "io.eventuate.local.java:eventuate-local-java-jdbc:${eventuateLocalVersion}"
+	compile "io.eventuate.tram.core:eventuate-tram-events:$eventuateTramVersion"
     compile "io.eventuate.tram.core:eventuate-tram-jdbc-kafka:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-events:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-messaging:$eventuateTramVersion"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-simple-dsl:$eventuateTramSagasVersion"
-
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-event-sourcing-support:$eventuateTramSagasVersion"
+	
     compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    
     compile 'javax.el:javax.el-api:2.2.5'
-
-    compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"
-    compile "io.eventuate.local.java:eventuate-local-java-jdbc:${eventuateLocalVersion}"
 
     testCompile "io.eventuate.client.java:eventuate-client-java-jdbc:$eventuateClientVersion"
     testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
