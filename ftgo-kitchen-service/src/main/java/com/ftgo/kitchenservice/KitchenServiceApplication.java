@@ -14,6 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 import com.ftgo.kitchenservice.domain.KitchenServiceWebConfiguration;
 import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
+import com.ftgo.kitchenservice.model.Ticket;
+import com.ftgo.kitchenservice.repository.TicketRepository;
 
 /**
  * The bootstrap class for the kitchen service.
@@ -24,10 +26,9 @@ import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
  * @since   1.0
  */
 @SpringBootApplication
-@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class,
-		TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
-@EntityScan(basePackages = {"com.ftgo.kitchenservice.model"})
-@EnableJpaRepositories(basePackages = {"com.ftgo.kitchenservice.repository"})
+@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
+@EntityScan(basePackageClasses = {Ticket.class})
+@EnableJpaRepositories(basePackageClasses = {TicketRepository.class})
 public class KitchenServiceApplication {
 	@Bean
 	public ChannelMapping channelMapping() {

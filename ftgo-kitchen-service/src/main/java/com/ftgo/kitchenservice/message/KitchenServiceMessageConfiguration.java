@@ -16,7 +16,7 @@ import com.ftgo.kitchenservice.domain.KitchenDomainConfiguration;
 import com.ftgo.kitchenservice.event.KitchenServiceEventConsumer;
 
 @Configuration
-@Import({ KitchenDomainConfiguration.class, SagaParticipantConfiguration.class, CommonConfiguration.class })
+@Import({ KitchenDomainConfiguration.class, SagaParticipantConfiguration.class, CommonConfiguration.class, DomainEventDispatcherFactory.class, SagaCommandDispatcherFactory.class })
 public class KitchenServiceMessageConfiguration {
 	@Bean
 	public KitchenServiceEventConsumer ticketEventConsumer() {

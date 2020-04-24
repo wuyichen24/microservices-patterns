@@ -16,11 +16,7 @@ import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-@Import({AccountingServiceMessageConfiguration.class, 
-		AccountingWebConfiguration.class,
-        TramCommandProducerConfiguration.class,
-        EventuateDriverConfiguration.class,
-        TramJdbcKafkaConfiguration.class})
+@Import({AccountingServiceMessageConfiguration.class, AccountingWebConfiguration.class, TramCommandProducerConfiguration.class, EventuateDriverConfiguration.class, TramJdbcKafkaConfiguration.class})
 public class AccountingServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccountingServiceApplication.class, args);
