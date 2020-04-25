@@ -12,4 +12,5 @@
      | `java_package` | |
      | `java_outer_classname` | |
      
-- Command for generating stub: `./gradlew :ftgo-order-service:generateProto`
+- Command for generating stub
+  `./gradlew :ftgo-order-service:generateProto`
