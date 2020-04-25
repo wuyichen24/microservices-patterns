@@ -31,7 +31,7 @@ dependencyManagement {
 
 contracts {
     contractsDslDir = new File("../ftgo-order-service-contracts/src/main/resources/contracts")
-    packageWithBaseClasses = 'net.chrisrichardson.ftgo.orderservice.contract'
+    packageWithBaseClasses = 'com.ftgo.orderservice.contract'
     generatedTestSourcesDir = project.file("${project.buildDir}/generated-integration-test-sources/contracts")
 }
 
@@ -151,9 +151,9 @@ dependencies {
 
     // Added this stuff
 
-    testCompile "net.chrisrichardson.ftgo:ftgo-accounting-service-contracts:unspecified:stubs"
-    testCompile "net.chrisrichardson.ftgo:ftgo-consumer-service-contracts:unspecified:stubs"
-    testCompile "net.chrisrichardson.ftgo:ftgo-kitchen-service-contracts:unspecified:stubs"
+    testCompile "microservices-patterns:ftgo-accounting-service-contracts:unspecified:stubs"
+    testCompile "microservices-patterns:ftgo-consumer-service-contracts:unspecified:stubs"
+    testCompile "microservices-patterns.ftgo:ftgo-kitchen-service-contracts:unspecified:stubs"
     testCompile "org.springframework.cloud:spring-cloud-contract-wiremock"
     testCompile "org.springframework.cloud:spring-cloud-starter-contract-stub-runner"
     testCompile 'io.rest-assured:rest-assured:3.0.6'

@@ -3,20 +3,12 @@ package com.ftgo.orderservice.grpc;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ftgo.common.model.Address;
-import com.ftgo.orderservice.api.controller.model.CancelOrderRequest;
-import com.ftgo.orderservice.api.controller.model.CancelOrderResponse;
-import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import com.ftgo.orderservice.api.controller.model.CreateOrderRequest.LineItem;
-import com.ftgo.orderservice.api.controller.model.CreateOrderResponse;
-import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
-import com.ftgo.orderservice.api.controller.model.ReviseOrderResponse;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.model.DeliveryInformation;
 import com.ftgo.orderservice.model.Order;
@@ -34,9 +26,16 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * The gRPC server of the order service.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/24/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderServiceServer {
-	private static final Logger logger = LoggerFactory
-			.getLogger(OrderServiceServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(OrderServiceServer.class);
 
 	private int port = 50051;
 	private Server server;
@@ -48,9 +47,8 @@ public class OrderServiceServer {
 
 	@PostConstruct
 	public void start() throws IOException {
-		server = ServerBuilder.forPort(port).addService((BindableService) new OrderServiceImpl())
-				.build().start();
-		logger.info("Server started, listening on " + port);
+		server = ServerBuilder.forPort(port).addService((BindableService) new OrderServiceImpl()).build().start();
+		logger.info("Server started, listening on {}", port);
 	}
 
 	@PreDestroy
@@ -62,48 +60,56 @@ public class OrderServiceServer {
 		}
 	}
 
-	private class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
-
+	/**
+	 * The implementation of the remote methods.
+	 * 
+	 * @author  Wuyi Chen
+	 * @date    04/24/2020
+	 * @version 1.0
+	 * @since   1.0
+	 */
+	public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
 		@Override
-		public void createOrder(CreateOrderRequest req, StreamObserver<CreateOrderResponse> responseObserver) {
-			List<LineItem> lineItemsList = req.getLineItems();
-			Order order = orderService.createOrder(
-					req.getConsumerId(),
-					req.getRestaurantId(),
-					new DeliveryInformation(
-							req.getDeliveryTime(),
-							makeAddress(req.getDeliveryAddress())),
-					lineItemsList
-							.stream()
-							.map(x -> new MenuItemIdAndQuantity(x
-									.getMenuItemId(), x.getQuantity()))
-							.collect(toList()));
-			CreateOrderResponse reply = CreateOrderResponse.newBuilder().setOrderId(order.getId()).build();
-			responseObserver.onNext(reply);
-			responseObserver.onCompleted();
-		}
+		public void createOrder(OrderServiceProto.CreateOrderRequest request, StreamObserver<OrderServiceProto.CreateOrderReply> responseObserver) {
+			List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> lineItemsList = request.getLineItemsList();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
+			LocalDateTime deliveryTime = LocalDateTime.parse(request.getDeliveryTime(), formatter);
 
-		private Address makeAddress(Address address) {
-			return new Address(address.getStreet1(),
-					nullIfBlank(address.getStreet2()), address.getCity(),
-					address.getState(), address.getZip());
-		}
-
-		@Override
-		public void cancelOrder(CancelOrderRequest req, StreamObserver<CancelOrderResponse> responseObserver) {
-			CancelOrderResponse reply = CancelOrderResponse.newBuilder().setMessage("Hello " + req.getName()).build();
+			Order order = orderService.createOrder(request.getConsumerId(), request.getRestaurantId(),
+					new DeliveryInformation(deliveryTime, convertAddress(request.getDeliveryAddress())),
+					lineItemsList.stream().map(x -> new MenuItemIdAndQuantity(x.getMenuItemId(), x.getQuantity())).collect(toList()));
+			OrderServiceProto.CreateOrderReply reply = OrderServiceProto.CreateOrderReply.newBuilder().setOrderId(order.getId()).build();
 			responseObserver.onNext(reply);
 			responseObserver.onCompleted();
 		}
 
 		@Override
-		public void reviseOrder(ReviseOrderRequest req, StreamObserver<ReviseOrderResponse> responseObserver) {
-			ReviseOrderResponse reply = ReviseOrderResponse.newBuilder().setMessage("Hello " + req.getName()).build();
+		public void cancelOrder(OrderServiceProto.CancelOrderRequest request, StreamObserver<OrderServiceProto.CancelOrderReply> responseObserver) {
+			OrderServiceProto.CancelOrderReply reply = OrderServiceProto.CancelOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
+			responseObserver.onNext(reply);
+			responseObserver.onCompleted();
+		}
+
+		@Override
+		public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request, StreamObserver<OrderServiceProto.ReviseOrderReply> responseObserver) {
+			OrderServiceProto.ReviseOrderReply reply = OrderServiceProto.ReviseOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
 			responseObserver.onNext(reply);
 			responseObserver.onCompleted();
 		}
 	}
 
+	/**
+	 * Convert OrderServiceProto.Address to com.ftgo.common.model.Address.
+	 * 
+	 * @param  address
+	 *         The object of {@code OrderServiceProto.Address}
+	 *         
+	 * @return  The object of {@code com.ftgo.common.model.Address}
+	 */
+	private Address convertAddress(OrderServiceProto.Address address) {
+		return new Address(address.getStreet1(), nullIfBlank(address.getStreet2()), address.getCity(), address.getState(), address.getZip());
+	}
+	
 	private String nullIfBlank(String s) {
 		return StringUtils.isBlank(s) ? null : s;
 	}

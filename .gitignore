@@ -11,3 +11,5 @@ bin/**
 /build/
 /buildSrc/**
 /buildSrc/build/**
+**/build/
+**/*.bin

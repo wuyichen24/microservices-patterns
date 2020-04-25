@@ -11,7 +11,7 @@ import com.ftgo.orderservice.event.OrderServiceEventConsumer;
 import com.ftgo.orderservice.service.OrderService;
 
 @Configuration
-@Import({ OrderServiceWithRepositoriesConfiguration.class })
+@Import({ OrderServiceWithRepositoriesConfiguration.class, DomainEventDispatcherFactory.class })
 public class OrderServiceMessageConfiguration {
 	@Bean
 	public OrderServiceEventConsumer orderEventConsumer(OrderService orderService) {
