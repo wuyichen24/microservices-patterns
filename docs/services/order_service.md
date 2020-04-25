@@ -138,3 +138,12 @@
   | restaurant_id | bigint(20) | |
   | state | varchar(255) | | 
   | version | bigint(20) | | 
+
+- **order_line_items**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | order_id | bigint(20) | MUL |
+  | menu_item_id | varchar(255) | |
+  | name | varchar(255) | 
+  | price | decimal(19,2) | | 
+  | quantity | int(11) | |
