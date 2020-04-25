@@ -122,3 +122,19 @@
 | Restaurant Service | RestaurantMenuRevisedEvent | <li>The Restaurant Service notifies other services about a new restaurant's menu has been revised. (*NOT IMPLEMENTED*) <li>The Order Service will revise the same restaurant's menu in its database correspondingly. (*NOT IMPLEMENTED*) |
 
 ### Database
+- **order**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI | 
+  | consumer_id | bigint(20) |
+  | city | varchar(255) | |
+  | delivery_state | varchar(255) | |
+  | street1 | varchar(255) | |
+  | street2 | varchar(255) | |
+  | zip | varchar(255) | |
+  | delivery_time | datetime | |
+  | amount | decimal(19,2) | |
+  | payment_token | varchar(255) | |
+  | restaurant_id | bigint(20) | |
+  | state | varchar(255) | | 
+  | version | bigint(20) | | 
