@@ -77,7 +77,7 @@
 - **tickets**
   | **Column** | **Type** | **Properties** |
   |----|----|----|
-  | id |  bigint(20) | primary key |
+  | id |  bigint(20) | PRI |
   | accept_time | datetime | |
   | picked_up_time | datetime | |
   | preparing_time | datetime | |
@@ -86,3 +86,24 @@
   | ready_for_pickup_time | datetime | |
   | restaurant_id | bigint(20) | |
   | state | varchar(255) | |
+
+- **ticket_line_items**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | ticket_id | bigint(20) | MUL |
+  | menu_item_id | varchar(255) | |
+  | name | varchar(255) | |
+  | quantity | int(11) | |
+
+- **kitchen_service_restaurants**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI |
+
+- **kitchen_service_restaurant_menu_items**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | restaurant_id | bigint(20) | MUL |
+  | id | varchar(255) | |
+  | name | varchar(255)| |
+  | amount | decimal(19,2) | |
