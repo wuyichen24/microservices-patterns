@@ -31,6 +31,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 
 ## Differences to The Original Source Code
 - Remove all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
+- Regenerate the stub for the gRPC server in the Order Service (The gRPC code is incompleted in the original source code and was causing issues when starting the Order Service).
 
 ## Getting Started
 
