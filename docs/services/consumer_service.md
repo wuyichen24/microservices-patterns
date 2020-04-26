@@ -35,6 +35,11 @@
 
 ## Events
 ### Outbound Events
+| Event | Target Service(s) | Description |
+|----|----|----|
+| ConsumerCreatedEvent | | |
+
 ### Inbound Events
+**None**
 
 ### Database
