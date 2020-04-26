@@ -2,6 +2,8 @@
 
 - [**Business Logic**](#business-logic)
 - [**APIs**](#apis)
+   - [RESTful APIs](#restful-apis)
+   - [gRPC APIs](#grpc-apis)
 - [**Commands**](#commands)
    - [Outbound Commands](#outbound-commands)
    - [Inbound Commands](#inbound-commands)
@@ -13,9 +15,13 @@
 ## Business Logic
 
 ## APIs
+### RESTful APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/accounts/{accountId}` | | `GetAccountResponse` JSON | Get an account by account ID. |
+
+### gRPC APIs
+**None**
 
 ## Commands
 ### Outbound Commands
