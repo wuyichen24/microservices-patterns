@@ -2,6 +2,8 @@
 
 - [**Business Logic**](#business-logic)
 - [**APIs**](#apis)
+   - [RESTful APIs](#restful-apis)
+   - [gRPC APIs](#grpc-apis)
 - [**Commands**](#commands)
    - [Outbound Commands](#outbound-commands)
    - [Inbound Commands](#inbound-commands)
@@ -53,13 +55,20 @@
 | **REVISION_PENDING** | The order start to be revised. Wait for other services finish their corresponding operations for revising the order. |
 
 ## APIs
-
+### RESTful APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | Add a new order. |
 | GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get an order by order ID. |
 | POST | `/orders/{orderId}/cancel` | | `GetOrderResponse` JSON | Cancel an order by order ID. |
 | POST | `/orders/{orderId}/revise` | | `GetOrderResponse` JSON | Revise an order by order ID. |
+
+### gRPC APIs
+| Method | Request | Response | Description |
+|----|----|----|----|
+| createOrder | `CreateOrderRequest` Object | `CreateOrderReply` Object | Add a new order. |
+| cancelOrder | `CancelOrderRequest` Object | `CancelOrderReply` Object | Cancel an order by order ID. |
+| reviseOrder | `ReviseOrderRequest` Object | `ReviseOrderReply` Object | Revise an order by order ID. |
 
 ## Commands
 ### Outbound Commands
