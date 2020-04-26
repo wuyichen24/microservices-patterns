@@ -43,3 +43,9 @@
 **None**
 
 ### Database
+- **consumer**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI | 
+  | first_name | varchar(255) | | 
+  | last_name | varchar(255) | | 
