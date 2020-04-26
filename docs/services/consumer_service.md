@@ -18,13 +18,20 @@
 ### RESTful APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
-| | | | | |
+| POST | `/consumers` | `CreateConsumerRequest` JSON | `CreateConsumerResponse` JSON | Add a new consumer. |
+| GET | `/consumers/{consumerId}` | | `GetConsumerResponse` JSON | Get a consumer by consumer ID. |
 
 ### gRPC APIs
+**None**
 
 ## Commands
 ### Outbound Commands
 ### Inbound Commands
+- Inbound command channel name: consumerService
+
+| Command | Description |
+|----|----|
+| ValidateOrderByConsumerCommand | |
 
 ## Events
 ### Outbound Events
