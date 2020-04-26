@@ -2,6 +2,8 @@
 
 - [**Business Logic**](#business-logic)
 - [**APIs**](#apis)
+   - [RESTful APIs](#restful-apis)
+   - [gRPC APIs](#grpc-apis)
 - [**Commands**](#commands)
    - [Outbound Commands](#outbound-commands)
    - [Inbound Commands](#inbound-commands)
@@ -27,11 +29,14 @@
 | **REVISION_PENDING** | The ticket start to be revised. Wait for other services finish their corresponding operations for revising the ticket.  |
 
 ## APIs
-
+### RESTful APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get a restaurant by restaurant ID. |
 | POST | `/tickets/{ticketId}/accept` | `TicketAcceptance` JSON | | Accept a ticket by ticket ID. |
+
+### gRPC APIs
+**None**
 
 ## Commands
 ### Outbound Commands
