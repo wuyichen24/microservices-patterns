@@ -18,7 +18,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - [**Accounting Service**](docs/services/accounting_service.md): Handles billing and payments.
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
    - Order History Service.
-   - Delivery Service.
+   - Delivery Service: Schedule, reschedule, and cancel deliveries.
 
 ## Technology Stack
 - Core
