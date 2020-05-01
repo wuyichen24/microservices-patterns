@@ -84,6 +84,15 @@ public class OrderHistoryDaoDynamoDb implements OrderHistoryDao {
 		return idempotentUpdate(spec, eventSource);
 	}
 
+	/**
+	 * Perform an idempotent update.
+	 * 
+	 * <p>It updates the item after possibly adding a condition expression to the UpdateItemSpec that guards against duplicate updates.
+	 * 
+	 * @param spec
+	 * @param eventSource
+	 * @return
+	 */
 	private boolean idempotentUpdate(UpdateItemSpec spec, Optional<SourceEvent> eventSource) {
 		try {
 			table.updateItem(eventSource.map(es -> es.addDuplicateDetection(spec)).orElse(spec));
@@ -134,6 +143,13 @@ public class OrderHistoryDaoDynamoDb implements OrderHistoryDao {
 		return new AvMapBuilder("orderId", new AttributeValue(orderId)).map();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.ftgo.orderhistoryservice.dao.OrderHistoryDao#findOrderHistory(java.lang.String, com.ftgo.orderhistoryservice.domain.OrderHistoryFilter)
+	 * 
+	 * Retrieves the consumer’s orders by querying the ftgo-order-history table using the ftgo-order-history-by-consumer-id-and-creation-time secondary index.
+	 * 
+	 * consumerId - Specifies the consumer.
+	 */
 	@Override
 	public OrderHistory findOrderHistory(String consumerId, OrderHistoryFilter filter) {
 		QuerySpec spec = new QuerySpec().withScanIndexForward(false).withHashKey("consumerId", consumerId)

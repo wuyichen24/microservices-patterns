@@ -30,7 +30,7 @@ public class OrderHistoryEventHandlers {
 	}
 
 	public DomainEventHandlers domainEventHandlers() {
-		return DomainEventHandlersBuilder.forAggregateType("net.chrisrichardson.ftgo.orderservice.domain.Order")
+		return DomainEventHandlersBuilder.forAggregateType("com.ftgo.orderservice.model.Order")
 				.onEvent(OrderCreatedEvent.class, this::handleOrderCreated)
 				.build();
 	}

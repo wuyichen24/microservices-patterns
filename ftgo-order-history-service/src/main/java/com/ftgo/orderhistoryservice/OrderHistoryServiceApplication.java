@@ -12,11 +12,7 @@ import io.eventuate.tram.consumer.common.TramConsumerCommonConfiguration;
 import io.eventuate.tram.consumer.kafka.EventuateTramKafkaMessageConsumerConfiguration;
 
 @SpringBootApplication
-@Import({OrderHistoryWebConfiguration.class,
-    OrderHistoryServiceMessageConfiguration.class,
-    CommonSwaggerConfiguration.class,
-    TramConsumerCommonConfiguration.class,
-    EventuateTramKafkaMessageConsumerConfiguration.class})
+@Import({OrderHistoryWebConfiguration.class, OrderHistoryServiceMessageConfiguration.class, CommonSwaggerConfiguration.class, TramConsumerCommonConfiguration.class, EventuateTramKafkaMessageConsumerConfiguration.class})
 public class OrderHistoryServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrderHistoryServiceApplication.class, args);

@@ -13,7 +13,7 @@ import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.event.OrderHistoryEventHandlers;
 
 @Configuration
-@Import({ CommonConfiguration.class, TramNoopDuplicateMessageDetectorConfiguration.class })
+@Import({ CommonConfiguration.class, TramNoopDuplicateMessageDetectorConfiguration.class, DomainEventDispatcherFactory.class })
 public class OrderHistoryServiceMessageConfiguration {
 	@Bean
 	public OrderHistoryEventHandlers orderHistoryEventHandlers(OrderHistoryDao orderHistoryDao) {
