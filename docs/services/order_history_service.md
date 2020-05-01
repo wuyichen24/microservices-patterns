@@ -18,12 +18,16 @@
 ### RESTful APIs
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
-| | | | | |
+| GET | `/orders?consumerId={consumerId}` | | `GetOrdersResponse` JSON | Get all the historical orders from the consumer. |
+| GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get a historical order by order ID. |
 
 ### gRPC APIs
+**None**
 
 ## Commands
 ### Outbound Commands
+**None**
+
 ### Inbound Commands
 
 ## Events
