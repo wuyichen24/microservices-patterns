@@ -8,6 +8,10 @@ public class OrderInfo {
 	private String orderId;
 	private String state;
 
+	/**
+	 * @param orderId
+	 * @param state
+	 */
 	public OrderInfo(String orderId, String state) {
 		this.orderId = orderId;
 		this.state   = state;
