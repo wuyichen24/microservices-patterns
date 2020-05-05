@@ -19,6 +19,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
    - [**Order History Service**](docs/services/order_history_service.md).
    - Delivery Service: Schedule, reschedule, and cancel deliveries.
+   - [**API Gateway**](docs/services/api_gateway.md)
 
 ## Technology Stack
 - Core
