@@ -21,7 +21,7 @@ import com.ftgo.kitchenservice.repository.TicketRepository;
  * The bootstrap class for the kitchen service.
  * 
  * @author  Wuyi Chen
- * @date    09/18/2019
+ * @date    04/10/2020
  * @version 1.0
  * @since   1.0
  */

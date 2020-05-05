@@ -11,6 +11,14 @@ import com.ftgo.orderhistoryservice.message.OrderHistoryServiceMessageConfigurat
 import io.eventuate.tram.consumer.common.TramConsumerCommonConfiguration;
 import io.eventuate.tram.consumer.kafka.EventuateTramKafkaMessageConsumerConfiguration;
 
+/**
+ * The bootstrap class for the order history service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/01/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @SpringBootApplication
 @Import({OrderHistoryWebConfiguration.class, OrderHistoryServiceMessageConfiguration.class, CommonSwaggerConfiguration.class, TramConsumerCommonConfiguration.class, EventuateTramKafkaMessageConsumerConfiguration.class})
 public class OrderHistoryServiceApplication {

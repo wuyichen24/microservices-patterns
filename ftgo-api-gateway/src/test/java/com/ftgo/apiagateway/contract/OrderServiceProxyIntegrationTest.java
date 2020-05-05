@@ -13,7 +13,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.ftgo.apiagateway.exception.OrderNotFoundException;
 import com.ftgo.apiagateway.orders.OrderDestinations;
 import com.ftgo.apiagateway.orders.OrderInfo;
-import com.ftgo.apiagateway.services.OrderService;
+import com.ftgo.apiagateway.proxies.OrderService;
 
 import static org.junit.Assert.assertEquals;
 
