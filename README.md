@@ -27,7 +27,11 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
       - Spring Data
       - Spring Cloud
 - Message Queue
+   - [Apache Kafka](https://kafka.apache.org/) with [Apache ZooKeeper](https://zookeeper.apache.org/)
 - Database
+   - [MySQL](https://www.mysql.com/)
+- API Gateway
+   - [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) with [Spring Webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
 
 ## Differences to The Original Source Code
 - Remove all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
