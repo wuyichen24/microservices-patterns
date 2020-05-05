@@ -27,7 +27,8 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
       - Spring Boot
       - Spring Data
       - Spring Cloud
-- Message Queue
+- Messaging
+   - [Eventuate Tram](https://eventuate.io/abouteventuatetram.html)
    - [Apache Kafka](https://kafka.apache.org/) with [Apache ZooKeeper](https://zookeeper.apache.org/)
 - Database
    - [MySQL](https://www.mysql.com/)
