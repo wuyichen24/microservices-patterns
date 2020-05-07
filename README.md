@@ -19,6 +19,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
    - [**Order History Service**](docs/services/order_history_service.md).
    - Delivery Service: Schedule, reschedule, and cancel deliveries.
+   - [**API Gateway**](docs/services/api_gateway.md)
 
 ## Technology Stack
 - Core
@@ -26,8 +27,13 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
       - Spring Boot
       - Spring Data
       - Spring Cloud
-- Message Queue
+- Messaging
+   - [Eventuate Tram](https://eventuate.io/abouteventuatetram.html)
+   - [Apache Kafka](https://kafka.apache.org/) with [Apache ZooKeeper](https://zookeeper.apache.org/)
 - Database
+   - [MySQL](https://www.mysql.com/)
+- API Gateway
+   - [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) with [Spring Webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
 
 ## Differences to The Original Source Code
 - Remove all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
