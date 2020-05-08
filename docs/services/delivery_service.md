@@ -44,3 +44,22 @@
 | Restaurant Service | RestaurantCreatedEvent | The Restaurant Service notifies other services about a new restaurant record has been created.The Delivery Service will create a same new restaurant record in its database correspondingly. |
 
 ### Database
+- **order**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----
+  | id | bigint(20) | PRI |
+  | assigned_courier | bigint(20) | |
+  | delivery_city | varchar(255) | |
+  | delivery_state | varchar(255) | |
+  | delivery_street1 | varchar(255) | |
+  | delivery_street2 | varchar(255) | |
+  | delivery_zip | varchar(255) | |
+  | delivery_time | datetime | |
+  | pick_up_time | datetime | |
+  | pickup_city | varchar(255) | |
+  | pickup_state | varchar(255) | |
+  | pickup_street1 | varchar(255) | |
+  | pickup_street2 | varchar(255) | |
+  | pickup_zip | varchar(255) | |
+  | restaurant_id | bigint(20) | |
+  | state | varchar(255) | |
