@@ -16,6 +16,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
+/**
+ * The bootstrap class for the restaurant service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/07/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @SpringBootApplication
 @EnableAutoConfiguration
 @Import({ TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })

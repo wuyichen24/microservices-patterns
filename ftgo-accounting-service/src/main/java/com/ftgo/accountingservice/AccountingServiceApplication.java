@@ -13,6 +13,14 @@ import org.springframework.context.annotation.Import;
 import com.ftgo.accountingservice.domain.AccountingWebConfiguration;
 import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
 
+/**
+ * The bootstrap class for the accounting service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/07/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
