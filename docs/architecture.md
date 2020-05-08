@@ -33,5 +33,9 @@
 | com.ftgo.consumerservice.model.Consumer | Event | Consumer Service | <li>Accounting Service | Consumer aggregate's event channel. |
 | com.ftgo.orderservice.model.Order | Event | Order Service | <li>Delivery Service<li>Order History Service | Order aggregate's event channel. |
 | com.ftgo.restaurantservice.model.Restaurant | Event | Restaurant Service | <li>Order Service<li>Kitchen Service<li>Delivery Service | Restaurant aggregate's event channel. |
-| com.ftgo.kitchenservice.model.Ticket | Event | Kitchen Service | <li>Delivery Service | Ticket aggregate's event channel. | 
+| com.ftgo.kitchenservice.model.Ticket | Event | Kitchen Service | <li>Delivery Service | Ticket aggregate's event channel. |
+| com.ftgo.orderservice.saga.cancelorder.CancelOrderSaga-reply | | | | |
+| com.ftgo.orderservice.saga.createorder.CreateOrderSaga-reply | | | | |
+| com.ftgo.orderservice.saga.reviseorder.ReviseOrderSaga-reply | | | | |
+
 
