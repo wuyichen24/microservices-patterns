@@ -15,3 +15,22 @@
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
 | API Gateway | ftgo-api-gateway | ftgo-api-gateway | localhost | 8080 |
+
+## Message Queue
+| Application | Host | Port | Version |
+|---|---|---|---|
+| Apache ZooKeeper | localhost | 2181 | 3.4.14 |
+| Apache Kafka | localhost | 9092 | 2.2.0 |
+
+### Topic
+| Topic Name | Message Type | Producer | Consumer | Description |
+|----|----|----|----|----|
+| accountingService | Command | | Accounting Service | |
+| consumerService | Command | | Consumer Service | |
+| kitchenService | Command | | Kitchen Service | |
+| orderService | Command | | Order Service | |
+| com.ftgo.accountingservice.model.Account | Event | | | |
+| com.ftgo.consumerservice.model.Consumer | Event | | | |
+| com.ftgo.orderservice.model.Order | Event | | | |
+| com.ftgo.restaurantservice.model.Restaurant | Event | | | |
+
