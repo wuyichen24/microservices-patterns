@@ -43,3 +43,16 @@
 **None**
 
 ### Database
+- **restaurants**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI |
+  | name | 
+
+- **kitchen_service_restaurant_menu_items**
+  | **Column** | **Type** | **Properties** |
+  |----|----|----|
+  | restaurant_id | bigint(20) | MUL |
+  | id | varchar(255) | |
+  | name | varchar(255)| |
+  | amount | decimal(19,2) | |
