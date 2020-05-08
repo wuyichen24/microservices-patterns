@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.ftgo.deliveryservice.repository.Restaurant;
+import com.ftgo.deliveryservice.model.Restaurant;
 import com.ftgo.deliveryservice.repository.RestaurantRepository;
 import com.ftgo.deliveryservice.service.DeliveryServiceTestData;
 
@@ -20,30 +20,30 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest(classes = RestaurantJpaTest.Config.class)
 public class RestaurantJpaTest {
 
-  @Configuration
-  @EnableJpaRepositories
-  @EnableAutoConfiguration
-  public static class Config {
-  }
+	@Configuration
+	@EnableJpaRepositories
+	@EnableAutoConfiguration
+	public static class Config {
+	}
 
+	@Autowired
+	private RestaurantRepository restaurantRepository;
 
-  @Autowired
-  private RestaurantRepository restaurantRepository;
+	@Autowired
+	private TransactionTemplate transactionTemplate;
 
-  @Autowired
-  private TransactionTemplate transactionTemplate;
+	@Test
+	public void shouldSaveAndLoad() {
+		long restaurantId = System.currentTimeMillis();
+		Restaurant restaurant = Restaurant.create(restaurantId, "Delicious Indian",
+				DeliveryServiceTestData.PICKUP_ADDRESS);
+		restaurantRepository.save(restaurant);
 
-  @Test
-  public void shouldSaveAndLoad() {
-    long restaurantId = System.currentTimeMillis();
-    Restaurant restaurant = Restaurant.create(restaurantId, "Delicious Indian", DeliveryServiceTestData.PICKUP_ADDRESS);
-    restaurantRepository.save(restaurant);
+		transactionTemplate.execute((ts) -> {
+			Restaurant loadedCourier = restaurantRepository.findById(restaurantId).get();
+			assertEquals(DeliveryServiceTestData.PICKUP_ADDRESS, loadedCourier.getAddress());
+			return null;
+		});
 
-    transactionTemplate.execute((ts) -> {
-      Restaurant loadedCourier = restaurantRepository.findById(restaurantId).get();
-      assertEquals(DeliveryServiceTestData.PICKUP_ADDRESS, loadedCourier.getAddress());
-      return null;
-    });
-
-  }
+	}
 }

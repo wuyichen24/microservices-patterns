@@ -1,9 +1,9 @@
 package com.ftgo.deliveryservice.model;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 
 import com.ftgo.common.model.Address;
 
@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 public class Action {
 	@Enumerated(EnumType.STRING)
 	private ActionType type;
+	
+	@Embedded
 	private Address address;
 	private LocalDateTime time;
 

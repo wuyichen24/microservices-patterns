@@ -14,7 +14,7 @@ public class AccountingEventConsumer {
 	private AccountingService accountingService;
 
 	public DomainEventHandlers domainEventHandlers() {
-		return DomainEventHandlersBuilder.forAggregateType("com.ftgo.consumerservice.model.Consumer")
+		return DomainEventHandlersBuilder.forAggregateType("com.ftgo.consumerservice.model.Consumer")    // it will create a new Kafka topic: com.ftgo.consumerservice.model.Consumer
 				.onEvent(ConsumerCreatedEvent.class, this::createAccount) // TODO this is hack to get the correct package
 				.build();
 	}

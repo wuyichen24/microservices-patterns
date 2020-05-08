@@ -16,9 +16,9 @@ import com.ftgo.deliveryservice.service.DeliveryService;
 @EnableJpaRepositories
 @EnableTransactionManagement
 public class DeliveryServiceDomainConfiguration {
-
-  @Bean
-  public DeliveryService deliveryService(RestaurantRepository restaurantRepository, DeliveryRepository deliveryRepository, CourierRepository courierRepository) {
-    return new DeliveryService(restaurantRepository, deliveryRepository, courierRepository);
-  }
+	@Bean
+	public DeliveryService deliveryService(RestaurantRepository restaurantRepository,
+			DeliveryRepository deliveryRepository, CourierRepository courierRepository) {
+		return new DeliveryService(restaurantRepository, deliveryRepository, courierRepository);
+	}
 }

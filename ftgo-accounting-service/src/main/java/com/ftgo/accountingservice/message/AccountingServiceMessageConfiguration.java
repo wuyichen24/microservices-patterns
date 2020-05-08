@@ -56,7 +56,7 @@ public class AccountingServiceMessageConfiguration {
 
 	@Bean
 	public SagaReplyRequestedEventSubscriber sagaReplyRequestedEventSubscriber() {
-		return new SagaReplyRequestedEventSubscriber("accountingServiceSagaReplyRequestedEventSubscriber", Collections.singleton(Account.class.getName()));
+		return new SagaReplyRequestedEventSubscriber("accountingServiceSagaReplyRequestedEventSubscriber", Collections.singleton(Account.class.getName()));  // it will create a new Kafka topic: com.ftgo.accountingservice.model.Account
 	}
 
 }

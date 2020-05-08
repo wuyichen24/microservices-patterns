@@ -10,23 +10,21 @@ import com.ftgo.deliveryservice.service.DeliveryService;
 
 @RestController
 public class DeliveryServiceController {
+	private DeliveryService deliveryService;
 
-  private DeliveryService deliveryService;
+	public DeliveryServiceController(DeliveryService deliveryService) {
+		this.deliveryService = deliveryService;
+	}
 
-  public DeliveryServiceController(DeliveryService deliveryService) {
-    this.deliveryService = deliveryService;
-  }
+	@RequestMapping(path = "/couriers/{courierId}/availability", method = RequestMethod.POST)
+	public ResponseEntity<String> updateCourierLocation(@PathVariable long courierId, @RequestBody CourierAvailability availability) {
+		deliveryService.updateAvailability(courierId, availability.isAvailable());
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
-  @RequestMapping(path="/couriers/{courierId}/availability", method= RequestMethod.POST)
-  public ResponseEntity<String> updateCourierLocation(@PathVariable long courierId, @RequestBody CourierAvailability availability) {
-    deliveryService.updateAvailability(courierId, availability.isAvailable());
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
-
-  @RequestMapping(path="/deliveries/{deliveryId}", method= RequestMethod.GET)
-  public DeliveryStatus getDeliveryStatus(@PathVariable long deliveryId) {
-    return deliveryService.getDeliveryInfo(deliveryId);
-  }
-
+	@RequestMapping(path = "/deliveries/{deliveryId}", method = RequestMethod.GET)
+	public DeliveryStatus getDeliveryStatus(@PathVariable long deliveryId) {
+		return deliveryService.getDeliveryInfo(deliveryId);
+	}
 
 }

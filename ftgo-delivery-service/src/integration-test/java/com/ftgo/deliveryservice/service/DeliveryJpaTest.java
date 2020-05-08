@@ -19,25 +19,25 @@ import static org.junit.Assert.assertNull;
 @SpringBootTest(classes = DeliveryJpaTest.Config.class)
 public class DeliveryJpaTest {
 
-  @Configuration
-  @EnableJpaRepositories
-  @EnableAutoConfiguration
-  public static class Config {
-  }
+	@Configuration
+	@EnableJpaRepositories
+	@EnableAutoConfiguration
+	public static class Config {
+	}
 
-  @Autowired
-  private DeliveryRepository deliveryRepository;
+	@Autowired
+	private DeliveryRepository deliveryRepository;
 
-  @Test
-  public void shouldSaveAndLoadDelivery() {
-    long restaurantId = 102L;
-    long orderId = System.currentTimeMillis();
-    Delivery delivery = Delivery.create(orderId,
-            restaurantId, DeliveryServiceTestData.PICKUP_ADDRESS, DeliveryServiceTestData.PICKUP_ADDRESS );
-    Delivery savedDelivery = deliveryRepository.save(delivery);
+	@Test
+	public void shouldSaveAndLoadDelivery() {
+		long restaurantId = 102L;
+		long orderId = System.currentTimeMillis();
+		Delivery delivery = Delivery.create(orderId, restaurantId, DeliveryServiceTestData.PICKUP_ADDRESS,
+				DeliveryServiceTestData.PICKUP_ADDRESS);
+		Delivery savedDelivery = deliveryRepository.save(delivery);
 
-    Delivery loadedDelivery = deliveryRepository.findById(orderId).get();
-    assertNull(loadedDelivery.getAssignedCourier());
-  }
+		Delivery loadedDelivery = deliveryRepository.findById(orderId).get();
+		assertNull(loadedDelivery.getAssignedCourier());
+	}
 
 }

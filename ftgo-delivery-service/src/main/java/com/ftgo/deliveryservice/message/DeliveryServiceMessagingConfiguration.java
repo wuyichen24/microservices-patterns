@@ -10,19 +10,19 @@ import org.springframework.context.annotation.Import;
 
 import com.ftgo.common.domain.CommonConfiguration;
 import com.ftgo.deliveryservice.domain.DeliveryServiceDomainConfiguration;
+import com.ftgo.deliveryservice.event.DeliveryServiceEventConsumer;
 import com.ftgo.deliveryservice.service.DeliveryService;
 
 @Configuration
-@Import({DeliveryServiceDomainConfiguration.class, TramEventSubscriberConfiguration.class, CommonConfiguration.class})
+@Import({ DeliveryServiceDomainConfiguration.class, TramEventSubscriberConfiguration.class, CommonConfiguration.class })
 public class DeliveryServiceMessagingConfiguration {
+	@Bean
+	public DeliveryServiceEventConsumer deliveryMessageHandlers(DeliveryService deliveryService) {
+		return new DeliveryServiceEventConsumer(deliveryService);
+	}
 
-  @Bean
-  public DeliveryMessageHandlers deliveryMessageHandlers(DeliveryService deliveryService) {
-    return new DeliveryMessageHandlers(deliveryService);
-  }
-
-  @Bean
-  public DomainEventDispatcher domainEventDispatcher(DeliveryMessageHandlers deliveryMessageHandlers, DomainEventDispatcherFactory domainEventDispatcherFactory) {
-    return domainEventDispatcherFactory.make("deliveryService-deliveryMessageHandlers", deliveryMessageHandlers.domainEventHandlers());
-  }
+	@Bean
+	public DomainEventDispatcher domainEventDispatcher(DeliveryServiceEventConsumer deliveryMessageHandlers, DomainEventDispatcherFactory domainEventDispatcherFactory) {
+		return domainEventDispatcherFactory.make("deliveryService-deliveryMessageHandlers", deliveryMessageHandlers.domainEventHandlers());
+	}
 }

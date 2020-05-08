@@ -3,40 +3,40 @@ package com.ftgo.deliveryservice.api.model;
 import java.util.List;
 
 public class DeliveryStatus {
-  private DeliveryInfo deliveryInfo;
-  private Long assignedCourier;
-  private List<ActionInfo> courierActions;
+	private DeliveryInfo deliveryInfo;
+	private Long assignedCourier;
+	private List<ActionInfo> courierActions;
 
-  public DeliveryStatus() {
-  }
+	public DeliveryStatus() {
+	}
 
-  public DeliveryInfo getDeliveryInfo() {
-    return deliveryInfo;
-  }
+	public DeliveryInfo getDeliveryInfo() {
+		return deliveryInfo;
+	}
 
-  public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
-    this.deliveryInfo = deliveryInfo;
-  }
+	public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
+		this.deliveryInfo = deliveryInfo;
+	}
 
-  public Long getAssignedCourier() {
-    return assignedCourier;
-  }
+	public Long getAssignedCourier() {
+		return assignedCourier;
+	}
 
-  public void setAssignedCourier(Long assignedCourier) {
-    this.assignedCourier = assignedCourier;
-  }
+	public void setAssignedCourier(Long assignedCourier) {
+		this.assignedCourier = assignedCourier;
+	}
 
-  public List<ActionInfo> getCourierActions() {
-    return courierActions;
-  }
+	public List<ActionInfo> getCourierActions() {
+		return courierActions;
+	}
 
-  public void setCourierActions(List<ActionInfo> courierActions) {
-    this.courierActions = courierActions;
-  }
+	public void setCourierActions(List<ActionInfo> courierActions) {
+		this.courierActions = courierActions;
+	}
 
-  public DeliveryStatus(DeliveryInfo deliveryInfo, Long assignedCourier, List<ActionInfo> courierActions) {
-    this.deliveryInfo = deliveryInfo;
-    this.assignedCourier = assignedCourier;
-    this.courierActions = courierActions;
-  }
+	public DeliveryStatus(DeliveryInfo deliveryInfo, Long assignedCourier, List<ActionInfo> courierActions) {
+		this.deliveryInfo = deliveryInfo;
+		this.assignedCourier = assignedCourier;
+		this.courierActions = courierActions;
+	}
 }

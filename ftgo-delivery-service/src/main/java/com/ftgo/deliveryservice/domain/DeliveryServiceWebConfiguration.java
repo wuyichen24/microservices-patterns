@@ -8,6 +8,6 @@ import com.ftgo.common.domain.CommonConfiguration;
 
 @Configuration
 @ComponentScan
-@Import({DeliveryServiceDomainConfiguration.class, CommonConfiguration.class})
+@Import({ DeliveryServiceDomainConfiguration.class, CommonConfiguration.class })
 public class DeliveryServiceWebConfiguration {
 }

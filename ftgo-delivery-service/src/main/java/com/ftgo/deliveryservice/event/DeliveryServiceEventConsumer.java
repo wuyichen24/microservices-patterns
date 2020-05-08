@@ -1,4 +1,4 @@
-package com.ftgo.deliveryservice.message;
+package com.ftgo.deliveryservice.event;
 
 import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
@@ -16,11 +16,11 @@ import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.restaurantservice.api.RestaurantServiceChannels;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 
-public class DeliveryMessageHandlers {
+public class DeliveryServiceEventConsumer {
 
 	private DeliveryService deliveryService;
 
-	public DeliveryMessageHandlers(DeliveryService deliveryService) {
+	public DeliveryServiceEventConsumer(DeliveryService deliveryService) {
 		this.deliveryService = deliveryService;
 	}
 
