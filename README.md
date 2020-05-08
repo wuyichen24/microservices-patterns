@@ -13,7 +13,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 ## Structure
 - Services
    - [**Order Service**](docs/services/order_service.md): Manages orders.
-   - Restaurant Service: Maintains information about restaurants.
+   - [**Restaurant Service**](docs/services/restaurant_service.md): Maintains information about restaurants.
    - [**Consumer Service**](docs/services/consumer_service.md)
    - [**Accounting Service**](docs/services/accounting_service.md): Handles billing and payments.
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
