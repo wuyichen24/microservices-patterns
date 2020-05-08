@@ -29,7 +29,7 @@
 | consumerService | Command | <li>Order Service | Consumer Service | Consumer Service's incoming command channel. |
 | kitchenService | Command | <li>Order Service | Kitchen Service | Kitchen Service's incoming command channel. |
 | orderService | Command | <li>Order Service | Order Service | Order Service's incoming command channel. |
-| com.ftgo.accountingservice.model.Account | Event | Accounting Service | Account aggregate's event channel. | |
+| com.ftgo.accountingservice.model.Account | Event | Accounting Service | | Account aggregate's event channel. |
 | com.ftgo.consumerservice.model.Consumer | Event | Consumer Service | <li>Accounting Service | Consumer aggregate's event channel. |
 | com.ftgo.orderservice.model.Order | Event | Order Service | <li>Delivery Service<li>Order History Service | Order aggregate's event channel. |
 | com.ftgo.restaurantservice.model.Restaurant | Event | Restaurant Service | <li>Order Service<li>Kitchen Service<li>Delivery Service | Restaurant aggregate's event channel. |
