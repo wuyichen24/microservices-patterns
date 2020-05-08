@@ -44,9 +44,9 @@
 | Restaurant Service | RestaurantCreatedEvent | The Restaurant Service notifies other services about a new restaurant record has been created.The Delivery Service will create a same new restaurant record in its database correspondingly. |
 
 ### Database
-- **order**
+- **delivery**
   | **Column** | **Type**| **Properties** |
-  |----|----|----
+  |----|----|----|
   | id | bigint(20) | PRI |
   | assigned_courier | bigint(20) | |
   | delivery_city | varchar(255) | |
@@ -63,3 +63,33 @@
   | pickup_zip | varchar(255) | |
   | restaurant_id | bigint(20) | |
   | state | varchar(255) | |
+
+- **courier**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI | 
+  | available | bit(1) | |
+
+- **courier_actions**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | courier_id | bigint(20) | MUL |
+  | delivery_id | bigint(20) | |
+  | time | datetime | |
+  | type | varchar(255) | |
+  | city | varchar(255) | |
+  | state | varchar(255) | |
+  | street1 | varchar(255) | |
+  | street2 | varchar(255) | |
+  | zip | varchar(255) | |
+
+- **delivery_service_restaurants**
+  | **Column** | **Type**| **Properties** |
+  |----|----|----|
+  | id | bigint(20) | PRI |
+  | city | varchar(255) | |
+  | state | varchar(255) | |
+  | street1 | varchar(255) | |
+  | street2 | varchar(255) | |
+  | zip | varchar(255) | |
+  | restaurant_name | varchar(255) | |
