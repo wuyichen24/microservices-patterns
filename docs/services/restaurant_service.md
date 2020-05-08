@@ -47,7 +47,7 @@
   | **Column** | **Type** | **Properties** |
   |----|----|----|
   | id | bigint(20) | PRI |
-  | name | 
+  | name | varchar(255) | |
 
 - **kitchen_service_restaurant_menu_items**
   | **Column** | **Type** | **Properties** |
