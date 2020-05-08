@@ -156,16 +156,3 @@
   | name | varchar(255) | 
   | price | decimal(19,2) | | 
   | quantity | int(11) | |
-  
-- **kitchen_service_restaurants**
-  | **Column** | **Type**| **Properties** |
-  |----|----|----|
-  | id | bigint(20) | PRI |
-
-- **kitchen_service_restaurant_menu_items**
-  | **Column** | **Type**| **Properties** |
-  |----|----|----|
-  | restaurant_id | bigint(20) | MUL |
-  | id | varchar(255) | |
-  | name | varchar(255) | |
-  | amount | decimal(19,2) | |
