@@ -29,8 +29,9 @@
 | consumerService | Command | <li>Order Service | Consumer Service | |
 | kitchenService | Command | <li>Order Service | Kitchen Service | |
 | orderService | Command | <li>Order Service | Order Service | |
-| com.ftgo.accountingservice.model.Account | Event | | | |
-| com.ftgo.consumerservice.model.Consumer | Event | | | |
-| com.ftgo.orderservice.model.Order | Event | | | |
-| com.ftgo.restaurantservice.model.Restaurant | Event | | | |
+| com.ftgo.accountingservice.model.Account | Event | Accounting Service | | |
+| com.ftgo.consumerservice.model.Consumer | Event | Consumer Service | <li>Accounting Service | |
+| com.ftgo.orderservice.model.Order | Event | Order Service | <li>Delivery Service<li>Order History Service | |
+| com.ftgo.restaurantservice.model.Restaurant | Event | Restaurant Service | <li>Order Service<li>Kitchen Service<li>Delivery Service | |
+| com.ftgo.kitchenservice.model.Ticket | Event | Kitchen Service | <li>Delivery Service | | 
 
