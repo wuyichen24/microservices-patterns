@@ -22,6 +22,14 @@ import static com.ftgo.orderservice.OrderDetailsMother.*;
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static io.eventuate.tram.sagas.testing.SagaUnitTestSupport.given;
 
+/**
+ * Unit test for the create order saga.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CreateOrderSagaTest {
 	@BeforeClass
 	public static void initialize() {

@@ -16,6 +16,16 @@ import static io.eventuate.tram.testing.DomainEventHandlerUnitTestSupport.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Unit test for the event consumer of the order service.
+ * 
+ * <p>This unit test uses Eventuate Tram Mock Messaging framework and Mockito mocks.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderEventConsumerTest {
 	private OrderService       orderService;
 	private OrderServiceEventConsumer orderEventConsumer;
@@ -32,7 +42,7 @@ public class OrderEventConsumerTest {
 
 		given().eventHandlers(orderEventConsumer.domainEventHandlers())
 				.when()
-				.aggregate("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", AJANTA_ID)
+				.aggregate("com.ftgo.orderservice.model.Restaurant", AJANTA_ID)
 				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantMother.RESTAURANT_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_MENU))
 				.then()
 				.verify(() -> {

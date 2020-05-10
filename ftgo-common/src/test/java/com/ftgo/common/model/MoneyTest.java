@@ -1,4 +1,4 @@
-package com.ftgo.common;
+package com.ftgo.common.model;
 
 import org.junit.Test;
 
@@ -8,6 +8,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Unit test for Money value object.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class MoneyTest {
 	private final int M1_AMOUNT = 10;
 	private final int M2_AMOUNT = 15;

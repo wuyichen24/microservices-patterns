@@ -33,15 +33,25 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test for order service.
+ * 
+ * <p>This unit test uses Mockito mocks.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderServiceTest {
-	private OrderService orderService;
-	private OrderRepository orderRepository;
-	private DomainEventPublisher eventPublisher;
-	private RestaurantRepository restaurantRepository;
+	private OrderService                     orderService;
+	private OrderRepository                  orderRepository;
+	private DomainEventPublisher             eventPublisher;
+	private RestaurantRepository             restaurantRepository;
 	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData> cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData> reviseOrderSagaManager;
-	private OrderDomainEventPublisher orderAggregateEventPublisher;
+	private OrderDomainEventPublisher        orderAggregateEventPublisher;
 
 	@Before
 	public void setup() {

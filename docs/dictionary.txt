@@ -8,3 +8,5 @@ endpoint
 outbound
 idempotency
 backend
+hardcoding
+mockito

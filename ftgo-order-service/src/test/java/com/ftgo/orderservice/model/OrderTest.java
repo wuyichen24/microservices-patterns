@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.domain;
+package com.ftgo.orderservice.model;
 
 import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 
@@ -25,6 +25,14 @@ import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO_PRICE;
 import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Unit test for Order entity.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderTest {
 	private ResultWithDomainEvents<Order, OrderDomainEvent> createResult;
 	private Order                                           order;
@@ -59,15 +67,10 @@ public class OrderTest {
 	@Test
 	public void shouldReviseOrder() {
 		order.noteApproved();
-
 		OrderRevision orderRevision = new OrderRevision(Optional.empty(), Collections.singletonMap("1", 10));
-
 		ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> result = order.revise(orderRevision);
-
 		assertEquals(CHICKEN_VINDALOO_PRICE.multiply(10), result.result.getNewOrderTotal());
-
 		order.confirmRevision(orderRevision);
-
 		assertEquals(CHICKEN_VINDALOO_PRICE.multiply(10), order.getOrderTotal());
 	}
 }

@@ -23,6 +23,16 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit test for the REST controller of the order service.
+ * 
+ * <p>This unit test uses Spring Mock MVC framework and Mockito mocks.
+ *
+ * @author  Wuyi Chen
+ * @date    05/10/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderControllerTest {
 	private OrderService    orderService;
 	private OrderRepository orderRepository;
