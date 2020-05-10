@@ -1,5 +1,7 @@
 # Architecture
 
+![](diagrams/architecture.png)
+
 ## Services
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
