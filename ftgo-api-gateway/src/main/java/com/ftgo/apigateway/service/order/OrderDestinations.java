@@ -1,4 +1,4 @@
-package com.ftgo.apiagateway.orders;
+package com.ftgo.apigateway.service.order;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

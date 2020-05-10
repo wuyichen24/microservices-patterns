@@ -1,12 +1,10 @@
-package com.ftgo.apiagateway.proxies;
+package com.ftgo.apigateway.service.order;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.ftgo.apiagateway.exception.OrderNotFoundException;
-import com.ftgo.apiagateway.orders.OrderDestinations;
-import com.ftgo.apiagateway.orders.OrderInfo;
+import com.ftgo.apigateway.exception.OrderNotFoundException;
 
 import reactor.core.publisher.Mono;
 
@@ -19,7 +17,7 @@ import reactor.core.publisher.Mono;
  * @since   1.0
  */
 @Service
-public class OrderService {
+public class OrderServiceProxy {
 	private OrderDestinations orderDestinations;
 	private WebClient         client;
 
@@ -32,7 +30,7 @@ public class OrderService {
 	 * @param  client
 	 *         The HTTP client for performing HTTP requests 
 	 */
-	public OrderService(OrderDestinations orderDestinations, WebClient client) {
+	public OrderServiceProxy(OrderDestinations orderDestinations, WebClient client) {
 		this.orderDestinations = orderDestinations;
 		this.client            = client;
 	}

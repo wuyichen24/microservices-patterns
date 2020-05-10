@@ -1,4 +1,4 @@
-package com.ftgo.apiagateway.orders;
+package com.ftgo.apigateway.service.order;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -11,10 +11,9 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import com.ftgo.apiagateway.proxies.AccountingService;
-import com.ftgo.apiagateway.proxies.DeliveryService;
-import com.ftgo.apiagateway.proxies.KitchenService;
-import com.ftgo.apiagateway.proxies.OrderService;
+import com.ftgo.apigateway.service.accounting.AccountingServiceProxy;
+import com.ftgo.apigateway.service.delivery.DeliveryServiceProxy;
+import com.ftgo.apigateway.service.kitchen.KitchenServiceProxy;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
@@ -28,7 +27,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  */
 @Configuration
 @EnableConfigurationProperties(OrderDestinations.class)
-@Import({ OrderService.class, KitchenService.class, DeliveryService.class, AccountingService.class })
+@Import({ OrderServiceProxy.class, KitchenServiceProxy.class, DeliveryServiceProxy.class, AccountingServiceProxy.class })
 public class OrderConfiguration {
 	/**
 	 * Defines the rules for routing order-related requests.
@@ -73,7 +72,7 @@ public class OrderConfiguration {
 	 * @return  The object of {@code OrderHandler}.
 	 */
 	@Bean
-	public OrderHandlers orderHandlers(OrderService orderService, KitchenService kitchenService, DeliveryService deliveryService, AccountingService accountingService) {
+	public OrderHandlers orderHandlers(OrderServiceProxy orderService, KitchenServiceProxy kitchenService, DeliveryServiceProxy deliveryService, AccountingServiceProxy accountingService) {
 		return new OrderHandlers(orderService, kitchenService, deliveryService, accountingService);
 	}
 

@@ -1,11 +1,11 @@
-package com.ftgo.apiagateway;
+package com.ftgo.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.apiagateway.orders.OrderConfiguration;
+import com.ftgo.apigateway.service.order.OrderConfiguration;
 
 /**
  * The bootstrap class for the API gateway.

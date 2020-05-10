@@ -1,4 +1,4 @@
-package com.ftgo.apiagateway.consumer;
+package com.ftgo.apigateway.service.consumer;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;

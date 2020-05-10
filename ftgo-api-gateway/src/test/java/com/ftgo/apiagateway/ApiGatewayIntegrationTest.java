@@ -2,8 +2,8 @@ package com.ftgo.apiagateway;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ftgo.apiagateway.orders.OrderDetails;
-import com.ftgo.apiagateway.orders.OrderInfo;
+import com.ftgo.apigateway.service.order.OrderDetails;
+import com.ftgo.apigateway.service.order.OrderInfo;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 import org.junit.Rule;

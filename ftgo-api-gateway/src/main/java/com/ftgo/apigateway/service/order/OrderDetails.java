@@ -1,12 +1,12 @@
-package com.ftgo.apiagateway.orders;
+package com.ftgo.apigateway.service.order;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.ftgo.apiagateway.model.BillInfo;
-import com.ftgo.apiagateway.model.DeliveryInfo;
-import com.ftgo.apiagateway.model.TicketInfo;
+import com.ftgo.apigateway.model.BillInfo;
+import com.ftgo.apigateway.model.DeliveryInfo;
+import com.ftgo.apigateway.model.TicketInfo;
 
 import reactor.util.function.Tuple4;
 

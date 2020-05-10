@@ -17,7 +17,7 @@ import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.Optional;
 
-public class OrderHistoryEventHandlers {
+public class OrderHistoryEventConsumer {
 	private OrderHistoryDao orderHistoryDao;
 	private String          orderId;
 	private Order           order;
@@ -25,7 +25,7 @@ public class OrderHistoryEventHandlers {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	public OrderHistoryEventHandlers(OrderHistoryDao orderHistoryDao) {
+	public OrderHistoryEventConsumer(OrderHistoryDao orderHistoryDao) {
 		this.orderHistoryDao = orderHistoryDao;
 	}
 

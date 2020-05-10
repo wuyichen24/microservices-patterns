@@ -1,13 +1,13 @@
-package com.ftgo.apiagateway.proxies;
+package com.ftgo.apigateway.service.kitchen;
 
 import org.springframework.stereotype.Service;
 
-import com.ftgo.apiagateway.model.DeliveryInfo;
+import com.ftgo.apigateway.model.TicketInfo;
 
 import reactor.core.publisher.Mono;
 
 /**
- * The proxy class of the delivery service.
+ * The proxy class of the kitchen service.
  * 
  * @author  Wuyi Chen
  * @date    05/05/2020
@@ -15,8 +15,8 @@ import reactor.core.publisher.Mono;
  * @since   1.0
  */
 @Service
-public class DeliveryService {
-	public Mono<DeliveryInfo> findDeliveryByOrderId(String orderId) {
+public class KitchenServiceProxy {
+	public Mono<TicketInfo> findTicketById(String ticketId) {
 		return Mono.error(new UnsupportedOperationException());
 	}
 }

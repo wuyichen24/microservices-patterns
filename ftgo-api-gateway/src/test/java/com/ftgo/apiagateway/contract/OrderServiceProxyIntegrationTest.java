@@ -10,10 +10,10 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.ftgo.apiagateway.exception.OrderNotFoundException;
-import com.ftgo.apiagateway.orders.OrderDestinations;
-import com.ftgo.apiagateway.orders.OrderInfo;
-import com.ftgo.apiagateway.proxies.OrderService;
+import com.ftgo.apigateway.exception.OrderNotFoundException;
+import com.ftgo.apigateway.service.order.OrderDestinations;
+import com.ftgo.apigateway.service.order.OrderInfo;
+import com.ftgo.apigateway.service.order.OrderServiceProxy;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +25,7 @@ public class OrderServiceProxyIntegrationTest {
 	@Value("${stubrunner.runningstubs.ftgo-order-service-contracts.port}")
 	private int port;
 	private OrderDestinations orderDestinations;
-	private OrderService orderService;
+	private OrderServiceProxy orderService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -33,7 +33,7 @@ public class OrderServiceProxyIntegrationTest {
 		String orderServiceUrl = "http://localhost:" + port;
 		System.out.println("orderServiceUrl=" + orderServiceUrl);
 		orderDestinations.setOrderServiceUrl(orderServiceUrl);
-		orderService = new OrderService(orderDestinations, WebClient.create());
+		orderService = new OrderServiceProxy(orderDestinations, WebClient.create());
 	}
 
 	@Test

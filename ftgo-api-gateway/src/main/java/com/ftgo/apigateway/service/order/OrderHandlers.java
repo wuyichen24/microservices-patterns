@@ -1,14 +1,16 @@
-package com.ftgo.apiagateway.orders;
+package com.ftgo.apigateway.service.order;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import com.ftgo.apiagateway.exception.OrderNotFoundException;
-import com.ftgo.apiagateway.model.BillInfo;
-import com.ftgo.apiagateway.model.DeliveryInfo;
-import com.ftgo.apiagateway.model.TicketInfo;
-import com.ftgo.apiagateway.proxies.*;
+import com.ftgo.apigateway.exception.OrderNotFoundException;
+import com.ftgo.apigateway.model.BillInfo;
+import com.ftgo.apigateway.model.DeliveryInfo;
+import com.ftgo.apigateway.model.TicketInfo;
+import com.ftgo.apigateway.service.accounting.AccountingServiceProxy;
+import com.ftgo.apigateway.service.delivery.*;
+import com.ftgo.apigateway.service.kitchen.KitchenServiceProxy;
 
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple4;
@@ -26,10 +28,10 @@ import static org.springframework.web.reactive.function.BodyInserters.fromObject
  * @since   1.0
  */
 public class OrderHandlers {
-	private OrderService      orderService;
-	private KitchenService    kitchenService;
-	private DeliveryService   deliveryService;
-	private AccountingService accountingService;
+	private OrderServiceProxy      orderService;
+	private KitchenServiceProxy    kitchenService;
+	private DeliveryServiceProxy   deliveryService;
+	private AccountingServiceProxy accountingService;
 
 	/**
 	 * Constructs a {@code OrderHandlers} object.
@@ -46,7 +48,7 @@ public class OrderHandlers {
 	 * @param  accountingService
 	 *         The proxy class for connecting the accounting service.
 	 */
-	public OrderHandlers(OrderService orderService, KitchenService kitchenService, DeliveryService deliveryService, AccountingService accountingService) {
+	public OrderHandlers(OrderServiceProxy orderService, KitchenServiceProxy kitchenService, DeliveryServiceProxy deliveryService, AccountingServiceProxy accountingService) {
 		this.orderService      = orderService;
 		this.kitchenService    = kitchenService;
 		this.deliveryService   = deliveryService;

@@ -1,8 +1,8 @@
-package com.ftgo.apiagateway.proxies;
+package com.ftgo.apigateway.service.accounting;
 
 import org.springframework.stereotype.Service;
 
-import com.ftgo.apiagateway.model.BillInfo;
+import com.ftgo.apigateway.model.BillInfo;
 
 import reactor.core.publisher.Mono;
 
@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
  * @since   1.0
  */
 @Service
-public class AccountingService {
+public class AccountingServiceProxy {
 	public Mono<BillInfo> findBillByOrderId(String orderId) {
 		return Mono.error(new UnsupportedOperationException());
 	}
