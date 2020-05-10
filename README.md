@@ -11,6 +11,7 @@ This source code was re-organized by the [original source code](https://github.c
 This is an application called FTGO (Food to Go). Consumers use the FTGO website or mobile application to place food orders at local restaurants. FTGO coordinates a network of couriers who deliver the orders. It's also responsible for pay couriers and restuarants. Restuarants use the FTGO website to edit their menus and manage orders. The application use s various web services, including Stripe for payments, Twilio for messaging, and Amazon Simple Email Service (SES) for email.
 
 ## Structure
+![](docs/diagrams/architecture.png)
 - Services
    - [**Order Service**](docs/services/order_service.md): Manages orders.
    - [**Restaurant Service**](docs/services/restaurant_service.md): Maintains information about restaurants.
