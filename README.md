@@ -41,5 +41,9 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Regenerate the stub for the gRPC server in the Order Service (The gRPC code is incompleted in the original source code and was causing issues when starting the Order Service).
 - Finished the routing functionality for the Accounting Service, the Consumer Service, the Delivery Service and the Kitchen Service in the API gateway (Only the routing logic of the Order Service was finished in the original source code).
 
-## Getting Started
-
+## Documentation
+- [Getting Started](docs/getting_started.md)
+- [Architecture](docs/architecture.md)
+- [Code Orgnization for Interservice Communication](docs/code_orgnization_for_interservice_communication.md)
+- [gRPC](docs/grpc.md)
+- [Command Memo](docs/command_memo.md)
