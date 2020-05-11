@@ -37,9 +37,10 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) with [Spring Webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
 
 ## Differences to The Original Source Code
-- Remove all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
-- Regenerate the stub for the gRPC server in the Order Service (The gRPC code is incompleted in the original source code and was causing issues when starting the Order Service).
+- Removed all the proxy classes in the Order Service so that the code organization of 3 sages (the create order sage, the cancel order sage and the revise order sage) is consistent.
+- Regenerated the stub for the gRPC server in the Order Service (The gRPC code is incompleted in the original source code and was causing issues when starting the Order Service).
 - Finished the routing functionality for the Accounting Service, the Consumer Service, the Delivery Service and the Kitchen Service in the API gateway (Only the routing logic of the Order Service was finished in the original source code).
+- Changed the port number of all the services and the API gateway.
 
 ## Documentation
 - [Getting Started](docs/getting_started.md)
