@@ -13,7 +13,7 @@ public class ConsumerConfiguration {
 	public RouteLocator consumerProxyRouting(RouteLocatorBuilder builder, ConsumerDestinations consumerDestinations) {
 		return builder.routes()
 				.route(r -> r.path("/consumers").and().method("POST").uri(consumerDestinations.getConsumerServiceUrl()))
-				.route(r -> r.path("/consumers").and().method("PUT").uri(consumerDestinations.getConsumerServiceUrl()))
+				.route(r -> r.path("/consumers/**").and().method("GET").uri(consumerDestinations.getConsumerServiceUrl()))
 				.build();
 	}
 }

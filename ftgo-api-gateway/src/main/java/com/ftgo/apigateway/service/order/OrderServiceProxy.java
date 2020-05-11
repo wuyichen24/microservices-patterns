@@ -22,7 +22,7 @@ public class OrderServiceProxy {
 	private WebClient         client;
 
 	/**
-	 * Constructs a {@code OrderService} object.
+	 * Constructs a {@code OrderServiceProxy} object.
 	 * 
 	 * @param  orderDestinations
 	 *         The destination of the order service.
