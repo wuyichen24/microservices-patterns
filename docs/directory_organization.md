@@ -1,4 +1,4 @@
-# Code Organization
+# Directory Organization
 
 ## One service may have the following common directories
 - **ftgo-xxxx-service**: The core code of the xxxx service.
