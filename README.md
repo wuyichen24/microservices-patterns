@@ -41,6 +41,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Regenerated the stub for the gRPC server in the Order Service (The gRPC code is incompleted in the original source code and was causing issues when starting the Order Service).
 - Finished the routing functionality for the Accounting Service, the Consumer Service, the Delivery Service and the Kitchen Service in the API gateway (Only the routing logic of the Order Service was finished in the original source code).
 - Changed the port number of all the services and the API gateway.
+- Replaced hardcoded channel names in multiple places. Centralized those channel names in one place.
 
 ## Documentation
 - [Getting Started](docs/getting_started.md)
