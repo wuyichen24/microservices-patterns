@@ -1,6 +1,6 @@
 package com.ftgo.orderservice.event.model;
 
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 
 import io.eventuate.tram.events.common.DomainEvent;
 

@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
-import com.ftgo.orderservice.event.OrderDomainEventPublisher;
+import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
@@ -51,7 +51,7 @@ public class OrderServiceTest {
 	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData> cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData> reviseOrderSagaManager;
-	private OrderDomainEventPublisher        orderAggregateEventPublisher;
+	private OrderServiceEventPublisher        orderAggregateEventPublisher;
 
 	@Before
 	public void setup() {
@@ -64,7 +64,7 @@ public class OrderServiceTest {
 
 		// Mock DomainEventPublisher AND use the real OrderDomainEventPublisher
 
-		orderAggregateEventPublisher = mock(OrderDomainEventPublisher.class);
+		orderAggregateEventPublisher = mock(OrderServiceEventPublisher.class);
 
 		orderService = new OrderService(orderRepository, eventPublisher,
 				restaurantRepository, createOrderSagaManager,

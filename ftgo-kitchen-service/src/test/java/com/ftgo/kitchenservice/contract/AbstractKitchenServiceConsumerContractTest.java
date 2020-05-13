@@ -25,6 +25,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
+/**
+ * The base class for the setup phase of testing the command consumer in the kitchen service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AbstractKitchenServiceConsumerContractTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureMessageVerifier

@@ -23,6 +23,14 @@ import javax.annotation.PostConstruct;
 
 import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.send;
 
+/**
+ * A singleton class that defines the saga process for revising an order.
+ *
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class ReviseOrderSaga implements SimpleSaga<ReviseOrderSagaData> {
 	private SagaDefinition<ReviseOrderSagaData> sagaDefinition;
 	

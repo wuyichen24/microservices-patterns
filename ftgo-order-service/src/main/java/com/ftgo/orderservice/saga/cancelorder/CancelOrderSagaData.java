@@ -2,6 +2,14 @@ package com.ftgo.orderservice.saga.cancelorder;
 
 import com.ftgo.common.model.Money;
 
+/**
+ * The collected data for the saga of cancelling an order.
+ *
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CancelOrderSagaData {
 	private Long   orderId;
 	private String reverseRequestId;

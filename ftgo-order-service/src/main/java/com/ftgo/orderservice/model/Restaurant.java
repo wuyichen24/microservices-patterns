@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.ftgo.common.exception.NotYetImplementedException;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.restaurantservice.api.model.MenuItem;
@@ -17,6 +18,14 @@ import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The entity class for restaurants.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Table(name = "order_service_restaurants")
 @Access(AccessType.FIELD)
@@ -41,11 +50,13 @@ public class Restaurant {
 	public List<MenuItem> getMenuItems() { return menuItems; }
 
 	public List<OrderDomainEvent> reviseMenu(RestaurantMenu revisedMenu) {
-		throw new UnsupportedOperationException();
+		// TODO
+		throw new NotYetImplementedException();
 	}
 
 	public void verifyRestaurantDetails(TicketDetails ticketDetails) {
-		// TODO - implement me
+		// TODO
+		throw new NotYetImplementedException();
 	}
 
 	public Optional<MenuItem> findMenuItem(String menuItemId) {

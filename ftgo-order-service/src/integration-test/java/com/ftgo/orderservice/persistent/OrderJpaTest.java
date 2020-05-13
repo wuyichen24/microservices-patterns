@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.jpa;
+package com.ftgo.orderservice.persistent;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +18,14 @@ import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * The integration test that verifies that an Order can be persisted.
+ *
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OrderJpaTestConfiguration.class)
 public class OrderJpaTest {

@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.service;
+package com.ftgo.orderservice.configuration;
 
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.ftgo.common.domain.CommonConfiguration;
-import com.ftgo.orderservice.event.OrderDomainEventPublisher;
+import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.saga.cancelorder.CancelOrderSaga;
@@ -24,6 +24,7 @@ import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSaga;
 import com.ftgo.orderservice.saga.reviseorder.ReviseOrderSagaData;
+import com.ftgo.orderservice.service.OrderService;
 
 import java.util.Optional;
 
@@ -50,7 +51,7 @@ public class OrderServiceConfiguration {
 			SagaManager<CreateOrderSagaData> createOrderSagaManager,
 			SagaManager<CancelOrderSagaData> cancelOrderSagaManager,
 			SagaManager<ReviseOrderSagaData> reviseOrderSagaManager,
-			OrderDomainEventPublisher orderAggregateEventPublisher,
+			OrderServiceEventPublisher orderAggregateEventPublisher,
 			Optional<MeterRegistry> meterRegistry) {
 		return new OrderService(orderRepository, eventPublisher,
 				restaurantRepository, createOrderSagaManager,
@@ -89,12 +90,12 @@ public class OrderServiceConfiguration {
 	}
 
 	@Bean
-	public OrderDomainEventPublisher orderAggregateEventPublisher(DomainEventPublisher eventPublisher) {
-		return new OrderDomainEventPublisher(eventPublisher);
+	public OrderServiceEventPublisher orderAggregateEventPublisher(DomainEventPublisher eventPublisher) {
+		return new OrderServiceEventPublisher(eventPublisher);
 	}
 
 	@Bean
-	public MeterRegistryCustomizer meterRegistryCustomizer(@Value("${spring.application.name}") String serviceName) {
+	public MeterRegistryCustomizer<?> meterRegistryCustomizer(@Value("${spring.application.name}") String serviceName) {
 		return registry -> registry.config().commonTags("service", serviceName);
 	}
 }

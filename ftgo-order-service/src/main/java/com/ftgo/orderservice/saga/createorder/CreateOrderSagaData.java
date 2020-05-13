@@ -7,9 +7,7 @@ import com.ftgo.orderservice.api.model.OrderDetails;
 
 
 /**
- * Represents a saga’s persistent state for creating an order.
- * 
- * <p>The primary responsibility of this class is to create the messages that are sent to saga participants.
+ * The collected data for the saga of creating an order.
  * 
  * @author  Wuyi Chen
  * @date    04/10/2020

@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.jpa;
+package com.ftgo.orderservice.persistent;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;

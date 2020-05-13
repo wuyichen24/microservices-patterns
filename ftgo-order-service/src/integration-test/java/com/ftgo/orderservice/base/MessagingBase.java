@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.contract;
+package com.ftgo.orderservice.base;
 
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
-import com.ftgo.orderservice.event.OrderDomainEventPublisher;
+import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 
 import java.util.Collections;
 
@@ -27,15 +27,21 @@ import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER;
 import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER_DETAILS;
 import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_NAME;
 
+/**
+ * The base class for the setup phase of the messaging test.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MessagingBase.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureMessageVerifier
 public abstract class MessagingBase {
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ EventuateContractVerifierConfiguration.class,
-			TramEventsPublisherConfiguration.class,
-			TramInMemoryConfiguration.class })
+	@Import({ EventuateContractVerifierConfiguration.class, TramEventsPublisherConfiguration.class, TramInMemoryConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {
@@ -43,16 +49,15 @@ public abstract class MessagingBase {
 		}
 
 		@Bean
-		public OrderDomainEventPublisher orderAggregateEventPublisher(DomainEventPublisher eventPublisher) {
-			return new OrderDomainEventPublisher(eventPublisher);
+		public OrderServiceEventPublisher orderAggregateEventPublisher(DomainEventPublisher eventPublisher) {
+			return new OrderServiceEventPublisher(eventPublisher);
 		}
 	}
 
 	@Autowired
-	private OrderDomainEventPublisher orderAggregateEventPublisher;
+	private OrderServiceEventPublisher orderAggregateEventPublisher;
 
 	protected void orderCreated() {
-	    orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER,
-	            Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, AJANTA_RESTAURANT_NAME)));
+	    orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER, Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, AJANTA_RESTAURANT_NAME)));
 	}
 }

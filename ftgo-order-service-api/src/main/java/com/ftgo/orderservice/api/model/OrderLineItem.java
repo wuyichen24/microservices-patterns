@@ -12,9 +12,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
+/**
+ * The class represents a single item in an order.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Embeddable
 public class OrderLineItem {
-	private int quantity;
+	private int    quantity;
 	private String menuItemId;
 	private String name;
 

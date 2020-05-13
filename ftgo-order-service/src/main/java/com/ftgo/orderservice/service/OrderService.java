@@ -10,12 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ftgo.common.exception.NotYetImplementedException;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.orderservice.api.model.OrderDetails;
 import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
-import com.ftgo.orderservice.domain.OrderRevision;
-import com.ftgo.orderservice.event.OrderDomainEventPublisher;
+import com.ftgo.orderservice.controller.model.OrderRevision;
+import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 import com.ftgo.orderservice.exception.InvalidMenuItemIdException;
 import com.ftgo.orderservice.exception.OrderNotFoundException;
 import com.ftgo.orderservice.exception.RestaurantNotFoundException;
@@ -53,7 +54,7 @@ public class OrderService {
 	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData>  cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData>  reviseOrderSagaManager;
-	private OrderDomainEventPublisher         orderAggregateEventPublisher;
+	private OrderServiceEventPublisher         orderAggregateEventPublisher;
 	private Optional<MeterRegistry>           meterRegistry;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -67,7 +68,7 @@ public class OrderService {
 			SagaManager<CreateOrderSagaData> createOrderSagaManager,
 			SagaManager<CancelOrderSagaData> cancelOrderSagaManager,
 			SagaManager<ReviseOrderSagaData> reviseOrderSagaManager,
-			OrderDomainEventPublisher orderAggregateEventPublisher,
+			OrderServiceEventPublisher orderAggregateEventPublisher,
 			Optional<MeterRegistry> meterRegistry) {
 		this.orderRepository              = orderRepository;
 		this.restaurantRepository         = restaurantRepository;
@@ -136,7 +137,8 @@ public class OrderService {
 	}
 
 	public void noteReversingAuthorization(Long orderId) {
-		throw new UnsupportedOperationException();
+		// TODO
+		throw new NotYetImplementedException();
 	}
 
 	/**
@@ -231,6 +233,7 @@ public class OrderService {
 
 	@Transactional(propagation = Propagation.MANDATORY)
 	public void reviseMenu(long id, RestaurantMenu revisedMenu) {
+		// TODO
 		restaurantRepository.findById(id).map(restaurant -> {
 			List<OrderDomainEvent> events = restaurant.reviseMenu(revisedMenu);
 			return restaurant;

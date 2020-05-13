@@ -26,18 +26,23 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
+import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
+import com.ftgo.kitchenservice.api.KitchenServiceChannels;
 import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.RestaurantRepository;
+import com.ftgo.restaurantservice.api.RestaurantServiceChannels;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 import com.ftgo.testutil.FtgoTestUtil;
 
@@ -52,6 +57,17 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+/**
+ * The step definition class for the component test of the order service.
+ * 
+ * <p>Cucumber will use this class to match between the executable specifications and the Java testing code.
+ * <p>This class defines the meaning of each step in Order Service’s component tests.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @SpringBootTest(classes = OrderServiceComponentTestStepDefinitions.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ContextConfiguration
 public class OrderServiceComponentTestStepDefinitions {
@@ -62,11 +78,11 @@ public class OrderServiceComponentTestStepDefinitions {
 		CommonJsonMapperInitializer.registerMoneyModule();
 	}
 
-	private int    port = 8082;
-	private String host = System.getenv("DOCKER_HOST_IP");
+	private int    port = 8086;
+	private String host = "localhost";
 	
 	@Autowired
-	protected SagaParticipantStubManager sagaParticipantStubManager;
+	protected SagaParticipantStubManager sagaParticipantStubManager;     // The helper class that configures stubs for saga participants.
 
 	@Autowired
 	protected MessageTracker messageTracker;
@@ -91,14 +107,14 @@ public class OrderServiceComponentTestStepDefinitions {
 	public static class TestConfiguration {
 		@Bean
 		public SagaParticipantChannels sagaParticipantChannels() {
-			return new SagaParticipantChannels("consumerService",
-					"kitchenService", "accountingService", "orderService");
+			return new SagaParticipantChannels(ConsumerServiceChannels.consumerServiceChannel, KitchenServiceChannels.kitchenServiceChannel, 
+					AccountingServiceChannels.accountingServiceChannel, OrderServiceChannels.orderServiceChannel);
 		}
 
 		@Bean
 		public MessageTracker messageTracker(MessageConsumer messageConsumer) {
 			return new MessageTracker(
-					singleton("net.chrisrichardson.ftgo.orderservice.domain.Order"),
+					singleton(OrderServiceChannels.ORDER_EVENT_CHANNEL),
 					messageConsumer);
 		}
 
@@ -117,7 +133,7 @@ public class OrderServiceComponentTestStepDefinitions {
 
 	@Given("A valid consumer")
 	public void useConsumer() {
-		sagaParticipantStubManager.forChannel("consumerService")
+		sagaParticipantStubManager.forChannel(ConsumerServiceChannels.consumerServiceChannel)
 				.when(ValidateOrderByConsumerCommand.class)
 				.replyWith(cm -> withSuccess());
 	}
@@ -126,36 +142,45 @@ public class OrderServiceComponentTestStepDefinitions {
 		valid, expired
 	}
 
+	/**
+	 * The step of using a credit card.
+	 * 
+	 * <p>It uses SagaParticipantStubManager to configure the Accounting Service stub 
+	 * to reply with either a success or a failure message, depending on the specified credit card.
+	 * 
+	 * @param ignore
+	 * @param creditCard
+	 */
 	@Given("using a(.?) (.*) credit card")
 	public void useCreditCard(String ignore, CreditCardType creditCard) {
 		switch (creditCard) {
 		case valid:
-			sagaParticipantStubManager.forChannel("accountingService")
-					.when(AuthorizeCommand.class).replyWithSuccess();
+			sagaParticipantStubManager.forChannel(AccountingServiceChannels.accountingServiceChannel).when(AuthorizeCommand.class).replyWithSuccess();
 			break;
 		case expired:
-			sagaParticipantStubManager.forChannel("accountingService")
-					.when(AuthorizeCommand.class).replyWithFailure();
+			sagaParticipantStubManager.forChannel(AccountingServiceChannels.accountingServiceChannel).when(AuthorizeCommand.class).replyWithFailure();
 			break;
 		default:
 			fail("Don't know what to do with this credit card");
 		}
 	}
 
+	/**
+	 * The step of the restaurant is accepting orders.
+	 */
 	@Given("the restaurant is accepting orders")
 	public void restaurantAcceptsOrder() {
 		sagaParticipantStubManager
-				.forChannel("kitchenService")
+				.forChannel(KitchenServiceChannels.kitchenServiceChannel)
 				.when(CreateTicketCommand.class)
-				.replyWith(
-						cm -> withSuccess(new CreateTicketReply(cm.getCommand()
+				.replyWith(cm -> withSuccess(new CreateTicketReply(cm.getCommand()
 								.getOrderId())))
 				.when(ConfirmCreateTicketCommand.class).replyWithSuccess()
 				.when(CancelCreateTicketCommand.class).replyWithSuccess();
 
 		if (!restaurantRepository.findById(RestaurantMother.AJANTA_ID).isPresent()) {
 			domainEventPublisher
-					.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant",
+					.publish(RestaurantServiceChannels.RESTAURANT_EVENT_CHANNEL,
 							RestaurantMother.AJANTA_ID,
 							Collections.singletonList(new RestaurantCreatedEvent(
 									RestaurantMother.AJANTA_RESTAURANT_NAME, 
@@ -169,6 +194,11 @@ public class OrderServiceComponentTestStepDefinitions {
 		}
 	}
 
+	/**
+	 * The step of placing an order.
+	 * 
+	 * <p>It invokes the Order Service REST API to create Order and saves the response for validation in a later step.
+	 */
 	@When("I place an order for Chicken Vindaloo at Ajanta")
 	public void placeOrder() {
 		response = given()
@@ -180,25 +210,41 @@ public class OrderServiceComponentTestStepDefinitions {
 				.post(baseUrl("/orders"));
 	}
 
+	/**
+	 * The step of verifying order state.
+	 * 
+	 * <p>It verifies that Order was successfully created and that it’s in the expected state.
+	 * 
+	 * @param desiredOrderState
+	 */
 	@Then("the order should be (.*)")
 	public void theOrderShouldBeInState(String desiredOrderState) {
 		Integer orderId = this.response.then().statusCode(200).extract().path("orderId");
 
 		assertNotNull(orderId);
 
+		// verify order state is correct.
 		eventually(() -> {
-			String state = given().when().get(baseUrl("/orders/" + orderId))
-					.then().statusCode(200).extract().path("state");
+			String state = given().when().get(baseUrl("/orders/" + orderId)).then().statusCode(200).extract().path("state");
 			assertEquals(desiredOrderState, state);
 		});
 
-		sagaParticipantStubManager.verifyCommandReceived("kitchenService", CreateTicketCommand.class);
+		// verify kitchen service has received the command of creating a ticket for the new order.
+		sagaParticipantStubManager.verifyCommandReceived(KitchenServiceChannels.kitchenServiceChannel, CreateTicketCommand.class);
 	}
 
+	
+	/**
+	 * The step of verifying the order created event has been published.
+	 * 
+	 * <p>It verifies that the expected domain event was published.
+	 * 
+	 * @param expectedEventClass
+	 */
 	@And("an (.*) event should be published")
 	public void verifyEventPublished(String expectedEventClass) {
 		messageTracker.assertDomainEventPublished(
-				"net.chrisrichardson.ftgo.orderservice.domain.Order",
-				"net.chrisrichardson.ftgo.orderservice.domain." + expectedEventClass);
+				OrderServiceChannels.ORDER_EVENT_CHANNEL,
+				"com.ftgo.orderservice.event.model" + expectedEventClass);
 	}
 }

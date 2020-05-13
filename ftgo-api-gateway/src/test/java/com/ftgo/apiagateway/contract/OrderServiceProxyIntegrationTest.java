@@ -17,9 +17,17 @@ import com.ftgo.apigateway.service.order.OrderServiceProxy;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * The integration test for testing OrderServiceProxy class (HTTP client).
+ * 
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-order-service-contracts" })
+@AutoConfigureStubRunner(ids = { "com.ftgo:ftgo-order-service-contracts" })       // It tells Spring Cloud Contract to run the WireMock server on a random port and configure it using the specified contracts.
 @DirtiesContext
 public class OrderServiceProxyIntegrationTest {
 	@Value("${stubrunner.runningstubs.ftgo-order-service-contracts.port}")

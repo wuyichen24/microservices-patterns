@@ -43,9 +43,17 @@ import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO;
 import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * The integration test for sending commands to the kitchen service.
+ *
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = KitchenServiceProxyIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-kitchen-service-contracts" })
+@AutoConfigureStubRunner(ids = { "com.ftgo:ftgo-kitchen-service-contracts" })
 @DirtiesContext
 public class KitchenServiceProxyIntegrationTest {
 	@Autowired
@@ -53,8 +61,8 @@ public class KitchenServiceProxyIntegrationTest {
 
 	@Test
 	public void shouldSuccessfullyCreateTicket() {
-		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID,
-				OrderDetailsMother.ORDER_ID, new TicketDetails(
+		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID, OrderDetailsMother.ORDER_ID, 
+				new TicketDetails(
 						Collections.singletonList(new TicketLineItem(
 								CHICKEN_VINDALOO_MENU_ITEM_ID,
 								CHICKEN_VINDALOO, CHICKEN_VINDALOO_QUANTITY))));
@@ -66,17 +74,14 @@ public class KitchenServiceProxyIntegrationTest {
 				.withChannel(KitchenServiceChannels.kitchenServiceChannel)
 				.withReply(CreateTicketReply.class).build();      
 		
-		CreateTicketReply reply = sagaMessagingTestHelper.sendAndReceiveCommand(kitchenServiceCreateTicketCommandEndpoint, command,
-						CreateTicketReply.class, sagaType);
+		CreateTicketReply reply = sagaMessagingTestHelper.sendAndReceiveCommand(kitchenServiceCreateTicketCommandEndpoint, command, CreateTicketReply.class, sagaType);
 
 		assertEquals(expectedReply, reply);
 	}
 	
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ TramCommandProducerConfiguration.class,
-			TramInMemoryConfiguration.class,
-			EventuateContractVerifierConfiguration.class })
+	@Import({ TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {

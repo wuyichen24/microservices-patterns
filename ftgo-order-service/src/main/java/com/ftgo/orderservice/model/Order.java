@@ -10,7 +10,7 @@ import com.ftgo.orderservice.api.event.*;
 import com.ftgo.orderservice.api.model.OrderDetails;
 import com.ftgo.orderservice.api.model.OrderLineItem;
 import com.ftgo.orderservice.api.model.OrderState;
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 import com.ftgo.orderservice.event.model.OrderAuthorizedEvent;
 import com.ftgo.orderservice.event.model.OrderCancelledEvent;
 import com.ftgo.orderservice.event.model.OrderRejectedEvent;
@@ -33,7 +33,7 @@ import static java.util.Collections.singletonList;
  * <p>This class is the root of the Order aggregate.
  * 
  * @author  Wuyi Chen
- * @date    04/16/2019
+ * @date    04/16/2020
  * @version 1.0
  * @since   1.0
  */

@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.jpa;
+package com.ftgo.orderservice.persistent;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

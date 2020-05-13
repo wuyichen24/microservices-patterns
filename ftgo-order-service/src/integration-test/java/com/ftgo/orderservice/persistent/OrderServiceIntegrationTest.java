@@ -1,14 +1,14 @@
-package com.ftgo.orderservice.jpa;
+package com.ftgo.orderservice.persistent;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
-import com.ftgo.orderservice.command.OrderServiceCommandHandlersConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceCommandHandlersConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceMessageConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceWebConfiguration;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
-import com.ftgo.orderservice.domain.OrderServiceWebConfiguration;
-import com.ftgo.orderservice.message.OrderServiceMessageConfiguration;
 import com.ftgo.orderservice.message.TestMessageConsumer2;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;

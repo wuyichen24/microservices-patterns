@@ -34,15 +34,22 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The integration test for the event handler of the order history service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OrderHistoryEventHandlersTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureStubRunner(ids = { "net.chrisrichardson.ftgo:ftgo-order-service-contracts" })
+@AutoConfigureStubRunner(ids = { "com.ftgo:ftgo-order-service-contracts" })
 @DirtiesContext
 public class OrderHistoryEventHandlersTest {
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ OrderHistoryServiceMessageConfiguration.class, TramCommandProducerConfiguration.class,
-			TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
+	@Import({ OrderHistoryServiceMessageConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {

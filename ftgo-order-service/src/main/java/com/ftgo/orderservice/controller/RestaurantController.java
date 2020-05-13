@@ -11,6 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftgo.orderservice.controller.model.GetRestaurantResponse;
 import com.ftgo.orderservice.repository.RestaurantRepository;
 
+/**
+ * The controller class for defining the external APIs about restaurants.
+ * 
+ * @author  Wuyi Chen
+ * @date    04/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 @RequestMapping(path = "/restaurants")
 public class RestaurantController {

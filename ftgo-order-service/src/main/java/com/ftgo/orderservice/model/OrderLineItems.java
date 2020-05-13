@@ -6,11 +6,19 @@ import javax.persistence.Embeddable;
 
 import com.ftgo.common.model.Money;
 import com.ftgo.orderservice.api.model.OrderLineItem;
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * The class of the collection of items in an order.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Embeddable
 public class OrderLineItems {
 	@ElementCollection
@@ -30,17 +38,6 @@ public class OrderLineItems {
 				.findFirst().get();
 	}
 
-	Money changeToOrderTotal(OrderRevision orderRevision) {
-		AtomicReference<Money> delta = new AtomicReference<>(Money.ZERO);
-
-		orderRevision.getRevisedLineItemQuantities().forEach(
-				(lineItemId, newQuantity) -> {
-					OrderLineItem lineItem = findOrderLineItem(lineItemId);
-					delta.set(delta.get().add(lineItem.deltaForChangedQuantity(newQuantity)));
-				});
-		return delta.get();
-	}
-
 	void updateLineItems(OrderRevision orderRevision) {
 		getLineItems().stream().forEach(
 				li -> {
@@ -51,14 +48,25 @@ public class OrderLineItems {
 				});
 	}
 
-	Money orderTotal() {
-		return lineItems.stream().map(OrderLineItem::getTotal).reduce(Money.ZERO, Money::add);
-	}
-
 	LineItemQuantityChange lineItemQuantityChange(OrderRevision orderRevision) {
 		Money currentOrderTotal = orderTotal();
 		Money delta             = changeToOrderTotal(orderRevision);
 		Money newOrderTotal     = currentOrderTotal.add(delta);
 		return new LineItemQuantityChange(currentOrderTotal, newOrderTotal, delta);
+	}
+	
+	Money orderTotal() {
+		return lineItems.stream().map(OrderLineItem::getTotal).reduce(Money.ZERO, Money::add);
+	}
+	
+	Money changeToOrderTotal(OrderRevision orderRevision) {
+		AtomicReference<Money> delta = new AtomicReference<>(Money.ZERO);
+
+		orderRevision.getRevisedLineItemQuantities().forEach(
+				(lineItemId, newQuantity) -> {
+					OrderLineItem lineItem = findOrderLineItem(lineItemId);
+					delta.set(delta.get().add(lineItem.deltaForChangedQuantity(newQuantity)));
+				});
+		return delta.get();
 	}
 }

@@ -1,4 +1,4 @@
-package com.ftgo.orderservice.domain;
+package com.ftgo.orderservice.controller.model;
 
 import java.util.Map;
 import java.util.Optional;

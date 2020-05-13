@@ -7,6 +7,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The result class to collect a list of domain events.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class Result {
 	private final List<DomainEvent> events;
 	private Boolean allowed;

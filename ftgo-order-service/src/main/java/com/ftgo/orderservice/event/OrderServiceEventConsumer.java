@@ -9,6 +9,14 @@ import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
 import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
 
+/**
+ * The event consumer for subscribed events.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderServiceEventConsumer {
 	private OrderService orderService;
 
@@ -16,6 +24,11 @@ public class OrderServiceEventConsumer {
 		this.orderService = orderService;
 	}
 
+	/**
+	 * Defines which aggregate's event is subscribed and which events are subscribed.
+	 * 
+	 * @return  The {@code DomainEventHandlers} object.
+	 */
 	public DomainEventHandlers domainEventHandlers() {
 		return DomainEventHandlersBuilder
 				.forAggregateType("com.ftgo.restaurantservice.model.Restaurant")

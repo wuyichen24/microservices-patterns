@@ -10,7 +10,7 @@ import com.ftgo.orderservice.RestaurantMother;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.orderservice.api.model.OrderState;
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 import com.ftgo.orderservice.event.model.OrderAuthorizedEvent;
 import com.ftgo.orderservice.model.LineItemQuantityChange;
 import com.ftgo.orderservice.model.Order;

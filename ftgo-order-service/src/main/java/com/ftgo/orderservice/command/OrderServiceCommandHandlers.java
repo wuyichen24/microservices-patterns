@@ -17,7 +17,7 @@ import com.ftgo.orderservice.command.model.ConfirmReviseOrderCommand;
 import com.ftgo.orderservice.command.model.RejectOrderCommand;
 import com.ftgo.orderservice.command.model.UndoBeginCancelCommand;
 import com.ftgo.orderservice.command.model.UndoBeginReviseOrderCommand;
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 import com.ftgo.orderservice.model.BeginReviseOrderReply;
 import com.ftgo.orderservice.service.OrderService;
 

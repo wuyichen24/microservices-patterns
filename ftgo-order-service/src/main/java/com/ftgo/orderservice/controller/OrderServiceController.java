@@ -13,7 +13,7 @@ import com.ftgo.orderservice.api.controller.model.CreateOrderResponse;
 import com.ftgo.orderservice.api.controller.model.ReviseOrderRequest;
 import com.ftgo.orderservice.controller.model.GetOrderResponse;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
-import com.ftgo.orderservice.domain.OrderRevision;
+import com.ftgo.orderservice.controller.model.OrderRevision;
 import com.ftgo.orderservice.exception.OrderNotFoundException;
 import com.ftgo.orderservice.model.*;
 import com.ftgo.orderservice.repository.OrderRepository;
