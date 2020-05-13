@@ -17,7 +17,7 @@ import org.springframework.context.annotation.*;
  */
 @Configuration
 @ComponentScan
-@Import(OrderServiceWithRepositoriesConfiguration.class)
+@Import(OrderServiceRepositoriesConfiguration.class)
 public class OrderServiceWebConfiguration {
 	@Bean
 	@Primary

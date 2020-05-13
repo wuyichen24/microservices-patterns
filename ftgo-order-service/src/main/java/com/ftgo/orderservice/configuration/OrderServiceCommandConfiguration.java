@@ -14,7 +14,7 @@ import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.command.OrderServiceCommandHandlers;
 
 /**
- * The configuration class of the command handler in the order service.
+ * The configuration class to instantiate and wire the command handler.
  * 
  * @author  Wuyi Chen
  * @date    05/07/2020
@@ -23,7 +23,7 @@ import com.ftgo.orderservice.command.OrderServiceCommandHandlers;
  */
 @Configuration
 @Import({ SagaParticipantConfiguration.class, TramEventsPublisherConfiguration.class, CommonConfiguration.class })
-public class OrderServiceCommandHandlersConfiguration {
+public class OrderServiceCommandConfiguration {
 	@Bean
 	public OrderServiceCommandHandlers orderCommandHandlers() {
 		return new OrderServiceCommandHandlers();

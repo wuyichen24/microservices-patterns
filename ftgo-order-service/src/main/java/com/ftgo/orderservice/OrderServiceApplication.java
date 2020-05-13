@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
-import com.ftgo.orderservice.configuration.OrderServiceCommandHandlersConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceCommandConfiguration;
 import com.ftgo.orderservice.configuration.OrderServiceGrpcConfiguration;
-import com.ftgo.orderservice.configuration.OrderServiceMessageConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceEventConfiguration;
 import com.ftgo.orderservice.configuration.OrderServiceWebConfiguration;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
@@ -30,7 +30,7 @@ import com.ftgo.orderservice.repository.OrderRepository;
  * @since   1.0
  */
 @SpringBootApplication
-@Import({ OrderServiceWebConfiguration.class, OrderServiceCommandHandlersConfiguration.class, OrderServiceMessageConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class, OrderServiceGrpcConfiguration.class, MicroserviceCanvasWebConfiguration.class })
+@Import({ OrderServiceWebConfiguration.class, OrderServiceCommandConfiguration.class, OrderServiceEventConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class, OrderServiceGrpcConfiguration.class, MicroserviceCanvasWebConfiguration.class })
 @ServiceDescription(description = "Manages Orders", capabilities = "Order Management")
 @EntityScan(basePackageClasses = {Order.class})
 @EnableJpaRepositories(basePackageClasses = {OrderRepository.class})

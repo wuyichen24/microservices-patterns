@@ -5,6 +5,14 @@ import java.util.Optional;
 
 import com.ftgo.orderservice.model.DeliveryInformation;
 
+/**
+ * The class to collect an order revision info.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/13/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderRevision {
 	private Optional<DeliveryInformation> deliveryInformation = Optional.empty();
 	private Map<String, Integer>          revisedLineItemQuantities;

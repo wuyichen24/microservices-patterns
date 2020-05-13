@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * The configuration class of the repository.
+ * The configuration class of the repository (JPA).
  * 
  * @author  Wuyi Chen
  * @date    05/07/2020
@@ -17,6 +17,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @EnableAutoConfiguration
 @Import({ OrderServiceConfiguration.class })
-public class OrderServiceWithRepositoriesConfiguration {
+public class OrderServiceRepositoriesConfiguration {
 
 }

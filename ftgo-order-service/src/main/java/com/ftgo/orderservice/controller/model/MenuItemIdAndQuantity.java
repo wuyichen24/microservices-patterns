@@ -14,7 +14,7 @@ public class MenuItemIdAndQuantity {
 
 	public MenuItemIdAndQuantity(String menuItemId, int quantity) {
 		this.menuItemId = menuItemId;
-		this.quantity = quantity;
+		this.quantity   = quantity;
 	}
 	
 	public String getMenuItemId()                  { return menuItemId;            }

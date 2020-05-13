@@ -5,8 +5,8 @@ import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.orderservice.OrderDetailsMother;
 import com.ftgo.orderservice.RestaurantMother;
-import com.ftgo.orderservice.configuration.OrderServiceCommandHandlersConfiguration;
-import com.ftgo.orderservice.configuration.OrderServiceMessageConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceCommandConfiguration;
+import com.ftgo.orderservice.configuration.OrderServiceEventConfiguration;
 import com.ftgo.orderservice.configuration.OrderServiceWebConfiguration;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
 import com.ftgo.orderservice.message.TestMessageConsumer2;
@@ -81,8 +81,8 @@ public class OrderServiceIntegrationTest {
 	@Configuration
 	@EnableAutoConfiguration
 	@Import({ OrderServiceWebConfiguration.class,
-			OrderServiceMessageConfiguration.class,
-			OrderServiceCommandHandlersConfiguration.class,
+			OrderServiceEventConfiguration.class,
+			OrderServiceCommandConfiguration.class,
 			TramCommandProducerConfiguration.class,
 			TramInMemoryConfiguration.class })
 	public static class TestConfiguration {

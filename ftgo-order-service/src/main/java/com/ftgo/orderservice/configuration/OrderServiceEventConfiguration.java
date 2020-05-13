@@ -10,16 +10,16 @@ import com.ftgo.orderservice.event.OrderServiceEventConsumer;
 import com.ftgo.orderservice.service.OrderService;
 
 /**
- * The configuration class of the event handler in the order service.
+ * The configuration class to instantiate and wire the event consumer and publisher.
  * 
  * @author  Wuyi Chen
- * @date    05/07/2020
+ * @date    05/13/2020
  * @version 1.0
  * @since   1.0
  */
 @Configuration
-@Import({ OrderServiceWithRepositoriesConfiguration.class, DomainEventDispatcherFactory.class })
-public class OrderServiceMessageConfiguration {
+@Import({ OrderServiceRepositoriesConfiguration.class, DomainEventDispatcherFactory.class })
+public class OrderServiceEventConfiguration {
 	@Bean
 	public OrderServiceEventConsumer orderEventConsumer(OrderService orderService) {
 		return new OrderServiceEventConsumer(orderService);

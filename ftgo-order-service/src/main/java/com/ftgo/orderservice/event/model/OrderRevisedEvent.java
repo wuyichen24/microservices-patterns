@@ -4,6 +4,14 @@ import com.ftgo.common.model.Money;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.orderservice.controller.model.OrderRevision;
 
+/**
+ * The event about an order has been revised.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/13/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderRevisedEvent implements OrderDomainEvent {
 	private final OrderRevision orderRevision;
 	private final Money         currentOrderTotal;

@@ -16,8 +16,8 @@ public class GetOrderResponse {
 	private Money  orderTotal;
 
 	public GetOrderResponse(long orderId, String state, Money orderTotal) {
-		this.orderId = orderId;
-		this.state = state;
+		this.orderId    = orderId;
+		this.state      = state;
 		this.orderTotal = orderTotal;
 	}
 

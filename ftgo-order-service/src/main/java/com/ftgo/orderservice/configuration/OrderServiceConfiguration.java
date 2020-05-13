@@ -29,7 +29,7 @@ import com.ftgo.orderservice.service.OrderService;
 import java.util.Optional;
 
 /**
- * The configuration class to instantiates and wires together the Spring Beans.
+ * The configuration class to instantiate and wire the domain service class.
  * 
  * @author  Wuyi Chen
  * @date    04/10/2020
