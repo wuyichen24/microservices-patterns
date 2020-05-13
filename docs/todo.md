@@ -7,3 +7,4 @@
 | `com.ftgo.orderservice.service` | `OrderService` | `reviseMenu()` | |
 | `com.ftgo.orderservice.model` | `Restaurant` | `reviseMenu`() | |
 | `com.ftgo.orderservice.model` | `Restaurant` | `verifyRestaurantDetails`() | |
+| `com.ftgo.orderservice.event.model` | `OrderRevisionRejectedEvent` | `OrderRevisionRejectedEvent()` | |
