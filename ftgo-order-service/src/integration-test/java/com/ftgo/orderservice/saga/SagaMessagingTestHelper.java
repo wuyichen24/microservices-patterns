@@ -11,9 +11,17 @@ import org.springframework.cloud.contract.verifier.messaging.internal.ContractVe
 
 import javax.inject.Inject;
 
+/**
+ * The helper class for testing sending and receiving commands.
+ *
+ * @author  Wuyi Chen
+ * @date    05/11/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class SagaMessagingTestHelper {
 	@Inject
-	ContractVerifierMessaging contractVerifierMessaging;
+	ContractVerifierMessaging<?> contractVerifierMessaging;
 
 	@Autowired
 	private SagaCommandProducer sagaCommandProducer;

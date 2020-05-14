@@ -7,7 +7,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
-import com.ftgo.orderservice.OrderDetailsMother;
+import com.ftgo.orderservice.OrderTestData;
 import com.ftgo.orderservice.controller.OrderServiceController;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
@@ -16,8 +16,8 @@ import io.eventuate.common.json.mapper.JSonMapper;
 
 import java.util.Optional;
 
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER;
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER_TOTAL;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_ORDER;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_ORDER_TOTAL;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.Mockito.mock;
@@ -54,8 +54,8 @@ public class OrderControllerTest {
 				.get("/orders/1")
 				.then()
 				.statusCode(200)
-				.body("orderId",    equalTo(new Long(OrderDetailsMother.ORDER_ID).intValue()))
-				.body("state",      equalTo(OrderDetailsMother.CHICKEN_VINDALOO_ORDER_STATE.name()))
+				.body("orderId",    equalTo(new Long(OrderTestData.ORDER_ID).intValue()))
+				.body("state",      equalTo(OrderTestData.CHICKEN_VINDALOO_ORDER_STATE.name()))
 				.body("orderTotal", equalTo(CHICKEN_VINDALOO_ORDER_TOTAL.asString()));
 	}
 

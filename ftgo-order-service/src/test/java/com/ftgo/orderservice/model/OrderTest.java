@@ -5,8 +5,8 @@ import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.OrderTestData;
+import com.ftgo.orderservice.RestaurantTestData;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.api.event.OrderDomainEvent;
 import com.ftgo.orderservice.api.model.OrderState;
@@ -19,9 +19,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.ftgo.orderservice.OrderDetailsMother.*;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT;
-import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO_PRICE;
+import static com.ftgo.orderservice.OrderTestData.*;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_RESTAURANT;
+import static com.ftgo.orderservice.RestaurantTestData.CHICKEN_VINDALOO_PRICE;
 import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
@@ -39,13 +39,13 @@ public class OrderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		createResult = Order.createOrder(CONSUMER_ID, AJANTA_RESTAURANT, OrderDetailsMother.DELIVERY_INFORMATION, chickenVindalooLineItems());
+		createResult = Order.createOrder(CONSUMER_ID, AJANTA_RESTAURANT, OrderTestData.DELIVERY_INFORMATION, chickenVindalooLineItems());
 		order        = createResult.result;
 	}
 
 	@Test
 	public void shouldCreateOrder() {
-		assertEquals(singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_NAME)), createResult.events);
+		assertEquals(singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderTestData.DELIVERY_ADDRESS, RestaurantTestData.AJANTA_RESTAURANT_NAME)), createResult.events);
 
 		assertEquals(OrderState.APPROVAL_PENDING, order.getState());
 	}

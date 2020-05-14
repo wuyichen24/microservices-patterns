@@ -17,7 +17,7 @@ import com.ftgo.restaurantservice.api.model.RestaurantMenu;
  * @version 1.0
  * @since   1.0
  */
-public class RestaurantMother {
+public class RestaurantTestData {
     public static final String   CHICKEN_VINDALOO              = "Chicken Vindaloo";
     public static final String   CHICKEN_VINDALOO_MENU_ITEM_ID = "1";
     public static final Money    CHICKEN_VINDALOO_PRICE        = new Money("12.34");

@@ -36,8 +36,8 @@ import com.ftgo.kitchenservice.api.command.CancelCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.ConfirmCreateTicketCommand;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
-import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.OrderTestData;
+import com.ftgo.orderservice.RestaurantTestData;
 import com.ftgo.orderservice.api.OrderServiceChannels;
 import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
 import com.ftgo.orderservice.model.Order;
@@ -48,7 +48,7 @@ import com.ftgo.testutil.FtgoTestUtil;
 
 import java.util.Collections;
 
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_MENU;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_RESTAURANT_MENU;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withSuccess;
 import static io.eventuate.util.test.async.Eventually.eventually;
 import static io.restassured.RestAssured.given;
@@ -178,18 +178,18 @@ public class OrderServiceComponentTestStepDefinitions {
 				.when(ConfirmCreateTicketCommand.class).replyWithSuccess()
 				.when(CancelCreateTicketCommand.class).replyWithSuccess();
 
-		if (!restaurantRepository.findById(RestaurantMother.AJANTA_ID).isPresent()) {
+		if (!restaurantRepository.findById(RestaurantTestData.AJANTA_ID).isPresent()) {
 			domainEventPublisher
 					.publish(RestaurantServiceChannels.RESTAURANT_EVENT_CHANNEL,
-							RestaurantMother.AJANTA_ID,
+							RestaurantTestData.AJANTA_ID,
 							Collections.singletonList(new RestaurantCreatedEvent(
-									RestaurantMother.AJANTA_RESTAURANT_NAME, 
-									RestaurantMother.RESTAURANT_ADDRESS,
+									RestaurantTestData.AJANTA_RESTAURANT_NAME, 
+									RestaurantTestData.RESTAURANT_ADDRESS,
 									AJANTA_RESTAURANT_MENU)));
 
 			eventually(() -> {
 				FtgoTestUtil.assertPresent(restaurantRepository
-						.findById(RestaurantMother.AJANTA_ID));
+						.findById(RestaurantTestData.AJANTA_ID));
 			});
 		}
 	}
@@ -203,9 +203,9 @@ public class OrderServiceComponentTestStepDefinitions {
 	public void placeOrder() {
 		response = given()
 				.body(new CreateOrderRequest(consumerId,
-	                    RestaurantMother.AJANTA_ID, OrderDetailsMother.DELIVERY_ADDRESS, OrderDetailsMother.DELIVERY_TIME, Collections.singletonList(
-	                            new CreateOrderRequest.LineItem(RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID,
-	                                                            OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY))))
+	                    RestaurantTestData.AJANTA_ID, OrderTestData.DELIVERY_ADDRESS, OrderTestData.DELIVERY_TIME, Collections.singletonList(
+	                            new CreateOrderRequest.LineItem(RestaurantTestData.CHICKEN_VINDALOO_MENU_ITEM_ID,
+	                                                            OrderTestData.CHICKEN_VINDALOO_QUANTITY))))
 				.contentType("application/json").when()
 				.post(baseUrl("/orders"));
 	}

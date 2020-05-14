@@ -17,15 +17,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ftgo.orderservice.OrderDetailsMother;
+import com.ftgo.orderservice.OrderTestData;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 
 import java.util.Collections;
 
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER;
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER_DETAILS;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_NAME;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_ORDER;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_ORDER_DETAILS;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_RESTAURANT_NAME;
 
 /**
  * The base class for the setup phase of the messaging test.
@@ -58,6 +58,6 @@ public abstract class MessagingBase {
 	private OrderServiceEventPublisher orderAggregateEventPublisher;
 
 	protected void orderCreated() {
-	    orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER, Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, AJANTA_RESTAURANT_NAME)));
+	    orderAggregateEventPublisher.publish(CHICKEN_VINDALOO_ORDER, Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderTestData.DELIVERY_ADDRESS, AJANTA_RESTAURANT_NAME)));
 	}
 }

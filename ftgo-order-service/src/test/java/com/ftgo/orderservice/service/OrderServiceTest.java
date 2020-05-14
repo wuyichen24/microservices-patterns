@@ -6,8 +6,8 @@ import io.eventuate.tram.sagas.orchestration.SagaManager;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.OrderTestData;
+import com.ftgo.orderservice.RestaurantTestData;
 import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.orderservice.event.OrderServiceEventPublisher;
 import com.ftgo.orderservice.model.Order;
@@ -21,12 +21,12 @@ import com.ftgo.orderservice.service.OrderService;
 import java.util.Collections;
 import java.util.Optional;
 
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES;
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_ORDER_DETAILS;
-import static com.ftgo.orderservice.OrderDetailsMother.CONSUMER_ID;
-import static com.ftgo.orderservice.OrderDetailsMother.ORDER_ID;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_ORDER_DETAILS;
+import static com.ftgo.orderservice.OrderTestData.CONSUMER_ID;
+import static com.ftgo.orderservice.OrderTestData.ORDER_ID;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_ID;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_RESTAURANT;
 import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
@@ -81,15 +81,12 @@ public class OrderServiceTest {
 			return order;
 		});
 
-		Order order = orderService.createOrder(CONSUMER_ID, AJANTA_ID, OrderDetailsMother.DELIVERY_INFORMATION, CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES);
+		Order order = orderService.createOrder(CONSUMER_ID, AJANTA_ID, OrderTestData.DELIVERY_INFORMATION, CHICKEN_VINDALOO_MENU_ITEMS_AND_QUANTITIES);
 
 		verify(orderRepository).save(same(order));
 
-		verify(orderAggregateEventPublisher).publish(order,
-	            Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderDetailsMother.DELIVERY_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_NAME)));
+		verify(orderAggregateEventPublisher).publish(order, Collections.singletonList(new OrderCreatedEvent(CHICKEN_VINDALOO_ORDER_DETAILS, OrderTestData.DELIVERY_ADDRESS, RestaurantTestData.AJANTA_RESTAURANT_NAME)));
 
-		verify(createOrderSagaManager).create(
-				new CreateOrderSagaData(ORDER_ID,
-						CHICKEN_VINDALOO_ORDER_DETAILS), Order.class, ORDER_ID);
+		verify(createOrderSagaManager).create(new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS), Order.class, ORDER_ID);
 	}
 }

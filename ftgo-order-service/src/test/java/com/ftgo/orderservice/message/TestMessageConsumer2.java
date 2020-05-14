@@ -17,47 +17,46 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class TestMessageConsumer2 {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	private LinkedBlockingDeque<Message> messages = new LinkedBlockingDeque<>();
 
-  private Logger logger = LoggerFactory.getLogger(getClass());
-  private LinkedBlockingDeque<Message> messages = new LinkedBlockingDeque<>();
+	private String subscriberId;
+	private String channel;
 
-  private String subscriberId;
-  private String channel;
+	@Autowired
+	private MessageConsumer messageConsumer;
 
-  @Autowired
-  private MessageConsumer messageConsumer;
+	public TestMessageConsumer2(String subscriberId, String channel) {
+		this.subscriberId = subscriberId;
+		this.channel = channel;
+	}
 
-  public TestMessageConsumer2(String subscriberId, String channel) {
-    this.subscriberId = subscriberId;
-    this.channel = channel;
-  }
+	@PostConstruct
+	public void subscribe() {
+		messageConsumer.subscribe(subscriberId, Collections.singleton(channel), this::handle);
+	}
 
-  @PostConstruct
-  public void subscribe() {
-    messageConsumer.subscribe(subscriberId, Collections.singleton(channel), this::handle);
-  }
+	private void handle(Message message) {
+		logger.debug("Got message: {}", message);
+		messages.add(message);
+	}
 
-  private void handle(Message message) {
-    logger.debug("Got message: {}", message);
-    messages.add(message);
-  }
+	public Message assertMessageReceived() {
+		return assertMessageReceived((m) -> true);
+	}
 
-  public Message assertMessageReceived() {
-    return assertMessageReceived((m) -> true);
-  }
-  
-  public Message assertMessageReceived(Predicate<Message> predicate) {
-    return Eventually.eventuallyReturning(() -> {
-      Message m = null;
-      try {
-        m = messages.pollFirst(1, TimeUnit.MILLISECONDS);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-      assertNotNull(m);
-      System.out.println("Testing message: " + m);
-      assertTrue("Failed predicate", predicate.test(m));
-      return m;
-    });
-  }
+	public Message assertMessageReceived(Predicate<Message> predicate) {
+		return Eventually.eventuallyReturning(() -> {
+			Message m = null;
+			try {
+				m = messages.pollFirst(1, TimeUnit.MILLISECONDS);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+			assertNotNull(m);
+			System.out.println("Testing message: " + m);
+			assertTrue("Failed predicate", predicate.test(m));
+			return m;
+		});
+	}
 }

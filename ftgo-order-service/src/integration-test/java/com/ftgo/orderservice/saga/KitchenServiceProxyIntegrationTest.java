@@ -30,17 +30,17 @@ import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.controller.model.CreateTicketReply;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
-import com.ftgo.orderservice.OrderDetailsMother;
+import com.ftgo.orderservice.OrderTestData;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
 
 import javax.sql.DataSource;
 
 import java.util.Collections;
 
-import static com.ftgo.orderservice.OrderDetailsMother.CHICKEN_VINDALOO_QUANTITY;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
-import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO;
-import static com.ftgo.orderservice.RestaurantMother.CHICKEN_VINDALOO_MENU_ITEM_ID;
+import static com.ftgo.orderservice.OrderTestData.CHICKEN_VINDALOO_QUANTITY;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_ID;
+import static com.ftgo.orderservice.RestaurantTestData.CHICKEN_VINDALOO;
+import static com.ftgo.orderservice.RestaurantTestData.CHICKEN_VINDALOO_MENU_ITEM_ID;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -61,12 +61,12 @@ public class KitchenServiceProxyIntegrationTest {
 
 	@Test
 	public void shouldSuccessfullyCreateTicket() {
-		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID, OrderDetailsMother.ORDER_ID, 
+		CreateTicketCommand command = new CreateTicketCommand(AJANTA_ID, OrderTestData.ORDER_ID, 
 				new TicketDetails(
 						Collections.singletonList(new TicketLineItem(
 								CHICKEN_VINDALOO_MENU_ITEM_ID,
 								CHICKEN_VINDALOO, CHICKEN_VINDALOO_QUANTITY))));
-		CreateTicketReply expectedReply = new CreateTicketReply(OrderDetailsMother.ORDER_ID);
+		CreateTicketReply expectedReply = new CreateTicketReply(OrderTestData.ORDER_ID);
 		String sagaType = CreateOrderSaga.class.getName();
 
 		CommandEndpoint<CreateTicketCommand> kitchenServiceCreateTicketCommandEndpoint = CommandEndpointBuilder

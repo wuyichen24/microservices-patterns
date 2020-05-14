@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.ftgo.orderservice.OrderDetailsMother;
+import com.ftgo.orderservice.OrderTestData;
 import com.ftgo.orderservice.api.model.OrderState;
 import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 
-import static com.ftgo.orderservice.OrderDetailsMother.CONSUMER_ID;
-import static com.ftgo.orderservice.OrderDetailsMother.chickenVindalooLineItems;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
+import static com.ftgo.orderservice.OrderTestData.CONSUMER_ID;
+import static com.ftgo.orderservice.OrderTestData.chickenVindalooLineItems;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -38,7 +38,7 @@ public class OrderJpaTest {
 	@Test
 	public void shouldSaveAndLoadOrder() {
 		long orderId = transactionTemplate.execute((ts) -> {
-			Order order = new Order(CONSUMER_ID, AJANTA_ID, OrderDetailsMother.DELIVERY_INFORMATION, chickenVindalooLineItems());
+			Order order = new Order(CONSUMER_ID, AJANTA_ID, OrderTestData.DELIVERY_INFORMATION, chickenVindalooLineItems());
 			orderRepository.save(order);
 			return order.getId();
 		});

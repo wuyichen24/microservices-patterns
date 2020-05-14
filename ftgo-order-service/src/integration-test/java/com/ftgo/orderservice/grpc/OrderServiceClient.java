@@ -9,12 +9,16 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import com.ftgo.common.model.Address;
-import com.ftgo.orderservice.api.controller.model.CreateOrderRequest;
-import com.ftgo.orderservice.api.controller.model.CreateOrderResponse;
-import com.ftgo.orderservice.api.controller.model.CreateOrderRequest.LineItem;
 import com.ftgo.orderservice.controller.model.MenuItemIdAndQuantity;
-import com.ftgo.orderservice.grpc.OrderServiceGrpc;
 
+/**
+ * The client for the order service's gRPC.
+ *
+ * @author  Wuyi Chen
+ * @date    05/13/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderServiceClient {
 	private static final Logger logger = Logger.getLogger(OrderServiceClient.class.getName());
 
@@ -30,9 +34,7 @@ public class OrderServiceClient {
 		channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
 	}
 
-	public long createOrder(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> lineItems,
-			Address deliveryAddress, LocalDateTime deliveryTime) {
-		 
+	public long createOrder(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> lineItems, Address deliveryAddress, LocalDateTime deliveryTime) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		OrderServiceProto.CreateOrderRequest.Builder builder = OrderServiceProto.CreateOrderRequest.newBuilder().setConsumerId(consumerId)

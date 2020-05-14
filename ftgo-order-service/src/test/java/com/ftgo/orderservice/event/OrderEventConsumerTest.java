@@ -1,17 +1,17 @@
-package com.ftgo.orderservice.message;
+package com.ftgo.orderservice.event;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.ftgo.common.domain.CommonJsonMapperInitializer;
-import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.RestaurantTestData;
 import com.ftgo.orderservice.event.OrderServiceEventConsumer;
 import com.ftgo.orderservice.service.OrderService;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 import com.ftgo.restaurantservice.api.model.RestaurantMenu;
 
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_RESTAURANT_NAME;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_ID;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_RESTAURANT_NAME;
 import static io.eventuate.tram.testing.DomainEventHandlerUnitTestSupport.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
  * @since   1.0
  */
 public class OrderEventConsumerTest {
-	private OrderService       orderService;
+	private OrderService              orderService;
 	private OrderServiceEventConsumer orderEventConsumer;
 
 	@Before
@@ -43,14 +43,14 @@ public class OrderEventConsumerTest {
 		given().eventHandlers(orderEventConsumer.domainEventHandlers())
 				.when()
 				.aggregate("com.ftgo.orderservice.model.Restaurant", AJANTA_ID)
-				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantMother.RESTAURANT_ADDRESS, RestaurantMother.AJANTA_RESTAURANT_MENU))
+				.publishes(new RestaurantCreatedEvent(AJANTA_RESTAURANT_NAME, RestaurantTestData.RESTAURANT_ADDRESS, RestaurantTestData.AJANTA_RESTAURANT_MENU))
 				.then()
 				.verify(() -> {
 					verify(orderService)
 							.createMenu(
 									AJANTA_ID,
 									AJANTA_RESTAURANT_NAME,
-									new RestaurantMenu(RestaurantMother.AJANTA_RESTAURANT_MENU_ITEMS));
+									new RestaurantMenu(RestaurantTestData.AJANTA_RESTAURANT_MENU_ITEMS));
 				});
 
 	}

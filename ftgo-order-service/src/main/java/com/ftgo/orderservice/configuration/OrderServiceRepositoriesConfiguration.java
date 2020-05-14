@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * The configuration class of the repository (JPA).
+ * The configuration class to enable Spring JPA.
  * 
  * @author  Wuyi Chen
  * @date    05/07/2020

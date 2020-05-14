@@ -18,8 +18,8 @@ import com.ftgo.orderservice.command.model.RejectOrderCommand;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSaga;
 import com.ftgo.orderservice.saga.createorder.CreateOrderSagaData;
 
-import static com.ftgo.orderservice.OrderDetailsMother.*;
-import static com.ftgo.orderservice.RestaurantMother.AJANTA_ID;
+import static com.ftgo.orderservice.OrderTestData.*;
+import static com.ftgo.orderservice.RestaurantTestData.AJANTA_ID;
 import static io.eventuate.tram.sagas.testing.SagaUnitTestSupport.given;
 
 /**

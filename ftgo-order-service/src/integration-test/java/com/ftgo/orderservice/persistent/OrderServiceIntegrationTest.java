@@ -3,8 +3,8 @@ package com.ftgo.orderservice.persistent;
 import com.ftgo.common.model.Money;
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
-import com.ftgo.orderservice.OrderDetailsMother;
-import com.ftgo.orderservice.RestaurantMother;
+import com.ftgo.orderservice.OrderTestData;
+import com.ftgo.orderservice.RestaurantTestData;
 import com.ftgo.orderservice.configuration.OrderServiceCommandConfiguration;
 import com.ftgo.orderservice.configuration.OrderServiceEventConfiguration;
 import com.ftgo.orderservice.configuration.OrderServiceWebConfiguration;
@@ -52,12 +52,12 @@ import java.util.function.Predicate;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OrderServiceIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class OrderServiceIntegrationTest {
-	public  static final String RESTAURANT_ID                 = "1";
+	public static final String RESTAURANT_ID = "1";
 	private static final String CHICKED_VINDALOO_MENU_ITEM_ID = "1";
-	
+
 	@Value("${local.server.port}")
 	private int port;
-	
+
 	@Autowired
 	private DomainEventPublisher domainEventPublisher;
 
@@ -80,10 +80,8 @@ public class OrderServiceIntegrationTest {
 
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ OrderServiceWebConfiguration.class,
-			OrderServiceEventConfiguration.class,
-			OrderServiceCommandConfiguration.class,
-			TramCommandProducerConfiguration.class,
+	@Import({ OrderServiceWebConfiguration.class, OrderServiceEventConfiguration.class,
+			OrderServiceCommandConfiguration.class, TramCommandProducerConfiguration.class,
 			TramInMemoryConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
@@ -99,23 +97,22 @@ public class OrderServiceIntegrationTest {
 		@Bean
 		public DataSource dataSource() {
 			EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-			return builder.setType(EmbeddedDatabaseType.H2)
-					.addScript("eventuate-tram-embedded-schema.sql")
+			return builder.setType(EmbeddedDatabaseType.H2).addScript("eventuate-tram-embedded-schema.sql")
 					.addScript("eventuate-tram-sagas-embedded.sql").build();
 		}
 
 		@Bean
 		public TestMessageConsumer2 mockConsumerService() {
-			return new TestMessageConsumer2("mockConsumerService",
-					ConsumerServiceChannels.consumerServiceChannel);
+			return new TestMessageConsumer2("mockConsumerService", ConsumerServiceChannels.consumerServiceChannel);
 		}
 	}
 
-	 @Test
-	  public void shouldCreateOrder() {
-	    domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RESTAURANT_ID,
-	            Collections.singletonList(new RestaurantCreatedEvent("Ajanta", RestaurantMother.RESTAURANT_ADDRESS,
-	                    new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID, "Chicken Vindaloo", new Money("12.34")))))));
+	@Test
+	public void shouldCreateOrder() {
+		domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RESTAURANT_ID,
+				Collections.singletonList(new RestaurantCreatedEvent("Ajanta", RestaurantTestData.RESTAURANT_ADDRESS,
+						new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID,
+								"Chicken Vindaloo", new Money("12.34")))))));
 
 		Eventually.eventually(() -> {
 			FtgoTestUtil.assertPresent(restaurantRepository.findById(Long.parseLong(RESTAURANT_ID)));
@@ -123,16 +120,16 @@ public class OrderServiceIntegrationTest {
 
 		long consumerId = 1511300065921L;
 
-		Order order = orderService.createOrder(consumerId, Long.parseLong(RESTAURANT_ID), OrderDetailsMother.DELIVERY_INFORMATION, Collections.singletonList(new MenuItemIdAndQuantity(CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
+		Order order = orderService.createOrder(consumerId, Long.parseLong(RESTAURANT_ID),
+				OrderTestData.DELIVERY_INFORMATION,
+				Collections.singletonList(new MenuItemIdAndQuantity(CHICKED_VINDALOO_MENU_ITEM_ID, 5)));
 
 		FtgoTestUtil.assertPresent(orderRepository.findById(order.getId()));
 
 		String expectedPayload = "{\"consumerId\":1511300065921,\"orderId\":1,\"orderTotal\":\"61.70\"}";
 
-		Message message = mockConsumerService
-				.assertMessageReceived(commandMessageOfType(
-						ValidateOrderByConsumerCommand.class.getName()).and(
-						withPayload(expectedPayload)));
+		Message message = mockConsumerService.assertMessageReceived(
+				commandMessageOfType(ValidateOrderByConsumerCommand.class.getName()).and(withPayload(expectedPayload)));
 
 		System.out.println("message=" + message);
 
@@ -144,9 +141,7 @@ public class OrderServiceIntegrationTest {
 
 	private Predicate<Message> forConsumer(long consumerId) {
 		return (m) -> {
-			Object doc = com.jayway.jsonpath.Configuration
-					.defaultConfiguration().jsonProvider()
-					.parse(m.getPayload());
+			Object doc = com.jayway.jsonpath.Configuration.defaultConfiguration().jsonProvider().parse(m.getPayload());
 			Object s = JsonPath.read(doc, "$.consumerId");
 			return new Long(consumerId).equals(s);
 		};
