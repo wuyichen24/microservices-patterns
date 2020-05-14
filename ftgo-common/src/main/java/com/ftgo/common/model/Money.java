@@ -10,6 +10,9 @@ public class Money {
 	public static Money ZERO = new Money(0);
 	private BigDecimal amount;
 
+	private Money() {
+	}
+	
 	public Money(BigDecimal amount) {
 		this.amount = amount;
 	}

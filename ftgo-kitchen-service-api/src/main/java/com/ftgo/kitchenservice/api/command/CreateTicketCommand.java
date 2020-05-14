@@ -1,13 +1,20 @@
 package com.ftgo.kitchenservice.api.command;
 
-import io.eventuate.tram.commands.CommandDestination;
+
 import io.eventuate.tram.commands.common.Command;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 
-@CommandDestination("restaurantService")
+/**
+ * The command for creating a ticket.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CreateTicketCommand implements Command {
 	private Long          orderId;
 	private TicketDetails ticketDetails;

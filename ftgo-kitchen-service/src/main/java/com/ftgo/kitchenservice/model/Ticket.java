@@ -8,7 +8,6 @@ import com.ftgo.common.exception.NotYetImplementedException;
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
-import com.ftgo.kitchenservice.domain.TicketState;
 import com.ftgo.kitchenservice.event.TicketDomainEvent;
 import com.ftgo.kitchenservice.event.model.TicketAcceptedEvent;
 import com.ftgo.kitchenservice.event.model.TicketCancelledEvent;

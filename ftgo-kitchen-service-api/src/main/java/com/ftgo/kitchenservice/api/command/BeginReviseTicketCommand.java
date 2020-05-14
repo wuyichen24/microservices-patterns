@@ -4,6 +4,14 @@ import io.eventuate.tram.commands.common.Command;
 
 import java.util.Map;
 
+/**
+ * The command for starting to revise a ticket.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class BeginReviseTicketCommand implements Command {
 	private long                 restaurantId;
 	private Long                 orderId;

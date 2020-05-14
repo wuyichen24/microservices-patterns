@@ -90,11 +90,6 @@ public class OrderServiceConfiguration {
 	}
 
 	@Bean
-	public OrderServiceEventPublisher orderAggregateEventPublisher(DomainEventPublisher eventPublisher) {
-		return new OrderServiceEventPublisher(eventPublisher);
-	}
-
-	@Bean
 	public MeterRegistryCustomizer<?> meterRegistryCustomizer(@Value("${spring.application.name}") String serviceName) {
 		return registry -> registry.config().commonTags("service", serviceName);
 	}

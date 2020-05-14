@@ -1,4 +1,4 @@
-package com.ftgo.kitchenservice.domain;
+package com.ftgo.kitchenservice.model;
 
 /**
  * The enum type for the states of tickets.

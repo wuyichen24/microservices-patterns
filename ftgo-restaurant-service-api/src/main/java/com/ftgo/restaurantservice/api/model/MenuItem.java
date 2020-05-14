@@ -16,7 +16,7 @@ public class MenuItem {
 	private String id;
 	private String name;
 	private Money  price;
-
+	
 	public MenuItem(String id, String name, Money price) {
 		this.id    = id;
 		this.name  = name;

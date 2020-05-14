@@ -5,12 +5,20 @@ import java.time.LocalDateTime;
 
 import com.ftgo.common.model.Address;
 
+/**
+ * The request for creating an order API.
+ *
+ * @author  Wuyi Chen
+ * @date    05/13/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CreateOrderRequest {
-	private long restaurantId;
-	private long consumerId;
+	private long           restaurantId;
+	private long           consumerId;
 	private List<LineItem> lineItems;
-	private LocalDateTime deliveryTime;
-	private Address deliveryAddress;
+	private LocalDateTime  deliveryTime;
+	private Address        deliveryAddress;
 
 	public CreateOrderRequest(long consumerId, long restaurantId, Address deliveryAddress, LocalDateTime deliveryTime, List<LineItem> lineItems) {
 	    this.restaurantId = restaurantId;

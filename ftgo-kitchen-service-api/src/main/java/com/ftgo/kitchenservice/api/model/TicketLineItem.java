@@ -4,17 +4,25 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
+/**
+ * The item in a ticket.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 public class TicketLineItem {
-	private int quantity;
+	private int    quantity;
 	private String menuItemId;
 	private String name;
 
 	public TicketLineItem(String menuItemId, String name, int quantity) {
 		this.menuItemId = menuItemId;
-		this.name = name;
-		this.quantity = quantity;
+		this.name       = name;
+		this.quantity   = quantity;
 	}
 	
 	public int    getQuantity()                    { return quantity;              }

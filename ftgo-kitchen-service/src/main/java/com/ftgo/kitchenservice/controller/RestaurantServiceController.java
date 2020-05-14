@@ -12,10 +12,10 @@ import com.ftgo.kitchenservice.controller.model.GetRestaurantResponse;
 import com.ftgo.kitchenservice.repository.RestaurantRepository;
 
 /**
- * The controller class for defining the external APIs of kitchen service.
+ * The controller class for defining the external APIs about restaurants.
  * 
  * @author  Wuyi Chen
- * @date    04/14/2020
+ * @date    05/14/2020
  * @version 1.0
  * @since   1.0
  */

@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
-import com.ftgo.kitchenservice.domain.KitchenServiceWebConfiguration;
-import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
+import com.ftgo.kitchenservice.configuration.KitchenServiceEventConfiguration;
+import com.ftgo.kitchenservice.configuration.KitchenServiceWebConfiguration;
 import com.ftgo.kitchenservice.model.Ticket;
 import com.ftgo.kitchenservice.repository.TicketRepository;
 
@@ -26,7 +26,7 @@ import com.ftgo.kitchenservice.repository.TicketRepository;
  * @since   1.0
  */
 @SpringBootApplication
-@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
+@Import({ KitchenServiceWebConfiguration.class, KitchenServiceEventConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 @EntityScan(basePackageClasses = {Ticket.class})
 @EnableJpaRepositories(basePackageClasses = {TicketRepository.class})
 public class KitchenServiceApplication {

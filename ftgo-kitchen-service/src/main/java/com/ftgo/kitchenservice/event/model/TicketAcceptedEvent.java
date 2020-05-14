@@ -6,8 +6,6 @@ import com.ftgo.kitchenservice.event.TicketDomainEvent;
 
 /**
  * Ticket accepted event.
- * 
- * <p>This is one event of Ticket aggregate’s events.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020

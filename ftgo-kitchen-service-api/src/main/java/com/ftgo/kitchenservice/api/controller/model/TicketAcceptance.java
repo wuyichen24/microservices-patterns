@@ -2,6 +2,14 @@ package com.ftgo.kitchenservice.api.controller.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * The ticket acceptance information.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2019
+ * @version 1.0
+ * @since   1.0
+ */
 public class TicketAcceptance {
 	private LocalDateTime readyBy;
 

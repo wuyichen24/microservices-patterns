@@ -24,7 +24,7 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 /**
- * The controller class for defining the external APIs of order service.
+ * The controller class for defining the external APIs about orders.
  * 
  * @author  Wuyi Chen
  * @date    04/11/2020

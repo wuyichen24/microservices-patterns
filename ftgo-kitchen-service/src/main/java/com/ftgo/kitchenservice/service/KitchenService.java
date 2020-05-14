@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.event.TicketDomainEvent;
 import com.ftgo.kitchenservice.event.TicketDomainEventPublisher;
+import com.ftgo.kitchenservice.exception.RestaurantNotFoundException;
 import com.ftgo.kitchenservice.exception.TicketNotFoundException;
 import com.ftgo.kitchenservice.model.Restaurant;
 import com.ftgo.kitchenservice.model.Ticket;
@@ -43,8 +44,8 @@ public class KitchenService {
 		restaurantRepository.save(restaurant);
 	}
 
-	public void reviseMenu(long ticketId, RestaurantMenu revisedMenu) {
-		Restaurant restaurant = restaurantRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
+	public void reviseMenu(long restaurantId, RestaurantMenu revisedMenu) {
+		Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));
 		restaurant.reviseMenu(revisedMenu);
 	}
 
@@ -84,42 +85,42 @@ public class KitchenService {
 
 	public void cancelTicket(long restaurantId, long ticketId) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.cancel();
 		domainEventPublisher.publish(ticket, events);
 	}
 
 	public void confirmCancelTicket(long restaurantId, long ticketId) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.confirmCancel();
 		domainEventPublisher.publish(ticket, events);
 	}
 
 	public void undoCancel(long restaurantId, long ticketId) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.undoCancel();
 		domainEventPublisher.publish(ticket, events);
 	}
 
 	public void beginReviseOrder(long restaurantId, Long ticketId, Map<String, Integer> revisedLineItemQuantities) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.beginReviseOrder(revisedLineItemQuantities);
 		domainEventPublisher.publish(ticket, events);
 	}
 
 	public void undoBeginReviseOrder(long restaurantId, Long ticketId) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.undoBeginReviseOrder();
 		domainEventPublisher.publish(ticket, events);
 	}
 
 	public void confirmReviseTicket(long restaurantId, long ticketId, Map<String, Integer> revisedLineItemQuantities) {
 		Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-		// TODO - verify restaurant id
+		restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFoundException(restaurantId));   // verify restaurant ID
 		List<TicketDomainEvent> events = ticket.confirmReviseTicket(revisedLineItemQuantities);
 		domainEventPublisher.publish(ticket, events);
 	}

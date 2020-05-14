@@ -1,10 +1,10 @@
 package com.ftgo.kitchenservice.api;
 
 /**
- * Define kitchen service's inbound command channel and aggregates' event outbound channel.
- * 
+ * The static class for storing the channel info of the kitchen service.
+ *
  * @author  Wuyi Chen
- * @date    04/14/2020
+ * @date    05/14/2020
  * @version 1.0
  * @since   1.0
  */

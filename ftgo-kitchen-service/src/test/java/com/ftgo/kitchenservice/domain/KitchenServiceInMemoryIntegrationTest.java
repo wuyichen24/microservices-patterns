@@ -24,11 +24,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ftgo.common.model.Money;
 import com.ftgo.kitchenservice.api.command.CreateTicketCommand;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
-import com.ftgo.kitchenservice.domain.KitchenServiceWebConfiguration;
-import com.ftgo.kitchenservice.message.KitchenServiceMessageConfiguration;
+import com.ftgo.kitchenservice.configuration.KitchenServiceEventConfiguration;
+import com.ftgo.kitchenservice.configuration.KitchenServiceWebConfiguration;
 import com.ftgo.kitchenservice.model.Restaurant;
 import com.ftgo.kitchenservice.repository.RestaurantRepository;
 
@@ -38,6 +37,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The in-memory integration test for the kitchen service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/12/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = KitchenServiceInMemoryIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class KitchenServiceInMemoryIntegrationTest {
@@ -48,7 +55,7 @@ public class KitchenServiceInMemoryIntegrationTest {
 
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ KitchenServiceWebConfiguration.class, KitchenServiceMessageConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class })
+	@Import({ KitchenServiceWebConfiguration.class, KitchenServiceEventConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {
@@ -92,7 +99,6 @@ public class KitchenServiceInMemoryIntegrationTest {
 		TestMessageConsumer testMessageConsumer = testMessageConsumerFactory.make();
 
 		long orderId = 999;
-		Money orderTotal = new Money(123);
 
 		TicketDetails orderDetails = new TicketDetails();
 		String messageId = commandProducer.send("kitchenService", null,

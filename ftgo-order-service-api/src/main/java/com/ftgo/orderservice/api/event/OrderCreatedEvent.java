@@ -7,15 +7,23 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.ftgo.common.model.Address;
 import com.ftgo.orderservice.api.model.OrderDetails;
 
+/**
+ * The event about an order has been created.
+ *
+ * @author  Wuyi Chen
+ * @date    05/13/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderCreatedEvent implements OrderDomainEvent {
 	private OrderDetails orderDetails;
 	private Address      deliveryAddress;
 	private String       restaurantName;
 
 	public OrderCreatedEvent(OrderDetails orderDetails, Address deliveryAddress, String restaurantName) {
-	    this.orderDetails = orderDetails;
+	    this.orderDetails    = orderDetails;
 	    this.deliveryAddress = deliveryAddress;
-	    this.restaurantName = restaurantName;
+	    this.restaurantName  = restaurantName;
 	  }
 
 	public OrderDetails getOrderDetails()                           { return orderDetails;                    }

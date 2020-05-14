@@ -5,9 +5,6 @@
         http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
     <embeddable class="com.ftgo.common.model.Money" access="FIELD">
         <attributes>
-            <basic name="amount">
-                <column name="amount"/>
-            </basic>
         </attributes>
     </embeddable>
 </entity-mappings>
