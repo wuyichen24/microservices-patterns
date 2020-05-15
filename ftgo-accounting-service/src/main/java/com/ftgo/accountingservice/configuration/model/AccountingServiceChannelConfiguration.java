@@ -1,5 +1,13 @@
-package com.ftgo.accountingservice.message;
+package com.ftgo.accountingservice.configuration.model;
 
+/**
+ * The configuration parameters class for the channel configuration.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class AccountingServiceChannelConfiguration {
 	private String commandDispatcherId;
 	private String commandChannel;

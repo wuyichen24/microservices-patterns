@@ -2,6 +2,7 @@ apply plugin: FtgoServicePlugin
 
 dependencies {
     compile project(":ftgo-accounting-service-api")
+    compile project(":ftgo-consumer-service-api")
     compile project(":common-swagger")
     
     compile "io.eventuate.client.java:eventuate-client-java-spring:$eventuateClientVersion"

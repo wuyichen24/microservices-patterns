@@ -1,10 +1,17 @@
 package com.ftgo.accountingservice.command.model;
 
-import com.ftgo.accountingservice.command.AccountCommand;
 import com.ftgo.common.model.Money;
 
 import io.eventuate.tram.commands.common.Command;
 
+/**
+ * The internal command for revising authorization.
+ *
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class ReviseAuthorizationCommandInternal implements AccountCommand, Command {
 	private String consumerId;
 	private String orderId;

@@ -1,7 +1,6 @@
 package com.ftgo.kitchenservice.event.model;
 
 import com.ftgo.kitchenservice.api.model.TicketDetails;
-import com.ftgo.kitchenservice.event.TicketDomainEvent;
 
 /**
  * Ticket created event.

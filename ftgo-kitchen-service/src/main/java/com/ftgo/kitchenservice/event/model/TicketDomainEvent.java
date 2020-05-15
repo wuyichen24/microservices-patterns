@@ -1,4 +1,4 @@
-package com.ftgo.kitchenservice.event;
+package com.ftgo.kitchenservice.event.model;
 
 import io.eventuate.tram.events.common.DomainEvent;
 

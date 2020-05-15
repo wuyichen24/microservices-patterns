@@ -2,8 +2,6 @@ package com.ftgo.kitchenservice.event.model;
 
 import java.time.LocalDateTime;
 
-import com.ftgo.kitchenservice.event.TicketDomainEvent;
-
 /**
  * Ticket accepted event.
  *

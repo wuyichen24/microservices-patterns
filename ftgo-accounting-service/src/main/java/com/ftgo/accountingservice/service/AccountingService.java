@@ -1,12 +1,11 @@
 package com.ftgo.accountingservice.service;
 
 import io.eventuate.sync.AggregateRepository;
-import io.eventuate.EntityWithIdAndVersion;
 import io.eventuate.SaveOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ftgo.accountingservice.command.AccountCommand;
+import com.ftgo.accountingservice.command.model.AccountCommand;
 import com.ftgo.accountingservice.command.model.CreateAccountCommand;
 import com.ftgo.accountingservice.model.Account;
 
@@ -25,7 +24,6 @@ public class AccountingService {
 	private AggregateRepository<Account, AccountCommand> accountRepository;
 
 	public void create(String aggregateId) {
-		EntityWithIdAndVersion<Account> account = accountRepository.save(new CreateAccountCommand(),
-				Optional.of(new SaveOptions().withId(aggregateId)));
+		accountRepository.save(new CreateAccountCommand(), Optional.of(new SaveOptions().withId(aggregateId)));
 	}
 }

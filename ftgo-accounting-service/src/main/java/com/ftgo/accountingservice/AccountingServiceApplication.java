@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.accountingservice.domain.AccountingWebConfiguration;
-import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
+import com.ftgo.accountingservice.configuration.AccountingServiceEventConfiguration;
+import com.ftgo.accountingservice.configuration.AccountingWebConfiguration;
 
 /**
  * The bootstrap class for the accounting service.
@@ -24,7 +24,7 @@ import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-@Import({AccountingServiceMessageConfiguration.class, AccountingWebConfiguration.class, TramCommandProducerConfiguration.class, EventuateDriverConfiguration.class, TramJdbcKafkaConfiguration.class})
+@Import({AccountingServiceEventConfiguration.class, AccountingWebConfiguration.class, TramCommandProducerConfiguration.class, EventuateDriverConfiguration.class, TramJdbcKafkaConfiguration.class})
 public class AccountingServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccountingServiceApplication.class, args);

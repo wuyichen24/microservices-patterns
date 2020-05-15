@@ -1,4 +1,4 @@
-package com.ftgo.accountingservice.messaging;
+package com.ftgo.accountingservice.event;
 
 import io.eventuate.sync.AggregateRepository;
 import io.eventuate.javaclient.spring.jdbc.EmbeddedTestAggregateStoreConfiguration;
@@ -28,13 +28,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ftgo.accountingservice.command.AccountCommand;
-import com.ftgo.accountingservice.message.AccountingServiceMessageConfiguration;
+import com.ftgo.accountingservice.command.model.AccountCommand;
+import com.ftgo.accountingservice.configuration.AccountingServiceEventConfiguration;
 import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.model.Money;
-import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
+import com.ftgo.consumerservice.api.event.model.ConsumerCreatedEvent;
 
 import javax.sql.DataSource;
 
@@ -44,12 +44,20 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * Unit test for the event consumer of the accounting service.
+ *
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AccountingServiceCommandHandlerTest.AccountingServiceCommandHandlerTestConfiguration.class)
 public class AccountingServiceCommandHandlerTest {
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ AccountingServiceMessageConfiguration.class, TramCommandProducerConfiguration.class,
+	@Import({ AccountingServiceEventConfiguration.class, TramCommandProducerConfiguration.class,
 			EmbeddedTestAggregateStoreConfiguration.class, TramEventsPublisherConfiguration.class, // TODO
 			TramInMemoryConfiguration.class })
 	static public class AccountingServiceCommandHandlerTestConfiguration {

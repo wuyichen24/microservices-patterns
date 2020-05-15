@@ -1,11 +1,17 @@
-package com.ftgo.accountingservice.domain;
+package com.ftgo.accountingservice.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.accountingservice.service.AccountingServiceConfiguration;
-
+/**
+ * The configuration class of external APIs.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Configuration
 @Import(AccountingServiceConfiguration.class)
 @ComponentScan

@@ -1,7 +1,5 @@
 package com.ftgo.kitchenservice.event.model;
 
-import com.ftgo.kitchenservice.event.TicketDomainEvent;
-
 /**
  * Ticket picked up event.
  *

@@ -1,5 +1,6 @@
 package com.ftgo.kitchenservice.event;
 
+import com.ftgo.kitchenservice.event.model.TicketDomainEvent;
 import com.ftgo.kitchenservice.model.Ticket;
 
 import io.eventuate.tram.events.aggregates.AbstractAggregateDomainEventPublisher;

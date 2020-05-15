@@ -7,7 +7,7 @@ import io.eventuate.tram.sagas.eventsourcingsupport.SagaReplyRequestedEvent;
 import java.util.Collections;
 import java.util.List;
 
-import com.ftgo.accountingservice.command.AccountCommand;
+import com.ftgo.accountingservice.command.model.AccountCommand;
 import com.ftgo.accountingservice.command.model.AuthorizeCommandInternal;
 import com.ftgo.accountingservice.command.model.CreateAccountCommand;
 import com.ftgo.accountingservice.command.model.ReverseAuthorizationCommandInternal;
@@ -17,6 +17,14 @@ import com.ftgo.accountingservice.event.model.AccountCreatedEvent;
 
 import static io.eventuate.EventUtil.events;
 
+/**
+ * The entity class for accounts
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class Account extends ReflectiveMutableCommandProcessingAggregate<Account, AccountCommand> {
 	public List<Event> process(CreateAccountCommand command) {
 		return events(new AccountCreatedEvent());

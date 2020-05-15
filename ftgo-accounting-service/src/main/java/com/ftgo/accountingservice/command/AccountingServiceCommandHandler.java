@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ftgo.accountingservice.command.model.AccountCommand;
 import com.ftgo.accountingservice.command.model.AuthorizeCommandInternal;
 import com.ftgo.accountingservice.command.model.ReverseAuthorizationCommandInternal;
 import com.ftgo.accountingservice.command.model.ReviseAuthorizationCommandInternal;
@@ -22,6 +23,14 @@ import com.ftgo.accountservice.api.command.ReviseAuthorizationCommand;
 import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.withFailure;
 import static io.eventuate.tram.sagas.eventsourcingsupport.UpdatingOptionsBuilder.replyingTo;
 
+/**
+ * The handler class for handling the command messages from other services to the accounting service.
+ *
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class AccountingServiceCommandHandler {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 

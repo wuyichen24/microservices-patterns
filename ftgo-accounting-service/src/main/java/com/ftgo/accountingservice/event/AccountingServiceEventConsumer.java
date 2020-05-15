@@ -7,9 +7,18 @@ import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.accountingservice.service.AccountingService;
-import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
+import com.ftgo.consumerservice.api.event.model.ConsumerCreatedEvent;
 
-public class AccountingEventConsumer {
+
+/**
+ * The event handlers for incoming events.
+ *
+ * @author  Wuyi Chen
+ * @date    04/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
+public class AccountingServiceEventConsumer {
 	@Autowired
 	private AccountingService accountingService;
 

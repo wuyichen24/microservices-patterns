@@ -4,6 +4,14 @@ import com.ftgo.common.model.Money;
 
 import io.eventuate.tram.commands.common.Command;
 
+/**
+ * The command for revising authorization.
+ *
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class ReviseAuthorizationCommand implements Command {
 	private long  consumerId;
 	private Long  orderId;

@@ -1,9 +1,6 @@
 package com.ftgo.accountingservice.controller;
 
 import io.eventuate.EntityNotFoundException;
-import io.eventuate.sync.AggregateRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,16 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftgo.accountingservice.command.AccountCommand;
 import com.ftgo.accountingservice.controller.model.GetAccountResponse;
-import com.ftgo.accountingservice.model.Account;
 
+/**
+ * The controller class for defining the external APIs about accounts.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 @RequestMapping(path = "/accounts")
 public class AccountingServiceController {
-	@Autowired
-	private AggregateRepository<Account, AccountCommand> accountRepository;
-
 	@RequestMapping(path = "/{accountId}", method = RequestMethod.GET)
 	public ResponseEntity<GetAccountResponse> getAccount(@PathVariable String accountId) {
 		try {
