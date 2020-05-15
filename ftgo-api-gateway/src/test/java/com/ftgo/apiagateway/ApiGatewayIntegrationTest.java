@@ -2,8 +2,8 @@ package com.ftgo.apiagateway;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ftgo.apigateway.model.OrderInfo;
 import com.ftgo.apigateway.service.order.OrderDetails;
-import com.ftgo.apigateway.service.order.OrderInfo;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 import org.junit.Rule;
@@ -30,19 +30,27 @@ import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * The integration test for the API gateway.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApiGatewayIntegrationTestConfiguration.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties={"order.destinations.orderServiceUrl=http://localhost:8082",
-                "order.destinations.orderHistoryServiceUrl=http://localhost:8083",
-                "consumer.destinations.consumerServiceUrl=http://localhost:9999"
+        properties={"order.destinations.orderServiceUrl=http://localhost:8086",
+                "order.destinations.orderHistoryServiceUrl=http://localhost:8085",
+                "consumer.destinations.consumerServiceUrl=http://localhost:8082"
                   })
 public class ApiGatewayIntegrationTest {
     @LocalServerPort
     private int port;
 
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(8082); // No-args constructor defaults to port 8080
+    public WireMockRule wireMockRule = new WireMockRule(8080); // No-args constructor defaults to port 8080
 
     @Test
     public void shouldProxyCreateOrder() {

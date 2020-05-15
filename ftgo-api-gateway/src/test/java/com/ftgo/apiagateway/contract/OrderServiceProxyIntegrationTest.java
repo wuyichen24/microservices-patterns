@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.ftgo.apigateway.exception.OrderNotFoundException;
+import com.ftgo.apigateway.model.OrderInfo;
 import com.ftgo.apigateway.service.order.OrderDestinations;
-import com.ftgo.apigateway.service.order.OrderInfo;
 import com.ftgo.apigateway.service.order.OrderServiceProxy;
 
 import static org.junit.Assert.assertEquals;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
  * @since   1.0
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = OrderServiceProxyIntegrationTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureStubRunner(ids = { "com.ftgo:ftgo-order-service-contracts" })       // It tells Spring Cloud Contract to run the WireMock server on a random port and configure it using the specified contracts.
 @DirtiesContext
 public class OrderServiceProxyIntegrationTest {

@@ -1,9 +1,17 @@
-package com.ftgo.apigateway.service.order;
+package com.ftgo.apigateway.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+/**
+ * The order information.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderInfo {
 	private String orderId;
 	private String state;

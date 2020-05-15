@@ -18,10 +18,10 @@ import com.ftgo.apigateway.service.kitchen.KitchenServiceProxy;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 
 /**
- * Defines the rules for routing order-related requests.
+ * The configuration class to instantiate the routing rules for the order service.
  * 
  * @author  Wuyi Chen
- * @date    05/04/2020
+ * @date    05/15/2020
  * @version 1.0
  * @since   1.0
  */

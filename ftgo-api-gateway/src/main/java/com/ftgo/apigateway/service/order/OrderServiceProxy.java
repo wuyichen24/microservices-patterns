@@ -5,6 +5,7 @@ import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.ftgo.apigateway.exception.OrderNotFoundException;
+import com.ftgo.apigateway.model.OrderInfo;
 
 import reactor.core.publisher.Mono;
 
