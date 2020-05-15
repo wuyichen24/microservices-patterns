@@ -11,3 +11,13 @@
 | `test` | `com.ftgo.orderservice.saga` | `CreateOrderSagaTest` | `shouldCreateOrder()` | Add `TicketDetails` parameter. |
 | `test` | `com.ftgo.orderservice.saga` | `CreateOrderSagaTest` | `shouldRejectDueToFailedAuthorizxation()` | Add `TicketDetails` parameter. | 
 | `integration-test` | `com.ftgo.orderservice.saga` | `sendAndReceiveCommand()` | Verify that replyClass is allowed. | 
+
+## API Gateway
+| Directory | Package | Class | Function | Description |
+|----|----|----|----|----|
+| `main` | `com.ftgo.apigateway.model` | `BillInfo` | | |
+| `main` | `com.ftgo.apigateway.model` | `DeliveryInfo` | | |
+| `main` | `com.ftgo.apigateway.model` | `TicketInfo` | | |
+| `main` | `com.ftgo.apigateway.service.accounting` | `AccountingServiceProxy` | `findBillByOrderId()` | |
+| `main` | `com.ftgo.apigateway.service.delivery` | `DeliveryServiceProxy` | `findDeliveryByOrderId()` | |
+| `main` | `com.ftgo.apigateway.service.kitchen` | `KitchenServiceProxy` | `findTicketById()` | |
