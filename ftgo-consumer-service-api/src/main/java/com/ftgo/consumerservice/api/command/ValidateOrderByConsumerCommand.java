@@ -8,6 +8,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.ftgo.common.model.Money;
 
+/**
+ * The command for validating an order by consumer.
+ *
+ * @author  Wuyi Chen
+ * @date    05/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class ValidateOrderByConsumerCommand implements Command {
 	private long  consumerId;
 	private long  orderId;

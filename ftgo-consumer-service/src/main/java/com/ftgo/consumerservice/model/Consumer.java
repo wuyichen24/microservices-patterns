@@ -14,6 +14,14 @@ import com.ftgo.consumerservice.event.model.ConsumerCreatedEvent;
 
 import io.eventuate.tram.events.publisher.ResultWithEvents;
 
+/**
+ * The consumer entity.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Table(name = "consumers")
 @Access(AccessType.FIELD)

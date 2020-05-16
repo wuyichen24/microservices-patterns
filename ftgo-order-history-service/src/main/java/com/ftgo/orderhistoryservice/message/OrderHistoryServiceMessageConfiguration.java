@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.event.OrderHistoryEventConsumer;
 

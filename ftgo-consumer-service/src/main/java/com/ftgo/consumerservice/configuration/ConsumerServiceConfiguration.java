@@ -1,8 +1,6 @@
-package com.ftgo.consumerservice.service;
+package com.ftgo.consumerservice.configuration;
 
-import io.eventuate.tram.commands.consumer.CommandDispatcher;
 import io.eventuate.tram.events.publisher.TramEventsPublisherConfiguration;
-import io.eventuate.tram.sagas.participant.SagaCommandDispatcherFactory;
 import io.eventuate.tram.sagas.participant.SagaParticipantConfiguration;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -13,9 +11,17 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.ftgo.common.domain.CommonConfiguration;
-import com.ftgo.consumerservice.command.ConsumerServiceCommandHandlers;
+import com.ftgo.common.configuration.CommonConfiguration;
+import com.ftgo.consumerservice.service.ConsumerService;
 
+/**
+ * The configuration class to instantiate and wire the domain service class.
+ * 
+ * @author Wuyi Chen
+ * @date 05/15/2020
+ * @version 1.0
+ * @since 1.0
+ */
 @Configuration
 @EnableJpaRepositories
 @EnableAutoConfiguration
@@ -24,17 +30,7 @@ import com.ftgo.consumerservice.command.ConsumerServiceCommandHandlers;
 @ComponentScan
 public class ConsumerServiceConfiguration {
 	@Bean
-	  public ConsumerServiceCommandHandlers consumerServiceCommandHandlers() {
-	    return new ConsumerServiceCommandHandlers();
-	  }
-
-	  @Bean
-	  public ConsumerService consumerService() {
-	    return new ConsumerService();
-	  }
-
-	  @Bean
-	  public CommandDispatcher commandDispatcher(ConsumerServiceCommandHandlers consumerServiceCommandHandlers, SagaCommandDispatcherFactory sagaCommandDispatcherFactory) {
-	    return sagaCommandDispatcherFactory.make("consumerServiceDispatcher", consumerServiceCommandHandlers.commandHandlers());
-	  }
+	public ConsumerService consumerService() {
+		return new ConsumerService();
+	}
 }

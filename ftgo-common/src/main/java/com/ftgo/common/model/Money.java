@@ -6,6 +6,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.math.BigDecimal;
 
+/**
+ * The money entity.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class Money {
 	public static Money ZERO = new Money(0);
 	private BigDecimal amount;

@@ -22,13 +22,21 @@ import com.ftgo.common.model.Money;
 import com.ftgo.common.model.PersonName;
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.consumerservice.api.controller.model.CreateConsumerRequest;
-import com.ftgo.consumerservice.domain.ConsumerWebConfiguration;
+import com.ftgo.consumerservice.configuration.ConsumerWebConfiguration;
 
 import java.util.Collections;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * The in-memory integration test for the consumer service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConsumerServiceInMemoryIntegrationTest.TestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ConsumerServiceInMemoryIntegrationTest {

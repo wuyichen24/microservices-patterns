@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 import com.ftgo.accountingservice.event.AccountingServiceEventConsumer;
 import com.ftgo.accountingservice.message.NoopDuplicateMessageDetector;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 
 import java.util.Collections;
 

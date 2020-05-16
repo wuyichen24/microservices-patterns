@@ -11,3 +11,5 @@ backend
 hardcoding
 mockito
 gherkin
+mapper
+deserializing

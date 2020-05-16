@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean;
 
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 import com.ftgo.restaurantservice.model.Restaurant;
 import com.ftgo.restaurantservice.repository.RestaurantRepository;
 

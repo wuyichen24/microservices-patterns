@@ -13,8 +13,20 @@ import com.ftgo.common.model.Money;
 
 import java.io.IOException;
 
+/**
+ * The module class for serializing and deserializing the {@code Money} entity.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class MoneyModule extends SimpleModule {
+	private static final long serialVersionUID = 1L;
+
 	class MoneyDeserializer extends StdScalarDeserializer<Money> {
+		private static final long serialVersionUID = 1L;
+
 		protected MoneyDeserializer() {
 			super(Money.class);
 		}
@@ -36,6 +48,8 @@ public class MoneyModule extends SimpleModule {
 	}
 
 	class MoneySerializer extends StdScalarSerializer<Money> {
+		private static final long serialVersionUID = 1L;
+
 		public MoneySerializer() {
 			super(Money.class);
 		}

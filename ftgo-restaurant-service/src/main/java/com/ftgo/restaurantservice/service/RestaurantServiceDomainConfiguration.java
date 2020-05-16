@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 
 @Configuration
 @EnableJpaRepositories

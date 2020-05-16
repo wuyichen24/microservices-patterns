@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 import com.ftgo.accountingservice.command.model.AccountCommand;
 import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountingservice.service.AccountingService;
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 
 /**
  * The configuration class to instantiate and wire the domain service class.

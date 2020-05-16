@@ -15,6 +15,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+/**
+ * The test class for testing {@code Money} entity JSON serialization.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class MoneySerializationTest {
 	@BeforeClass
 	public static void initialize() {

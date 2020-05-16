@@ -14,6 +14,14 @@ import com.ftgo.consumerservice.repository.ConsumerRepository;
 
 import java.util.Optional;
 
+/**
+ * The consumer service class for creating and managing consumers.
+ *
+ * @author  Wuyi Chen
+ * @date    05/15/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Transactional
 public class ConsumerService {
 	@Autowired

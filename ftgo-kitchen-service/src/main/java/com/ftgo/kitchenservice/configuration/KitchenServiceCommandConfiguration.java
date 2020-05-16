@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ftgo.common.domain.CommonConfiguration;
+import com.ftgo.common.configuration.CommonConfiguration;
 import com.ftgo.kitchenservice.command.KitchenServiceCommandHandler;
 
 import io.eventuate.tram.events.subscriber.DomainEventDispatcherFactory;
