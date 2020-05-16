@@ -21,3 +21,9 @@
 | `main` | `com.ftgo.apigateway.service.accounting` | `AccountingServiceProxy` | `findBillByOrderId()` | |
 | `main` | `com.ftgo.apigateway.service.delivery` | `DeliveryServiceProxy` | `findDeliveryByOrderId()` | |
 | `main` | `com.ftgo.apigateway.service.kitchen` | `KitchenServiceProxy` | `findTicketById()` | |
+| `main` | `com.ftgo.apigateway.service.order` | `OrderDetails` | `OrderDetails()` | |
+
+## Consumer Service
+| Directory | Package | Class | Function | Description |
+|----|----|----|----|----|
+| `main` | `com.ftgo.consumerservice.model` | `Consumer` | `validateOrderByConsumer()` | |
