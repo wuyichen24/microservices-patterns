@@ -15,6 +15,14 @@ import com.ftgo.deliveryservice.service.DeliveryServiceTestData;
 
 import static org.junit.Assert.assertNull;
 
+/**
+ * The test class for the delivery repository (Spring JPA).
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DeliveryJpaTest.Config.class)
 public class DeliveryJpaTest {
@@ -32,12 +40,10 @@ public class DeliveryJpaTest {
 	public void shouldSaveAndLoadDelivery() {
 		long restaurantId = 102L;
 		long orderId = System.currentTimeMillis();
-		Delivery delivery = Delivery.create(orderId, restaurantId, DeliveryServiceTestData.PICKUP_ADDRESS,
-				DeliveryServiceTestData.PICKUP_ADDRESS);
-		Delivery savedDelivery = deliveryRepository.save(delivery);
+		Delivery delivery = Delivery.create(orderId, restaurantId, DeliveryServiceTestData.PICKUP_ADDRESS, DeliveryServiceTestData.PICKUP_ADDRESS);
+		deliveryRepository.save(delivery);
 
 		Delivery loadedDelivery = deliveryRepository.findById(orderId).get();
 		assertNull(loadedDelivery.getAssignedCourier());
 	}
-
 }

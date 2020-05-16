@@ -20,10 +20,17 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * The test class for the courier repository (Spring JPA).
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CourierJpaTest.Config.class)
 public class CourierJpaTest {
-
 	@Configuration
 	@EnableJpaRepositories
 	@EnableAutoConfiguration
@@ -43,7 +50,7 @@ public class CourierJpaTest {
 		long deliveryId = 103L;
 		courier.addAction(Action.makePickup(deliveryId, DeliveryServiceTestData.PICKUP_ADDRESS, LocalDateTime.now()));
 
-		Courier savedCourier = courierRepository.save(courier);
+		courierRepository.save(courier);
 
 		transactionTemplate.execute((ts) -> {
 			Courier loadedCourier = courierRepository.findById(courierId).get();
@@ -85,5 +92,4 @@ public class CourierJpaTest {
 			return null;
 		});
 	}
-
 }

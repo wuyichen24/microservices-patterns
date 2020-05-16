@@ -21,6 +21,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * The delivery service class for creating and managing deliveries.
+ *
+ * @author  Wuyi Chen
+ * @date    04/14/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class DeliveryService {
 	private RestaurantRepository restaurantRepository;
 	private DeliveryRepository   deliveryRepository;
@@ -65,10 +73,6 @@ public class DeliveryService {
 
 	}
 
-	// notePickedUp
-	// noteDelivered
-	// noteLocation
-
 	void noteAvailable(long courierId) {
 		courierRepository.findOrCreateCourier(courierId).noteAvailable();
 	}
@@ -93,7 +97,6 @@ public class DeliveryService {
 		else
 			noteUnavailable(courierId);
 	}
-
 
 	@Transactional
 	public DeliveryStatus getDeliveryInfo(long deliveryId) {

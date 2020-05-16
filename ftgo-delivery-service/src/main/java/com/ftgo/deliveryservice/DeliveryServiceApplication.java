@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.ftgo.deliveryservice.domain.DeliveryServiceWebConfiguration;
-import com.ftgo.deliveryservice.message.DeliveryServiceMessagingConfiguration;
+import com.ftgo.deliveryservice.configuration.DeliveryServiceEventConfiguration;
+import com.ftgo.deliveryservice.configuration.DeliveryServiceWebConfiguration;
 import com.ftgo.deliveryservice.model.Delivery;
 import com.ftgo.deliveryservice.repository.DeliveryRepository;
 import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
@@ -25,7 +25,7 @@ import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwagg
  */
 @Configuration
 @EnableAutoConfiguration
-@Import({ DeliveryServiceMessagingConfiguration.class, DeliveryServiceWebConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
+@Import({ DeliveryServiceEventConfiguration.class, DeliveryServiceWebConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
 @EntityScan(basePackageClasses = {Delivery.class})
 @EnableJpaRepositories(basePackageClasses = {DeliveryRepository.class})
 public class DeliveryServiceApplication {

@@ -8,6 +8,14 @@ import com.ftgo.deliveryservice.api.model.CourierAvailability;
 import com.ftgo.deliveryservice.api.model.DeliveryStatus;
 import com.ftgo.deliveryservice.service.DeliveryService;
 
+/**
+ * The controller class for defining the external APIs for the delivery service.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 public class DeliveryServiceController {
 	private DeliveryService deliveryService;
@@ -26,5 +34,4 @@ public class DeliveryServiceController {
 	public DeliveryStatus getDeliveryStatus(@PathVariable long deliveryId) {
 		return deliveryService.getDeliveryInfo(deliveryId);
 	}
-
 }

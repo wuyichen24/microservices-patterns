@@ -16,8 +16,15 @@ import com.ftgo.orderservice.api.event.OrderCreatedEvent;
 import com.ftgo.restaurantservice.api.RestaurantServiceChannels;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 
+/**
+ * The event handlers for incoming events.
+ *
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class DeliveryServiceEventConsumer {
-
 	private DeliveryService deliveryService;
 
 	public DeliveryServiceEventConsumer(DeliveryService deliveryService) {
@@ -53,5 +60,4 @@ public class DeliveryServiceEventConsumer {
 	public void handleTicketCancelledEvent(DomainEventEnvelope<TicketCancelledEvent> dee) {
 		deliveryService.cancelDelivery(Long.parseLong(dee.getAggregateId()));
 	}
-
 }

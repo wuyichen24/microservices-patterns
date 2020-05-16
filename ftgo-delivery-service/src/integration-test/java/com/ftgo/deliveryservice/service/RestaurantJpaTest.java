@@ -16,10 +16,17 @@ import com.ftgo.deliveryservice.service.DeliveryServiceTestData;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * The test class for the restaurant repository (Spring JPA).
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RestaurantJpaTest.Config.class)
 public class RestaurantJpaTest {
-
 	@Configuration
 	@EnableJpaRepositories
 	@EnableAutoConfiguration
@@ -35,8 +42,7 @@ public class RestaurantJpaTest {
 	@Test
 	public void shouldSaveAndLoad() {
 		long restaurantId = System.currentTimeMillis();
-		Restaurant restaurant = Restaurant.create(restaurantId, "Delicious Indian",
-				DeliveryServiceTestData.PICKUP_ADDRESS);
+		Restaurant restaurant = Restaurant.create(restaurantId, "Delicious Indian", DeliveryServiceTestData.PICKUP_ADDRESS);
 		restaurantRepository.save(restaurant);
 
 		transactionTemplate.execute((ts) -> {
@@ -44,6 +50,5 @@ public class RestaurantJpaTest {
 			assertEquals(DeliveryServiceTestData.PICKUP_ADDRESS, loadedCourier.getAddress());
 			return null;
 		});
-
 	}
 }

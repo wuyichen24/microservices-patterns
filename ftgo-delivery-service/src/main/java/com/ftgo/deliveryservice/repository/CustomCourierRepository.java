@@ -1,13 +1,15 @@
 package com.ftgo.deliveryservice.repository;
 
-import org.springframework.data.jpa.repository.Query;
-
 import com.ftgo.deliveryservice.model.Courier;
 
-import java.util.List;
-
+/**
+ * The custom repository interface for {@code Courier} entity. 
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public interface CustomCourierRepository {
-
 	Courier findOrCreateCourier(long courierId);
-
 }

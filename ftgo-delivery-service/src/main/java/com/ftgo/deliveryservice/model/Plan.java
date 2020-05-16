@@ -5,6 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The delivery plan for each courier.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 public class Plan {
 	@ElementCollection
 	private List<Action> actions = new LinkedList<>();

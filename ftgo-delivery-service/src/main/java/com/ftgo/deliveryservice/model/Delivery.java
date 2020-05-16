@@ -6,6 +6,14 @@ import com.ftgo.common.model.Address;
 
 import java.time.LocalDateTime;
 
+/**
+ * The entity class for deliveries.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Entity
 @Access(AccessType.FIELD)
 public class Delivery {

@@ -9,25 +9,33 @@ import com.ftgo.common.model.Address;
 
 import java.time.LocalDateTime;
 
+/**
+ * The single delivery action for each courier.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 @Embeddable
 public class Action {
 	@Enumerated(EnumType.STRING)
 	private ActionType type;
 	
 	@Embedded
-	private Address address;
+	private Address       address;
 	private LocalDateTime time;
 
-	protected long deliveryId;
+	protected long        deliveryId;
 
 	private Action() {
 	}
 
 	public Action(ActionType type, long deliveryId, Address address, LocalDateTime time) {
-		this.type = type;
+		this.type       = type;
 		this.deliveryId = deliveryId;
-		this.address = address;
-		this.time = time;
+		this.address    = address;
+		this.time       = time;
 	}
 
 	public boolean actionFor(long deliveryId) {

@@ -5,17 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ftgo.deliveryservice.model.Courier;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
+/**
+ * The custom repository inplementation for {@code Courier} entity. 
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class CustomCourierRepositoryImpl implements CustomCourierRepository {
-
 	@Autowired
 	private EntityManager entityManager;
-
-	// @Override
-	// public List<Courier> findAllAvailable() {
-	// return entityManager.createQuery("").getResultList();
-	// }
 
 	@Override
 	public Courier findOrCreateCourier(long courierId) {
