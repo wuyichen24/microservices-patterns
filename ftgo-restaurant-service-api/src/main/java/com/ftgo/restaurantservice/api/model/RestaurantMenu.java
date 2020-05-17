@@ -10,6 +10,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.List;
 
+/**
+ * The entity class of a restaurant menu.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Embeddable
 @Access(AccessType.FIELD)
 public class RestaurantMenu {

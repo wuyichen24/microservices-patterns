@@ -31,6 +31,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * The end-to-end test of the whole FTGO application.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class EndToEndTests {
 	public static final String CHICKED_VINDALOO_MENU_ITEM_ID = "1";
 	public static final String RESTAURANT_NAME = "My Restaurant";
@@ -62,24 +70,24 @@ public class EndToEndTests {
 		return s;
 	}
 
-	private int consumerPort = 8081;
-	private int orderPort = 8082;
-	private int accountingPort = 8085;
-	private int restaurantsPort = 8084;
-	private int kitchenPort = 8083;
-	private int apiGatewayPort = 8087;
-	private int deliveryServicePort = 8089;
+	private int apiGatewayPort        = 8080;
+	private int accountingServicePort = 8081;
+	private int consumerServicePort   = 8082;
+	private int deliveryServicePort   = 8083;
+	private int kitchenServicePort    = 8084;
+	private int orderServicePort      = 8086;
+	private int restaurantServicePort = 8087;
 
 	private String consumerBaseUrl(String... pathElements) {
-		return baseUrl(consumerPort, "consumers", pathElements);
+		return baseUrl(consumerServicePort, "consumers", pathElements);
 	}
 
 	private String accountingBaseUrl(String... pathElements) {
-		return baseUrl(accountingPort, "accounts", pathElements);
+		return baseUrl(accountingServicePort, "accounts", pathElements);
 	}
 
 	private String restaurantBaseUrl(String... pathElements) {
-		return baseUrl(restaurantsPort, "restaurants", pathElements);
+		return baseUrl(restaurantServicePort, "restaurants", pathElements);
 	}
 
 	private String kitchenRestaurantBaseUrl(String... pathElements) {
@@ -87,7 +95,7 @@ public class EndToEndTests {
 	}
 
 	private String kitchenServiceBaseUrl(String first, String... pathElements) {
-		return baseUrl(kitchenPort, first, pathElements);
+		return baseUrl(kitchenServicePort, first, pathElements);
 	}
 
 	private String orderBaseUrl(String... pathElements) {
@@ -99,7 +107,7 @@ public class EndToEndTests {
 	}
 
 	private String orderRestaurantBaseUrl(String... pathElements) {
-		return baseUrl(orderPort, "restaurants", pathElements);
+		return baseUrl(orderServicePort, "restaurants", pathElements);
 	}
 
 	private String orderHistoryBaseUrl(String... pathElements) {
@@ -114,31 +122,21 @@ public class EndToEndTests {
 				.objectMapperConfig(
 						new ObjectMapperConfig().jackson2ObjectMapperFactory((
 								aClass, s) -> JSonMapper.objectMapper));
-
 	}
 
 	@Test
 	public void shouldCreateReviseAndCancelOrder() {
-
 		createOrder();
-
 		reviseOrder();
-
 		cancelOrder();
-
 	}
 
 	@Test
 	public void shouldDeliverOrder() {
-
 		createOrder();
-
 		noteCourierAvailable();
-
 		acceptTicket();
-
 		assertOrderAssignedToCourier();
-
 	}
 
 	private void reviseOrder() {
@@ -152,7 +150,7 @@ public class EndToEndTests {
 				() -> {
 					String orderTotal = given()
 							.when()
-							.get(baseUrl(orderPort, "orders",
+							.get(baseUrl(orderServicePort, "orders",
 									Integer.toString(orderId))).then()
 							.statusCode(200).extract().path("orderTotal");
 					assertEquals(
@@ -183,19 +181,14 @@ public class EndToEndTests {
 
 	private void createOrder() {
 		consumerId = createConsumer();
-
 		verifyAccountCreatedForConsumer(consumerId);
 
 		restaurantId = createRestaurant();
-
 		verifyRestaurantCreatedInKitchenService(restaurantId);
-
 		verifyRestaurantCreatedInOrderService(restaurantId);
 
 		orderId = createOrder(consumerId, restaurantId);
-
 		verifyOrderAuthorized(orderId);
-
 		verifyOrderHistoryUpdated(orderId, consumerId);
 	}
 
@@ -215,14 +208,12 @@ public class EndToEndTests {
 							.path("orderInfo.state");
 					assertEquals("CANCELLED", state);
 				});
-
 	}
 
 	private void cancelOrder(int orderId) {
 		given().body("{}").contentType("application/json").when()
 				.post(orderBaseUrl(Integer.toString(orderId), "cancel")).then()
 				.statusCode(200);
-
 	}
 
 	private Integer createConsumer() {
@@ -239,7 +230,6 @@ public class EndToEndTests {
 		Eventually.eventually(() -> given().when()
 				.get(accountingBaseUrl(Integer.toString(consumerId))).then()
 				.statusCode(200));
-
 	}
 
 	private int createRestaurant() {
@@ -313,12 +303,10 @@ public class EndToEndTests {
 				() -> {
 					String state = given()
 							.when()
-							.get(orderHistoryBaseUrl() + "?consumerId="
-									+ consumerId)
+							.get(orderHistoryBaseUrl() + "?consumerId=" + consumerId)
 							.then()
 							.statusCode(200)
-							.body("orders[0].restaurantName",
-									equalTo(RESTAURANT_NAME)).extract()
+							.body("orders[0].restaurantName", equalTo(RESTAURANT_NAME)).extract()
 							.path("orders[0].status"); // TODO state?
 					assertNotNull(state);
 				});
@@ -329,9 +317,8 @@ public class EndToEndTests {
 		given().body(new CourierAvailability(true))
 				.contentType("application/json")
 				.when()
-				.post(deliveryServiceBaseUrl("couriers",
-						Long.toString(courierId), "availability")).then()
-				.statusCode(200);
+				.post(deliveryServiceBaseUrl("couriers", Long.toString(courierId), "availability"))
+				.then().statusCode(200);
 	}
 
 	private void acceptTicket() {
@@ -339,8 +326,8 @@ public class EndToEndTests {
 		given().body(new TicketAcceptance(LocalDateTime.now().plusHours(9)))
 				.contentType("application/json")
 				.when()
-				.post(kitchenServiceBaseUrl("tickets", Long.toString(orderId),
-						"accept")).then().statusCode(200);
+				.post(kitchenServiceBaseUrl("tickets", Long.toString(orderId),"accept"))
+				.then().statusCode(200);
 	}
 
 	private void assertOrderAssignedToCourier() {
@@ -352,7 +339,5 @@ public class EndToEndTests {
 					.extract().path("assignedCourier");
 			assertThat(assignedCourier).isGreaterThan(0);
 		});
-
 	}
-
 }

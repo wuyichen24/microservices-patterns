@@ -13,6 +13,14 @@ import com.ftgo.restaurantservice.repository.RestaurantRepository;
 import java.util.Collections;
 import java.util.Optional;
 
+/**
+ * The restaurant service class for creating and managing restaurants.
+ *
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @Transactional
 public class RestaurantService {
 	@Autowired

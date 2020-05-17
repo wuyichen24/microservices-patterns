@@ -11,6 +11,14 @@ import com.ftgo.restaurantservice.controller.model.GetRestaurantResponse;
 import com.ftgo.restaurantservice.model.Restaurant;
 import com.ftgo.restaurantservice.service.RestaurantService;
 
+/**
+ * The controller class for defining the external APIs about restaurants.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/16/2020
+ * @version 1.0
+ * @since   1.0
+ */
 @RestController
 @RequestMapping(path = "/restaurants")
 public class RestaurantServiceController {
