@@ -33,6 +33,8 @@ public class Consumer {
 	@Embedded
 	private PersonName name;
 
+	public Consumer() {}         // Keep default constructor for Hibernate
+	
 	public Consumer(PersonName name) {
 		this.name = name;
 	}

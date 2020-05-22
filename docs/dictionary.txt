@@ -13,3 +13,4 @@ mockito
 gherkin
 mapper
 deserializing
+hibernate

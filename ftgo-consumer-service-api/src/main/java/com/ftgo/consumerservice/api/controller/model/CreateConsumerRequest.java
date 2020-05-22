@@ -13,6 +13,8 @@ import com.ftgo.common.model.PersonName;
 public class CreateConsumerRequest {
 	private PersonName name;
 
+	public CreateConsumerRequest() {}
+	
 	public CreateConsumerRequest(PersonName name) {
 		this.name = name;
 	}

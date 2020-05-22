@@ -36,7 +36,7 @@ public class ConsumerServiceController {
 	@RequestMapping(method = RequestMethod.GET, path = "/{consumerId}")
 	public ResponseEntity<GetConsumerResponse> getConsumer(@PathVariable long consumerId) {
 		return consumerService.findById(consumerId)
-				.map(consumer -> new ResponseEntity<>(new GetConsumerResponse(consumer.getName()), HttpStatus.OK))
+				.map(consumer -> new ResponseEntity<>(new GetConsumerResponse(consumer.getId(), consumer.getName()), HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }
