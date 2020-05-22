@@ -51,5 +51,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - [Getting Started](docs/getting_started.md)
 - [Architecture](docs/architecture.md)
 - [Code Orgnization for Interservice Communication](docs/code_orgnization_for_interservice_communication.md)
+- [Directory Organization](docs/directory_organization.md)
 - [gRPC](docs/grpc.md)
 - [Command Memo](docs/command_memo.md)
+- [TODO List](docs/todo.md)
