@@ -57,6 +57,8 @@ public class Ticket {
 	private LocalDateTime readyForPickupTime;              // the time when the order was completed and ready for pickup.
 	private LocalDateTime pickedUpTime;                    // the time when the order was picked up.
 	
+	public Ticket() {}                                     // Keep default constructor for Hibernate
+	
 	/**
 	 * The factory method to creates a Ticket.
 	 * 

@@ -18,6 +18,7 @@ import com.ftgo.deliveryservice.repository.RestaurantRepository;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -100,7 +101,11 @@ public class DeliveryService {
 
 	@Transactional
 	public DeliveryStatus getDeliveryInfo(long deliveryId) {
-		Delivery delivery = deliveryRepository.findById(deliveryId).get();
+		Optional<Delivery> deliveryOpt = deliveryRepository.findById(deliveryId);
+		if (!deliveryOpt.isPresent()) {
+			return null;
+		}
+		Delivery delivery = deliveryOpt.get();
 		Long assignedCourier = delivery.getAssignedCourier();
 		List<Action> courierActions = Collections.emptyList();
 		if (assignedCourier != null) {

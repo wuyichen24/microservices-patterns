@@ -1,5 +1,9 @@
 package com.ftgo.kitchenservice.controller.model;
 
+import java.util.List;
+
+import com.ftgo.restaurantservice.api.model.MenuItem;
+
 /**
  * The response for getting restaurant API.
  * 
@@ -9,14 +13,19 @@ package com.ftgo.kitchenservice.controller.model;
  * @since   1.0
  */
 public class GetRestaurantResponse {
-	private long restaurantId;
+	private long           restaurantId;
+	private List<MenuItem> menuItems;
 
 	public GetRestaurantResponse() {}
 
-	public GetRestaurantResponse(long restaurantId) {
+	public GetRestaurantResponse(long restaurantId, List<MenuItem> menuItems) {
 		this.restaurantId = restaurantId;
+		this.menuItems    = menuItems;
 	}
 	
-	public long getRestaurantId()                  { return restaurantId;              }
-	public void setRestaurantId(long restaurantId) { this.restaurantId = restaurantId; }
+	public long           getRestaurantId()                      { return restaurantId;              }
+	public void           setRestaurantId(long restaurantId)     { this.restaurantId = restaurantId; }
+	public List<MenuItem> getMenuItems()                         { return menuItems;                 }
+	public void           setMenuItems(List<MenuItem> menuItems) { this.menuItems = menuItems;       }
+	
 }

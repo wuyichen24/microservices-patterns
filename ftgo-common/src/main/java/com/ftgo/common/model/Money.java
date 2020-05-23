@@ -71,4 +71,12 @@ public class Money {
 	public Money multiply(int x) {
 		return new Money(amount.multiply(new BigDecimal(x)));
 	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 }

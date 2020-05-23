@@ -4,8 +4,8 @@ import io.eventuate.tram.jdbckafka.TramJdbcKafkaConfiguration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -23,9 +23,9 @@ import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwagg
  * @version 1.0
  * @since 1.0
  */
-@Configuration
+@SpringBootApplication
 @EnableAutoConfiguration
-@Import({ DeliveryServiceEventConfiguration.class, DeliveryServiceWebConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class })
+@Import({ DeliveryServiceWebConfiguration.class, DeliveryServiceEventConfiguration.class, TramJdbcKafkaConfiguration.class, CommonSwaggerConfiguration.class})
 @EntityScan(basePackageClasses = {Delivery.class})
 @EnableJpaRepositories(basePackageClasses = {DeliveryRepository.class})
 public class DeliveryServiceApplication {

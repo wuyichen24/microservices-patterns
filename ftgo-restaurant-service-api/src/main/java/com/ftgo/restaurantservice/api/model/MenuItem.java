@@ -9,6 +9,7 @@ import com.ftgo.common.model.Money;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 
 /**
  * The entity class represents a single item in the menu.
@@ -24,6 +25,8 @@ public class MenuItem {
 	private String id;
 	private String name;
 	private Money  price;
+	
+	public MenuItem() {}       // Keep default constructor for Hibernate
 	
 	public MenuItem(String id, String name, Money price) {
 		this.id    = id;

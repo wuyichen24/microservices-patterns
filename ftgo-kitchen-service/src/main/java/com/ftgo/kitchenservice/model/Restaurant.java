@@ -36,6 +36,8 @@ public class Restaurant {
 	@ElementCollection
 	@CollectionTable(name = "kitchen_service_restaurant_menu_items")
 	private List<MenuItem> menuItems;
+	
+	public Restaurant () {}     // Keep default constructor for Hibernate
 
 	public Restaurant(long id, List<MenuItem> menuItems) {
 		this.id = id;
@@ -52,5 +54,13 @@ public class Restaurant {
 
 	public Long getId() {
 		return id;
+	}
+
+	public List<MenuItem> getMenuItems() {
+		return menuItems;
+	}
+
+	public void setMenuItems(List<MenuItem> menuItems) {
+		this.menuItems = menuItems;
 	}
 }

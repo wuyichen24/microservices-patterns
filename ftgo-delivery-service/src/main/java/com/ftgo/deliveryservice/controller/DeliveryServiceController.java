@@ -1,5 +1,6 @@
 package com.ftgo.deliveryservice.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,8 @@ import com.ftgo.deliveryservice.service.DeliveryService;
  */
 @RestController
 public class DeliveryServiceController {
+	@Autowired
 	private DeliveryService deliveryService;
-
-	public DeliveryServiceController(DeliveryService deliveryService) {
-		this.deliveryService = deliveryService;
-	}
 
 	@RequestMapping(path = "/couriers/{courierId}/availability", method = RequestMethod.POST)
 	public ResponseEntity<String> updateCourierLocation(@PathVariable long courierId, @RequestBody CourierAvailability availability) {
@@ -31,7 +29,13 @@ public class DeliveryServiceController {
 	}
 
 	@RequestMapping(path = "/deliveries/{deliveryId}", method = RequestMethod.GET)
-	public DeliveryStatus getDeliveryStatus(@PathVariable long deliveryId) {
-		return deliveryService.getDeliveryInfo(deliveryId);
+	public ResponseEntity<DeliveryStatus> getDeliveryStatus(@PathVariable long deliveryId) {
+		DeliveryStatus ds = deliveryService.getDeliveryInfo(deliveryId);
+		
+		if (ds == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(ds, HttpStatus.OK);
+		}
 	}
 }
