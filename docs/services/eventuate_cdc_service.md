@@ -14,9 +14,10 @@ There are 3 components in the Eventuate CDC service:
 ### Modes
 The Eventuate CDC service can be run in one of those 2 modes:
 - **Eventuate Local**
-   - Reads the EVENTS table.
 - **Eventuate Tram**
-   - Reads the MESSAGES table.
+There are the differences between those 2 modes
+- Reads the EVENTS table.
+- Reads the MESSAGES table.
 
 ## Configure Eventuate CDC Service
 ### Configure Reader
