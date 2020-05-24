@@ -24,6 +24,10 @@ The Eventuate CDC service can be run in one of those modes:
 - Microsoft SQL server
 
 ### Supported Message Brokers
+- Apache Kafka
+- Apache ActiveMQ
+- RabbitMQ
+- Redis
 
 ## Run Eventuate CDC Service
 
