@@ -26,6 +26,7 @@ There are 2 ways to read the message/event records from the database:
    - Mechanism
       - MySQL: By MySQL Binlog (Binary Log).
       - Postgres: By Postgres WAL (Write-Ahead Logging).
+   - MySQL Binlog is disable by default (You have to enable it by changing the `my.cnf` file and restarting the MySQL server)
 - **Polling the transactional outbox table**
    - Available for: All the supported databases.
    - Mechanism: 
@@ -47,10 +48,6 @@ There are 2 ways to read the message/event records from the database:
 - Apache ActiveMQ
 - RabbitMQ
 - Redis
-
-
-
-
 
 ## References
 - https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram.html#getting-started
