@@ -12,6 +12,9 @@ There are 3 components in the Eventuate CDC service:
 - **Publisher**: Publishes the JSON messages to the message brocker.
 
 ### Modes
+The Eventuate CDC service can be run in one of those modes:
+- **Eventuate Local**
+- **Eventuate Tram**
 
 
 ## Specification
