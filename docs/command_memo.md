@@ -11,4 +11,7 @@
    - Commands
       - Start: `sh kafka-server-start.sh ../config/server.properties`
       - Press Crtl+C
+      - List all topics: `bash kafka-topics.sh --list --zookeeper localhost:2181`
+      - Product a message to a topic: `bash kafka-console-producer.sh --broker-list localhost:9092 --topic <topic_name>`
+      - Comsume a message from a topic: `bash kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <topic_name> --from-beginning`
    - Port: 9092
