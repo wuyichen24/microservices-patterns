@@ -23,7 +23,7 @@ The Eventuate CDC service can be run in one of those 2 modes:
 There are 2 ways to read the message/event records from the database:
 - **Tailing the transaction log**
    - Available for: MySQL and Postgres databases.
-   - Mechanism
+   - Mechanism:
       - MySQL: By MySQL Binlog (Binary Log).
       - Postgres: By Postgres WAL (Write-Ahead Logging).
    - MySQL Binlog is disable by default (You have to enable it by changing the `my.cnf` file and restarting the MySQL server)
