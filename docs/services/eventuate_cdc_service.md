@@ -21,11 +21,18 @@ The Eventuate CDC service can be run in one of those 2 modes:
 ## Configure Eventuate CDC Service
 ### Configure Reader
 There are 2 ways to read the message/event records from the database:
-
-| Way | Available Database | Mechanism | Other Information |
-|----|------|----|----|
-| **Tailing the transaction log** | <li>MySQL<li>Postgres | <li>MySQL: MySQL Binlog (Binary Log).<li>Postgres: Postgres WAL (Write-Ahead Logging). | <li>You have to manually enable MySQL Binlog (it is disabled by default). |
-| **Polling the transactional outbox table** | All the supported databases | Poll the transactional outbox table by periodically executing a SQL SELECT statement to retrieve unpublished message/event records. | Different modes will read the transactional outbox table:<ul><li>Eventuate Local: Reads the EVENTS table by default.<li>Eventuate Tram: Reads the MESSAGES table by default.</ul> |
+- **Tailing the transaction log**
+   - Available for: MySQL and Postgres databases.
+   - Mechanism
+      - MySQL: By MySQL Binlog (Binary Log).
+      - Postgres: By Postgres WAL (Write-Ahead Logging).
+- **Polling the transactional outbox table**
+   - Available for: All the supported databases.
+   - Mechanism: 
+      - Polls the transactional outbox table by periodically executing a SQL SELECT statement to retrieve unpublished message/event records.
+   - Different modes will read the transactional outbox table:
+      - Eventuate Local: Reads the EVENTS table by default.
+      - Eventuate Tram: Reads the MESSAGES table by default.
 
 ## Run Eventuate CDC Service
 
