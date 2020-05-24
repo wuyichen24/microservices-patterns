@@ -15,8 +15,12 @@ There are 3 components in the Eventuate CDC service:
 The Eventuate CDC service can be run in one of those 2 modes:
 - **Eventuate Local**
    - Reads the EVENTS table.
+   - The aggregate type of the event determines which channel that event will be published to.
 - **Eventuate Tram**
    - Reads the MESSAGES table.
+   - The DESTINATION column of the MESSAGES table determines which channel each message will be published to.
+
+Test
 
 ## Configure Eventuate CDC Service
 ### Configure Reader
