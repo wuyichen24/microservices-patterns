@@ -63,11 +63,13 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 	}
 	
 	private CommandWithDestination validateOrderByConsumer(CreateOrderSagaData data) {
+		logger.info("Send ValidateOrderByConsumerCommand to consumerService channel");
 		return send(new ValidateOrderByConsumerCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
 				.to(ConsumerServiceChannels.consumerServiceChannel).build();
 	}
 	
 	private CommandWithDestination createTicket(CreateOrderSagaData data) {
+		logger.info("Send CreateTicketCommand to kitchenService channel");
 		return send(new CreateTicketCommand(data.getOrderDetails().getRestaurantId(), data.getOrderId(), makeTicketDetails(data.getOrderDetails())))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
@@ -78,6 +80,7 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 	}
 	
 	private CommandWithDestination authorize(CreateOrderSagaData data) {
+		logger.info("Send AuthorizeCommand to ccountingService channel");
 		return send(new AuthorizeCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
 				.to(AccountingServiceChannels.accountingServiceChannel).build();
 	}

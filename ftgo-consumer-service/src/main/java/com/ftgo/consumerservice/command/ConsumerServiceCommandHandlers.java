@@ -5,6 +5,8 @@ import io.eventuate.tram.commands.consumer.CommandMessage;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.consumerservice.api.ConsumerServiceChannels;
@@ -26,6 +28,8 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
 public class ConsumerServiceCommandHandlers {
 	@Autowired
 	private ConsumerService consumerService;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder.fromChannel(ConsumerServiceChannels.consumerServiceChannel)
@@ -33,6 +37,7 @@ public class ConsumerServiceCommandHandlers {
 	}
 
 	private Message validateOrderForConsumer(CommandMessage<ValidateOrderByConsumerCommand> cm) {
+		logger.info("Receive ValidateOrderByConsumerCommand");
 		try {
 			consumerService.validateOrderForConsumer(cm.getCommand().getConsumerId(), cm.getCommand().getOrderTotal());
 			return withSuccess();

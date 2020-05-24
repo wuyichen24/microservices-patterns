@@ -38,6 +38,8 @@ public class Restaurant {
 	@CollectionTable(name = "order_service_restaurant_menu_items")
 	private List<MenuItem> menuItems;
 	private String name;
+	
+	public Restaurant() {}     // Keep default constructor for Hibernate
 
 	public Restaurant(long id, String name, List<MenuItem> menuItems) {
 		this.id        = id;

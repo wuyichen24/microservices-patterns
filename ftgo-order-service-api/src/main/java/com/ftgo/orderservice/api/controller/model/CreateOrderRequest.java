@@ -3,7 +3,9 @@ package com.ftgo.orderservice.api.controller.model;
 import java.util.List;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.ftgo.common.model.Address;
+import com.ftgo.orderservice.api.json.ParseDeserializer;
 
 /**
  * The request for creating an order API.
@@ -17,15 +19,17 @@ public class CreateOrderRequest {
 	private long           restaurantId;
 	private long           consumerId;
 	private List<LineItem> lineItems;
+	
+	@JsonDeserialize(using = ParseDeserializer.class)
 	private LocalDateTime  deliveryTime;
 	private Address        deliveryAddress;
 
 	public CreateOrderRequest(long consumerId, long restaurantId, Address deliveryAddress, LocalDateTime deliveryTime, List<LineItem> lineItems) {
-	    this.restaurantId = restaurantId;
-	    this.consumerId = consumerId;
+	    this.restaurantId    = restaurantId;
+	    this.consumerId      = consumerId;
 	    this.deliveryAddress = deliveryAddress;
-	    this.deliveryTime = deliveryTime;
-	    this.lineItems = lineItems;
+	    this.deliveryTime    = deliveryTime;
+	    this.lineItems       = lineItems;
 	}
 
 	private CreateOrderRequest() {}
@@ -56,9 +60,9 @@ public class CreateOrderRequest {
 			this.quantity   = quantity;
 		}
 
-		public String getMenuItemId()                  { return menuItemId;            }
+		public String     getMenuItemId()                  { return menuItemId;            }
 		public LineItem   setMenuItemId(String menuItemId) { this.menuItemId = menuItemId; return this; }
-		public int    getQuantity()                    { return quantity;              }
+		public int        getQuantity()                    { return quantity;                           }
 		public LineItem   setQuantity(int quantity)        { this.quantity = quantity;    return this; }
 
 		public static LineItem newBuilder() {
