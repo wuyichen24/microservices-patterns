@@ -2,20 +2,33 @@
 
 ## Overview
 ### Concepts
-- Business logic services use Eventuate Tram libary to insert message/events into the transactional outbox.
+- Business logic services use Eventuate Tram libary to insert message/events into the transactional outbox table.
 - The Eventuate CDC service reads those messages/events from the transactional outbox table and publish them to the message broker.
 
 ### Components
 There are 3 components in the Eventuate CDC service:
-- **Reader**: Reads the message/event records from the database by either tailing the transaction log or polling using queries.
+- **Reader**: Reads the message/event records from the database by either tailing the transaction log or polling the transactional outbox table.
 - **Pipeline**: Transforms the message/event records into the JSON messages which can be published to a message broker.
 - **Publisher**: Publishes the JSON messages to the message brocker.
 
 ### Modes
 The Eventuate CDC service can be run in one of those 2 modes:
 - **Eventuate Local**
+   - Reads the EVENTS table.
 - **Eventuate Tram**
+   - Reads the MESSAGES table.
 
+## Configure Eventuate CDC Service
+### Configure Reader
+There are 2 ways to read the message/event records from the database:
+- **Tailing the transaction log**
+   - Only available for MySQL and Postgres database.
+      - MySQL: By MySQL Binlog (Binary Log).
+      - Postgres: By Postgres WAL (Write-Ahead Logging).
+- **Polling the transactional outbox table**
+
+
+## Run Eventuate CDC Service
 
 ## Specification
 ### Supported Databases
@@ -29,9 +42,9 @@ The Eventuate CDC service can be run in one of those 2 modes:
 - RabbitMQ
 - Redis
 
-## Run Eventuate CDC Service
 
-## Configure Eventuate CDC Service
+
+
 
 ## References
 - https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram.html#getting-started
