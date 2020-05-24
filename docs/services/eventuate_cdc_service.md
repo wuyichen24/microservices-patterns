@@ -34,3 +34,8 @@ The Eventuate CDC service can be run in one of those modes:
 ## Configure Eventuate CDC Service
 
 ## References
+- https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram.html#getting-started
+- https://eventuate.io/docs/manual/eventuate-tram/latest/cdc-configuration.html
+- https://hub.docker.com/r/eventuateio/eventuate-tram-cdc-mysql-service/tags
+- https://github.com/eventuate-foundation/eventuate-cdc
+- https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-cdc-mysql-service
