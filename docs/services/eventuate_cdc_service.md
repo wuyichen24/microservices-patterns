@@ -26,7 +26,16 @@ There are 2 ways to read the message/event records from the database:
       - MySQL: By MySQL Binlog (Binary Log).
       - Postgres: By Postgres WAL (Write-Ahead Logging).
 - **Polling the transactional outbox table**
+   - Available for all the supported databases.
+   - The mechanism is to poll the transactional outbox table by periodically executing a SQL SELECT statement to retrieve unpublished message/event records.
+   - Different modes will read the transactional outbox table:
+      - Eventuate Local: Reads the EVENTS table by default.
+      - Eventuate Tram: Reads the MESSAGES table by default.
 
+| Way | Available Database | Mechanism | Other Information |
+|----|----|----|----|
+| **Tailing the transaction log** | <li>MySQL<li>Postgres | <li>MySQL: MySQL Binlog (Binary Log).<li>Postgres: Postgres WAL (Write-Ahead Logging). | |
+| **Polling the transactional outbox table** | All the supported databases | Poll the transactional outbox table by periodically executing a SQL SELECT statement to retrieve unpublished message/event records. | Different modes will read the transactional outbox table:<ul><li>Eventuate Local: Reads the EVENTS table by default.<li>Eventuate Tram: Reads the MESSAGES table by default</ul> |
 
 ## Run Eventuate CDC Service
 
