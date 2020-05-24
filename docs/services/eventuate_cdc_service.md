@@ -14,10 +14,9 @@ There are 3 components in the Eventuate CDC service:
 ### Modes
 The Eventuate CDC service can be run in one of those 2 modes:
 - **Eventuate Local**
+   - Reads the EVENTS table.
 - **Eventuate Tram**
-There are the differences between those 2 modes
-- Reads the EVENTS table.
-- Reads the MESSAGES table.
+   - Reads the MESSAGES table.
 
 ## Configure Eventuate CDC Service
 ### Configure Reader
@@ -28,6 +27,9 @@ There are 2 ways to read the message/event records from the database:
       - MySQL: By MySQL Binlog (Binary Log).
       - Postgres: By Postgres WAL (Write-Ahead Logging).
    - MySQL Binlog is disable by default (You have to enable it by changing the `my.cnf` file and restarting the MySQL server)
+   - When using this way, the offset of the log file must be stored, there are 2 places to store the offset:
+      - Apache Kafka topic: When using Apache Kafka as message broker.
+      - Database table: When using a message broker other than Apache Kafka.
 - **Polling the transactional outbox table**
    - Available for: All the supported databases.
    - Mechanism: 
