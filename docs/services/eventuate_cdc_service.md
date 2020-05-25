@@ -121,6 +121,13 @@ max size of multi-message Apache Kafka record in message. | `1000000` | | |
 | `eventuate.redis.partitions` | Number of partitions. Messages are split between partitions similar to Apache Kafka. Partition is selected depending on message key hash. Processing of messages with the same partitions are ordered. | | | |
 
 ## Run The CDC Service
+There are 2 ways to run the Eventuate CDC Service:
+- **Run by Java JAR file**
+- **Run by Docker image**
+
+### Run by Java JAR File
+
+### Run by Docker Image
 
 ## Specification
 ### Supported Databases
