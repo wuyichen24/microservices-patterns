@@ -36,8 +36,8 @@ The Eventuate CDC service can be run in one of those 2 modes:
 There are the differences between those 2 modes
 | Mode | Polling The Transactional Outbox Table | Supported Message Brokers |
 |----|----|----|
-| **Eventuate Local** | <li>Reads the EVENTS table.<li>The aggregate type of the event determines which channel that event will be published to. | Only Apache Kafka. |
-| **Eventuate Tram** | <li>Reads the MESSAGES table.<li>The DESTINATION column in the MESSAGES table determines which channel each message will be published to. | All the supported message brokers. |
+| **Eventuate Local** | <li>Reads the EVENT table.<li>The aggregate type of the event determines which channel that event will be published to. | Only Apache Kafka. |
+| **Eventuate Tram** | <li>Reads the MESSAGE table.<li>The DESTINATION column in the MESSAGES table determines which channel each message will be published to. | All the supported message brokers. |
 
 ## Configure The CDC Service
 ### Configure Reader
@@ -69,6 +69,8 @@ There are 2 ways to read the message/event records from the database:
 | `spring.datasource.username` | Username to use for the connection. | | | |
 | `spring.datasource.password` | Password to use for the connection. | | | |
 | `spring.datasource.driver.class.name` | JDBC driver class name. | | | |
+| `eventuate.database.schema` | Schema which is listened by the CDC service. | `eventuate` | | |
+| `eventuatelocal.cdc.source.table.name` | Name of the table to read events/messages from. | <li>`EVENT` (for Eventuate Local)<li>`MESSAGE` (Eventuate Tram) | | |
 
 #### Tailing MySQL Binlog Properties
 | Property | Description | Default Value | Available Values | Notes |
