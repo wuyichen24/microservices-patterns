@@ -28,7 +28,7 @@ There are the differences between those 2 modes
 | **Eventuate Local** | <li>Reads the EVENTS table.<li>The aggregate type of the event determines which channel that event will be published to. | Only Apache Kafka. |
 | **Eventuate Tram** | <li>Reads the MESSAGES table.<li>The DESTINATION column in the MESSAGES table determines which channel each message will be published to. | All the supported message brokers. |
 
-## Configure Eventuate CDC Service
+## Configure The CDC Service
 ### Configure Reader
 There are 2 ways to read the message/event records from the database:
 - **Tailing the transaction log**
@@ -71,7 +71,7 @@ There are 2 ways to read the message/event records from the database:
 
 #### Publishing to Apache Kafka Properties
 
-## Run Eventuate CDC Service
+## Run The CDC Service
 
 ## Specification
 ### Supported Databases
