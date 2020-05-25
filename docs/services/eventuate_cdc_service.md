@@ -126,6 +126,8 @@ There are 2 ways to run the Eventuate CDC Service:
 - **Run by Docker image**
 
 ### Run by Java JAR File
+- **Step 1**: Download the runnable JAR file from Maven Repository.
+   - Link: [Eventuate Tram CDC MySQL Service](https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-cdc-mysql-service)
 
 ### Run by Docker Image
 
