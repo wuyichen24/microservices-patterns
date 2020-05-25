@@ -93,6 +93,9 @@ There are 2 ways to read the message/event records from the database:
 |----|----|----|----|----|
 | `eventuatelocal.kafka.bootstrap.servers` | URL for connecting Apache Kafka. | | | |
 | `eventuatelocal.zookeeper.connection.string` | URL for connecting Zookeeper | | | |
+| `eventuate.cdc.kafka.enable.batch.processing` | Enable sending multiple Eventuate Local events and Eventuate Tram messages inside singe Apache Kafka message. | `false` | | |
+| `eventuate.cdc.kafka.batch.processing.max.batch.size` | 	
+max size of multi-message Apache Kafka record in message. | `1000000` | | |
 
 ## Run The CDC Service
 
