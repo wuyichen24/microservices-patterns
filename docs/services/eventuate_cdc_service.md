@@ -43,6 +43,7 @@ There are 2 ways to read the message/event records from the database:
       - Eventuate Tram: Reads the MESSAGES table by default.
 
 ### Common Configuration Properties
+#### Core Service Properties
 | Property | Description | Default Value | Available Values | Notes |
 |----|----|----|----|----|
 | `eventuate.cdc.type` | Specify which mode will be run for Eventuate CDC Service. | | <ul><li>`EventuateLocal`: Run Eventuate Local mode.<li>`EventuateTram`: Run Eventuate Tram mode.</ul> | |
@@ -51,6 +52,14 @@ There are 2 ways to read the message/event records from the database:
 | `spring.datasource.username` | Username to use for the connection. | | | |
 | `spring.datasource.password` | Password to use for the connection. | | | |
 | `spring.datasource.driver.class.name` | JDBC driver class name. | | | |
+
+#### Tailing MySQL Binlog Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `eventuatelocal.cdc.db.user.name` | Username to use for the MySQL connection. | | | For tailing MySQL Binlog tailing only. |
+| `eventuatelocal.cdc.db.password` | Password to use for the MySQL connection. | | | For tailing MySQL Binlog tailing only. |
+| `eventuatelocal.cdc.mysql.binlog.client.unique.id` | Unique client identifier for reading MySQL binlog. | | | For tailing MySQL Binlog tailing only. |
+| `eventuatelocal.cdc.read.old.debezium.db.offset.storage.topic` | Specify CDC service should start read records from the old debezium kafka topic or not. | | <ul><li>`true`: Start read records from the old debezium kafka topic.<li>`false`: Start read records from the new CDC kafka topic.</ul> | For tailing MySQL Binlog tailing only. |
 
 ## Run Eventuate CDC Service
 
