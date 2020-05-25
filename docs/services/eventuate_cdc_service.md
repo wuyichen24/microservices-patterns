@@ -222,8 +222,8 @@ There are 2 ways to run the Eventuate CDC Service:
 - Redis
 
 ## References
-- https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram.html#getting-started
-- https://eventuate.io/docs/manual/eventuate-tram/latest/cdc-configuration.html
-- https://hub.docker.com/r/eventuateio/eventuate-tram-cdc-mysql-service/tags
-- https://github.com/eventuate-foundation/eventuate-cdc
-- https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-cdc-mysql-service
+- [Configuring the Eventuate CDC Service](https://eventuate.io/docs/manual/eventuate-tram/latest/cdc-configuration.html)
+- [Getting started with Eventuate Tram](https://eventuate.io/docs/manual/eventuate-tram/latest/getting-started-eventuate-tram.html)
+- [DockerHub for Eventuate CDC Service](https://hub.docker.com/r/eventuateio/eventuate-tram-cdc-mysql-service/tags)
+- [Maven Repository for Eventuate CDC Service](https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-cdc-mysql-service)
+- [Github for  Eventuate CDC Service](https://github.com/eventuate-foundation/eventuate-cdc)
