@@ -128,7 +128,7 @@ There are 2 ways to run the Eventuate CDC Service:
 ### Run by Java JAR File
 - **Step 1**: Download the runnable JAR file from Maven Repository.
    - Link: [Eventuate Tram CDC MySQL Service](https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-cdc-mysql-service)
-- **Step 2**: Create `application.properties`
+- **Step 2**: Create `application.properties` file.
    - Example:
      ```properties
      spring.datasource.url=jdbc:mysql://localhost:3306/eventuate?autoReconnect=true&useSSL=true
@@ -148,6 +148,11 @@ There are 2 ways to run the Eventuate CDC Service:
      eventuatelocal.cdc.mysql.binlog.client.unique.id=1
      eventuatelocal.cdc.offset.storage.topic.name=db.history.common
      eventuatelocal.cdc.leadership.lock.path=/eventuatelocal/cdc/leader/1
+     ```
+- **Step 3**: Run the JAR file with the `application.properties` file.
+   - Command
+     ```bash
+     java -jar eventuate-tram-cdc-mysql-service-0.x.x.RELEASE.jar --spring.config.location=application.properties
      ```
 
 ### Run by Docker Image
