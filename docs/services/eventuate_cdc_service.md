@@ -15,6 +15,8 @@
       - [Publishing to RabbitMQ Properties](#publishing-to-rabbitmq-properties)
       - [Publishing to Redis Properties](#publishing-to-redis-properties)
 - [**Run The CDC Service**](#run-the-cdc-service)
+   - [Run by Java JAR File](#run-by-java-jar-file)
+   - [Run by Docker Image](#run-by-docker-image)
 - [**Specification**](#specification)
    - [Supported Databases](#supported-databases)
    - [Supported Message Brokers](#supported-message-brokers)
