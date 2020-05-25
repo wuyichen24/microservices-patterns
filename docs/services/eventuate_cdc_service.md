@@ -45,7 +45,7 @@ There are 2 ways to read the message/event records from the database:
 ### Common Configuration Properties
 | Property | Description | Default Value | Available Values | Notes |
 |----|----|----|----|----|
-| spring.profiles.active | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | | | |
+| `spring.profiles.active` | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | - | <ul>For reading message/events from the database:<li>aaa<li>bbb<ul> | |
 
 ## Run Eventuate CDC Service
 
