@@ -196,7 +196,7 @@ There are 2 ways to run the Eventuate CDC Service:
          EVENTUATELOCAL_CDC_READ_OLD_DEBEZIUM_DB_OFFSET_STORAGE_TOPIC: "false"
          EVENTUATELOCAL_CDC_READER_NAME: customcdcreader
          EVENTUATELOCAL_CDC_MYSQL_BINLOG_CLIENT_UNIQUE_ID: 1
-         EVENTUATELOCAL_CDC_OFFSET_STORAGE_TOPIC_NAMEdb.history.common
+         EVENTUATELOCAL_CDC_OFFSET_STORAGE_TOPIC_NAME: db.history.common
          EVENTUATELOCAL_CDC_LEADERSHIP_LOCK_PATH: /eventuatelocal/cdc/leader/1
      ```
 - **Step 4**: Run the `docker-compose.yml` file.
