@@ -4,7 +4,18 @@
    - [Concepts](#concepts)
    - [Components](#components)
    - [Modes](#modes)
-- [**Configure Eventuate CDC Service**]()
+- [**Configure The CDC Service**](#configure-the-cdc-service)
+   - [Configure Reader](#configure-reader)
+   - [Common Configuration Properties](#common-configuration-properties)
+      - [Core Service Properties](#core-service-properties)
+      - [Tailing MySQL Binlog Properties](#tailing-mysql-binlog-properties)
+      - [Polling from the Outbox Table Properties](#polling-from-the-outbox-table-properties)
+      - [Publishing to Apache Kafka Properties](#publishing-to-apache-kafka-properties)
+- [**Run The CDC Service**](#run-the-cdc-service)
+- [**Specification**](#specification)
+   - [Supported Databases](#supported-databases)
+   - [Supported Message Brokers](#supported-message-brokers)
+- [**References**](#references)
 
 ## Overview
 ### Concepts
