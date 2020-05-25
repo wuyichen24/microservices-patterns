@@ -11,6 +11,9 @@
       - [Tailing MySQL Binlog Properties](#tailing-mysql-binlog-properties)
       - [Polling from the Outbox Table Properties](#polling-from-the-outbox-table-properties)
       - [Publishing to Apache Kafka Properties](#publishing-to-apache-kafka-properties)
+      - [Publishing to Apache ActiveMQ Properties](#publishing-to-apache-activemq-properties)
+      - [Publishing to RabbitMQ Properties](#publishing-to-rabbitmq-properties)
+      - [Publishing to Redis Properties](#publishing-to-redis-properties)
 - [**Run The CDC Service**](#run-the-cdc-service)
 - [**Specification**](#specification)
    - [Supported Databases](#supported-databases)
@@ -91,8 +94,8 @@ There are 2 ways to read the message/event records from the database:
 #### Publishing to Apache Kafka Properties
 | Property | Description | Default Value | Available Values | Notes |
 |----|----|----|----|----|
-| `eventuatelocal.kafka.bootstrap.servers` | URL for connecting Apache Kafka. | | | |
-| `eventuatelocal.zookeeper.connection.string` | URL for connecting Zookeeper | | | |
+| `eventuatelocal.kafka.bootstrap.servers` | URL (Host:Port) for connecting Apache Kafka. | | | |
+| `eventuatelocal.zookeeper.connection.string` | URL (Host:Port) for connecting Zookeeper | | | |
 | `eventuate.cdc.kafka.enable.batch.processing` | Enable sending multiple Eventuate Local events and Eventuate Tram messages inside singe Apache Kafka message. | `false` | | |
 | `eventuate.cdc.kafka.batch.processing.max.batch.size` | 	
 max size of multi-message Apache Kafka record in message. | `1000000` | | |
@@ -114,7 +117,7 @@ max size of multi-message Apache Kafka record in message. | `1000000` | | |
 #### Publishing to Redis Properties
 | Property | Description | Default Value | Available Values | Notes |
 |----|----|----|----|----|
-| `eventuate.redis.servers` | URL (Hostname:Port) for connecting Redis. | | | |
+| `eventuate.redis.servers` | URL (Host:Port) for connecting Redis. | | | |
 | `eventuate.redis.partitions` | Number of partitions. Messages are split between partitions similar to Apache Kafka. Partition is selected depending on message key hash. Processing of messages with the same partitions are ordered. | | | |
 
 ## Run The CDC Service
