@@ -159,6 +159,55 @@ There are 2 ways to run the Eventuate CDC Service:
      ```
 
 ### Run by Docker Image
+- **Step 1**: Install Docker
+- **Step 2**: Set `DOCKER_HOST_IP` environment variable.
+   - When running the Docker container, the Eventuate CDC Service in the Docker container needs to connect to Apache Kafka and MySQL database outside the container. So you need set up the `DOCKER_HOST_IP` and pass it into the container.
+   - Commands:
+     ```bash
+     sudo ifconfig lo0 alias 10.200.10.1/24  # where 10.200.10.1 is some unused IP address
+     export DOCKER_HOST_IP=10.200.10.1
+     ```
+   - Verification: You can verify that `DOCKER_HOST_IP` is set correctly by running this Docker image:
+     ```bash
+     docker run -p 8889:8888 -e DOCKER_DIAGNOSTICS_PORT=8889 -e DOCKER_HOST_IP --rm eventuateio/eventuateio-docker-networking-diagnostics:0.2.0.RELEASE
+     ```
+   - References:
+      - [Setting DOCKER_HOST_IP](https://eventuate.io/docs/usingdocker.html)
+- **Step 3**: Create a `docker-compose.yml` file.
+   - Example
+     ```yml
+     cdcservice:
+       image: eventuateio/eventuate-cdc-service:0.6.1.RELEASE
+       ports:
+         - "8099:8080"
+       environment:
+         SPRING_DATASOURCE_URL: jdbc:mysql://${DOCKER_HOST_IP}:3306/eventuate?useSSL=true
+         SPRING_DATASOURCE_USERNAME: root
+         SPRING_DATASOURCE_PASSWORD: 6ytow2-;S3lA
+         SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.jdbc.Driver
+         EVENTUATELOCAL_KAFKA_BOOTSTRAP_SERVERS: ${DOCKER_HOST_IP}:9092
+         EVENTUATELOCAL_ZOOKEEPER_CONNECTION_STRING: ${DOCKER_HOST_IP}:2181
+         EVENTUATELOCAL_CDC_DB_USER_NAME: root
+         EVENTUATELOCAL_CDC_DB_PASSWORD: 6ytow2-;S3lA
+         EVENTUATE_DATABASE_SCHEMA: eventuate
+         EVENTUATELOCAL_CDC_SOURCE_TABLE_NAME: MESSAGE
+         EVENTUATE_CDC_TYPE: EventuateTram
+         SPRING_PROFILES.ACTIVE: EventuatePolling
+         EVENTUATELOCAL_CDC_READ_OLD_DEBEZIUM_DB_OFFSET_STORAGE_TOPIC: "false"
+         EVENTUATELOCAL_CDC_READER_NAME: customcdcreader
+         EVENTUATELOCAL_CDC_MYSQL_BINLOG_CLIENT_UNIQUE_ID: 1
+         EVENTUATELOCAL_CDC_OFFSET_STORAGE_TOPIC_NAMEdb.history.common
+         EVENTUATELOCAL_CDC_LEADERSHIP_LOCK_PATH: /eventuatelocal/cdc/leader/1
+     ```
+- **Step 4**: Run the `docker-compose.yml` file.
+   - Command for start:
+     ```bash
+     docker-compose -f docker-compose.yml up
+     ```
+   - Command for stop:
+     ```bash
+     docker-compose -f docker-compose.yml down
+     ```
 
 ## Specification
 ### Supported Databases
