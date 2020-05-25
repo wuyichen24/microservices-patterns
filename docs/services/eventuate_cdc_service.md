@@ -97,6 +97,26 @@ There are 2 ways to read the message/event records from the database:
 | `eventuate.cdc.kafka.batch.processing.max.batch.size` | 	
 max size of multi-message Apache Kafka record in message. | `1000000` | | |
 
+#### Publishing to Apache ActiveMQ Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `activemq.url` | URL (Protocol://IP:Port) for connecting Apache ActiveMQ. | | | |
+| `activemq.user` | Username for connecting Apache ActiveMQ. | | | |
+| `activemq.password` | Password for connecting Apache ActiveMQ. | | | |
+
+#### Publishing to RabbitMQ Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `rabbitmq.host` | Hostname for connecting Apache ActiveMQ. | | | |
+| `rabbitmq.port` | Port for connecting Apache ActiveMQ. | | | |
+| `eventuate.rabbitmq.partition.count` | Number of partitions. Messages are split between partitions similar to Apache Kafka. Partition is selected depending on message key hash. Processing of messages with the same partitions are ordered. | | | |
+
+#### Publishing to Redis Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `eventuate.redis.servers` | URL (Hostname:Port) for connecting Redis. | | | |
+| `eventuate.redis.partitions` | Number of partitions. Messages are split between partitions similar to Apache Kafka. Partition is selected depending on message key hash. Processing of messages with the same partitions are ordered. | | | |
+
 ## Run The CDC Service
 
 ## Specification
