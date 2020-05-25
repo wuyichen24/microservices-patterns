@@ -24,6 +24,7 @@
 
 ## Overview
 ### Concepts
+![](../diagrams/cdc.png)
 - Business logic services use Eventuate Tram libary to insert message/events into the transactional outbox table.
 - The Eventuate CDC service reads those messages/events from the transactional outbox table and publish them to the message broker.
 
