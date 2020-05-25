@@ -43,7 +43,9 @@ There are 2 ways to read the message/event records from the database:
       - Eventuate Tram: Reads the MESSAGES table by default.
 
 ### Common Configuration Properties
-spring.profiles.active
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| spring.profiles.active | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | | | |
 
 ## Run Eventuate CDC Service
 
