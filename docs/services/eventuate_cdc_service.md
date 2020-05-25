@@ -59,7 +59,11 @@ There are 2 ways to read the message/event records from the database:
 | `eventuatelocal.cdc.db.user.name` | Username to use for the MySQL connection. | | | For tailing MySQL Binlog tailing only. |
 | `eventuatelocal.cdc.db.password` | Password to use for the MySQL connection. | | | For tailing MySQL Binlog tailing only. |
 | `eventuatelocal.cdc.mysql.binlog.client.unique.id` | Unique client identifier for reading MySQL binlog. | | | For tailing MySQL Binlog tailing only. |
-| `eventuatelocal.cdc.read.old.debezium.db.offset.storage.topic` | Specify CDC service should start read records from the old debezium kafka topic or not. | | <ul><li>`true`: Start read records from the old debezium kafka topic.<li>`false`: Start read records from the new CDC kafka topic.</ul> | For tailing MySQL Binlog tailing only. |
+| `eventuatelocal.cdc.read.old.debezium.db.offset.storage.topic` | Specify the CDC service should start read records from the old debezium kafka topic or not. | | <ul><li>`true`: Start read records from the old debezium kafka topic.<li>`false`: Start read records from the new CDC kafka topic.</ul> | For tailing MySQL Binlog tailing only. |
+
+#### Polling from the Outbox Table Properties
+
+#### Publishing to Apache Kafka Properties
 
 ## Run Eventuate CDC Service
 
