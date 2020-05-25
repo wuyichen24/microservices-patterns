@@ -81,6 +81,12 @@ There are 2 ways to read the message/event records from the database:
 | `eventuatelocal.cdc.read.old.debezium.db.offset.storage.topic` | Specify the CDC service should start read records from the old debezium kafka topic or not. | | <ul><li>`true`: Start read records from the old debezium kafka topic.<li>`false`: Start read records from the new CDC kafka topic.</ul> | For tailing MySQL Binlog tailing only. |
 
 #### Polling from the Outbox Table Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `eventuatelocal.cdc.polling.interval.in.milliseconds` | Sleep time between polling queries. | 500 | | |
+| `eventuatelocal.cdc.max.events.per.polling` | Max number of events is allowed to be retrieved for each polling query. | 1000 | | |
+| `eventuatelocal.cdc.max.attempts.for.polling` | Max number of attempts the reader will try again if polling fails.  | 100 | | |
+| `eventuatelocal.cdc.polling.retry.interval.in.milleseconds` | Interval time of retries if polling fails. | 500 | | |
 
 #### Publishing to Apache Kafka Properties
 
