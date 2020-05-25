@@ -10,8 +10,13 @@
    - Path: `/Users/wuyichen/kafka_2.11-2.2.0/bin`
    - Commands
       - Start: `sh kafka-server-start.sh ../config/server.properties`
-      - Press Crtl+C
+      - Stop: Press Crtl+C
       - List all topics: `bash kafka-topics.sh --list --zookeeper localhost:2181`
       - Product a message to a topic: `bash kafka-console-producer.sh --broker-list localhost:9092 --topic <topic_name>`
       - Comsume a message from a topic: `bash kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <topic_name> --from-beginning`
    - Port: 9092
+- **Eventuate CDC Service**
+  - Path: `./eventuate-cdc-service`
+  - Commands
+     - Start: `java -jar eventuate-tram-cdc-mysql-service-0.21.3.RELEASE.jar --spring.config.location=application.properties`
+     - Stop: Press Crtl+C

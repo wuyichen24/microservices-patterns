@@ -12,7 +12,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 
 ## Structure
 ![](docs/diagrams/architecture.png)
-- Business Logic Services
+- **Business Logic Services**
    - [**Order Service**](docs/services/order_service.md): Manages orders.
    - [**Restaurant Service**](docs/services/restaurant_service.md): Maintains information about restaurants.
    - [**Consumer Service**](docs/services/consumer_service.md)
@@ -20,9 +20,9 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
    - [**Order History Service**](docs/services/order_history_service.md).
    - [**Delivery Service**](docs/services/delivery_service.md): Schedule, reschedule, and cancel deliveries.
-- API Gateway
+- **API Gateway**
    - [**API Gateway**](docs/services/api_gateway.md)
-- CDC Service
+- **CDC Pipeline**
    - [**Eventuate CDC Service**](docs/services/eventuate_cdc_service.md)
 
 ## Technology Stack
