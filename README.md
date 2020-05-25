@@ -57,4 +57,5 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - [Directory Organization](docs/directory_organization.md)
 - [gRPC](docs/grpc.md)
 - [Command Memo](docs/command_memo.md)
+- [Eventuate CDC Service](docs/services/eventuate_cdc_service.md)
 - [TODO List](docs/todo.md)
