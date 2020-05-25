@@ -45,7 +45,7 @@ There are 2 ways to read the message/event records from the database:
 ### Common Configuration Properties
 | Property | Description | Default Value | Available Values | Notes |
 |----|----|----|----|----|
-| `spring.profiles.active` | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | | For reading message/events from the database:<ul><li>`(missing)`: Tailing the MySQL Binlog.<li>`PostgresWal`: Tailing the Postgres WAL.<li>`EventuatePolling`: Polling from the outbox table.<ul>For specifying message broker:<ul><li>`(missing)`: Use Apache Kafka.<li>`ActiveMQ`: Use Apache ActiveMQ.<li>`RabbitMQ`: Use RabbitMQ.<li>`Redis`: Use Redis.</ul>  | |
+| `spring.profiles.active` | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | | For retrieving message/events:<ul><li>`(missing)`: Tailing the MySQL Binlog.<li>`PostgresWal`: Tailing the Postgres WAL.<li>`EventuatePolling`: Polling from the outbox table.</ul>For specifying message broker:<ul><li>`(missing)`: Use Apache Kafka.<li>`ActiveMQ`: Use Apache ActiveMQ.<li>`RabbitMQ`: Use RabbitMQ.<li>`Redis`: Use Redis.</ul>  | |
 
 ## Run Eventuate CDC Service
 
