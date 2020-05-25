@@ -47,6 +47,10 @@ There are 2 ways to read the message/event records from the database:
 |----|----|----|----|----|
 | `eventuate.cdc.type` | Specify which mode will be run for Eventuate CDC Service. | | <ul><li>`EventuateLocal`: Run Eventuate Local mode.<li>`EventuateTram`: Run Eventuate Tram mode.</ul> | |
 | `spring.profiles.active` | <li>Specify which way to read the message/event records from the database.<li>Specify which message broker is using. | | For retrieving message/events:<ul><li>`(missing)`: Tailing the MySQL Binlog.<li>`PostgresWal`: Tailing the Postgres WAL.<li>`EventuatePolling`: Polling from the outbox table.</ul>For specifying message broker:<ul><li>`(missing)`: Use Apache Kafka.<li>`ActiveMQ`: Use Apache ActiveMQ.<li>`RabbitMQ`: Use RabbitMQ.<li>`Redis`: Use Redis.</ul>  | This property accepts multiple values which is separated by comma. |
+| `spring.datasource.url` | JDBC connection URL. | | | |
+| `spring.datasource.username` | Username to use for the connection. | | | |
+| `spring.datasource.password` | Password to use for the connection. | | | |
+| `spring.datasource.driver.class.name` | JDBC driver class name. | | | |
 
 ## Run Eventuate CDC Service
 
