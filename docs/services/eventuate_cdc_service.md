@@ -89,6 +89,10 @@ There are 2 ways to read the message/event records from the database:
 | `eventuatelocal.cdc.polling.retry.interval.in.milleseconds` | Interval time of retries if polling fails. | 500 | | |
 
 #### Publishing to Apache Kafka Properties
+| Property | Description | Default Value | Available Values | Notes |
+|----|----|----|----|----|
+| `eventuatelocal.kafka.bootstrap.servers` | URL for connecting Apache Kafka. | | | |
+| `eventuatelocal.zookeeper.connection.string` | URL for connecting Zookeeper | | | |
 
 ## Run The CDC Service
 
