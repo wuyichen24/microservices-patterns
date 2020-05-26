@@ -45,10 +45,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Finished the routing functionality for the Accounting Service, the Consumer Service, the Delivery Service and the Kitchen Service in the API gateway (Only the routing logic of the Order Service was finished in the original source code).
 - Changed the port number of all the services and the API gateway.
 - Replaced hardcoded channel names in multiple places. Centralized those channel names in one place.
-- Fixed the bug of using the ticket ID to query the restaurant table in the Kitchen Service.
-  ```java
-  Restaurant restaurant = restaurantRepository.findById(ticketId).orElseThrow(() -> new TicketNotFoundException(ticketId));
-  ```
+- Fixed some bugs.
 
 ## Documentation
 - [Getting Started](docs/getting_started.md)
@@ -57,4 +54,5 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - [Directory Organization](docs/directory_organization.md)
 - [gRPC](docs/grpc.md)
 - [Command Memo](docs/command_memo.md)
+- [Eventuate CDC Service](docs/services/eventuate_cdc_service.md)
 - [TODO List](docs/todo.md)
