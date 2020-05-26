@@ -4,6 +4,8 @@ import io.eventuate.tram.events.subscriber.DomainEventEnvelope;
 import io.eventuate.tram.events.subscriber.DomainEventHandlers;
 import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.kitchenservice.service.KitchenService;
@@ -20,13 +22,15 @@ import com.ftgo.restaurantservice.api.model.RestaurantMenu;
  * @since   1.0
  */
 public class KitchenServiceEventConsumer {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private KitchenService kitchenService;
 
 	public DomainEventHandlers domainEventHandlers() {
 		return DomainEventHandlersBuilder
 				.forAggregateType("com.ftgo.restaurantservice.model.Restaurant")
-				.onEvent(RestaurantCreatedEvent.class, this::createMenu)
+				.onEvent(RestaurantCreatedEvent.class,     this::createMenu)
 				.onEvent(RestaurantMenuRevisedEvent.class, this::reviseMenu).build();
 	}
 
@@ -37,6 +41,8 @@ public class KitchenServiceEventConsumer {
 	 *         The event envelope of {@code RestaurantCreatedEvent}.
 	 */
 	private void createMenu(DomainEventEnvelope<RestaurantCreatedEvent> de) {
+		logger.debug("Receive RestaurantCreatedEvent");
+		
 		String restaurantIds = de.getAggregateId();
 		long id = Long.parseLong(restaurantIds);
 		RestaurantMenu menu = de.getEvent().getMenu();
@@ -50,6 +56,8 @@ public class KitchenServiceEventConsumer {
 	 *         The event envelope of {@code RestaurantMenuRevisedEvent}.
 	 */
 	public void reviseMenu(DomainEventEnvelope<RestaurantMenuRevisedEvent> de) {
+		logger.debug("Receive RestaurantMenuRevisedEvent");
+		
 		long id = Long.parseLong(de.getAggregateId());
 		RestaurantMenu revisedMenu = de.getEvent().getRevisedMenu();
 		kitchenService.reviseMenu(id, revisedMenu);

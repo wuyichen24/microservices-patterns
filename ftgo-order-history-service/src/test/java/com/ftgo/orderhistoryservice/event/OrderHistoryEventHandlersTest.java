@@ -20,9 +20,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ftgo.orderhistoryservice.configuration.OrderHistoryServiceEventConfiguration;
 import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.dao.dynamodb.SourceEvent;
-import com.ftgo.orderhistoryservice.message.OrderHistoryServiceMessageConfiguration;
 import com.ftgo.orderhistoryservice.model.Order;
 
 import java.util.Optional;
@@ -49,7 +49,7 @@ import static org.mockito.Mockito.when;
 public class OrderHistoryEventHandlersTest {
 	@Configuration
 	@EnableAutoConfiguration
-	@Import({ OrderHistoryServiceMessageConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
+	@Import({ OrderHistoryServiceEventConfiguration.class, TramCommandProducerConfiguration.class, TramInMemoryConfiguration.class, EventuateContractVerifierConfiguration.class })
 	public static class TestConfiguration {
 		@Bean
 		public ChannelMapping channelMapping() {

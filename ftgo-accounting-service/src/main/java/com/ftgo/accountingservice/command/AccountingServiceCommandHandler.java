@@ -45,6 +45,7 @@ public class AccountingServiceCommandHandler {
 	}
 
 	public void authorize(CommandMessage<AuthorizeCommand> cm) {
+		logger.debug("Receive AuthorizeCommand");
 		AuthorizeCommand command = cm.getCommand();
 
 		accountRepository.update(Long.toString(command.getConsumerId()),                                                         // the id of the aggregate to update
@@ -55,6 +56,7 @@ public class AccountingServiceCommandHandler {
 	                                                                                                                             //    3. Send an AccountDisabledReply instead of the default error reply when the aggregate throws an AccountDisabledException.
 
 	public void reverseAuthorization(CommandMessage<ReverseAuthorizationCommand> cm) {
+		logger.debug("Receive ReverseAuthorizationCommand");
 		ReverseAuthorizationCommand command = cm.getCommand();
 
 		accountRepository.update(Long.toString(command.getConsumerId()), makeReverseAuthorizeCommandInternal(command),
@@ -63,6 +65,7 @@ public class AccountingServiceCommandHandler {
 	}
 
 	public void reviseAuthorization(CommandMessage<ReviseAuthorizationCommand> cm) {
+		logger.debug("Receive ReviseAuthorizationCommand");
 		ReviseAuthorizationCommand command = cm.getCommand();
 
 		accountRepository.update(Long.toString(command.getConsumerId()), makeReviseAuthorizeCommandInternal(command),

@@ -1,5 +1,7 @@
 package com.ftgo.deliveryservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +23,21 @@ import com.ftgo.deliveryservice.service.DeliveryService;
 public class DeliveryServiceController {
 	@Autowired
 	private DeliveryService deliveryService;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@RequestMapping(path = "/couriers/{courierId}/availability", method = RequestMethod.POST)
 	public ResponseEntity<String> updateCourierLocation(@PathVariable long courierId, @RequestBody CourierAvailability availability) {
+		logger.debug("POST /couriers/{courierId}/availability - Update a courier availability by courier ID");
+		
 		deliveryService.updateAvailability(courierId, availability.isAvailable());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/deliveries/{deliveryId}", method = RequestMethod.GET)
 	public ResponseEntity<DeliveryStatus> getDeliveryStatus(@PathVariable long deliveryId) {
+		logger.debug("GET /deliveries/{deliveryId} - Get delivery information by delivery ID");
+		
 		DeliveryStatus ds = deliveryService.getDeliveryInfo(deliveryId);
 		
 		if (ds == null) {

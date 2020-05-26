@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import com.ftgo.consumerservice.api.command.ValidateOrderByConsumerCommand;
 import com.ftgo.kitchenservice.api.KitchenServiceChannels;
@@ -58,45 +59,49 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 	}
 	
 	private CommandWithDestination rejectOrder(CreateOrderSagaData data) {
+		logger.debug("Send RejectOrderCommand to orderService channel");
 		return send(new RejectOrderCommand(data.getOrderId()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
 	private CommandWithDestination validateOrderByConsumer(CreateOrderSagaData data) {
-		logger.info("Send ValidateOrderByConsumerCommand to consumerService channel");
+		logger.debug("Send ValidateOrderByConsumerCommand to consumerService channel");
 		return send(new ValidateOrderByConsumerCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
 				.to(ConsumerServiceChannels.consumerServiceChannel).build();
 	}
 	
 	private CommandWithDestination createTicket(CreateOrderSagaData data) {
-		logger.info("Send CreateTicketCommand to kitchenService channel");
+		logger.debug("Send CreateTicketCommand to kitchenService channel");
 		return send(new CreateTicketCommand(data.getOrderDetails().getRestaurantId(), data.getOrderId(), makeTicketDetails(data.getOrderDetails())))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination cancelCreateTicket(CreateOrderSagaData data) {
+		logger.debug("Send CancelCreateTicketCommand to kitchenService channel");
 		return send(new CancelCreateTicketCommand(data.getOrderId()))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination authorize(CreateOrderSagaData data) {
-		logger.info("Send AuthorizeCommand to ccountingService channel");
+		logger.debug("Send AuthorizeCommand to accountingService channel");
 		return send(new AuthorizeCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
 				.to(AccountingServiceChannels.accountingServiceChannel).build();
 	}
 	
 	private CommandWithDestination confirmCreateTicket(CreateOrderSagaData data) {
+		logger.debug("Send ConfirmCreateTicketCommand to kitchenService channel");
 		return send(new ConfirmCreateTicketCommand(data.getTicketId()))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination approveOrder(CreateOrderSagaData data) {
+		logger.debug("Send ApproveOrderCommand to orderService channel");
 		return send(new ApproveOrderCommand(data.getOrderId()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
 	private void handleCreateTicketReply(CreateOrderSagaData data, CreateTicketReply reply) {
-		logger.debug("getTicketId {}", reply.getTicketId());
+		logger.debug("Receive CreateTicketReply {}", reply.getTicketId());
 		data.setTicketId(reply.getTicketId());
 	}
 
@@ -114,6 +119,7 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 
 	@Override
 	public SagaDefinition<CreateOrderSagaData> getSagaDefinition() {
+		Assert.notNull(sagaDefinition, "sagaDefinition is null.");
 		return sagaDefinition;
 	}
 }

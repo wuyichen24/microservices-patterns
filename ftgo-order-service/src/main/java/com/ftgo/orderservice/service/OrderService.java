@@ -54,7 +54,7 @@ public class OrderService {
 	private SagaManager<CreateOrderSagaData> createOrderSagaManager;
 	private SagaManager<CancelOrderSagaData>  cancelOrderSagaManager;
 	private SagaManager<ReviseOrderSagaData>  reviseOrderSagaManager;
-	private OrderServiceEventPublisher         orderAggregateEventPublisher;
+	private OrderServiceEventPublisher        orderAggregateEventPublisher;
 	private Optional<MeterRegistry>           meterRegistry;
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
@@ -99,7 +99,8 @@ public class OrderService {
 		orderRepository.save(order);                                                                                                                      // insert the new order into database.
 
 		orderAggregateEventPublisher.publish(order, orderAndEvents.events);                                                                               // publish the domain event
-
+		logger.debug("Send OrderCreatedEvent to Order event channel");
+		
 		OrderDetails orderDetails = new OrderDetails(consumerId, restaurantId, orderLineItems, order.getOrderTotal());
 
 		CreateOrderSagaData data = new CreateOrderSagaData(order.getId(), orderDetails);
@@ -129,9 +130,9 @@ public class OrderService {
 			OrderRevision orderRevision) {
 		return orderRepository.findById(orderId).map(
 				order -> {
-					List<OrderDomainEvent> events = order
-							.confirmRevision(orderRevision);
+					List<OrderDomainEvent> events = order.confirmRevision(orderRevision);
 					orderAggregateEventPublisher.publish(order, events);
+					logger.debug("Send OrderRevisedEvent to Order event channel");
 					return order;
 				});
 	}
@@ -160,6 +161,7 @@ public class OrderService {
 			Function<Order, List<OrderDomainEvent>> updater) {
 		return orderRepository.findById(orderId).map(order -> {
 			orderAggregateEventPublisher.publish(order, updater.apply(order));
+			logger.debug("Send OrderAuthorizedEvent to Order event channel");
 			return order;
 		}).orElseThrow(() -> new OrderNotFoundException(orderId));
 	}
@@ -210,9 +212,9 @@ public class OrderService {
 		return orderRepository
 				.findById(orderId)
 				.map(order -> {
-					ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> result = order
-							.revise(revision);
+					ResultWithDomainEvents<LineItemQuantityChange, OrderDomainEvent> result = order.revise(revision);
 					orderAggregateEventPublisher.publish(order, result.events);
+					logger.debug("Send OrderRevisionProposedEvent to Order event channel");
 					return new RevisedOrder(order, result.result);
 				});
 	}

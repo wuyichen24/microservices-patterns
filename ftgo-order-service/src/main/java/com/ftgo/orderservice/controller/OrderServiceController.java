@@ -1,5 +1,7 @@
  package com.ftgo.orderservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +36,8 @@ import static java.util.stream.Collectors.toList;
 @RestController
 @RequestMapping(path = "/orders")
 public class OrderServiceController {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	private OrderService    orderService;
 	private OrderRepository orderRepository;
 
@@ -55,6 +59,8 @@ public class OrderServiceController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
+		logger.debug("POST /orders - Add a new order");
+		
 	    Order order = orderService.createOrder(request.getConsumerId(),
 	            request.getRestaurantId(),
 	            new DeliveryInformation(request.getDeliveryTime(), request.getDeliveryAddress()),
@@ -73,6 +79,8 @@ public class OrderServiceController {
 	 */
 	@RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
 	public ResponseEntity<GetOrderResponse> getOrder(@PathVariable long orderId) {
+		logger.debug("GET /orders/{orderId} - Get an order by order ID");
+		
 		Optional<Order> order = orderRepository.findById(orderId);
 		return order.map(o -> new ResponseEntity<>(makeGetOrderResponse(o),HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -88,6 +96,8 @@ public class OrderServiceController {
 	 */
 	@RequestMapping(path = "/{orderId}/cancel", method = RequestMethod.POST)
 	public ResponseEntity<GetOrderResponse> cancel(@PathVariable long orderId) {
+		logger.debug("POST /orders/{orderId}/cancel - Cancel an order by order ID");
+		
 		try {
 			Order order = orderService.cancel(orderId);
 			return new ResponseEntity<>(makeGetOrderResponse(order), HttpStatus.OK);
@@ -108,6 +118,8 @@ public class OrderServiceController {
 	 */
 	@RequestMapping(path = "/{orderId}/revise", method = RequestMethod.POST)
 	public ResponseEntity<GetOrderResponse> revise(@PathVariable long orderId, @RequestBody ReviseOrderRequest request) {
+		logger.debug("POST /orders/{orderId}/revise - Revise an order by order ID");
+		
 		try {
 			Order order = orderService.reviseOrder(orderId, new OrderRevision(Optional.empty(), request.getRevisedLineItemQuantities()));
 			return new ResponseEntity<>(makeGetOrderResponse(order), HttpStatus.OK);

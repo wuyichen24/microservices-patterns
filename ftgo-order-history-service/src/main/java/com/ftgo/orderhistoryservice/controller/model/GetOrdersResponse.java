@@ -2,6 +2,14 @@ package com.ftgo.orderhistoryservice.controller.model;
 
 import java.util.List;
 
+/**
+ * The response for getting all the historical orders.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/26/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class GetOrdersResponse {
 	private List<GetOrderResponse> orders;
 	private String                 startKey;

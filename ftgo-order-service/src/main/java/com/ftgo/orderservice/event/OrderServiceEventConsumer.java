@@ -1,5 +1,8 @@
 package com.ftgo.orderservice.event;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ftgo.orderservice.service.OrderService;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 import com.ftgo.restaurantservice.api.event.RestaurantMenuRevisedEvent;
@@ -18,6 +21,8 @@ import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
  * @since   1.0
  */
 public class OrderServiceEventConsumer {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	private OrderService orderService;
 
 	public OrderServiceEventConsumer(OrderService orderService) {
@@ -37,6 +42,8 @@ public class OrderServiceEventConsumer {
 	}
 
 	private void createMenu(DomainEventEnvelope<RestaurantCreatedEvent> de) {
+		logger.debug("Receive RestaurantCreatedEvent");
+		
 		String restaurantIds = de.getAggregateId();
 		long id = Long.parseLong(restaurantIds);
 		RestaurantMenu menu = de.getEvent().getMenu();
@@ -44,10 +51,11 @@ public class OrderServiceEventConsumer {
 	}
 
 	public void reviseMenu(DomainEventEnvelope<RestaurantMenuRevisedEvent> de) {
+		logger.debug("Receive RestaurantMenuRevisedEvent");
+		
 		String restaurantIds = de.getAggregateId();
 		long id = Long.parseLong(restaurantIds);
 		RestaurantMenu revisedMenu = de.getEvent().getRevisedMenu();
-
 		orderService.reviseMenu(id, revisedMenu);
 	}
 }

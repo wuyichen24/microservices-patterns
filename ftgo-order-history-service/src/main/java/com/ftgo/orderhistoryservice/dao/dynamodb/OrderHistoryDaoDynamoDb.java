@@ -130,11 +130,11 @@ public class OrderHistoryDaoDynamoDb implements OrderHistoryDao {
 		return result;
 	}
 
-	private List mapLineItems(List<OrderLineItem> lineItems) {
+	private List<?> mapLineItems(List<OrderLineItem> lineItems) {
 		return lineItems.stream().map(this::mapOrderLineItem).collect(toList());
 	}
 
-	private Map mapOrderLineItem(OrderLineItem orderLineItem) {
+	private Map<?, ?> mapOrderLineItem(OrderLineItem orderLineItem) {
 		return new Maps().add("menuItemName", orderLineItem.getName()).add("menuItemId", orderLineItem.getMenuItemId())
 				.add("price", orderLineItem.getPrice().asString()).add("quantity", orderLineItem.getQuantity()).map();
 	}

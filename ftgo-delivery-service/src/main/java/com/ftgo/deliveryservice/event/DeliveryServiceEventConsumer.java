@@ -6,6 +6,9 @@ import io.eventuate.tram.events.subscriber.DomainEventHandlersBuilder;
 
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ftgo.common.model.Address;
 import com.ftgo.deliveryservice.service.DeliveryService;
 import com.ftgo.kitchenservice.api.KitchenServiceChannels;
@@ -25,6 +28,8 @@ import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
  * @since   1.0
  */
 public class DeliveryServiceEventConsumer {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	private DeliveryService deliveryService;
 
 	public DeliveryServiceEventConsumer(DeliveryService deliveryService) {
@@ -41,23 +46,30 @@ public class DeliveryServiceEventConsumer {
 				.onEvent(RestaurantCreatedEvent.class, this::handleRestaurantCreated).build();
 	}
 
-	public void handleRestaurantCreated(DomainEventEnvelope<RestaurantCreatedEvent> dee) {
-		Address address = dee.getEvent().getAddress();
-		deliveryService.createRestaurant(Long.parseLong(dee.getAggregateId()), dee.getEvent().getName(), address);
+	public void handleTicketAcceptedEvent(DomainEventEnvelope<TicketAcceptedEvent> dee) {
+		logger.debug("Receive TicketAcceptedEvent");
+		
+		LocalDateTime readyBy = dee.getEvent().getReadyBy();
+		deliveryService.scheduleDelivery(Long.parseLong(dee.getAggregateId()), readyBy);
 	}
-
+	
+	public void handleTicketCancelledEvent(DomainEventEnvelope<TicketCancelledEvent> dee) {
+		logger.debug("Receive TicketCancelledEvent");
+		deliveryService.cancelDelivery(Long.parseLong(dee.getAggregateId()));
+	}
+	
 	public void handleOrderCreatedEvent(DomainEventEnvelope<OrderCreatedEvent> dee) {
+		logger.debug("Receive OrderCreatedEvent");
+		
 		Address address = dee.getEvent().getDeliveryAddress();
 		deliveryService.createDelivery(Long.parseLong(dee.getAggregateId()),
 				dee.getEvent().getOrderDetails().getRestaurantId(), address);
 	}
 
-	public void handleTicketAcceptedEvent(DomainEventEnvelope<TicketAcceptedEvent> dee) {
-		LocalDateTime readyBy = dee.getEvent().getReadyBy();
-		deliveryService.scheduleDelivery(Long.parseLong(dee.getAggregateId()), readyBy);
-	}
-
-	public void handleTicketCancelledEvent(DomainEventEnvelope<TicketCancelledEvent> dee) {
-		deliveryService.cancelDelivery(Long.parseLong(dee.getAggregateId()));
+	public void handleRestaurantCreated(DomainEventEnvelope<RestaurantCreatedEvent> dee) {
+		logger.debug("Receive RestaurantCreatedEvent");
+		
+		Address address = dee.getEvent().getAddress();
+		deliveryService.createRestaurant(Long.parseLong(dee.getAggregateId()), dee.getEvent().getName(), address);
 	}
 }

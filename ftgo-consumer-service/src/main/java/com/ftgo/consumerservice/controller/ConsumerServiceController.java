@@ -1,5 +1,7 @@
 package com.ftgo.consumerservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +28,21 @@ import io.eventuate.tram.events.publisher.ResultWithEvents;
 public class ConsumerServiceController {
 	@Autowired
 	private ConsumerService consumerService;
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@RequestMapping(method = RequestMethod.POST)
 	public CreateConsumerResponse createConsumer(@RequestBody CreateConsumerRequest request) {
+		logger.debug("POST /consumers - Add a new consumer");
+		
 		ResultWithEvents<Consumer> result = consumerService.create(request.getName());
 		return new CreateConsumerResponse(result.result.getId());
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/{consumerId}")
 	public ResponseEntity<GetConsumerResponse> getConsumer(@PathVariable long consumerId) {
+		logger.debug("GET /consumers/{consumerId} - Get a consumer by consumer ID");
+		
 		return consumerService.findById(consumerId)
 				.map(consumer -> new ResponseEntity<>(new GetConsumerResponse(consumer.getId(), consumer.getName()), HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

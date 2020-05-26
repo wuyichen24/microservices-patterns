@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 import com.ftgo.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
-import com.ftgo.orderhistoryservice.domain.OrderHistoryWebConfiguration;
-import com.ftgo.orderhistoryservice.message.OrderHistoryServiceMessageConfiguration;
+import com.ftgo.orderhistoryservice.configuration.OrderHistoryServiceEventConfiguration;
+import com.ftgo.orderhistoryservice.configuration.OrderHistoryWebConfiguration;
 
 import io.eventuate.tram.consumer.common.TramConsumerCommonConfiguration;
 import io.eventuate.tram.consumer.kafka.EventuateTramKafkaMessageConsumerConfiguration;
@@ -20,7 +20,7 @@ import io.eventuate.tram.consumer.kafka.EventuateTramKafkaMessageConsumerConfigu
  * @since   1.0
  */
 @SpringBootApplication
-@Import({OrderHistoryWebConfiguration.class, OrderHistoryServiceMessageConfiguration.class, CommonSwaggerConfiguration.class, TramConsumerCommonConfiguration.class, EventuateTramKafkaMessageConsumerConfiguration.class})
+@Import({OrderHistoryWebConfiguration.class, OrderHistoryServiceEventConfiguration.class, CommonSwaggerConfiguration.class, TramConsumerCommonConfiguration.class, EventuateTramKafkaMessageConsumerConfiguration.class})
 public class OrderHistoryServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrderHistoryServiceApplication.class, args);

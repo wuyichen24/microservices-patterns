@@ -2,6 +2,8 @@ package com.ftgo.restaurantservice.service;
 
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,8 @@ import java.util.Optional;
  */
 @Transactional
 public class RestaurantService {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
@@ -33,6 +37,7 @@ public class RestaurantService {
 		Restaurant restaurant = new Restaurant(request.getName(), request.getMenu());
 		restaurantRepository.save(restaurant);
 		domainEventPublisher.publish(Restaurant.class, restaurant.getId(), Collections.singletonList(new RestaurantCreatedEvent(request.getName(), request.getAddress(), request.getMenu())));
+		logger.debug("Send RestaurantCreatedEvent to Restaurant event channel");
 		return restaurant;
 	}
 

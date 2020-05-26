@@ -17,6 +17,14 @@ import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.Optional;
 
+/**
+ * The event consumer for subscribed events.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/26/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderHistoryEventConsumer {
 	private OrderHistoryDao orderHistoryDao;
 	private String          orderId;
@@ -40,9 +48,8 @@ public class OrderHistoryEventConsumer {
 	}
 
 	public void handleOrderCreated(DomainEventEnvelope<OrderCreatedEvent> dee) {
-		logger.debug("handleOrderCreated called {}", dee);
-		boolean result = orderHistoryDao.addOrder(makeOrder(dee.getAggregateId(), dee.getEvent()), makeSourceEvent(dee));
-		logger.debug("handleOrderCreated result {} {}", dee, result);
+		logger.debug("Receive OrderCreatedEvent");
+		orderHistoryDao.addOrder(makeOrder(dee.getAggregateId(), dee.getEvent()), makeSourceEvent(dee));
 	}
 
 	private Order makeOrder(String orderId, OrderCreatedEvent event) {

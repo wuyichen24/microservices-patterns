@@ -6,6 +6,8 @@ import io.eventuate.tram.commands.consumer.CommandMessage;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
@@ -33,6 +35,8 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
  * @since   1.0
  */
 public class OrderServiceCommandHandlers {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private OrderService orderService;
 
@@ -46,29 +50,35 @@ public class OrderServiceCommandHandlers {
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder
 				.fromChannel("orderService")
-				.onMessage(ApproveOrderCommand.class, this::approveOrder)
-				.onMessage(RejectOrderCommand.class, this::rejectOrder)
-				.onMessage(BeginCancelCommand.class, this::beginCancel)
-				.onMessage(UndoBeginCancelCommand.class, this::undoCancel)
-				.onMessage(ConfirmCancelOrderCommand.class, this::confirmCancel)
-				.onMessage(BeginReviseOrderCommand.class, this::beginReviseOrder)
+				.onMessage(ApproveOrderCommand.class,         this::approveOrder)
+				.onMessage(RejectOrderCommand.class,          this::rejectOrder)
+				.onMessage(BeginCancelCommand.class,          this::beginCancel)
+				.onMessage(UndoBeginCancelCommand.class,      this::undoCancel)
+				.onMessage(ConfirmCancelOrderCommand.class,   this::confirmCancel)
+				.onMessage(BeginReviseOrderCommand.class,     this::beginReviseOrder)
 				.onMessage(UndoBeginReviseOrderCommand.class, this::undoPendingRevision)
-				.onMessage(ConfirmReviseOrderCommand.class, this::confirmRevision).build();
+				.onMessage(ConfirmReviseOrderCommand.class,   this::confirmRevision).build();
 	}
 
 	public Message approveOrder(CommandMessage<ApproveOrderCommand> cm) {
+		logger.debug("Receive ApproveOrderCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		orderService.approveOrder(orderId);
 		return withSuccess();
 	}
 
 	public Message rejectOrder(CommandMessage<RejectOrderCommand> cm) {
+		logger.debug("Receive RejectOrderCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		orderService.rejectOrder(orderId);
 		return withSuccess();
 	}
 
 	public Message beginCancel(CommandMessage<BeginCancelCommand> cm) {
+		logger.debug("Receive BeginCancelCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		try {
 			orderService.beginCancel(orderId);
@@ -79,18 +89,24 @@ public class OrderServiceCommandHandlers {
 	}
 
 	public Message undoCancel(CommandMessage<UndoBeginCancelCommand> cm) {
+		logger.debug("Receive UndoBeginCancelCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		orderService.undoCancel(orderId);
 		return withSuccess();
 	}
 
 	public Message confirmCancel(CommandMessage<ConfirmCancelOrderCommand> cm) {
+		logger.debug("Receive ConfirmCancelOrderCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		orderService.confirmCancelled(orderId);
 		return withSuccess();
 	}
 
 	public Message beginReviseOrder(CommandMessage<BeginReviseOrderCommand> cm) {
+		logger.debug("Receive BeginReviseOrderCommand");
+		
 		long          orderId  = cm.getCommand().getOrderId();
 		OrderRevision revision = cm.getCommand().getRevision();
 		try {
@@ -104,12 +120,16 @@ public class OrderServiceCommandHandlers {
 	}
 
 	public Message undoPendingRevision(CommandMessage<UndoBeginReviseOrderCommand> cm) {
+		logger.debug("Receive UndoBeginReviseOrderCommand");
+		
 		long orderId = cm.getCommand().getOrderId();
 		orderService.undoPendingRevision(orderId);
 		return withSuccess();
 	}
 
 	public Message confirmRevision(CommandMessage<ConfirmReviseOrderCommand> cm) {
+		logger.debug("Receive ConfirmReviseOrderCommand");
+		
 		long          orderId  = cm.getCommand().getOrderId();
 		OrderRevision revision = cm.getCommand().getRevision();
 		orderService.confirmRevision(orderId, revision);

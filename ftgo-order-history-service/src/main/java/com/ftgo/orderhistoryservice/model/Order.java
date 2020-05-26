@@ -8,6 +8,14 @@ import com.ftgo.orderservice.api.model.OrderState;
 
 import java.util.List;
 
+/**
+ * The entity class for orders.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/26/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class Order {
 	private String              consumerId;
 	private DateTime            creationDate = DateTime.now();

@@ -26,18 +26,18 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
  * @since   1.0
  */
 public class ConsumerServiceCommandHandlers {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private ConsumerService consumerService;
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder.fromChannel(ConsumerServiceChannels.consumerServiceChannel)
 				.onMessage(ValidateOrderByConsumerCommand.class, this::validateOrderForConsumer).build();
 	}
 
 	private Message validateOrderForConsumer(CommandMessage<ValidateOrderByConsumerCommand> cm) {
-		logger.info("Receive ValidateOrderByConsumerCommand");
+		logger.debug("Receive ValidateOrderByConsumerCommand");
 		try {
 			consumerService.validateOrderForConsumer(cm.getCommand().getConsumerId(), cm.getCommand().getOrderTotal());
 			return withSuccess();

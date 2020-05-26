@@ -3,6 +3,8 @@ package com.ftgo.consumerservice.service;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.events.publisher.ResultWithEvents;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,8 @@ import java.util.Optional;
  */
 @Transactional
 public class ConsumerService {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private ConsumerRepository consumerRepository;
 
@@ -39,6 +43,7 @@ public class ConsumerService {
 		ResultWithEvents<Consumer> rwe = Consumer.create(name);
 		consumerRepository.save(rwe.result);
 		domainEventPublisher.publish(Consumer.class, rwe.result.getId(), rwe.events);
+		logger.debug("Send ConsumerCreatedEvent to Consumer event channel");
 		return rwe;
 	}
 

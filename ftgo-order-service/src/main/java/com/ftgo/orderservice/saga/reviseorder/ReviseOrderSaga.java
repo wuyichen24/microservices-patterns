@@ -6,6 +6,7 @@ import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.ReviseAuthorizationCommand;
@@ -47,47 +48,55 @@ public class ReviseOrderSaga implements SimpleSaga<ReviseOrderSagaData> {
 	}
 	
 	private CommandWithDestination beginReviseOrder(ReviseOrderSagaData data) {
+		logger.debug("Send BeginReviseOrderCommand to orderService channel");
 		return send(new BeginReviseOrderCommand(data.getOrderId(), data.getOrderRevision()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
 	private CommandWithDestination undoBeginReviseOrder(ReviseOrderSagaData data) {
+		logger.debug("Send UndoBeginReviseOrderCommand to orderService channel");
 		return send(new UndoBeginReviseOrderCommand(data.getOrderId()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
 	private CommandWithDestination beginReviseTicket(ReviseOrderSagaData data) {
+		logger.debug("Send BeginReviseTicketCommand to kitchenService channel");
 		return send(new BeginReviseTicketCommand(data.getRestaurantId(), data.getOrderId(), data.getOrderRevision().getRevisedLineItemQuantities()))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination undoBeginReviseTicket(ReviseOrderSagaData data) {
+		logger.debug("Send UndoBeginReviseTicketCommand to kitchenService channel");
 		return send(new UndoBeginReviseTicketCommand(data.getRestaurantId(), data.getOrderId()))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination reviseAuthorization(ReviseOrderSagaData data) {
+		logger.debug("Send ReviseAuthorizationCommand to accountingService channel");
 		return send(new ReviseAuthorizationCommand(data.getConsumerId(),data.getOrderId(), data.getRevisedOrderTotal()))
 				.to(AccountingServiceChannels.accountingServiceChannel).build();
 	}
 	
 	private CommandWithDestination confirmTicketRevision(ReviseOrderSagaData data) {
+		logger.debug("Send ConfirmReviseTicketCommand to kitchenService channel");
 		return send(new ConfirmReviseTicketCommand(data.getRestaurantId(), data.getOrderId(), data.getOrderRevision().getRevisedLineItemQuantities()))
 				.to(KitchenServiceChannels.kitchenServiceChannel).build();
 	}
 	
 	private CommandWithDestination confirmOrderRevision(ReviseOrderSagaData data) {
+		logger.debug("Send ConfirmReviseOrderCommand to orderService channel");
 		return send(new ConfirmReviseOrderCommand(data.getOrderId(), data.getOrderRevision()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
 	private void handleBeginReviseOrderReply(ReviseOrderSagaData data, BeginReviseOrderReply reply) {
-		logger.info("ƒ order total: {}", reply.getRevisedOrderTotal());
+		logger.info("Receive BeginReviseOrderReply {}", reply.getRevisedOrderTotal());
 		data.setRevisedOrderTotal(reply.getRevisedOrderTotal());
 	}
 	
 	@Override
 	public SagaDefinition<ReviseOrderSagaData> getSagaDefinition() {
+		Assert.notNull(sagaDefinition, "sagaDefinition is null.");
 		return sagaDefinition;
 	}
 }

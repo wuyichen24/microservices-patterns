@@ -1,5 +1,7 @@
 package com.ftgo.kitchenservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +24,15 @@ import com.ftgo.kitchenservice.repository.RestaurantRepository;
 @RestController
 @RequestMapping(path = "/restaurants")
 public class RestaurantServiceController {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
 	@RequestMapping(path = "/{restaurantId}", method = RequestMethod.GET)
 	public ResponseEntity<GetRestaurantResponse> getRestaurant(@PathVariable long restaurantId) {
+		logger.debug("GET /restaurants/{restaurantId} - Get a restaurant by restaurant ID");
+		
 		return restaurantRepository.findById(restaurantId)
 				.map(restaurant -> new ResponseEntity<>(new GetRestaurantResponse(restaurantId, restaurant.getMenuItems()), HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));

@@ -5,6 +5,8 @@ import io.eventuate.tram.commands.consumer.CommandMessage;
 import io.eventuate.tram.messaging.common.Message;
 import io.eventuate.tram.sagas.participant.SagaCommandHandlersBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ftgo.kitchenservice.api.*;
@@ -36,6 +38,8 @@ import static io.eventuate.tram.sagas.participant.SagaReplyMessageBuilder.withLo
  * @since   1.0
  */
 public class KitchenServiceCommandHandler {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private KitchenService kitchenService;
 
@@ -48,18 +52,20 @@ public class KitchenServiceCommandHandler {
 	 */
 	public CommandHandlers commandHandlers() {
 		return SagaCommandHandlersBuilder.fromChannel(KitchenServiceChannels.kitchenServiceChannel)
-				.onMessage(CreateTicketCommand.class, this::createTicket)
-				.onMessage(ConfirmCreateTicketCommand.class, this::confirmCreateTicket)
-				.onMessage(CancelCreateTicketCommand.class, this::cancelCreateTicket)
-				.onMessage(BeginCancelTicketCommand.class, this::beginCancelTicket)
-				.onMessage(ConfirmCancelTicketCommand.class, this::confirmCancelTicket)
+				.onMessage(CreateTicketCommand.class,          this::createTicket)
+				.onMessage(ConfirmCreateTicketCommand.class,   this::confirmCreateTicket)
+				.onMessage(CancelCreateTicketCommand.class,    this::cancelCreateTicket)
+				.onMessage(BeginCancelTicketCommand.class,     this::beginCancelTicket)
+				.onMessage(ConfirmCancelTicketCommand.class,   this::confirmCancelTicket)
 				.onMessage(UndoBeginCancelTicketCommand.class, this::undoBeginCancelTicket)
-				.onMessage(BeginReviseTicketCommand.class, this::beginReviseTicket)
+				.onMessage(BeginReviseTicketCommand.class,     this::beginReviseTicket)
 				.onMessage(UndoBeginReviseTicketCommand.class, this::undoBeginReviseTicket)
-				.onMessage(ConfirmReviseTicketCommand.class, this::confirmReviseTicket).build();
+				.onMessage(ConfirmReviseTicketCommand.class,   this::confirmReviseTicket).build();
 	}
 
 	private Message createTicket(CommandMessage<CreateTicketCommand> cm) {
+		logger.debug("Receive CreateTicketCommand");
+		
 		CreateTicketCommand command = cm.getCommand();
 		long restaurantId = command.getRestaurantId();
 		Long ticketId = command.getOrderId();
@@ -75,43 +81,59 @@ public class KitchenServiceCommandHandler {
 	}
 
 	private Message confirmCreateTicket(CommandMessage<ConfirmCreateTicketCommand> cm) {
+		logger.debug("Receive ConfirmCreateTicketCommand");
+		
 		Long ticketId = cm.getCommand().getTicketId();
 		kitchenService.confirmCreateTicket(ticketId);
 		return withSuccess();
 	}
 
 	private Message cancelCreateTicket(CommandMessage<CancelCreateTicketCommand> cm) {
+		logger.debug("Receive CancelCreateTicketCommand");
+		
 		Long ticketId = cm.getCommand().getTicketId();
 		kitchenService.cancelCreateTicket(ticketId);
 		return withSuccess();
 	}
 
 	private Message beginCancelTicket(CommandMessage<BeginCancelTicketCommand> cm) {
+		logger.debug("Receive BeginCancelTicketCommand");
+		
 		kitchenService.cancelTicket(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId());
 		return withSuccess();
 	}
 
 	private Message confirmCancelTicket(CommandMessage<ConfirmCancelTicketCommand> cm) {
+		logger.debug("Receive ConfirmCancelTicketCommand");
+		
 		kitchenService.confirmCancelTicket(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId());
 		return withSuccess();
 	}
 
 	private Message undoBeginCancelTicket(CommandMessage<UndoBeginCancelTicketCommand> cm) {
+		logger.debug("Receive UndoBeginCancelTicketCommand");
+		
 		kitchenService.undoCancel(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId());
 		return withSuccess();
 	}
 
 	public Message beginReviseTicket(CommandMessage<BeginReviseTicketCommand> cm) {
+		logger.debug("Receive BeginReviseTicketCommand");
+		
 		kitchenService.beginReviseOrder(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(), cm.getCommand().getRevisedLineItemQuantities());
 		return withSuccess();
 	}
 
 	public Message undoBeginReviseTicket(CommandMessage<UndoBeginReviseTicketCommand> cm) {
+		logger.debug("Receive UndoBeginReviseTicketCommand");
+		
 		kitchenService.undoBeginReviseOrder(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId());
 		return withSuccess();
 	}
 
 	public Message confirmReviseTicket(CommandMessage<ConfirmReviseTicketCommand> cm) {
+		logger.debug("Receive ConfirmReviseTicketCommand");
+		
 		kitchenService.confirmReviseTicket(cm.getCommand().getRestaurantId(), cm.getCommand().getOrderId(), cm.getCommand().getRevisedLineItemQuantities());
 		return withSuccess();
 	}

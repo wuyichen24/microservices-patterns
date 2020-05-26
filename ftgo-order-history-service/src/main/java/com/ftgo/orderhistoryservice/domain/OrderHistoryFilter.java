@@ -9,6 +9,14 @@ import java.util.Set;
 
 import static java.util.Collections.emptySet;
 
+/**
+ * Filter for historical orders
+ * 
+ * @author  Wuyi Chen
+ * @date    04/16/2019
+ * @version 1.0
+ * @since   1.0
+ */
 public class OrderHistoryFilter {
 	private DateTime             since         = DateTime.now().minusDays(30);
 	private Optional<OrderState> status        = Optional.empty();

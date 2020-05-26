@@ -2,6 +2,14 @@ package com.ftgo.orderhistoryservice.controller.model;
 
 import com.ftgo.orderservice.api.model.OrderState;
 
+/**
+ * The response for getting order API.
+ * 
+ * @author  Wuyi Chen
+ * @date    05/26/2020
+ * @version 1.0
+ * @since   1.0
+ */
 public class GetOrderResponse {
 	private String     orderId;
 	private OrderState status;
