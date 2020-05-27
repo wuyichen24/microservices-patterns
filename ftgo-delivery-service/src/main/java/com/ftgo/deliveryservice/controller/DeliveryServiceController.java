@@ -31,7 +31,7 @@ public class DeliveryServiceController {
 		logger.debug("POST /couriers/{courierId}/availability - Update a courier availability by courier ID");
 		
 		deliveryService.updateAvailability(courierId, availability.isAvailable());
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/deliveries/{deliveryId}", method = RequestMethod.GET)

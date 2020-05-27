@@ -16,6 +16,8 @@ public class OrderInfo {
 	private String orderId;
 	private String state;
 
+	public OrderInfo() {}
+	
 	/**
 	 * @param orderId
 	 * @param state

@@ -32,6 +32,6 @@ public class KitchenServiceController {
 		logger.debug("POST /tickets/{ticketId}/accept - Accept a ticket by ticket ID");
 		
 		kitchenService.accept(ticketId, ticketAcceptance.getReadyBy());
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 }

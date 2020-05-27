@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "3ec0b960-e31c-4194-9e1a-81085ad76f71",
+		"name": "Microservices-Patterns-FTGO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AccountingService",
+			"item": [
+				{
+					"name": "Get an account by account ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/accounts/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"accounts",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ConsumerService",
+			"item": [
+				{
+					"name": "Add a new consumer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"name\" : {\n\t\t\"firstName\" : \"Joe\",\n\t\t\"lastName\" : \"Doe\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/consumers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"consumers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a consumer by consumer ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/consumers/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"consumers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DeliveryService",
+			"item": [
+				{
+					"name": "Get delivery information by delivery ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/deliveries/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"deliveries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a courier availability by courier ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"available\" : true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/couriers/1/availability",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"couriers",
+								"1",
+								"availability"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "KitchenService",
+			"item": [
+				{
+					"name": "Get a restaurant by restaurant ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept a ticket by ticket ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"readyBy\" : \"2020-07-16T13:56:39.492\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/tickets/9/accept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"tickets",
+								"9",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "OrderHistoryService",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "OrderService",
+			"item": [
+				{
+					"name": "Sagas",
+					"item": [
+						{
+							"name": "Add a new order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"restaurantId\" : 1,\n\t\"consumerId\" : 4,\n\t\"lineItems\" : [\n\t\t{\n\t\t\t\"menuItemId\" : \"1\",\n\t\t\t\"quantity\" : 2\n\t\t},\n\t\t{\n\t\t\t\"menuItemId\" : \"3\",\n\t\t\t\"quantity\" : 3\n\t\t}\n\t],\n\t\"deliveryTime\" : \"2020-07-16T13:56:39.492\",\n\t\"deliveryAddress\" : {\n\t\t\"street1\" : \"1234 Ambor St.\",\n\t\t\"street2\" : \"\",\n\t\t\"city\" : \"Fremont\",\n\t\t\"state\" : \"CA\",\n\t\t\"zip\" : \"91234\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel an order by order ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/orders/19/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"orders",
+										"19",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revise an order by order ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\" : \"test\",\n\t\"revisedLineItemQuantities\" : {\n\t\t\"Tuna Sandwich\" : 3\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/orders/18/revise",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"orders",
+										"18",
+										"revise"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Get an order by order ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/orders/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"orders",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "RestaurantService",
+			"item": [
+				{
+					"name": "Add a new restaurant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Noodle Restaurant\",\n\t\"address\" : {\n\t\t\"street1\" : \"1234 Suran St.\",\n\t\t\"street2\" : \"\",\n\t\t\"city\" : \"Oakland\",\n\t\t\"state\" : \"CA\",\n\t\t\"zip\" : \"93458\"\n\t},\n\t\"menu\" : {\n\t\t\"menuItems\" : [\n\t\t\t{\n\t\t\t\t\"id\" : \"1\",\n\t\t\t\t\"name\" : \"Fish Noodle\",\n\t\t\t\t\"price\" : \"12.30\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\" : \"2\",\n\t\t\t\t\"name\" : \"Pork Noodle\",\n\t\t\t\t\"price\" : \"11.30\"\n\t\t\t}\n\t\t]\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a restaurant by restaurant ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/restaurants/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"restaurants",
+								"23"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "APIGateway",
+			"item": [
+				{
+					"name": "Routes to AccountingService",
+					"item": [
+						{
+							"name": "Get an account by account ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/accounts/1234",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"accounts",
+										"1234"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes to ConsumerService",
+					"item": [
+						{
+							"name": "Add a new consumer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n\t\"name\" : {\n\t\t\"firstName\" : \"Mary\",\n\t\t\"lastName\" : \"Jane\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/consumers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"consumers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a consumer by consumer ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/consumers/24",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"consumers",
+										"24"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes to DeliveryService",
+					"item": [
+						{
+							"name": "Get delivery information by delivery ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/deliveries/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"deliveries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a courier availability by courier ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \n\t\"available\" : false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/couriers/1/availability",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"couriers",
+										"1",
+										"availability"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes to KitchenService",
+					"item": [
+						{
+							"name": "Get a restaurant by restaurant ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/restaurants/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Accept a ticket by ticket ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"readyBy\" : \"2020-07-16T13:56:39.492\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/tickets/9/accept",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tickets",
+										"9",
+										"accept"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes to OrderService",
+					"item": [
+						{
+							"name": "Get an order by order ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add a new order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"restaurantId\" : 1,\n\t\"consumerId\" : 4,\n\t\"lineItems\" : [\n\t\t{\n\t\t\t\"menuItemId\" : \"1\",\n\t\t\t\"quantity\" : 2\n\t\t},\n\t\t{\n\t\t\t\"menuItemId\" : \"3\",\n\t\t\t\"quantity\" : 3\n\t\t}\n\t],\n\t\"deliveryTime\" : \"2020-07-16T13:56:39.492\",\n\t\"deliveryAddress\" : {\n\t\t\"street1\" : \"1234 Ambor St.\",\n\t\t\"street2\" : \"\",\n\t\t\"city\" : \"Fremont\",\n\t\t\"state\" : \"CA\",\n\t\t\"zip\" : \"91234\"\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel an order by order ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/orders/19/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"19",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revise an order by order ID",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\" : \"test\",\n\t\"revisedLineItemQuantities\" : {\n\t\t\"Tuna Sandwich\" : 3\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/orders/18/revise",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"orders",
+										"18",
+										"revise"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
