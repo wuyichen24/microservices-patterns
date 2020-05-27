@@ -61,7 +61,7 @@
 | POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | Add a new order. |
 | GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get an order by order ID. |
 | POST | `/orders/{orderId}/cancel` | | `GetOrderResponse` JSON | Cancel an order by order ID. |
-| POST | `/orders/{orderId}/revise` | | `GetOrderResponse` JSON | Revise an order by order ID. |
+| POST | `/orders/{orderId}/revise` | `ReviseOrderRequest` JSON | `GetOrderResponse` JSON | Revise an order by order ID. |
 
 ### gRPC APIs
 | Method | Request | Response | Description |

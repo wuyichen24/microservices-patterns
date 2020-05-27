@@ -46,6 +46,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Changed the port number of all the services and the API gateway.
 - Replaced hardcoded channel names in multiple places. Centralized those channel names in one place.
 - Fixed some bugs.
+- Add more logging.
 
 ## Documentation
 - [Getting Started](docs/getting_started.md)
