@@ -14,16 +14,16 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 ![](docs/diagrams/architecture.png)
 - **Business Logic Services**
    - [**Accounting Service**](docs/services/accounting_service.md): Handles billing and payments.
-   - [**Consumer Service**](docs/services/consumer_service.md)
+   - [**Consumer Service**](docs/services/consumer_service.md): Manages consumer accounts.
    - [**Delivery Service**](docs/services/delivery_service.md): Schedule, reschedule, and cancel deliveries.
    - [**Kitchen Service**](docs/services/kitchen_service.md): Manages the preparation of orders.
-   - [**Order History Service**](docs/services/order_history_service.md).
+   - [**Order History Service**](docs/services/order_history_service.md): Collects order history.
    - [**Order Service**](docs/services/order_service.md): Manages orders.
    - [**Restaurant Service**](docs/services/restaurant_service.md): Maintains information about restaurants.
 - **API Gateway**
-   - [**API Gateway**](docs/services/api_gateway.md)
+   - [**API Gateway**](docs/services/api_gateway.md): Routes requests to downstream services and API Composition (Aggregation).
 - **CDC Pipeline**
-   - [**Eventuate CDC Service**](docs/services/eventuate_cdc_service.md)
+   - [**Eventuate CDC Service**](docs/services/eventuate_cdc_service.md): Helps other services publish messages from database to message queues.
 
 ## Technology Stack
 - Core
