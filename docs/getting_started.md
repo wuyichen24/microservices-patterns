@@ -2,6 +2,7 @@
 - [**Install Apache ZooKeeper**](#install-apache-zookeeper)
 - [**Install Apache Kafka**](#install-apache-kafka)
 - [**Install MySQL**](#install-mysql)
+- [**Create Schema And Tables**](#create-schema-and-tables)
 
 ---
 
@@ -90,3 +91,12 @@ sh bin/kafka-server-start.sh config/server.properties
 ---
 
 ## Install MySQL
+
+## Create Schema And Tables
+### Step 1: Create `eventuate` schema and tables
+Run the SQL script: [create_eventuate_schema.sql](../sql/create_eventuate_schema.sql)
+Those table will be used by Eventuate CDC service for sending messages to Apache Kafka.
+
+### Step 2: Create `ftgo` schema
+Run the SQL script: [create_ftgo_schema.sql](../sql/create_ftgo_schema.sql)
+This schema will be used by FTGO application.
