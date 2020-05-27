@@ -13,15 +13,15 @@
 | Order Service | ftgo-order-service | ftgo-order-service | localhost | 8086 |
 | Restaurant Service | ftgo-restaurant-service | ftgo-restaurant-service | localhost | 8087 |
 
-## CDC Service
-| Official Name | Directory Name | Application Name | Host | Port |
-|---|---|---|---|---|
-| Eventuate CDC Service | eventuate-cdc-service | eventuate-cdc-service | localhost | 8090 |
-
 ## API Gateway
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
 | API Gateway | ftgo-api-gateway | ftgo-api-gateway | localhost | 8080 |
+
+## CDC Service
+| Official Name | Directory Name | Application Name | Host | Port |
+|---|---|---|---|---|
+| Eventuate CDC Service | eventuate-cdc-service | eventuate-cdc-service | localhost | 8090 |
 
 ## Message Queue
 | Application | Host | Port | Version |
