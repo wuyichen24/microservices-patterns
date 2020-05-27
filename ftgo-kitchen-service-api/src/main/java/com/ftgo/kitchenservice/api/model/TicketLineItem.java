@@ -19,6 +19,8 @@ public class TicketLineItem {
 	private String menuItemId;
 	private String name;
 
+	public TicketLineItem() {}
+	
 	public TicketLineItem(String menuItemId, String name, int quantity) {
 		this.menuItemId = menuItemId;
 		this.name       = name;

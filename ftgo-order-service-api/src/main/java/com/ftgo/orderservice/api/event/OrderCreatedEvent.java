@@ -20,11 +20,13 @@ public class OrderCreatedEvent implements OrderDomainEvent {
 	private Address      deliveryAddress;
 	private String       restaurantName;
 
+	public OrderCreatedEvent() {}
+	
 	public OrderCreatedEvent(OrderDetails orderDetails, Address deliveryAddress, String restaurantName) {
 	    this.orderDetails    = orderDetails;
 	    this.deliveryAddress = deliveryAddress;
 	    this.restaurantName  = restaurantName;
-	  }
+	}
 
 	public OrderDetails getOrderDetails()                           { return orderDetails;                    }
 	public void         setOrderDetails(OrderDetails orderDetails)  { this.orderDetails = orderDetails;       }

@@ -14,6 +14,8 @@ public class ReviseOrderRequest {
 	private String               name;
 	private Map<String, Integer> revisedLineItemQuantities;
 
+	public ReviseOrderRequest() {}
+	
 	public ReviseOrderRequest(Map<String, Integer> revisedLineItemQuantities) {
 		this.revisedLineItemQuantities = revisedLineItemQuantities;
 	}

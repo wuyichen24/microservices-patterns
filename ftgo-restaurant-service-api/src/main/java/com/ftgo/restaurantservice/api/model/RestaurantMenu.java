@@ -24,6 +24,8 @@ public class RestaurantMenu {
 	@ElementCollection
 	private List<MenuItem> menuItems;
 
+	public RestaurantMenu () {}
+	
 	public RestaurantMenu(List<MenuItem> menuItems) {
 		this.menuItems = menuItems;
 	}

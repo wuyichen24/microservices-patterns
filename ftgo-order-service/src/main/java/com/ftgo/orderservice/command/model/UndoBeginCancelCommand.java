@@ -9,6 +9,8 @@ package com.ftgo.orderservice.command.model;
  * @since   1.0
  */
 public class UndoBeginCancelCommand extends OrderCommand {
+	public UndoBeginCancelCommand() {}
+	
 	public UndoBeginCancelCommand(long orderId) {
 		super(orderId);
 	}

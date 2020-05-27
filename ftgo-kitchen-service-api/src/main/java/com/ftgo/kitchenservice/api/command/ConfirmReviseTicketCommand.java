@@ -17,6 +17,8 @@ public class ConfirmReviseTicketCommand implements Command {
 	private long                 orderId;
 	private Map<String, Integer> revisedLineItemQuantities;
 
+	public ConfirmReviseTicketCommand() {}
+	
 	public ConfirmReviseTicketCommand(long restaurantId, Long orderId, Map<String, Integer> revisedLineItemQuantities) {
 		this.restaurantId = restaurantId;
 		this.orderId = orderId;

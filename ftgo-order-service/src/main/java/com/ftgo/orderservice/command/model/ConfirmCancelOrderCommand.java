@@ -9,6 +9,8 @@ package com.ftgo.orderservice.command.model;
  * @since   1.0
  */
 public class ConfirmCancelOrderCommand extends OrderCommand {
+	public ConfirmCancelOrderCommand() {}
+	
 	public ConfirmCancelOrderCommand(long orderId) {
 		super(orderId);
 	}

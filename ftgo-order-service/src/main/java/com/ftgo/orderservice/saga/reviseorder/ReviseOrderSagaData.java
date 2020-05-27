@@ -19,6 +19,8 @@ public class ReviseOrderSagaData {
 	private Money         revisedOrderTotal;
 	private long          consumerId;
 
+	public ReviseOrderSagaData() {}     // Keep it for serializing from message
+	
 	public ReviseOrderSagaData(long consumerId, Long orderId, Long expectedVersion, OrderRevision orderRevision) {
 		this.consumerId      = consumerId;
 		this.orderId         = orderId;

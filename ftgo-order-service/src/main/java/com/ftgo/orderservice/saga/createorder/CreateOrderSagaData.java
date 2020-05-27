@@ -19,6 +19,8 @@ public class CreateOrderSagaData {
 	private long         ticketId;
 	private OrderDetails orderDetails;
 
+	public CreateOrderSagaData() {}    // Keep it for serializing from message
+	
 	public CreateOrderSagaData(Long orderId, OrderDetails orderDetails) {
 		this.orderId      = orderId;
 		this.orderDetails = orderDetails;

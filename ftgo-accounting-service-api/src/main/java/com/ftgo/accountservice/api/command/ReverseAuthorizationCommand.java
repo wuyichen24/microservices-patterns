@@ -17,6 +17,8 @@ public class ReverseAuthorizationCommand implements Command {
 	private Long  orderId;
 	private Money orderTotal;
 
+	public ReverseAuthorizationCommand() {}
+	
 	public ReverseAuthorizationCommand(long consumerId, Long orderId, Money orderTotal) {
 		this.consumerId = consumerId;
 		this.orderId    = orderId;

@@ -13,6 +13,8 @@ import io.eventuate.tram.commands.common.Command;
 public class CancelCreateTicketCommand implements Command {
 	private Long ticketId;
 
+	public CancelCreateTicketCommand() {}
+	
 	public CancelCreateTicketCommand(long ticketId) {
 		this.ticketId = ticketId;
 	}

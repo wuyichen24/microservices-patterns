@@ -21,6 +21,8 @@ public class ValidateOrderByConsumerCommand implements Command {
 	private long  orderId;
 	private Money orderTotal;
 
+	public ValidateOrderByConsumerCommand() {}    // Keep it for serializing from message
+	
 	public ValidateOrderByConsumerCommand(long consumerId, long orderId, Money orderTotal) {
 		this.consumerId = consumerId;
 		this.orderId    = orderId;

@@ -9,6 +9,8 @@ package com.ftgo.orderservice.command.model;
  * @since   1.0
  */
 public class RejectOrderCommand extends OrderCommand {
+	public RejectOrderCommand() {}
+	
 	public RejectOrderCommand(long orderId) {
 		super(orderId);
 	}

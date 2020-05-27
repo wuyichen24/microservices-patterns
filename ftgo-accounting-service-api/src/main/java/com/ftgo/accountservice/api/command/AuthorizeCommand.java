@@ -18,6 +18,8 @@ public class AuthorizeCommand implements Command {
 	private Money orderTotal;
 	private Money amount;
 
+	public AuthorizeCommand() {}
+	
 	public AuthorizeCommand(long consumerId, Long orderId, Money orderTotal) {
 		this.consumerId = consumerId;
 		this.orderId    = orderId;

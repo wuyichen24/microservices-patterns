@@ -13,6 +13,8 @@ import io.eventuate.tram.commands.common.Command;
 public class ConfirmCreateTicketCommand implements Command {
 	private Long ticketId;
 
+	public ConfirmCreateTicketCommand() {}
+	
 	public ConfirmCreateTicketCommand(Long ticketId) {
 		this.ticketId = ticketId;
 	}

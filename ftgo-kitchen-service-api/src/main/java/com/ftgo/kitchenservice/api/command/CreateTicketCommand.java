@@ -20,6 +20,8 @@ public class CreateTicketCommand implements Command {
 	private TicketDetails ticketDetails;
 	private long          restaurantId;
 
+	public CreateTicketCommand() {}
+	
 	public CreateTicketCommand(long restaurantId, long orderId, TicketDetails ticketDetails) {
 		this.restaurantId = restaurantId;
 		this.orderId = orderId;

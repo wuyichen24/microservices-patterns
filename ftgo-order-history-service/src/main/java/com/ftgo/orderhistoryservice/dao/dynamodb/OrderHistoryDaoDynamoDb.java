@@ -103,7 +103,7 @@ public class OrderHistoryDaoDynamoDb implements OrderHistoryDao {
 		}
 	}
 
-	private Set mapKeywords(Order order) {
+	private Set<String> mapKeywords(Order order) {
 		Set<String> keywords = new HashSet<>();
 		keywords.addAll(tokenize(order.getRestaurantName()));
 		keywords.addAll(tokenize(order.getLineItems().stream().map(OrderLineItem::getName).collect(toList())));

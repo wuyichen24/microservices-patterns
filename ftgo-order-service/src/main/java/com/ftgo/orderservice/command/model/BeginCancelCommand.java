@@ -9,7 +9,12 @@ package com.ftgo.orderservice.command.model;
  * @since   1.0
  */
 public class BeginCancelCommand extends OrderCommand {
-	public BeginCancelCommand(long orderId) {
+	private long restaurantId;
+	
+	public BeginCancelCommand() {}
+	
+	public BeginCancelCommand(long restaurantId, long orderId) {
 		super(orderId);
+		this.restaurantId = restaurantId;
 	}
 }

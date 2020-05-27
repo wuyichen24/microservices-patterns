@@ -11,4 +11,5 @@ import io.eventuate.tram.commands.common.Command;
  * @since   1.0
  */
 public class ReverseOrderUpdateCommand implements Command {
+	public ReverseOrderUpdateCommand() {}
 }

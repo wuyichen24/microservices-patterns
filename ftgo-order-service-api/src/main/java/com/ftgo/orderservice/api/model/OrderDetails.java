@@ -22,6 +22,8 @@ public class OrderDetails {
 	private long                restaurantId;
 	private long                consumerId;
 
+	public OrderDetails() {}
+	
 	public OrderDetails(long consumerId, long restaurantId, List<OrderLineItem> lineItems, Money orderTotal) {
 		this.consumerId   = consumerId;
 		this.restaurantId = restaurantId;

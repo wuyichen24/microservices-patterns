@@ -17,6 +17,8 @@ public class CancelOrderSagaData {
 	private long   consumerId;
 	private Money  orderTotal;
 
+	public CancelOrderSagaData() {}   // Keep it for serializing from message
+	
 	public CancelOrderSagaData(long consumerId, long orderId, Money orderTotal) {
 		this.consumerId = consumerId;
 		this.orderId    = orderId;

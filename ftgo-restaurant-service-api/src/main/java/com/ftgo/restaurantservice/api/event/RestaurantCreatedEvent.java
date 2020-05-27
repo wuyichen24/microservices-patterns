@@ -18,6 +18,8 @@ public class RestaurantCreatedEvent implements DomainEvent {
 	private Address        address;
 	private RestaurantMenu menu;
 
+	public RestaurantCreatedEvent() {}
+	
 	public RestaurantCreatedEvent(String name, Address address, RestaurantMenu menu) {
 	    this.name    = name;
 	    this.address = address;

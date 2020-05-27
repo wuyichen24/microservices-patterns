@@ -13,11 +13,10 @@ import com.ftgo.common.model.Money;
 public class BeginReviseOrderReply {
 	private Money revisedOrderTotal;
 
+	public BeginReviseOrderReply() {}
+	
 	public BeginReviseOrderReply(Money revisedOrderTotal) {
 		this.revisedOrderTotal = revisedOrderTotal;
-	}
-
-	public BeginReviseOrderReply() {
 	}
 
 	public Money getRevisedOrderTotal()                        { return revisedOrderTotal;                   }

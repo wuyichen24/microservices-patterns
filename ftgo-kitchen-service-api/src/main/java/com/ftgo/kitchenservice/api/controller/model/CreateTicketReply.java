@@ -15,6 +15,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class CreateTicketReply {
 	private long ticketId;
 
+	public CreateTicketReply() {}
+	
 	public CreateTicketReply(long ticketId) {
 		this.ticketId = ticketId;
 	}

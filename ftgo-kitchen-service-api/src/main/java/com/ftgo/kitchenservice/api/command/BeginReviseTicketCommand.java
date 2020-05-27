@@ -17,9 +17,11 @@ public class BeginReviseTicketCommand implements Command {
 	private Long                 orderId;
 	private Map<String, Integer> revisedLineItemQuantities;
 
+	public BeginReviseTicketCommand() {}
+	
 	public BeginReviseTicketCommand(long restaurantId, Long orderId, Map<String, Integer> revisedLineItemQuantities) {
-		this.restaurantId = restaurantId;
-		this.orderId = orderId;
+		this.restaurantId              = restaurantId;
+		this.orderId                   = orderId;
 		this.revisedLineItemQuantities = revisedLineItemQuantities;
 	}
 

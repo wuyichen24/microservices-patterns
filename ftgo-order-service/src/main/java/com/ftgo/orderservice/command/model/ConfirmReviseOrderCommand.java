@@ -13,6 +13,8 @@ import com.ftgo.orderservice.controller.model.OrderRevision;
 public class ConfirmReviseOrderCommand extends OrderCommand {
 	private OrderRevision revision;
 
+	public ConfirmReviseOrderCommand() {}
+	
 	public ConfirmReviseOrderCommand(long orderId, OrderRevision revision) {
 		super(orderId);
 		this.revision = revision;

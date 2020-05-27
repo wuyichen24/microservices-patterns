@@ -15,6 +15,8 @@ import io.eventuate.tram.events.common.DomainEvent;
 public class RestaurantMenuRevisedEvent implements DomainEvent {
 	private RestaurantMenu menu;
 
+	public RestaurantMenuRevisedEvent() { /* Keep it for serializing from message */ }
+	
 	public RestaurantMenu getRevisedMenu() {
 		return menu;
 	}

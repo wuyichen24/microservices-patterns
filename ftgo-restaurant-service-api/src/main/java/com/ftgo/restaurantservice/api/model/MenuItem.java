@@ -4,6 +4,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.ftgo.common.model.Money;
 
 import javax.persistence.Access;
@@ -24,6 +25,8 @@ import javax.persistence.Embedded;
 public class MenuItem {
 	private String id;
 	private String name;
+	
+	@JsonUnwrapped
 	private Money  price;
 	
 	public MenuItem() {}       // Keep default constructor for Hibernate

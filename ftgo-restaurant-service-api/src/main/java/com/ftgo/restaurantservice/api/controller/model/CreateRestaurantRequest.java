@@ -16,11 +16,13 @@ public class CreateRestaurantRequest {
 	private Address        address;
 	private RestaurantMenu menu;
 
+	public CreateRestaurantRequest() {}
+	
 	public CreateRestaurantRequest(String name, Address address, RestaurantMenu menu) {
 	    this.name    = name;
 	    this.address = address;
 	    this.menu    = menu;
-	  }
+	}
 
 	public String         getName()                    { return name;      }
 	public void           setName(String name)         { this.name = name; }

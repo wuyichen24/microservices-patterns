@@ -11,6 +11,8 @@ package com.ftgo.orderservice.api.controller.model;
 public class ReviseOrderResponse {
 	private String message;
 
+	public ReviseOrderResponse() {}
+	
 	public String getMessage() {
 		return message;
 	}

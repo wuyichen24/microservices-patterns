@@ -48,6 +48,6 @@ public class RestaurantServiceController {
 	}
 
 	private GetRestaurantResponse makeGetRestaurantResponse(Restaurant r) {
-		return new GetRestaurantResponse(r.getId(), r.getName());
+		return new GetRestaurantResponse(r.getId(), r.getName(), r.getMenu());
 	}
 }

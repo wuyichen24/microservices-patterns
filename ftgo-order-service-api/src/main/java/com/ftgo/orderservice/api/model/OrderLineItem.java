@@ -30,8 +30,7 @@ public class OrderLineItem {
 	@AttributeOverrides(@AttributeOverride(name = "amount", column = @Column(name = "price")))
 	private Money price;
 
-	public OrderLineItem() {
-	}
+	public OrderLineItem() {}
 	
 	public OrderLineItem(String menuItemId, String name, Money price,
 			int quantity) {

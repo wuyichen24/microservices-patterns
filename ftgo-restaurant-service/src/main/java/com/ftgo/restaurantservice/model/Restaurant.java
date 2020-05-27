@@ -31,6 +31,8 @@ public class Restaurant {
 	@Embedded
 	private RestaurantMenu menu;
 	
+	public Restaurant() {}
+	
 	public Restaurant(String name, RestaurantMenu menu) {
 		this.name = name;
 		this.menu = menu;
@@ -40,4 +42,13 @@ public class Restaurant {
 	public void   setId(Long id)       { this.id = id;     }
 	public String getName()            { return name;      }
 	public void   setName(String name) { this.name = name; }
+
+	public RestaurantMenu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(RestaurantMenu menu) {
+		this.menu = menu;
+	}
+	
 }

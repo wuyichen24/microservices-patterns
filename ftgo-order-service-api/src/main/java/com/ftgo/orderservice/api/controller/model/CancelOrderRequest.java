@@ -11,6 +11,8 @@ package com.ftgo.orderservice.api.controller.model;
 public class CancelOrderRequest {
 	private String name;
 
+	public CancelOrderRequest() {}
+	
 	public String getName() {
 		return name;
 	}

@@ -66,6 +66,8 @@ public class Order {
 	@Embedded
 	private Money orderMinimum = new Money(Integer.MAX_VALUE);
 
+	private Order() {}
+	
 	/**
 	 * Create a new order
 	 * 

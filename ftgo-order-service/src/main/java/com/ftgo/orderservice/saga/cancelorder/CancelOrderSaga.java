@@ -49,7 +49,7 @@ public class CancelOrderSaga implements SimpleSaga<CancelOrderSagaData> {
 
 	private CommandWithDestination beginCancel(CancelOrderSagaData data) {
 		logger.debug("Send BeginCancelCommand to orderService channel");
-		return send(new BeginCancelCommand(data.getOrderId()))
+		return send(new BeginCancelCommand(data.getRestaurantId(), data.getOrderId()))
 				.to(OrderServiceChannels.orderServiceChannel).build();
 	}
 	
