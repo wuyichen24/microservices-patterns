@@ -1,6 +1,7 @@
 # Getting Started
 - [**Install Apache ZooKeeper**](#install-apache-zookeeper)
 - [**Install Apache Kafka**](#install-apache-kafka)
+- [**Install MySQL**](#install-mysql)
 
 ---
 
@@ -85,3 +86,7 @@ cd kafka_2.11-2.2.0
 sh bin/kafka-server-start.sh config/server.properties
 ```
 **NOTE: Please make sure the ZooKeeper server is running also.**
+
+---
+
+## Install MySQL
