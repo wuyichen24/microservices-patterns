@@ -56,6 +56,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8086/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | POST | `/orders` | `CreateOrderRequest` JSON | `CreateOrderResponse` JSON | Add a new order. |
