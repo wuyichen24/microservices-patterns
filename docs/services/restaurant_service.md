@@ -16,6 +16,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8087/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get a restaurant by restaurant ID. |
