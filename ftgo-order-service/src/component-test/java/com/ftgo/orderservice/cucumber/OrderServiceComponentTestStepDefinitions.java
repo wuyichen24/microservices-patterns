@@ -107,8 +107,8 @@ public class OrderServiceComponentTestStepDefinitions {
 	public static class TestConfiguration {
 		@Bean
 		public SagaParticipantChannels sagaParticipantChannels() {
-			return new SagaParticipantChannels(ConsumerServiceChannels.consumerServiceChannel, KitchenServiceChannels.kitchenServiceChannel, 
-					AccountingServiceChannels.accountingServiceChannel, OrderServiceChannels.orderServiceChannel);
+			return new SagaParticipantChannels(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL, KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL, 
+					AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL, OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL);
 		}
 
 		@Bean
@@ -133,7 +133,7 @@ public class OrderServiceComponentTestStepDefinitions {
 
 	@Given("A valid consumer")
 	public void useConsumer() {
-		sagaParticipantStubManager.forChannel(ConsumerServiceChannels.consumerServiceChannel)
+		sagaParticipantStubManager.forChannel(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL)
 				.when(ValidateOrderByConsumerCommand.class)
 				.replyWith(cm -> withSuccess());
 	}
@@ -155,10 +155,10 @@ public class OrderServiceComponentTestStepDefinitions {
 	public void useCreditCard(String ignore, CreditCardType creditCard) {
 		switch (creditCard) {
 		case valid:
-			sagaParticipantStubManager.forChannel(AccountingServiceChannels.accountingServiceChannel).when(AuthorizeCommand.class).replyWithSuccess();
+			sagaParticipantStubManager.forChannel(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL).when(AuthorizeCommand.class).replyWithSuccess();
 			break;
 		case expired:
-			sagaParticipantStubManager.forChannel(AccountingServiceChannels.accountingServiceChannel).when(AuthorizeCommand.class).replyWithFailure();
+			sagaParticipantStubManager.forChannel(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL).when(AuthorizeCommand.class).replyWithFailure();
 			break;
 		default:
 			fail("Don't know what to do with this credit card");
@@ -171,7 +171,7 @@ public class OrderServiceComponentTestStepDefinitions {
 	@Given("the restaurant is accepting orders")
 	public void restaurantAcceptsOrder() {
 		sagaParticipantStubManager
-				.forChannel(KitchenServiceChannels.kitchenServiceChannel)
+				.forChannel(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL)
 				.when(CreateTicketCommand.class)
 				.replyWith(cm -> withSuccess(new CreateTicketReply(cm.getCommand()
 								.getOrderId())))
@@ -230,7 +230,7 @@ public class OrderServiceComponentTestStepDefinitions {
 		});
 
 		// verify kitchen service has received the command of creating a ticket for the new order.
-		sagaParticipantStubManager.verifyCommandReceived(KitchenServiceChannels.kitchenServiceChannel, CreateTicketCommand.class);
+		sagaParticipantStubManager.verifyCommandReceived(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL, CreateTicketCommand.class);
 	}
 
 	

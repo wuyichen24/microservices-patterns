@@ -104,7 +104,7 @@ public class OrderServiceIntegrationTest {
 
 		@Bean
 		public TestMessageConsumer2 mockConsumerService() {
-			return new TestMessageConsumer2("mockConsumerService", ConsumerServiceChannels.consumerServiceChannel);
+			return new TestMessageConsumer2("mockConsumerService", ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL);
 		}
 	}
 

@@ -71,7 +71,7 @@ public class KitchenServiceProxyIntegrationTest {
 
 		CommandEndpoint<CreateTicketCommand> kitchenServiceCreateTicketCommandEndpoint = CommandEndpointBuilder
 				.forCommand(CreateTicketCommand.class)
-				.withChannel(KitchenServiceChannels.kitchenServiceChannel)
+				.withChannel(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL)
 				.withReply(CreateTicketReply.class).build();      
 		
 		CreateTicketReply reply = sagaMessagingTestHelper.sendAndReceiveCommand(kitchenServiceCreateTicketCommandEndpoint, command, CreateTicketReply.class, sagaType);

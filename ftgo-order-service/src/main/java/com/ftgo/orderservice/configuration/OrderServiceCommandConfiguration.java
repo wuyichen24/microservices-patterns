@@ -31,6 +31,6 @@ public class OrderServiceCommandConfiguration {
 
 	@Bean
 	public SagaCommandDispatcher orderCommandHandlersDispatcher(OrderServiceCommandHandlers orderCommandHandlers, SagaCommandDispatcherFactory sagaCommandDispatcherFactory) {
-	    return sagaCommandDispatcherFactory.make(OrderServiceChannels.orderServiceChannel, orderCommandHandlers.commandHandlers());
+	    return sagaCommandDispatcherFactory.make(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL, orderCommandHandlers.commandHandlers());
 	}
 }

@@ -32,7 +32,7 @@ public class ConsumerServiceCommandHandlers {
 	private ConsumerService consumerService;
 	
 	public CommandHandlers commandHandlers() {
-		return SagaCommandHandlersBuilder.fromChannel(ConsumerServiceChannels.consumerServiceChannel)
+		return SagaCommandHandlersBuilder.fromChannel(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL)
 				.onMessage(ValidateOrderByConsumerCommand.class, this::validateOrderForConsumer).build();
 	}
 

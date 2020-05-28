@@ -9,6 +9,6 @@ package com.ftgo.kitchenservice.api;
  * @since   1.0
  */
 public class KitchenServiceChannels {
-	public static final String kitchenServiceChannel = "kitchenService";
-	public static final String TICKET_EVENT_CHANNEL  = "com.ftgo.kitchenservice.model.Ticket";
+	public static final String KITCHEN_SERVICE_COMMAND_CHANNEL = "kitchenService";
+	public static final String TICKET_EVENT_CHANNEL            = "com.ftgo.kitchenservice.model.Ticket";
 }

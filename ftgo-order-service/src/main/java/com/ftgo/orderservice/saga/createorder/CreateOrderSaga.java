@@ -61,43 +61,43 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 	private CommandWithDestination rejectOrder(CreateOrderSagaData data) {
 		logger.debug("Send RejectOrderCommand to orderService channel");
 		return send(new RejectOrderCommand(data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination validateOrderByConsumer(CreateOrderSagaData data) {
 		logger.debug("Send ValidateOrderByConsumerCommand to consumerService channel");
 		return send(new ValidateOrderByConsumerCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
-				.to(ConsumerServiceChannels.consumerServiceChannel).build();
+				.to(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination createTicket(CreateOrderSagaData data) {
 		logger.debug("Send CreateTicketCommand to kitchenService channel");
 		return send(new CreateTicketCommand(data.getOrderDetails().getRestaurantId(), data.getOrderId(), makeTicketDetails(data.getOrderDetails())))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination cancelCreateTicket(CreateOrderSagaData data) {
 		logger.debug("Send CancelCreateTicketCommand to kitchenService channel");
 		return send(new CancelCreateTicketCommand(data.getOrderId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination authorize(CreateOrderSagaData data) {
 		logger.debug("Send AuthorizeCommand to accountingService channel");
 		return send(new AuthorizeCommand(data.getOrderDetails().getConsumerId(), data.getOrderId(), data.getOrderDetails().getOrderTotal()))
-				.to(AccountingServiceChannels.accountingServiceChannel).build();
+				.to(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination confirmCreateTicket(CreateOrderSagaData data) {
 		logger.debug("Send ConfirmCreateTicketCommand to kitchenService channel");
 		return send(new ConfirmCreateTicketCommand(data.getTicketId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination approveOrder(CreateOrderSagaData data) {
 		logger.debug("Send ApproveOrderCommand to orderService channel");
 		return send(new ApproveOrderCommand(data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private void handleCreateTicketReply(CreateOrderSagaData data, CreateTicketReply reply) {

@@ -9,6 +9,6 @@ package com.ftgo.orderservice.api;
  * @since   1.0
  */
 public class OrderServiceChannels {
-	public static final String orderServiceChannel = "orderService";
-	public static final String ORDER_EVENT_CHANNEL = "com.ftgo.orderservice.model.Order";
+	public static final String ORDER_SERVICE_COMMAND_CHANNEL = "orderService";
+	public static final String ORDER_EVENT_CHANNEL           = "com.ftgo.orderservice.model.Order";
 }

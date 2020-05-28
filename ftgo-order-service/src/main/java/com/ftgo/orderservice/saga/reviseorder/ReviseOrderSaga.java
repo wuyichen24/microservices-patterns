@@ -50,43 +50,43 @@ public class ReviseOrderSaga implements SimpleSaga<ReviseOrderSagaData> {
 	private CommandWithDestination beginReviseOrder(ReviseOrderSagaData data) {
 		logger.debug("Send BeginReviseOrderCommand to orderService channel");
 		return send(new BeginReviseOrderCommand(data.getOrderId(), data.getOrderRevision()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination undoBeginReviseOrder(ReviseOrderSagaData data) {
 		logger.debug("Send UndoBeginReviseOrderCommand to orderService channel");
 		return send(new UndoBeginReviseOrderCommand(data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination beginReviseTicket(ReviseOrderSagaData data) {
 		logger.debug("Send BeginReviseTicketCommand to kitchenService channel");
 		return send(new BeginReviseTicketCommand(data.getRestaurantId(), data.getOrderId(), data.getOrderRevision().getRevisedLineItemQuantities()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination undoBeginReviseTicket(ReviseOrderSagaData data) {
 		logger.debug("Send UndoBeginReviseTicketCommand to kitchenService channel");
 		return send(new UndoBeginReviseTicketCommand(data.getRestaurantId(), data.getOrderId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination reviseAuthorization(ReviseOrderSagaData data) {
 		logger.debug("Send ReviseAuthorizationCommand to accountingService channel");
 		return send(new ReviseAuthorizationCommand(data.getConsumerId(),data.getOrderId(), data.getRevisedOrderTotal()))
-				.to(AccountingServiceChannels.accountingServiceChannel).build();
+				.to(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination confirmTicketRevision(ReviseOrderSagaData data) {
 		logger.debug("Send ConfirmReviseTicketCommand to kitchenService channel");
 		return send(new ConfirmReviseTicketCommand(data.getRestaurantId(), data.getOrderId(), data.getOrderRevision().getRevisedLineItemQuantities()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination confirmOrderRevision(ReviseOrderSagaData data) {
 		logger.debug("Send ConfirmReviseOrderCommand to orderService channel");
 		return send(new ConfirmReviseOrderCommand(data.getOrderId(), data.getOrderRevision()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private void handleBeginReviseOrderReply(ReviseOrderSagaData data, BeginReviseOrderReply reply) {

@@ -50,43 +50,43 @@ public class CancelOrderSaga implements SimpleSaga<CancelOrderSagaData> {
 	private CommandWithDestination beginCancel(CancelOrderSagaData data) {
 		logger.debug("Send BeginCancelCommand to orderService channel");
 		return send(new BeginCancelCommand(data.getRestaurantId(), data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination undoBeginCancel(CancelOrderSagaData data) {
 		logger.debug("Send UndoBeginCancelCommand to orderService channel");
 		return send(new UndoBeginCancelCommand(data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination beginCancelTicket(CancelOrderSagaData data) {
 		logger.debug("Send BeginCancelTicketCommand to kitchenService channel");
 		return send(new BeginCancelTicketCommand(data.getRestaurantId(),(long) data.getOrderId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination undoBeginCancelTicket(CancelOrderSagaData data) {
 		logger.debug("Send UndoBeginCancelTicketCommand to kitchenService channel");
 		return send(new UndoBeginCancelTicketCommand(data.getRestaurantId(), data.getOrderId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination reverseAuthorization(CancelOrderSagaData data) {
 		logger.debug("Send ReverseAuthorizationCommand to accountingService channel");
 		return send(new ReverseAuthorizationCommand(data.getConsumerId(), data.getOrderId(), data.getOrderTotal()))
-				.to(AccountingServiceChannels.accountingServiceChannel).build();
+				.to(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination confirmTicketCancel(CancelOrderSagaData data) {
 		logger.debug("Send ConfirmCancelTicketCommand to kitchenService channel");
 		return send(new ConfirmCancelTicketCommand(data.getRestaurantId(), data.getOrderId()))
-				.to(KitchenServiceChannels.kitchenServiceChannel).build();
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).build();
 	}
 	
 	private CommandWithDestination confirmOrderCancel(CancelOrderSagaData data) {
 		logger.debug("Send ConfirmCancelOrderCommand to orderService channel");
 		return send(new ConfirmCancelOrderCommand(data.getOrderId()))
-				.to(OrderServiceChannels.orderServiceChannel).build();
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL).build();
 	}
 
 	@Override

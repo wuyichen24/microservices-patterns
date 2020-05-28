@@ -47,23 +47,23 @@ public class CreateOrderSagaTest {
 				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
-				.to(ConsumerServiceChannels.consumerServiceChannel)
+				.to(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL)
 				.andGiven()
 				.successReply()
 				.expect()
 				.command(new CreateTicketCommand(AJANTA_ID, ORDER_ID, null /* FIXME */))
-				.to(KitchenServiceChannels.kitchenServiceChannel)
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL)
 				.andGiven()
 				.successReply()
 				.expect()
 				.command(new AuthorizeCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
-				.to(AccountingServiceChannels.accountingServiceChannel)
+				.to(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL)
 				.andGiven().successReply().expect()
 				.command(new ConfirmCreateTicketCommand(ORDER_ID))
-				.to(KitchenServiceChannels.kitchenServiceChannel).andGiven()
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).andGiven()
 				.successReply().expect()
 				.command(new ApproveOrderCommand(ORDER_ID))
-				.to(OrderServiceChannels.orderServiceChannel);
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL);
 	}
 
 	@Test
@@ -73,10 +73,10 @@ public class CreateOrderSagaTest {
 				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
-				.to(ConsumerServiceChannels.consumerServiceChannel).andGiven()
+				.to(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL).andGiven()
 				.failureReply().expect()
 				.command(new RejectOrderCommand(ORDER_ID))
-				.to(OrderServiceChannels.orderServiceChannel);
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL);
 	}
 
 	@Test
@@ -86,22 +86,22 @@ public class CreateOrderSagaTest {
 				new CreateOrderSagaData(ORDER_ID, CHICKEN_VINDALOO_ORDER_DETAILS))
 				.expect()
 				.command(new ValidateOrderByConsumerCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
-				.to(ConsumerServiceChannels.consumerServiceChannel)
+				.to(ConsumerServiceChannels.CONSUMER_SERVICE_COMMAND_CHANNEL)
 				.andGiven()
 				.successReply()
 				.expect()
 				.command(new CreateTicketCommand(AJANTA_ID, ORDER_ID, null /* FIXME */))
-				.to(KitchenServiceChannels.kitchenServiceChannel)
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL)
 				.andGiven()
 				.successReply()
 				.expect()
 				.command(new AuthorizeCommand(CONSUMER_ID, ORDER_ID, CHICKEN_VINDALOO_ORDER_TOTAL))
-				.to(AccountingServiceChannels.accountingServiceChannel)
+				.to(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL)
 				.andGiven().failureReply().expect()
 				.command(new CancelCreateTicketCommand(ORDER_ID))
-				.to(KitchenServiceChannels.kitchenServiceChannel).andGiven()
+				.to(KitchenServiceChannels.KITCHEN_SERVICE_COMMAND_CHANNEL).andGiven()
 				.successReply().expect()
 				.command(new RejectOrderCommand(ORDER_ID))
-				.to(OrderServiceChannels.orderServiceChannel);
+				.to(OrderServiceChannels.ORDER_SERVICE_COMMAND_CHANNEL);
 	}
 }

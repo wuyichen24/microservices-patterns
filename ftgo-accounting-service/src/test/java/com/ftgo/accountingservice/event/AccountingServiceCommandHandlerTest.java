@@ -108,7 +108,7 @@ public class AccountingServiceCommandHandlerTest {
 
 		Money orderTotal = new Money(123);
 
-		String messageId = commandProducer.send(AccountingServiceChannels.accountingServiceChannel, null,
+		String messageId = commandProducer.send(AccountingServiceChannels.ACCOUNTING_SERVICE_COMMAND_CHANNEL, null,
 				new AuthorizeCommand(consumerId, orderId, orderTotal), testMessageConsumer.getReplyChannel(),
 				withSagaCommandHeaders());
 
