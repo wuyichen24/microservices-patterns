@@ -16,6 +16,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8083/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/deliveries/{deliveryId}` | | `DeliveryStatus` JSON | Get delivery information by delivery ID. |
