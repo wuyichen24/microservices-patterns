@@ -5,23 +5,23 @@
 ## Services
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
-| Accounting Service | ftgo-accounting-service | ftgo-accounting-service | localhost | 8081 |
-| Consumer Service | ftgo-consumer-service | ftgo-consumer-service | localhost | 8082 |
-| Delivery Service | ftgo-delivery-service | ftgo-delivery-service | localhost | 8083 |
-| Kitchen Service | ftgo-kitchen-service | ftgo-kitchen-service | localhost | 8084 |
-| Order History Service | ftgo-order-history-service | ftgo-order-history-service | localhost | 8085 |
-| Order Service | ftgo-order-service | ftgo-order-service | localhost | 8086 |
+| [Accounting Service](services/accounting_service.md) | ftgo-accounting-service | ftgo-accounting-service | localhost | 8081 |
+| [Consumer Service](services/consumer_service.md) | ftgo-consumer-service | ftgo-consumer-service | localhost | 8082 |
+| [Delivery Service](services/delivery_service.md) | ftgo-delivery-service | ftgo-delivery-service | localhost | 8083 |
+| [Kitchen Service(services/kitchen_service.md) | ftgo-kitchen-service | ftgo-kitchen-service | localhost | 8084 |
+| [Order History Service](services/order_history_service.md) | ftgo-order-history-service | ftgo-order-history-service | localhost | 8085 |
+| [Order Service](services/order_service.md) | ftgo-order-service | ftgo-order-service | localhost | 8086 |
 | [Restaurant Service](services/restaurant_service.md) | ftgo-restaurant-service | ftgo-restaurant-service | localhost | 8087 |
 
 ## API Gateway
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
-| API Gateway | ftgo-api-gateway | ftgo-api-gateway | localhost | 8080 |
+| [API Gateway](services/api_gateway.md) | ftgo-api-gateway | ftgo-api-gateway | localhost | 8080 |
 
 ## CDC Service
 | Official Name | Directory Name | Application Name | Host | Port |
 |---|---|---|---|---|
-| Eventuate CDC Service | eventuate-cdc-service | eventuate-cdc-service | localhost | 8090 |
+| [Eventuate CDC Service](services/eventuate_cdc_service.md) | eventuate-cdc-service | eventuate-cdc-service | localhost | 8090 |
 
 ## Message Queue
 | Application | Host | Port | Version |
