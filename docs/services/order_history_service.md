@@ -16,6 +16,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8085/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/orders?consumerId={consumerId}` | | `GetOrdersResponse` JSON | Get all the historical orders from the consumer. |
