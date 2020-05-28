@@ -9,6 +9,7 @@
 ### Services
 | Directory | Description |
 |-----|-----|
+| common-swagger | The code to generate API documentation (Swagger UI). |
 | ftgo-accounting-service | The core code of the Accounting Service. |
 | ftgo-accounting-service-api | The shared library of the Accounting Service. |
 | ftgo-accounting-service-contracts | Stores the contracts of the integration between the Accounting Service and other services. |
