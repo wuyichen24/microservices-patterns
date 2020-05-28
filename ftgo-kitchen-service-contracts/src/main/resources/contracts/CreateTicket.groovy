@@ -6,10 +6,10 @@ org.springframework.cloud.contract.spec.Contract.make {
         messageFrom('kitchenService')
         messageBody('''{"orderId":99,"restaurantId":1,"ticketDetails":{"lineItems":[{"quantity":5,"menuItemId":"1","name":"Chicken Vindaloo"}]}}''')
         messageHeaders {
-            header('command_type','net.chrisrichardson.ftgo.kitchenservice.api.CreateTicket')
-            header('command_saga_type','net.chrisrichardson.ftgo.orderservice.sagas.createorder.CreateOrderSaga')
+            header('command_type','com.ftgo.kitchenservice.api.command.CreateTicketCommand')
+            header('command_saga_type','com.ftgo.orderservice.saga.createorder.CreateOrderSaga')
             header('command_saga_id',$(consumer(regex('[0-9a-f]{16}-[0-9a-f]{16}'))))
-            header('command_reply_to', 'net.chrisrichardson.ftgo.orderservice.sagas.createorder.CreateOrderSaga-reply')
+            header('command_reply_to', 'com.ftgo.orderservice.saga.createorder.CreateOrderSaga-reply')
         }
     }
     outputMessage {
