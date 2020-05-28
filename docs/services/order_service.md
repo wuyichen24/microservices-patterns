@@ -62,6 +62,7 @@
 | GET | `/orders/{orderId}` | | `GetOrderResponse` JSON | Get an order by order ID. |
 | POST | `/orders/{orderId}/cancel` | | `GetOrderResponse` JSON | Cancel an order by order ID. |
 | POST | `/orders/{orderId}/revise` | `ReviseOrderRequest` JSON | `GetOrderResponse` JSON | Revise an order by order ID. |
+| GET | `/restaurants/{restaurantId}` | | `GetRestaurantResponse` JSON | Get a restaurant by restaurant ID. |
 
 ### gRPC APIs
 | Method | Request | Response | Description |
