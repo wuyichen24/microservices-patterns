@@ -59,8 +59,9 @@ public class OrderServiceController {
 	 *         
 	 * @return  The {@code CreateOrderResponse} object to capture the order ID of the newly created order.
 	 */
-	@ApiOperation(value = "Add a new order.",response = CreateOrderResponse.class)
+	
 	@RequestMapping(method = RequestMethod.POST)
+	@ApiOperation(value = "Add a new order.", response = CreateOrderResponse.class)
 	public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
 		logger.debug("POST /orders - Add a new order");
 		
@@ -80,7 +81,9 @@ public class OrderServiceController {
 	 * 
 	 * @return  The matched order record.
 	 */
+	
 	@RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get an order by order ID.", response = GetOrderResponse.class)
 	public ResponseEntity<GetOrderResponse> getOrder(@PathVariable long orderId) {
 		logger.debug("GET /orders/{orderId} - Get an order by order ID");
 		
@@ -98,6 +101,7 @@ public class OrderServiceController {
 	 * @return  The cancelled order.
 	 */
 	@RequestMapping(path = "/{orderId}/cancel", method = RequestMethod.POST)
+	@ApiOperation(value = "Cancel an order by order ID.", response = GetOrderResponse.class)
 	public ResponseEntity<GetOrderResponse> cancel(@PathVariable long orderId) {
 		logger.debug("POST /orders/{orderId}/cancel - Cancel an order by order ID");
 		
@@ -120,6 +124,7 @@ public class OrderServiceController {
 	 * @return  The order before being revised.
 	 */
 	@RequestMapping(path = "/{orderId}/revise", method = RequestMethod.POST)
+	@ApiOperation(value = "Revise an order by order ID.", response = GetOrderResponse.class)
 	public ResponseEntity<GetOrderResponse> revise(@PathVariable long orderId, @RequestBody ReviseOrderRequest request) {
 		logger.debug("POST /orders/{orderId}/revise - Revise an order by order ID");
 		

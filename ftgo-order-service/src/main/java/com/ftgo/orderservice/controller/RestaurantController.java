@@ -1,15 +1,19 @@
 package com.ftgo.orderservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftgo.orderservice.controller.model.GetRestaurantResponse;
 import com.ftgo.orderservice.repository.RestaurantRepository;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * The controller class for defining the external APIs about restaurants.
@@ -22,11 +26,16 @@ import com.ftgo.orderservice.repository.RestaurantRepository;
 @RestController
 @RequestMapping(path = "/restaurants")
 public class RestaurantController {
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
-	@RequestMapping(path = "/{restaurantId}", method = RequestMethod.GET)
+	@GetMapping(path = "/{restaurantId}")
+	@ApiOperation(value = "Get a restaurant by restaurant ID.", response = GetRestaurantResponse.class)
 	public ResponseEntity<GetRestaurantResponse> getRestaurant(@PathVariable long restaurantId) {
+		logger.debug("GET /restaurants/{restaurantId} - Get a restaurant by restaurant ID");
+		
 		return restaurantRepository
 				.findById(restaurantId)
 				.map(restaurant -> new ResponseEntity<>(

@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.ftgo.deliveryservice.api.model.CourierAvailability;
 import com.ftgo.deliveryservice.api.model.DeliveryStatus;
 import com.ftgo.deliveryservice.service.DeliveryService;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * The controller class for defining the external APIs for the delivery service.
@@ -26,7 +27,8 @@ public class DeliveryServiceController {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	@RequestMapping(path = "/couriers/{courierId}/availability", method = RequestMethod.POST)
+	@PostMapping(path = "/couriers/{courierId}/availability")
+	@ApiOperation(value = "Update a courier availability by courier ID.", response = String.class)
 	public ResponseEntity<String> updateCourierLocation(@PathVariable long courierId, @RequestBody CourierAvailability availability) {
 		logger.debug("POST /couriers/{courierId}/availability - Update a courier availability by courier ID");
 		
@@ -34,7 +36,8 @@ public class DeliveryServiceController {
 		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 
-	@RequestMapping(path = "/deliveries/{deliveryId}", method = RequestMethod.GET)
+	@GetMapping(path = "/deliveries/{deliveryId}")
+	@ApiOperation(value = "Get delivery information by delivery ID.", response = DeliveryStatus.class)
 	public ResponseEntity<DeliveryStatus> getDeliveryStatus(@PathVariable long deliveryId) {
 		logger.debug("GET /deliveries/{deliveryId} - Get delivery information by delivery ID");
 		

@@ -1,14 +1,15 @@
 package com.ftgo.accountingservice.controller;
 
 import io.eventuate.EntityNotFoundException;
+import io.swagger.annotations.ApiOperation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftgo.accountingservice.controller.model.GetAccountResponse;
@@ -26,7 +27,8 @@ import com.ftgo.accountingservice.controller.model.GetAccountResponse;
 public class AccountingServiceController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@RequestMapping(path = "/{accountId}", method = RequestMethod.GET)
+	@GetMapping(path = "/{accountId}")
+	@ApiOperation(value = "Get an account by account ID.", response = GetAccountResponse.class)
 	public ResponseEntity<GetAccountResponse> getAccount(@PathVariable String accountId) {
 		logger.debug("GET /accounts/{accountId} - Get an account by account ID");
 		

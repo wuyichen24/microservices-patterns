@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +16,8 @@ import com.ftgo.orderhistoryservice.dao.OrderHistoryDao;
 import com.ftgo.orderhistoryservice.domain.OrderHistoryFilter;
 import com.ftgo.orderhistoryservice.model.Order;
 import com.ftgo.orderhistoryservice.model.OrderHistory;
+
+import io.swagger.annotations.ApiOperation;
 
 import static java.util.stream.Collectors.toList;
 
@@ -38,7 +40,8 @@ public class OrderHistoryServiceController {
 		this.orderHistoryDao = orderHistoryDao;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
+	@ApiOperation(value = "Get all the historical orders from the consumer.", response = GetOrdersResponse.class)
 	public ResponseEntity<GetOrdersResponse> getOrders(@RequestParam(name = "consumerId") String consumerId) {
 		logger.debug("GET /orders?consumerId={consumerId} - Get all the historical orders from the consumer");
 		
@@ -53,7 +56,8 @@ public class OrderHistoryServiceController {
 				order.getRestaurantName());
 	}
 
-	@RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
+	@GetMapping(path = "/{orderId}")
+	@ApiOperation(value = "Get a historical order by order ID.", response = GetOrderResponse.class)
 	public ResponseEntity<GetOrderResponse> getOrder(@PathVariable String orderId) {
 		logger.debug("GET /orders/{orderId} - Get a historical order by order ID");
 		

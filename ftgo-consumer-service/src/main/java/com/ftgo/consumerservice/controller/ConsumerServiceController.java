@@ -14,6 +14,7 @@ import com.ftgo.consumerservice.model.Consumer;
 import com.ftgo.consumerservice.service.ConsumerService;
 
 import io.eventuate.tram.events.publisher.ResultWithEvents;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * The controller class for defining the external APIs about consumers.
@@ -31,7 +32,8 @@ public class ConsumerServiceController {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
+	@ApiOperation(value = "Add a new consumer.", response = CreateConsumerResponse.class)
 	public CreateConsumerResponse createConsumer(@RequestBody CreateConsumerRequest request) {
 		logger.debug("POST /consumers - Add a new consumer");
 		
@@ -39,7 +41,8 @@ public class ConsumerServiceController {
 		return new CreateConsumerResponse(result.result.getId());
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/{consumerId}")
+	@GetMapping(path = "/{consumerId}")
+	@ApiOperation(value = "Get a consumer by consumer ID.", response = GetConsumerResponse.class)
 	public ResponseEntity<GetConsumerResponse> getConsumer(@PathVariable long consumerId) {
 		logger.debug("GET /consumers/{consumerId} - Get a consumer by consumer ID");
 		

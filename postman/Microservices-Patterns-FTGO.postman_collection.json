@@ -310,6 +310,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get a restaurant by restaurant ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/restaurants/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"restaurants",
+								"23"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

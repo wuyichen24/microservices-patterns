@@ -13,6 +13,8 @@ import com.ftgo.restaurantservice.controller.model.GetRestaurantResponse;
 import com.ftgo.restaurantservice.model.Restaurant;
 import com.ftgo.restaurantservice.service.RestaurantService;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
  * The controller class for defining the external APIs about restaurants.
  * 
@@ -29,7 +31,8 @@ public class RestaurantServiceController {
 	@Autowired
 	private RestaurantService restaurantService;
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
+	@ApiOperation(value = "Add a new restaurant.", response = CreateRestaurantResponse.class)
 	public CreateRestaurantResponse create(@RequestBody CreateRestaurantRequest request) {
 		logger.debug("POST /restaurants - Add a new restaurant");
 		
@@ -37,7 +40,8 @@ public class RestaurantServiceController {
 		return new CreateRestaurantResponse(r.getId());
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/{restaurantId}")
+	@GetMapping(path = "/{restaurantId}")
+	@ApiOperation(value = "Get a restaurant by restaurant ID.", response = GetRestaurantResponse.class)
 	public ResponseEntity<GetRestaurantResponse> get(@PathVariable long restaurantId) {
 		logger.debug("GET /restaurants/{restaurantId} - Get a restaurant by restaurant ID");
 		

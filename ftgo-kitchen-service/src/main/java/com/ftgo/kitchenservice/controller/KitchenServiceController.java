@@ -3,6 +3,8 @@ package com.ftgo.kitchenservice.controller;
 import com.ftgo.kitchenservice.api.controller.model.TicketAcceptance;
 import com.ftgo.kitchenservice.service.KitchenService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,7 +29,8 @@ public class KitchenServiceController {
 		this.kitchenService = kitchenService;
 	}
 
-	@RequestMapping(path="/tickets/{ticketId}/accept", method= RequestMethod.POST)
+	@PostMapping(path="/tickets/{ticketId}/accept")
+	@ApiOperation(value = "Accept a ticket by ticket ID.", response = String.class)
 	public ResponseEntity<String> acceptTicket(@PathVariable long ticketId, @RequestBody TicketAcceptance ticketAcceptance) {
 		logger.debug("POST /tickets/{ticketId}/accept - Accept a ticket by ticket ID");
 		
