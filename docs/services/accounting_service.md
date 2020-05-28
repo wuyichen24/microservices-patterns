@@ -16,6 +16,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8081/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | GET | `/accounts/{accountId}` | | `GetAccountResponse` JSON | Get an account by account ID. |
