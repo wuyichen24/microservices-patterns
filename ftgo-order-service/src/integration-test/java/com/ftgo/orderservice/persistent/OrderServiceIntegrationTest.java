@@ -14,6 +14,7 @@ import com.ftgo.orderservice.model.Order;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.repository.RestaurantRepository;
 import com.ftgo.orderservice.service.OrderService;
+import com.ftgo.restaurantservice.api.RestaurantServiceChannels;
 import com.ftgo.restaurantservice.api.event.RestaurantCreatedEvent;
 import com.ftgo.restaurantservice.api.model.MenuItem;
 import com.ftgo.restaurantservice.api.model.RestaurantMenu;
@@ -109,7 +110,7 @@ public class OrderServiceIntegrationTest {
 
 	@Test
 	public void shouldCreateOrder() {
-		domainEventPublisher.publish("net.chrisrichardson.ftgo.restaurantservice.domain.Restaurant", RESTAURANT_ID,
+		domainEventPublisher.publish(RestaurantServiceChannels.RESTAURANT_EVENT_CHANNEL, RESTAURANT_ID,
 				Collections.singletonList(new RestaurantCreatedEvent("Ajanta", RestaurantTestData.RESTAURANT_ADDRESS,
 						new RestaurantMenu(Collections.singletonList(new MenuItem(CHICKED_VINDALOO_MENU_ITEM_ID,
 								"Chicken Vindaloo", new Money("12.34")))))));

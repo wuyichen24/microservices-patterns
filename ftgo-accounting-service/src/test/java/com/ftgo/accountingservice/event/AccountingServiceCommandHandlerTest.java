@@ -34,6 +34,7 @@ import com.ftgo.accountingservice.model.Account;
 import com.ftgo.accountservice.api.AccountingServiceChannels;
 import com.ftgo.accountservice.api.command.AuthorizeCommand;
 import com.ftgo.common.model.Money;
+import com.ftgo.consumerservice.api.ConsumerServiceChannels;
 import com.ftgo.consumerservice.api.event.model.ConsumerCreatedEvent;
 
 import javax.sql.DataSource;
@@ -98,7 +99,7 @@ public class AccountingServiceCommandHandlerTest {
 		long consumerId = System.currentTimeMillis();
 		long orderId = 102L;
 
-		domainEventPublisher.publish("net.chrisrichardson.ftgo.consumerservice.domain.Consumer", consumerId,
+		domainEventPublisher.publish(ConsumerServiceChannels.CONSUMER_EVENT_CHANNEL, consumerId,
 				Collections.singletonList(new ConsumerCreatedEvent()));
 
 		Eventually.eventually(() -> {

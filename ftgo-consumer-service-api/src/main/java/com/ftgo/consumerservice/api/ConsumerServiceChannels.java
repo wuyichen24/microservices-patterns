@@ -10,4 +10,5 @@ package com.ftgo.consumerservice.api;
  */
 public class ConsumerServiceChannels {
 	public static final String consumerServiceChannel = "consumerService";
+	public static final String CONSUMER_EVENT_CHANNEL  = "com.ftgo.consumerservice.model.Consumer";
 }

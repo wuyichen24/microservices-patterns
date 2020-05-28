@@ -24,7 +24,7 @@ public class CommonSwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("net.chrisrichardson.ftgo"))
+                .apis(RequestHandlerSelectors.basePackage("com.ftgo"))
                 .build()
                 .pathMapping("/")
                 .genericModelSubstitutes(ResponseEntity.class, CompletableFuture.class)

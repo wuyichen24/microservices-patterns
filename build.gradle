@@ -26,7 +26,7 @@ subprojects {
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 
-    group = "net.chrisrichardson.ftgo"
+    group = "com.ftgo"
 
     repositories {
         eventuateMavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }

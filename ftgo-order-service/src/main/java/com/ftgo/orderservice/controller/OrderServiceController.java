@@ -21,6 +21,8 @@ import com.ftgo.orderservice.model.*;
 import com.ftgo.orderservice.repository.OrderRepository;
 import com.ftgo.orderservice.service.OrderService;
 
+import io.swagger.annotations.ApiOperation;
+
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
@@ -57,6 +59,7 @@ public class OrderServiceController {
 	 *         
 	 * @return  The {@code CreateOrderResponse} object to capture the order ID of the newly created order.
 	 */
+	@ApiOperation(value = "Add a new order.",response = CreateOrderResponse.class)
 	@RequestMapping(method = RequestMethod.POST)
 	public CreateOrderResponse create(@RequestBody CreateOrderRequest request) {
 		logger.debug("POST /orders - Add a new order");
