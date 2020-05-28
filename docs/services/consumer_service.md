@@ -16,6 +16,7 @@
 
 ## APIs
 ### RESTful APIs
+[API Documentation (Swagger UI)](http://localhost:8082/swagger-ui.html)
 | Method | URL | Request | Response | Description | 
 |----|----|----|----|----|
 | POST | `/consumers` | `CreateConsumerRequest` JSON | `CreateConsumerResponse` JSON | Add a new consumer. |
