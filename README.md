@@ -2,7 +2,7 @@
 
 This repository contains the source code of the book "[Microservices Patterns (Chris Richardson)](https://www.manning.com/books/microservices-patterns)".
 
-![](./docs/Richardson-MP-HI.png)
+![](docs/Richardson-MP-HI.png)
 
 ## Overview
 This source code was re-organized by the [original source code](https://github.com/microservices-patterns/ftgo-application) of the book and I make sure each module is runnable.
