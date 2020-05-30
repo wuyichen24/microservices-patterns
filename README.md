@@ -1,6 +1,6 @@
 # microservices-patterns
 
-This repository contains the source code of the book "[Microservices Patterns (Chris Richardson)](https://www.manning.com/books/microservices-patterns)".
+This repository contains the source code of the book "[Microservices Patterns (Chris Richardson)](https://www.manning.com/books/microservices-patterns)" and the personal study note of Eventuate Tram Framework (The whole solution of asynchronous messaging for microservices).
 
 ![](docs/Richardson-MP-HI.png)
 
