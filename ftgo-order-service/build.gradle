@@ -35,11 +35,16 @@ contracts {
     generatedTestSourcesDir = project.file("${project.buildDir}/generated-integration-test-sources/contracts")
 }
 
-
 sourceSets {
     integrationTest {
         java {
             srcDir project.file("${project.buildDir}/generated-integration-test-sources/contracts")
+        }
+    }
+    main {
+    	java {
+        	exclude '**/OrderServiceProto.java'
+        	exclude '**/OrderServiceGrpc.java'
         }
     }
 }
@@ -75,11 +80,9 @@ integrationTest.dependsOn(integrationTestsComposeUp)
 componentTest.dependsOn(componentTestsComposeUp)
 
 componentTest {
-
     environment "EVENTUATE_DATABASE_SCHEMA", (System.getenv("ORDER_SERVICE_COMPONENT_TEST_EVENTUATE_DATABASE_SCHEMA") ?: "eventuate")
     environment "SPRING_DATASOURCE_URL", "jdbc:mysql://${System.getenv("DOCKER_HOST_IP")}/ftgoorderservice"
     environment "DOCKER_HOST_IP", System.getenv("DOCKER_HOST_IP")
-
 }
 
 protobuf {
@@ -92,6 +95,10 @@ protobuf {
             artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
         }
     }
+
+    // Define the place for generating stub  
+    // generateProtoTasks.generatedFilesBaseDir = "${rootDir}/grpc"
+    
     generateProtoTasks {
         all()*.plugins {
             grpc {
