@@ -1,0 +1,10 @@
+language: java
+jdk:
+    - openjdk8
+
+notifications:
+  email:
+    recipients:
+      - wuyichen24@gmail.com
+    on_success: never
+    on_failure: always
