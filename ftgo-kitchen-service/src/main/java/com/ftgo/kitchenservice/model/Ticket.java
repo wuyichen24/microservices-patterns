@@ -21,16 +21,16 @@ import javax.persistence.*;
 
 import com.ftgo.common.exception.NotYetImplementedException;
 import com.ftgo.common.exception.UnsupportedStateTransitionException;
+import com.ftgo.kitchenservice.api.event.model.TicketAcceptedEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketCancelledEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketCreatedEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketDomainEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketPickedUpEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketPreparationCompletedEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketPreparationStartedEvent;
+import com.ftgo.kitchenservice.api.event.model.TicketRevisedEvent;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.api.model.TicketLineItem;
-import com.ftgo.kitchenservice.event.model.TicketAcceptedEvent;
-import com.ftgo.kitchenservice.event.model.TicketCancelledEvent;
-import com.ftgo.kitchenservice.event.model.TicketCreatedEvent;
-import com.ftgo.kitchenservice.event.model.TicketDomainEvent;
-import com.ftgo.kitchenservice.event.model.TicketPickedUpEvent;
-import com.ftgo.kitchenservice.event.model.TicketPreparationCompletedEvent;
-import com.ftgo.kitchenservice.event.model.TicketPreparationStartedEvent;
-import com.ftgo.kitchenservice.event.model.TicketRevisedEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ftgo.kitchenservice.event.model;
+package com.ftgo.kitchenservice.api.event.model;
+
+import com.ftgo.kitchenservice.api.model.TicketDetails;
 
 /**
- * Ticket preparation completed event.
+ * Ticket created event.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020
  * @version 1.0
  * @since   1.0
  */
-public class TicketPreparationStartedEvent implements TicketDomainEvent {
+public class TicketCreatedEvent implements TicketDomainEvent {
+	public TicketCreatedEvent(Long id, TicketDetails details) {
+
+	}
 }

@@ -7,7 +7,6 @@ apply plugin: ComponentTestsPlugin
 
 dependencies {
     compile project(":ftgo-delivery-service-api")
-    compile project(":ftgo-kitchen-service")
     compile project(":ftgo-kitchen-service-api")
     compile project(":ftgo-restaurant-service-api")
     compile project(":ftgo-order-service-api")

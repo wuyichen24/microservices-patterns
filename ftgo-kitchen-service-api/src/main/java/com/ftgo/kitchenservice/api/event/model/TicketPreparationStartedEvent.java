@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ftgo.kitchenservice.event.model;
-
-import io.eventuate.tram.events.common.DomainEvent;
+package com.ftgo.kitchenservice.api.event.model;
 
 /**
- * The marker interface for the Ticket aggregate’s events.
+ * Ticket preparation completed event.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020
  * @version 1.0
  * @since   1.0
  */
-public interface TicketDomainEvent extends DomainEvent {
+public class TicketPreparationStartedEvent implements TicketDomainEvent {
 }

@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ftgo.kitchenservice.event.model;
+package com.ftgo.kitchenservice.api.event.model;
+
+import java.time.LocalDateTime;
 
 /**
- * Ticket revised event.
+ * Ticket accepted event.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020
  * @version 1.0
  * @since   1.0
  */
-public class TicketRevisedEvent implements TicketDomainEvent {
+public class TicketAcceptedEvent implements TicketDomainEvent {
+	private LocalDateTime readyBy;        // the estimate of when the order will be ready for pickup. 
+	
+	public TicketAcceptedEvent(LocalDateTime readyBy) {
+
+	}
+	
+	public LocalDateTime getReadyBy() {
+		return readyBy;
+	}
 }

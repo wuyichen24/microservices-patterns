@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ftgo.kitchenservice.event.model;
+package com.ftgo.kitchenservice.api.event.model;
 
 /**
- * Ticket cancelled event.
+ * Ticket revised event.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020
  * @version 1.0
  * @since   1.0
  */
-public class TicketCancelledEvent implements TicketDomainEvent {
+public class TicketRevisedEvent implements TicketDomainEvent {
 }

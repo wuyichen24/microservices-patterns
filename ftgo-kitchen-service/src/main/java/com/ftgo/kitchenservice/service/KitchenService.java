@@ -20,9 +20,9 @@ import io.eventuate.tram.events.aggregates.ResultWithDomainEvents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ftgo.kitchenservice.api.event.model.TicketDomainEvent;
 import com.ftgo.kitchenservice.api.model.TicketDetails;
 import com.ftgo.kitchenservice.event.TicketDomainEventPublisher;
-import com.ftgo.kitchenservice.event.model.TicketDomainEvent;
 import com.ftgo.kitchenservice.exception.RestaurantNotFoundException;
 import com.ftgo.kitchenservice.exception.TicketNotFoundException;
 import com.ftgo.kitchenservice.model.Restaurant;

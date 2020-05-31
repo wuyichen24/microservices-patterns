@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ftgo.kitchenservice.event.model;
+package com.ftgo.kitchenservice.api.event.model;
+
+import io.eventuate.tram.events.common.DomainEvent;
 
 /**
- * Ticket picked up event.
+ * The marker interface for the Ticket aggregate’s events.
  *
  * @author  Wuyi Chen
  * @date    04/14/2020
  * @version 1.0
  * @since   1.0
  */
-public class TicketPickedUpEvent implements TicketDomainEvent {
+public interface TicketDomainEvent extends DomainEvent {
 }

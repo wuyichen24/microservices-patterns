@@ -24,7 +24,6 @@ include "ftgo-order-service-contracts"
 
 include "ftgo-restaurant-service"
 include "ftgo-restaurant-service-api"
-include "ftgo-restaurant-service-aws-lambda"
 
 include "ftgo-order-history-service"
 
