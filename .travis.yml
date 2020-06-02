@@ -8,3 +8,7 @@ notifications:
       - wuyichen24@gmail.com
     on_success: never
     on_failure: always
+
+script:
+    # By default Travis-ci executes './gradlew build connectedCheck' if no 'script:' section found.
+    - ./gradlew compileJava
