@@ -22,25 +22,25 @@ public final class OrderServiceGrpc {
   public static final String SERVICE_NAME = "orderservice.OrderService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> getCreateOrderMethod;
+  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> getCreateOrderMethod;
 
-  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> getCreateOrderMethod() {
-    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> getCreateOrderMethod;
+  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> getCreateOrderMethod() {
+    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> getCreateOrderMethod;
     if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
       synchronized (OrderServiceGrpc.class) {
         if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
           OrderServiceGrpc.getCreateOrderMethod = getCreateOrderMethod = 
-              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply>newBuilder()
+              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "orderservice.OrderService", "createOrder"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.getDefaultInstance()))
                   .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("createOrder"))
                   .build();
           }
@@ -49,25 +49,25 @@ public final class OrderServiceGrpc {
      return getCreateOrderMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> getCancelOrderMethod;
+  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> getCancelOrderMethod;
 
-  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> getCancelOrderMethod() {
-    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> getCancelOrderMethod;
+  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> getCancelOrderMethod() {
+    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> getCancelOrderMethod;
     if ((getCancelOrderMethod = OrderServiceGrpc.getCancelOrderMethod) == null) {
       synchronized (OrderServiceGrpc.class) {
         if ((getCancelOrderMethod = OrderServiceGrpc.getCancelOrderMethod) == null) {
           OrderServiceGrpc.getCancelOrderMethod = getCancelOrderMethod = 
-              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply>newBuilder()
+              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "orderservice.OrderService", "cancelOrder"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.getDefaultInstance()))
                   .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("cancelOrder"))
                   .build();
           }
@@ -76,25 +76,25 @@ public final class OrderServiceGrpc {
      return getCancelOrderMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> getReviseOrderMethod;
+  private static volatile io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> getReviseOrderMethod;
 
-  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest,
-      com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> getReviseOrderMethod() {
-    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> getReviseOrderMethod;
+  public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest,
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> getReviseOrderMethod() {
+    io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> getReviseOrderMethod;
     if ((getReviseOrderMethod = OrderServiceGrpc.getReviseOrderMethod) == null) {
       synchronized (OrderServiceGrpc.class) {
         if ((getReviseOrderMethod = OrderServiceGrpc.getReviseOrderMethod) == null) {
           OrderServiceGrpc.getReviseOrderMethod = getReviseOrderMethod = 
-              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply>newBuilder()
+              io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "orderservice.OrderService", "reviseOrder"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.getDefaultInstance()))
+                  com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.getDefaultInstance()))
                   .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("reviseOrder"))
                   .build();
           }
@@ -132,22 +132,22 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public void createOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> responseObserver) {
+    public void createOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> responseObserver) {
       asyncUnimplementedUnaryCall(getCreateOrderMethod(), responseObserver);
     }
 
     /**
      */
-    public void cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> responseObserver) {
+    public void cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> responseObserver) {
       asyncUnimplementedUnaryCall(getCancelOrderMethod(), responseObserver);
     }
 
     /**
      */
-    public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> responseObserver) {
+    public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> responseObserver) {
       asyncUnimplementedUnaryCall(getReviseOrderMethod(), responseObserver);
     }
 
@@ -157,22 +157,22 @@ public final class OrderServiceGrpc {
             getCreateOrderMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest,
-                com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply>(
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest,
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply>(
                   this, METHODID_CREATE_ORDER)))
           .addMethod(
             getCancelOrderMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest,
-                com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply>(
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest,
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply>(
                   this, METHODID_CANCEL_ORDER)))
           .addMethod(
             getReviseOrderMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest,
-                com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply>(
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest,
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply>(
                   this, METHODID_REVISE_ORDER)))
           .build();
     }
@@ -198,24 +198,24 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public void createOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> responseObserver) {
+    public void createOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCreateOrderMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> responseObserver) {
+    public void cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCancelOrderMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request,
-        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> responseObserver) {
+    public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest request,
+        io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getReviseOrderMethod(), getCallOptions()), request, responseObserver);
     }
@@ -241,21 +241,21 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply createOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest request) {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply createOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest request) {
       return blockingUnaryCall(
           getChannel(), getCreateOrderMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest request) {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply cancelOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest request) {
       return blockingUnaryCall(
           getChannel(), getCancelOrderMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request) {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest request) {
       return blockingUnaryCall(
           getChannel(), getReviseOrderMethod(), getCallOptions(), request);
     }
@@ -281,24 +281,24 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply> createOrder(
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> createOrder(
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getCreateOrderMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply> cancelOrder(
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> cancelOrder(
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getCancelOrderMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply> reviseOrder(
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> reviseOrder(
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getReviseOrderMethod(), getCallOptions()), request);
     }
@@ -326,16 +326,16 @@ public final class OrderServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_CREATE_ORDER:
-          serviceImpl.createOrder((com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest) request,
-              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply>) responseObserver);
+          serviceImpl.createOrder((com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest) request,
+              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply>) responseObserver);
           break;
         case METHODID_CANCEL_ORDER:
-          serviceImpl.cancelOrder((com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest) request,
-              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply>) responseObserver);
+          serviceImpl.cancelOrder((com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest) request,
+              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply>) responseObserver);
           break;
         case METHODID_REVISE_ORDER:
-          serviceImpl.reviseOrder((com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest) request,
-              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply>) responseObserver);
+          serviceImpl.reviseOrder((com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest) request,
+              (io.grpc.stub.StreamObserver<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -358,7 +358,7 @@ public final class OrderServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.getDescriptor();
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.getDescriptor();
     }
 
     @java.lang.Override

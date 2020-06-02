@@ -52,17 +52,17 @@ public class OrderServiceClient {
 	public long createOrder(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> lineItems, Address deliveryAddress, LocalDateTime deliveryTime) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
-		OrderServiceProto.CreateOrderRequest.Builder builder = OrderServiceProto.CreateOrderRequest.newBuilder().setConsumerId(consumerId)
+		OrderServiceProtoX.CreateOrderRequest.Builder builder = OrderServiceProtoX.CreateOrderRequest.newBuilder().setConsumerId(consumerId)
 				.setRestaurantId(restaurantId).setDeliveryAddress(makeAddress(deliveryAddress))
 				.setDeliveryTime(deliveryTime.format(formatter));
 		lineItems.forEach(li -> builder
-				.addLineItems(OrderServiceProto.LineItem.newBuilder().setQuantity(li.getQuantity()).setMenuItemId(li.getMenuItemId())));
-		OrderServiceProto.CreateOrderReply response = clientStub.createOrder(builder.build());
+				.addLineItems(OrderServiceProtoX.LineItem.newBuilder().setQuantity(li.getQuantity()).setMenuItemId(li.getMenuItemId())));
+		OrderServiceProtoX.CreateOrderReply response = clientStub.createOrder(builder.build());
 		return response.getOrderId();
 	}
 
-	private OrderServiceProto.Address makeAddress(Address address) {
-		OrderServiceProto.Address.Builder builder = OrderServiceProto.Address.newBuilder().setStreet1(address.getStreet1());
+	private OrderServiceProtoX.Address makeAddress(Address address) {
+		OrderServiceProtoX.Address.Builder builder = OrderServiceProtoX.Address.newBuilder().setStreet1(address.getStreet1());
 		if (address.getStreet2() != null)
 			builder.setStreet2(address.getStreet2());
 		builder.setCity(address.getCity()).setState(address.getState()).setZip(address.getZip());

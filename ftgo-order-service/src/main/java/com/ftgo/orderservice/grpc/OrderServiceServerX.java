@@ -49,14 +49,14 @@ import static java.util.stream.Collectors.toList;
  * @version 1.0
  * @since   1.0
  */
-public class OrderServiceServer {
-	private static final Logger logger = LoggerFactory.getLogger(OrderServiceServer.class);
+public class OrderServiceServerX {
+	private static final Logger logger = LoggerFactory.getLogger(OrderServiceServerX.class);
 
 	private int port = 50051;
 	private Server server;
 	private OrderService orderService;
 
-	public OrderServiceServer(OrderService orderService) {
+	public OrderServiceServerX(OrderService orderService) {
 		this.orderService = orderService;
 	}
 
@@ -85,29 +85,29 @@ public class OrderServiceServer {
 	 */
 	public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
 		@Override
-		public void createOrder(OrderServiceProto.CreateOrderRequest request, StreamObserver<OrderServiceProto.CreateOrderReply> responseObserver) {
-			List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> lineItemsList = request.getLineItemsList();
+		public void createOrder(OrderServiceProtoX.CreateOrderRequest request, StreamObserver<OrderServiceProtoX.CreateOrderReply> responseObserver) {
+			List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> lineItemsList = request.getLineItemsList();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
 			LocalDateTime deliveryTime = LocalDateTime.parse(request.getDeliveryTime(), formatter);
 
 			Order order = orderService.createOrder(request.getConsumerId(), request.getRestaurantId(),
 					new DeliveryInformation(deliveryTime, convertAddress(request.getDeliveryAddress())),
 					lineItemsList.stream().map(x -> new MenuItemIdAndQuantity(x.getMenuItemId(), x.getQuantity())).collect(toList()));
-			OrderServiceProto.CreateOrderReply reply = OrderServiceProto.CreateOrderReply.newBuilder().setOrderId(order.getId()).build();
+			OrderServiceProtoX.CreateOrderReply reply = OrderServiceProtoX.CreateOrderReply.newBuilder().setOrderId(order.getId()).build();
 			responseObserver.onNext(reply);
 			responseObserver.onCompleted();
 		}
 
 		@Override
-		public void cancelOrder(OrderServiceProto.CancelOrderRequest request, StreamObserver<OrderServiceProto.CancelOrderReply> responseObserver) {
-			OrderServiceProto.CancelOrderReply reply = OrderServiceProto.CancelOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
+		public void cancelOrder(OrderServiceProtoX.CancelOrderRequest request, StreamObserver<OrderServiceProtoX.CancelOrderReply> responseObserver) {
+			OrderServiceProtoX.CancelOrderReply reply = OrderServiceProtoX.CancelOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
 			responseObserver.onNext(reply);
 			responseObserver.onCompleted();
 		}
 
 		@Override
-		public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest request, StreamObserver<OrderServiceProto.ReviseOrderReply> responseObserver) {
-			OrderServiceProto.ReviseOrderReply reply = OrderServiceProto.ReviseOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
+		public void reviseOrder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest request, StreamObserver<OrderServiceProtoX.ReviseOrderReply> responseObserver) {
+			OrderServiceProtoX.ReviseOrderReply reply = OrderServiceProtoX.ReviseOrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
 			responseObserver.onNext(reply);
 			responseObserver.onCompleted();
 		}
@@ -121,7 +121,7 @@ public class OrderServiceServer {
 	 *         
 	 * @return  The object of {@code com.ftgo.common.model.Address}
 	 */
-	private Address convertAddress(OrderServiceProto.Address address) {
+	private Address convertAddress(OrderServiceProtoX.Address address) {
 		return new Address(address.getStreet1(), nullIfBlank(address.getStreet2()), address.getCity(), address.getState(), address.getZip());
 	}
 	

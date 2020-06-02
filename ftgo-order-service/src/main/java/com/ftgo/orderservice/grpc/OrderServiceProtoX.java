@@ -3,8 +3,8 @@
 
 package com.ftgo.orderservice.grpc;
 
-public final class OrderServiceProto {
-  private OrderServiceProto() {}
+public final class OrderServiceProtoX {
+  private OrderServiceProtoX() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -31,12 +31,12 @@ public final class OrderServiceProto {
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> 
+    java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> 
         getLineItemsList();
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getLineItems(int index);
+    com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getLineItems(int index);
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
@@ -44,12 +44,12 @@ public final class OrderServiceProto {
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder> 
+    java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder> 
         getLineItemsOrBuilderList();
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder getLineItemsOrBuilder(
+    com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder getLineItemsOrBuilder(
         int index);
 
     /**
@@ -59,11 +59,11 @@ public final class OrderServiceProto {
     /**
      * <code>optional .orderservice.Address deliveryAddress = 4;</code>
      */
-    com.ftgo.orderservice.grpc.OrderServiceProto.Address getDeliveryAddress();
+    com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDeliveryAddress();
     /**
      * <code>optional .orderservice.Address deliveryAddress = 4;</code>
      */
-    com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder getDeliveryAddressOrBuilder();
+    com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder getDeliveryAddressOrBuilder();
 
     /**
      * <code>optional string deliveryTime = 5;</code>
@@ -130,19 +130,19 @@ public final class OrderServiceProto {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                lineItems_ = new java.util.ArrayList<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem>();
+                lineItems_ = new java.util.ArrayList<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem>();
                 mutable_bitField0_ |= 0x00000004;
               }
               lineItems_.add(
-                  input.readMessage(com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.parser(), extensionRegistry));
+                  input.readMessage(com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.parser(), extensionRegistry));
               break;
             }
             case 34: {
-              com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder subBuilder = null;
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder subBuilder = null;
               if (deliveryAddress_ != null) {
                 subBuilder = deliveryAddress_.toBuilder();
               }
-              deliveryAddress_ = input.readMessage(com.ftgo.orderservice.grpc.OrderServiceProto.Address.parser(), extensionRegistry);
+              deliveryAddress_ = input.readMessage(com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(deliveryAddress_);
                 deliveryAddress_ = subBuilder.buildPartial();
@@ -172,14 +172,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderRequest_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderRequest_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.Builder.class);
     }
 
     private int bitField0_;
@@ -202,17 +202,17 @@ public final class OrderServiceProto {
     }
 
     public static final int LINEITEMS_FIELD_NUMBER = 3;
-    private java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> lineItems_;
+    private java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> lineItems_;
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> getLineItemsList() {
+    public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> getLineItemsList() {
       return lineItems_;
     }
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    public java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder> 
+    public java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder> 
         getLineItemsOrBuilderList() {
       return lineItems_;
     }
@@ -225,19 +225,19 @@ public final class OrderServiceProto {
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getLineItems(int index) {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getLineItems(int index) {
       return lineItems_.get(index);
     }
     /**
      * <code>repeated .orderservice.LineItem lineItems = 3;</code>
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder getLineItemsOrBuilder(
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder getLineItemsOrBuilder(
         int index) {
       return lineItems_.get(index);
     }
 
     public static final int DELIVERYADDRESS_FIELD_NUMBER = 4;
-    private com.ftgo.orderservice.grpc.OrderServiceProto.Address deliveryAddress_;
+    private com.ftgo.orderservice.grpc.OrderServiceProtoX.Address deliveryAddress_;
     /**
      * <code>optional .orderservice.Address deliveryAddress = 4;</code>
      */
@@ -247,13 +247,13 @@ public final class OrderServiceProto {
     /**
      * <code>optional .orderservice.Address deliveryAddress = 4;</code>
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.Address getDeliveryAddress() {
-      return deliveryAddress_ == null ? com.ftgo.orderservice.grpc.OrderServiceProto.Address.getDefaultInstance() : deliveryAddress_;
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDeliveryAddress() {
+      return deliveryAddress_ == null ? com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.getDefaultInstance() : deliveryAddress_;
     }
     /**
      * <code>optional .orderservice.Address deliveryAddress = 4;</code>
      */
-    public com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder getDeliveryAddressOrBuilder() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder getDeliveryAddressOrBuilder() {
       return getDeliveryAddress();
     }
 
@@ -354,10 +354,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest) obj;
 
       boolean result = true;
       result = result && (getRestaurantId()
@@ -404,58 +404,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -467,7 +467,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -487,17 +487,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.CreateOrderRequest)
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequestOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderRequest_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.newBuilder()
@@ -541,23 +541,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderRequest_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.restaurantId_ = restaurantId_;
@@ -609,16 +609,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest.getDefaultInstance()) return this;
         if (other.getRestaurantId() != 0L) {
           setRestaurantId(other.getRestaurantId());
         }
@@ -670,11 +670,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -737,22 +737,22 @@ public final class OrderServiceProto {
         return this;
       }
 
-      private java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> lineItems_ =
+      private java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> lineItems_ =
         java.util.Collections.emptyList();
       private void ensureLineItemsIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          lineItems_ = new java.util.ArrayList<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem>(lineItems_);
+          lineItems_ = new java.util.ArrayList<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem>(lineItems_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ftgo.orderservice.grpc.OrderServiceProto.LineItem, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder> lineItemsBuilder_;
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder> lineItemsBuilder_;
 
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> getLineItemsList() {
+      public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> getLineItemsList() {
         if (lineItemsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(lineItems_);
         } else {
@@ -772,7 +772,7 @@ public final class OrderServiceProto {
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getLineItems(int index) {
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getLineItems(int index) {
         if (lineItemsBuilder_ == null) {
           return lineItems_.get(index);
         } else {
@@ -783,7 +783,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder setLineItems(
-          int index, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem value) {
+          int index, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem value) {
         if (lineItemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -800,7 +800,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder setLineItems(
-          int index, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder builderForValue) {
+          int index, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder builderForValue) {
         if (lineItemsBuilder_ == null) {
           ensureLineItemsIsMutable();
           lineItems_.set(index, builderForValue.build());
@@ -813,7 +813,7 @@ public final class OrderServiceProto {
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public Builder addLineItems(com.ftgo.orderservice.grpc.OrderServiceProto.LineItem value) {
+      public Builder addLineItems(com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem value) {
         if (lineItemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -830,7 +830,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder addLineItems(
-          int index, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem value) {
+          int index, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem value) {
         if (lineItemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -847,7 +847,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder addLineItems(
-          com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder builderForValue) {
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder builderForValue) {
         if (lineItemsBuilder_ == null) {
           ensureLineItemsIsMutable();
           lineItems_.add(builderForValue.build());
@@ -861,7 +861,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder addLineItems(
-          int index, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder builderForValue) {
+          int index, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder builderForValue) {
         if (lineItemsBuilder_ == null) {
           ensureLineItemsIsMutable();
           lineItems_.add(index, builderForValue.build());
@@ -875,7 +875,7 @@ public final class OrderServiceProto {
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
       public Builder addAllLineItems(
-          java.lang.Iterable<? extends com.ftgo.orderservice.grpc.OrderServiceProto.LineItem> values) {
+          java.lang.Iterable<? extends com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> values) {
         if (lineItemsBuilder_ == null) {
           ensureLineItemsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -915,14 +915,14 @@ public final class OrderServiceProto {
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder getLineItemsBuilder(
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder getLineItemsBuilder(
           int index) {
         return getLineItemsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder getLineItemsOrBuilder(
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder getLineItemsOrBuilder(
           int index) {
         if (lineItemsBuilder_ == null) {
           return lineItems_.get(index);  } else {
@@ -932,7 +932,7 @@ public final class OrderServiceProto {
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder> 
+      public java.util.List<? extends com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder> 
            getLineItemsOrBuilderList() {
         if (lineItemsBuilder_ != null) {
           return lineItemsBuilder_.getMessageOrBuilderList();
@@ -943,31 +943,31 @@ public final class OrderServiceProto {
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder addLineItemsBuilder() {
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder addLineItemsBuilder() {
         return getLineItemsFieldBuilder().addBuilder(
-            com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.getDefaultInstance());
+            com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.getDefaultInstance());
       }
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder addLineItemsBuilder(
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder addLineItemsBuilder(
           int index) {
         return getLineItemsFieldBuilder().addBuilder(
-            index, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.getDefaultInstance());
+            index, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.getDefaultInstance());
       }
       /**
        * <code>repeated .orderservice.LineItem lineItems = 3;</code>
        */
-      public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder> 
+      public java.util.List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder> 
            getLineItemsBuilderList() {
         return getLineItemsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.ftgo.orderservice.grpc.OrderServiceProto.LineItem, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder> 
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder> 
           getLineItemsFieldBuilder() {
         if (lineItemsBuilder_ == null) {
           lineItemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.ftgo.orderservice.grpc.OrderServiceProto.LineItem, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder>(
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder>(
                   lineItems_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
@@ -977,9 +977,9 @@ public final class OrderServiceProto {
         return lineItemsBuilder_;
       }
 
-      private com.ftgo.orderservice.grpc.OrderServiceProto.Address deliveryAddress_ = null;
+      private com.ftgo.orderservice.grpc.OrderServiceProtoX.Address deliveryAddress_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ftgo.orderservice.grpc.OrderServiceProto.Address, com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder> deliveryAddressBuilder_;
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.Address, com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder> deliveryAddressBuilder_;
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
@@ -989,9 +989,9 @@ public final class OrderServiceProto {
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.Address getDeliveryAddress() {
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDeliveryAddress() {
         if (deliveryAddressBuilder_ == null) {
-          return deliveryAddress_ == null ? com.ftgo.orderservice.grpc.OrderServiceProto.Address.getDefaultInstance() : deliveryAddress_;
+          return deliveryAddress_ == null ? com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.getDefaultInstance() : deliveryAddress_;
         } else {
           return deliveryAddressBuilder_.getMessage();
         }
@@ -999,7 +999,7 @@ public final class OrderServiceProto {
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
-      public Builder setDeliveryAddress(com.ftgo.orderservice.grpc.OrderServiceProto.Address value) {
+      public Builder setDeliveryAddress(com.ftgo.orderservice.grpc.OrderServiceProtoX.Address value) {
         if (deliveryAddressBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1016,7 +1016,7 @@ public final class OrderServiceProto {
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
       public Builder setDeliveryAddress(
-          com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder builderForValue) {
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder builderForValue) {
         if (deliveryAddressBuilder_ == null) {
           deliveryAddress_ = builderForValue.build();
           onChanged();
@@ -1029,11 +1029,11 @@ public final class OrderServiceProto {
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
-      public Builder mergeDeliveryAddress(com.ftgo.orderservice.grpc.OrderServiceProto.Address value) {
+      public Builder mergeDeliveryAddress(com.ftgo.orderservice.grpc.OrderServiceProtoX.Address value) {
         if (deliveryAddressBuilder_ == null) {
           if (deliveryAddress_ != null) {
             deliveryAddress_ =
-              com.ftgo.orderservice.grpc.OrderServiceProto.Address.newBuilder(deliveryAddress_).mergeFrom(value).buildPartial();
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.newBuilder(deliveryAddress_).mergeFrom(value).buildPartial();
           } else {
             deliveryAddress_ = value;
           }
@@ -1061,7 +1061,7 @@ public final class OrderServiceProto {
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder getDeliveryAddressBuilder() {
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder getDeliveryAddressBuilder() {
         
         onChanged();
         return getDeliveryAddressFieldBuilder().getBuilder();
@@ -1069,23 +1069,23 @@ public final class OrderServiceProto {
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
-      public com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder getDeliveryAddressOrBuilder() {
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder getDeliveryAddressOrBuilder() {
         if (deliveryAddressBuilder_ != null) {
           return deliveryAddressBuilder_.getMessageOrBuilder();
         } else {
           return deliveryAddress_ == null ?
-              com.ftgo.orderservice.grpc.OrderServiceProto.Address.getDefaultInstance() : deliveryAddress_;
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.getDefaultInstance() : deliveryAddress_;
         }
       }
       /**
        * <code>optional .orderservice.Address deliveryAddress = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.ftgo.orderservice.grpc.OrderServiceProto.Address, com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder> 
+          com.ftgo.orderservice.grpc.OrderServiceProtoX.Address, com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder> 
           getDeliveryAddressFieldBuilder() {
         if (deliveryAddressBuilder_ == null) {
           deliveryAddressBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.ftgo.orderservice.grpc.OrderServiceProto.Address, com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder>(
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.Address, com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder, com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder>(
                   getDeliveryAddress(),
                   getParentForChildren(),
                   isClean());
@@ -1177,12 +1177,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.CreateOrderRequest)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1205,7 +1205,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderRequest getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1352,14 +1352,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_Address_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_Address_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_Address_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_Address_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.Address.class, com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder.class);
     }
 
     public static final int STREET1_FIELD_NUMBER = 1;
@@ -1591,10 +1591,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.Address)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.Address)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.Address other = (com.ftgo.orderservice.grpc.OrderServiceProto.Address) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.Address other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.Address) obj;
 
       boolean result = true;
       result = result && getStreet1()
@@ -1632,58 +1632,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1695,7 +1695,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.Address prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.Address prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -1715,17 +1715,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.Address)
-        com.ftgo.orderservice.grpc.OrderServiceProto.AddressOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.AddressOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_Address_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_Address_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_Address_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_Address_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.Address.class, com.ftgo.orderservice.grpc.OrderServiceProto.Address.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.Address.newBuilder()
@@ -1760,23 +1760,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_Address_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_Address_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.Address getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.Address.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.Address build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.Address result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.Address result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.Address buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.Address result = new com.ftgo.orderservice.grpc.OrderServiceProto.Address(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.Address result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.Address(this);
         result.street1_ = street1_;
         result.street2_ = street2_;
         result.city_ = city_;
@@ -1813,16 +1813,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.Address) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.Address)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.Address) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.Address)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.Address other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.Address.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.Address other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.Address.getDefaultInstance()) return this;
         if (!other.getStreet1().isEmpty()) {
           street1_ = other.street1_;
           onChanged();
@@ -1855,11 +1855,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.Address parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.Address parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.Address) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.Address) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2228,12 +2228,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.Address)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.Address DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.Address DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.Address();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.Address();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.Address getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2256,7 +2256,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.Address getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.Address getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2346,14 +2346,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_LineItem_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_LineItem_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_LineItem_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_LineItem_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.class, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder.class);
     }
 
     public static final int MENUITEMID_FIELD_NUMBER = 1;
@@ -2441,10 +2441,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.LineItem)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.LineItem other = (com.ftgo.orderservice.grpc.OrderServiceProto.LineItem) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem) obj;
 
       boolean result = true;
       result = result && getMenuItemId()
@@ -2470,58 +2470,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2533,7 +2533,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.LineItem prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -2553,17 +2553,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.LineItem)
-        com.ftgo.orderservice.grpc.OrderServiceProto.LineItemOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItemOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_LineItem_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_LineItem_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_LineItem_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_LineItem_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.class, com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.newBuilder()
@@ -2592,23 +2592,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_LineItem_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_LineItem_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.LineItem result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.LineItem result = new com.ftgo.orderservice.grpc.OrderServiceProto.LineItem(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem(this);
         result.menuItemId_ = menuItemId_;
         result.quantity_ = quantity_;
         onBuilt();
@@ -2642,16 +2642,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.LineItem) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.LineItem)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.LineItem other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.LineItem.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem.getDefaultInstance()) return this;
         if (!other.getMenuItemId().isEmpty()) {
           menuItemId_ = other.menuItemId_;
           onChanged();
@@ -2671,11 +2671,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.LineItem parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.LineItem) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2794,12 +2794,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.LineItem)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.LineItem DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.LineItem();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2822,7 +2822,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.LineItem getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2895,14 +2895,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderReply_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderReply_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderReply_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.Builder.class);
     }
 
     public static final int ORDERID_FIELD_NUMBER = 1;
@@ -2950,10 +2950,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply) obj;
 
       boolean result = true;
       result = result && (getOrderId()
@@ -2976,58 +2976,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3039,7 +3039,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -3059,17 +3059,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.CreateOrderReply)
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReplyOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderReply_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderReply_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderReply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.newBuilder()
@@ -3096,23 +3096,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CreateOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CreateOrderReply_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply(this);
         result.orderId_ = orderId_;
         onBuilt();
         return result;
@@ -3145,16 +3145,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply.getDefaultInstance()) return this;
         if (other.getOrderId() != 0L) {
           setOrderId(other.getOrderId());
         }
@@ -3170,11 +3170,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3224,12 +3224,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.CreateOrderReply)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3252,7 +3252,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CreateOrderReply getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3331,14 +3331,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderRequest_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderRequest_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.Builder.class);
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
@@ -3410,10 +3410,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest) obj;
 
       boolean result = true;
       result = result && getName()
@@ -3435,58 +3435,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3498,7 +3498,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -3518,17 +3518,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.CancelOrderRequest)
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequestOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderRequest_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.newBuilder()
@@ -3555,23 +3555,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderRequest_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest(this);
         result.name_ = name_;
         onBuilt();
         return result;
@@ -3604,16 +3604,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -3630,11 +3630,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3727,12 +3727,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.CancelOrderRequest)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3755,7 +3755,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderRequest getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3834,14 +3834,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderReply_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderReply_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderReply_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.Builder.class);
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 1;
@@ -3913,10 +3913,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply) obj;
 
       boolean result = true;
       result = result && getMessage()
@@ -3938,58 +3938,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4001,7 +4001,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -4021,17 +4021,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.CancelOrderReply)
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReplyOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderReply_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderReply_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderReply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.newBuilder()
@@ -4058,23 +4058,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_CancelOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_CancelOrderReply_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply(this);
         result.message_ = message_;
         onBuilt();
         return result;
@@ -4107,16 +4107,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply.getDefaultInstance()) return this;
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
           onChanged();
@@ -4133,11 +4133,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4230,12 +4230,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.CancelOrderReply)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4258,7 +4258,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.CancelOrderReply getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4337,14 +4337,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderRequest_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderRequest_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.Builder.class);
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
@@ -4416,10 +4416,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest) obj;
 
       boolean result = true;
       result = result && getName()
@@ -4441,58 +4441,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4504,7 +4504,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -4524,17 +4524,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.ReviseOrderRequest)
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequestOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderRequest_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderRequest_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.newBuilder()
@@ -4561,23 +4561,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderRequest_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderRequest_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest(this);
         result.name_ = name_;
         onBuilt();
         return result;
@@ -4610,16 +4610,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -4636,11 +4636,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4733,12 +4733,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.ReviseOrderRequest)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4761,7 +4761,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderRequest getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4840,14 +4840,14 @@ public final class OrderServiceProto {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderReply_descriptor;
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderReply_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderReply_fieldAccessorTable
+      return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.Builder.class);
+              com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.Builder.class);
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 1;
@@ -4919,10 +4919,10 @@ public final class OrderServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply)) {
+      if (!(obj instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply)) {
         return super.equals(obj);
       }
-      com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply) obj;
+      com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply other = (com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply) obj;
 
       boolean result = true;
       result = result && getMessage()
@@ -4944,58 +4944,58 @@ public final class OrderServiceProto {
       return hash;
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(byte[] data)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseDelimitedFrom(java.io.InputStream input)
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseDelimitedFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parseFrom(
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5007,7 +5007,7 @@ public final class OrderServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply prototype) {
+    public static Builder newBuilder(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -5027,17 +5027,17 @@ public final class OrderServiceProto {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:orderservice.ReviseOrderReply)
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReplyOrBuilder {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderReply_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderReply_fieldAccessorTable
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderReply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.Builder.class);
+                com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.class, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.Builder.class);
       }
 
       // Construct using com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.newBuilder()
@@ -5064,23 +5064,23 @@ public final class OrderServiceProto {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.internal_static_orderservice_ReviseOrderReply_descriptor;
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.internal_static_orderservice_ReviseOrderReply_descriptor;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply getDefaultInstanceForType() {
-        return com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.getDefaultInstance();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply getDefaultInstanceForType() {
+        return com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.getDefaultInstance();
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply build() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply result = buildPartial();
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply build() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply buildPartial() {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply(this);
+      public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply buildPartial() {
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply result = new com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply(this);
         result.message_ = message_;
         onBuilt();
         return result;
@@ -5113,16 +5113,16 @@ public final class OrderServiceProto {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply) {
-          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply)other);
+        if (other instanceof com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply) {
+          return mergeFrom((com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply other) {
-        if (other == com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply other) {
+        if (other == com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply.getDefaultInstance()) return this;
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
           onChanged();
@@ -5139,11 +5139,11 @@ public final class OrderServiceProto {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply parsedMessage = null;
+        com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply) e.getUnfinishedMessage();
+          parsedMessage = (com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5236,12 +5236,12 @@ public final class OrderServiceProto {
     }
 
     // @@protoc_insertion_point(class_scope:orderservice.ReviseOrderReply)
-    private static final com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply DEFAULT_INSTANCE;
+    private static final com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply();
+      DEFAULT_INSTANCE = new com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply();
     }
 
-    public static com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply getDefaultInstance() {
+    public static com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5264,7 +5264,7 @@ public final class OrderServiceProto {
       return PARSER;
     }
 
-    public com.ftgo.orderservice.grpc.OrderServiceProto.ReviseOrderReply getDefaultInstanceForType() {
+    public com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
