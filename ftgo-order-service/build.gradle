@@ -43,8 +43,8 @@ sourceSets {
     }
     main {
     	java {
-        	exclude '**/OrderServiceProto.java'
-        	exclude '**/OrderServiceGrpc.java'
+        	exclude '**/build/**/OrderServiceProto.java'
+        	exclude '**/build/**/OrderServiceGrpc.java'
         }
     }
 }
