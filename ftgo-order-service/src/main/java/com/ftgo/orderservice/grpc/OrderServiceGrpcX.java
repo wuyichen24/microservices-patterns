@@ -15,9 +15,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.13.2)",
     comments = "Source: OrderService.proto")
-public final class OrderServiceGrpc {
+public final class OrderServiceGrpcX {
 
-  private OrderServiceGrpc() {}
+  private OrderServiceGrpcX() {}
 
   public static final String SERVICE_NAME = "orderservice.OrderService";
 
@@ -28,10 +28,10 @@ public final class OrderServiceGrpc {
   public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest,
       com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> getCreateOrderMethod() {
     io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply> getCreateOrderMethod;
-    if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
-      synchronized (OrderServiceGrpc.class) {
-        if ((getCreateOrderMethod = OrderServiceGrpc.getCreateOrderMethod) == null) {
-          OrderServiceGrpc.getCreateOrderMethod = getCreateOrderMethod = 
+    if ((getCreateOrderMethod = OrderServiceGrpcX.getCreateOrderMethod) == null) {
+      synchronized (OrderServiceGrpcX.class) {
+        if ((getCreateOrderMethod = OrderServiceGrpcX.getCreateOrderMethod) == null) {
+          OrderServiceGrpcX.getCreateOrderMethod = getCreateOrderMethod = 
               io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CreateOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -55,10 +55,10 @@ public final class OrderServiceGrpc {
   public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest,
       com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> getCancelOrderMethod() {
     io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply> getCancelOrderMethod;
-    if ((getCancelOrderMethod = OrderServiceGrpc.getCancelOrderMethod) == null) {
-      synchronized (OrderServiceGrpc.class) {
-        if ((getCancelOrderMethod = OrderServiceGrpc.getCancelOrderMethod) == null) {
-          OrderServiceGrpc.getCancelOrderMethod = getCancelOrderMethod = 
+    if ((getCancelOrderMethod = OrderServiceGrpcX.getCancelOrderMethod) == null) {
+      synchronized (OrderServiceGrpcX.class) {
+        if ((getCancelOrderMethod = OrderServiceGrpcX.getCancelOrderMethod) == null) {
+          OrderServiceGrpcX.getCancelOrderMethod = getCancelOrderMethod = 
               io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.CancelOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -82,10 +82,10 @@ public final class OrderServiceGrpc {
   public static io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest,
       com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> getReviseOrderMethod() {
     io.grpc.MethodDescriptor<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply> getReviseOrderMethod;
-    if ((getReviseOrderMethod = OrderServiceGrpc.getReviseOrderMethod) == null) {
-      synchronized (OrderServiceGrpc.class) {
-        if ((getReviseOrderMethod = OrderServiceGrpc.getReviseOrderMethod) == null) {
-          OrderServiceGrpc.getReviseOrderMethod = getReviseOrderMethod = 
+    if ((getReviseOrderMethod = OrderServiceGrpcX.getReviseOrderMethod) == null) {
+      synchronized (OrderServiceGrpcX.class) {
+        if ((getReviseOrderMethod = OrderServiceGrpcX.getReviseOrderMethod) == null) {
+          OrderServiceGrpcX.getReviseOrderMethod = getReviseOrderMethod = 
               io.grpc.MethodDescriptor.<com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderRequest, com.ftgo.orderservice.grpc.OrderServiceProtoX.ReviseOrderReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
@@ -392,7 +392,7 @@ public final class OrderServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (OrderServiceGrpc.class) {
+      synchronized (OrderServiceGrpcX.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)

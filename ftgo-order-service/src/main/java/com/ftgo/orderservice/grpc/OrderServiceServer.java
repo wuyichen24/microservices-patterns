@@ -49,14 +49,14 @@ import static java.util.stream.Collectors.toList;
  * @version 1.0
  * @since   1.0
  */
-public class OrderServiceServerX {
-	private static final Logger logger = LoggerFactory.getLogger(OrderServiceServerX.class);
+public class OrderServiceServer {
+	private static final Logger logger = LoggerFactory.getLogger(OrderServiceServer.class);
 
 	private int port = 50051;
 	private Server server;
 	private OrderService orderService;
 
-	public OrderServiceServerX(OrderService orderService) {
+	public OrderServiceServer(OrderService orderService) {
 		this.orderService = orderService;
 	}
 
@@ -83,7 +83,7 @@ public class OrderServiceServerX {
 	 * @version 1.0
 	 * @since   1.0
 	 */
-	public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
+	public class OrderServiceImpl extends OrderServiceGrpcX.OrderServiceImplBase {
 		@Override
 		public void createOrder(OrderServiceProtoX.CreateOrderRequest request, StreamObserver<OrderServiceProtoX.CreateOrderReply> responseObserver) {
 			List<com.ftgo.orderservice.grpc.OrderServiceProtoX.LineItem> lineItemsList = request.getLineItemsList();

@@ -38,11 +38,11 @@ public class OrderServiceClient {
 	private static final Logger logger = Logger.getLogger(OrderServiceClient.class.getName());
 
 	private final ManagedChannel channel;
-	private final OrderServiceGrpc.OrderServiceBlockingStub clientStub;
+	private final OrderServiceGrpcX.OrderServiceBlockingStub clientStub;
 
 	public OrderServiceClient(String host, int port) {
 		channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-		clientStub = OrderServiceGrpc.newBlockingStub(channel);
+		clientStub = OrderServiceGrpcX.newBlockingStub(channel);
 	}
 
 	public void shutdown() throws InterruptedException {
