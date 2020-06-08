@@ -36,7 +36,7 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
       - Spring Cloud
 - Messaging
    - [Apache Kafka](https://kafka.apache.org/) with [Apache ZooKeeper](https://zookeeper.apache.org/)
-   - [Eventuate Tram](https://eventuate.io/abouteventuatetram.html) (Transaction messaging framework)
+   - [Eventuate Tram](https://eventuate.io/abouteventuatetram.html) (Transactional messaging framework)
 - Database
    - [MySQL](https://www.mysql.com/)
 - API Gateway
