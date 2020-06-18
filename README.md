@@ -52,6 +52,9 @@ This is an application called FTGO (Food to Go). Consumers use the FTGO website 
 - Added more logging.
 - Enhanced API documentation (Swagger UI).
 
+## Study Notes
+- [Study Notes](https://docs.google.com/document/d/1MkeEUyWfDU7HYYCo26GyaVbBHIS29iZ6FnOxuJ_4JHc/edit?usp=sharing)
+
 ## Documentation
 - [Getting Started](docs/getting_started.md)
 - [Architecture](docs/architecture.md)
