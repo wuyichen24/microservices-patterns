@@ -1,6 +1,5 @@
 # microservices-patterns
 
-[![Build Status](https://travis-ci.org/wuyichen24/microservices-patterns.svg?branch=master)](https://travis-ci.org/wuyichen24/microservices-patterns)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0) 
 
 This repository contains the source code of the book "[Microservices Patterns (Chris Richardson)](https://www.manning.com/books/microservices-patterns)" and the personal study note of Eventuate Tram Framework (The whole solution of transactional messaging for Spring Boot microservices).
